@@ -1,0 +1,3 @@
+[submodule "amplify-app"]
+	path = amplify-app
+	url = https://github.com/Ashwinibclk/bim-angular.git
