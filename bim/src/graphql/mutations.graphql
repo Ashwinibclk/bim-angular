@@ -38,3 +38,42 @@ mutation DeleteTodo(
     updatedAt
   }
 }
+mutation CreateTableaulogin(
+  $input: CreateTableauloginInput!
+  $condition: ModelTableauloginConditionInput
+) {
+  createTableaulogin(input: $input, condition: $condition) {
+    id
+    username
+    password
+    sitename
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateTableaulogin(
+  $input: UpdateTableauloginInput!
+  $condition: ModelTableauloginConditionInput
+) {
+  updateTableaulogin(input: $input, condition: $condition) {
+    id
+    username
+    password
+    sitename
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteTableaulogin(
+  $input: DeleteTableauloginInput!
+  $condition: ModelTableauloginConditionInput
+) {
+  deleteTableaulogin(input: $input, condition: $condition) {
+    id
+    username
+    password
+    sitename
+    createdAt
+    updatedAt
+  }
+}

@@ -6,10 +6,14 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { TableauloginComponent } from './tableaulogin/tableaulogin.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TableauloginComponent,
+   
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,8 @@
 import {Component, OnInit, OnDestroy, ChangeDetectorRef } from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {APIService, Todo} from "./API.service";
+import {APIService, Todo, Tableaulogin} from "./API.service";
 import { Subscription } from "rxjs";
+import { Router,NavigationStart } from "@angular/router";
 import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components';
 @Component({
   selector: "app-root",
@@ -11,17 +12,34 @@ import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-ampli
 export class AppComponent implements OnInit, OnDestroy {
   title = "amplify-angular-app";
   public createForm: FormGroup;
+  public createFormtb: any;
+  showapp:any;
+
+
   user: CognitoUserInterface | undefined;
   authState: any;
   
   /* declare restaurants variable */
   public todos: Array<Todo> = [];
+  public tbs: Array<Tableaulogin> =[];
 
-  constructor(private api: APIService, private fb: FormBuilder, private ref: ChangeDetectorRef) {
+  constructor(private api: APIService, private fb: FormBuilder, private ref: ChangeDetectorRef, private router:Router) {
     this.createForm = this.fb.group({
       name: ["", Validators.required],
       description: ["", Validators.required],
       city: ["", Validators.required],
+    });
+    this.showapp=Boolean;
+router.events.forEach((event)=>{
+  if(event instanceof NavigationStart){
+    this.showapp = event.url !=="/tableaulogin"
+  }
+})
+    this.createFormtb=FormBuilder;
+    this.createFormtb= this.fb.group({
+      username: ["", Validators.required],
+      password: ["", Validators.required],
+      sitename: ["", Validators.required],
     });
   }
   private subscription: Subscription | null = null;
@@ -32,8 +50,18 @@ export class AppComponent implements OnInit, OnDestroy {
     });
     this.subscription = <Subscription>(
       this.api.OnCreateTodoListener.subscribe((event: any) => {
-        const newRestaurant = event.value.data.onCreateRestaurant;
-        this.todos = [newRestaurant, ...this.todos];
+        const newTodo = event.value.data.onCreateTodo;
+        this.todos = [newTodo, ...this.todos];
+      })
+    );
+
+    this.api.ListTableaulogins().then((event) => {
+      this.tbs = event.items as Tableaulogin[];
+    });
+    this.subscription = <Subscription>(
+      this.api.OnCreateTableauloginListener.subscribe((event: any) => {
+        const newtb = event.value.data.onCreatetb;
+        this.tbs = [newtb, ...this.tbs];
       })
     );
     onAuthUIStateChange((authState, authData) => {
@@ -56,6 +84,19 @@ export class AppComponent implements OnInit, OnDestroy {
         console.log("error creating restaurant...", e);
       });
   }
+
+  public onCreatetb(todo: any) {
+    this.api
+      .CreateTableaulogin(todo)
+      .then((event) => {
+        console.log("item created!");
+        this.createFormtb.reset();
+      })
+      .catch((e) => {
+        console.log("error creating restaurant...", e);
+      });
+  }
+
 
   ngOnDestroy() {
     if (this.subscription) {

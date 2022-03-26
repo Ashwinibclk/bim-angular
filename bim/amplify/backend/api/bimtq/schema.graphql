@@ -8,3 +8,130 @@ type Todo @model {
   description: String!
   city: String!
 }
+
+type Tableaulogin @model {
+  id: ID!
+  username: String!
+  password: String!
+  sitename: String!
+}
+
+type Quicksightlogin @model {
+  id: ID!
+  awsaccountId: ID!
+}
+
+type Customer @model {
+  CustomerId:ID!
+  name: String!
+}
+
+type Department @model {
+Did: ID!
+CustomerId:ID!
+Dname: String!
+
+}
+
+type TableauProject @model {
+  TProId:ID!
+name:String!
+Did:String!
+}
+
+type TableauWorkbook @model {
+  WbId:ID!
+  name:String!
+TProId:ID!
+
+}
+
+type TableauSheet @model {
+  name:String!
+  WbId:ID!
+Tsid:ID!
+}
+
+type TableauGraph @model {
+  name:String!
+  Tsid:ID!
+}
+
+type TableauEnv @model {
+name:String!
+TProId:ID!
+}
+
+
+type QuicksiteProject{
+name:String!
+QProId:ID!
+Did:ID!
+
+}
+
+type QuicksiteTemplate{
+QtemId:ID! 
+name:String!
+analysisId:ID!
+QProId:ID!
+ 
+}
+type QuicksiteAnalysis{
+name:String!
+analysisId:ID!
+ QtemId:ID! 
+}
+type QuicksiteDashboard{
+name:String!
+QtemId:ID!
+  
+}
+
+type QuicksiteEnv{
+name:String!
+QProId:ID!
+  
+}
+
+type BIMProject{
+  Did:ID!
+  name:String;
+  source:BIPlatform;
+  destination:BIPlatform;
+}
+
+enum BIPlatform{
+  TABLEAU
+  QUICKSIGHT
+}
+
+type Dataset{
+  name:String!
+  datasources: String!
+  files: String!
+}
+
+type Datasouce{
+  name:String!
+  dsid:ID!
+}
+
+type QuicksightFolder{
+name:String!
+}
+
+type QuicksightGroup{
+name:String!
+}
+
+type File{
+
+  name:String!
+
+}
+
+type Table{
+  name:String!
+  dsid:ID!
+}

@@ -29,3 +29,33 @@ subscription OnDeleteTodo {
     updatedAt
   }
 }
+subscription OnCreateTableaulogin {
+  onCreateTableaulogin {
+    id
+    username
+    password
+    sitename
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateTableaulogin {
+  onUpdateTableaulogin {
+    id
+    username
+    password
+    sitename
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteTableaulogin {
+  onDeleteTableaulogin {
+    id
+    username
+    password
+    sitename
+    createdAt
+    updatedAt
+  }
+}

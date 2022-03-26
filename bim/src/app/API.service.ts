@@ -13,6 +13,9 @@ export type __SubscriptionContainer = {
   onCreateTodo: OnCreateTodoSubscription;
   onUpdateTodo: OnUpdateTodoSubscription;
   onDeleteTodo: OnDeleteTodoSubscription;
+  onCreateTableaulogin: OnCreateTableauloginSubscription;
+  onUpdateTableaulogin: OnUpdateTableauloginSubscription;
+  onDeleteTableaulogin: OnDeleteTableauloginSubscription;
 };
 
 export type CreateTodoInput = {
@@ -91,6 +94,43 @@ export type DeleteTodoInput = {
   id: string;
 };
 
+export type CreateTableauloginInput = {
+  id?: string | null;
+  username: string;
+  password: string;
+  sitename: string;
+};
+
+export type ModelTableauloginConditionInput = {
+  username?: ModelStringInput | null;
+  password?: ModelStringInput | null;
+  sitename?: ModelStringInput | null;
+  and?: Array<ModelTableauloginConditionInput | null> | null;
+  or?: Array<ModelTableauloginConditionInput | null> | null;
+  not?: ModelTableauloginConditionInput | null;
+};
+
+export type Tableaulogin = {
+  __typename: "Tableaulogin";
+  id: string;
+  username: string;
+  password: string;
+  sitename: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateTableauloginInput = {
+  id: string;
+  username?: string | null;
+  password?: string | null;
+  sitename?: string | null;
+};
+
+export type DeleteTableauloginInput = {
+  id: string;
+};
+
 export type ModelTodoFilterInput = {
   id?: ModelIDInput | null;
   name?: ModelStringInput | null;
@@ -120,6 +160,22 @@ export type ModelIDInput = {
 export type ModelTodoConnection = {
   __typename: "ModelTodoConnection";
   items: Array<Todo | null>;
+  nextToken?: string | null;
+};
+
+export type ModelTableauloginFilterInput = {
+  id?: ModelIDInput | null;
+  username?: ModelStringInput | null;
+  password?: ModelStringInput | null;
+  sitename?: ModelStringInput | null;
+  and?: Array<ModelTableauloginFilterInput | null> | null;
+  or?: Array<ModelTableauloginFilterInput | null> | null;
+  not?: ModelTableauloginFilterInput | null;
+};
+
+export type ModelTableauloginConnection = {
+  __typename: "ModelTableauloginConnection";
+  items: Array<Tableaulogin | null>;
   nextToken?: string | null;
 };
 
@@ -153,6 +209,36 @@ export type DeleteTodoMutation = {
   updatedAt: string;
 };
 
+export type CreateTableauloginMutation = {
+  __typename: "Tableaulogin";
+  id: string;
+  username: string;
+  password: string;
+  sitename: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateTableauloginMutation = {
+  __typename: "Tableaulogin";
+  id: string;
+  username: string;
+  password: string;
+  sitename: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteTableauloginMutation = {
+  __typename: "Tableaulogin";
+  id: string;
+  username: string;
+  password: string;
+  sitename: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type GetTodoQuery = {
   __typename: "Todo";
   id: string;
@@ -171,6 +257,30 @@ export type ListTodosQuery = {
     name: string;
     description: string;
     city: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null>;
+  nextToken?: string | null;
+};
+
+export type GetTableauloginQuery = {
+  __typename: "Tableaulogin";
+  id: string;
+  username: string;
+  password: string;
+  sitename: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListTableauloginsQuery = {
+  __typename: "ModelTableauloginConnection";
+  items: Array<{
+    __typename: "Tableaulogin";
+    id: string;
+    username: string;
+    password: string;
+    sitename: string;
     createdAt: string;
     updatedAt: string;
   } | null>;
@@ -203,6 +313,36 @@ export type OnDeleteTodoSubscription = {
   name: string;
   description: string;
   city: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateTableauloginSubscription = {
+  __typename: "Tableaulogin";
+  id: string;
+  username: string;
+  password: string;
+  sitename: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateTableauloginSubscription = {
+  __typename: "Tableaulogin";
+  id: string;
+  username: string;
+  password: string;
+  sitename: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteTableauloginSubscription = {
+  __typename: "Tableaulogin";
+  id: string;
+  username: string;
+  password: string;
+  sitename: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -289,6 +429,84 @@ export class APIService {
     )) as any;
     return <DeleteTodoMutation>response.data.deleteTodo;
   }
+  async CreateTableaulogin(
+    input: CreateTableauloginInput,
+    condition?: ModelTableauloginConditionInput
+  ): Promise<CreateTableauloginMutation> {
+    const statement = `mutation CreateTableaulogin($input: CreateTableauloginInput!, $condition: ModelTableauloginConditionInput) {
+        createTableaulogin(input: $input, condition: $condition) {
+          __typename
+          id
+          username
+          password
+          sitename
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateTableauloginMutation>response.data.createTableaulogin;
+  }
+  async UpdateTableaulogin(
+    input: UpdateTableauloginInput,
+    condition?: ModelTableauloginConditionInput
+  ): Promise<UpdateTableauloginMutation> {
+    const statement = `mutation UpdateTableaulogin($input: UpdateTableauloginInput!, $condition: ModelTableauloginConditionInput) {
+        updateTableaulogin(input: $input, condition: $condition) {
+          __typename
+          id
+          username
+          password
+          sitename
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateTableauloginMutation>response.data.updateTableaulogin;
+  }
+  async DeleteTableaulogin(
+    input: DeleteTableauloginInput,
+    condition?: ModelTableauloginConditionInput
+  ): Promise<DeleteTableauloginMutation> {
+    const statement = `mutation DeleteTableaulogin($input: DeleteTableauloginInput!, $condition: ModelTableauloginConditionInput) {
+        deleteTableaulogin(input: $input, condition: $condition) {
+          __typename
+          id
+          username
+          password
+          sitename
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteTableauloginMutation>response.data.deleteTableaulogin;
+  }
   async GetTodo(id: string): Promise<GetTodoQuery> {
     const statement = `query GetTodo($id: ID!) {
         getTodo(id: $id) {
@@ -343,6 +561,61 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <ListTodosQuery>response.data.listTodos;
+  }
+  async GetTableaulogin(id: string): Promise<GetTableauloginQuery> {
+    const statement = `query GetTableaulogin($id: ID!) {
+        getTableaulogin(id: $id) {
+          __typename
+          id
+          username
+          password
+          sitename
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetTableauloginQuery>response.data.getTableaulogin;
+  }
+  async ListTableaulogins(
+    filter?: ModelTableauloginFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListTableauloginsQuery> {
+    const statement = `query ListTableaulogins($filter: ModelTableauloginFilterInput, $limit: Int, $nextToken: String) {
+        listTableaulogins(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            username
+            password
+            sitename
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListTableauloginsQuery>response.data.listTableaulogins;
   }
   OnCreateTodoListener: Observable<
     SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateTodo">>
@@ -402,5 +675,65 @@ export class APIService {
     )
   ) as Observable<
     SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteTodo">>
+  >;
+
+  OnCreateTableauloginListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateTableaulogin">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateTableaulogin {
+        onCreateTableaulogin {
+          __typename
+          id
+          username
+          password
+          sitename
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateTableaulogin">>
+  >;
+
+  OnUpdateTableauloginListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateTableaulogin">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateTableaulogin {
+        onUpdateTableaulogin {
+          __typename
+          id
+          username
+          password
+          sitename
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateTableaulogin">>
+  >;
+
+  OnDeleteTableauloginListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteTableaulogin">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteTableaulogin {
+        onDeleteTableaulogin {
+          __typename
+          id
+          username
+          password
+          sitename
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteTableaulogin">>
   >;
 }

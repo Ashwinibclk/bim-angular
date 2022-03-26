@@ -26,3 +26,30 @@ query ListTodos(
     nextToken
   }
 }
+query GetTableaulogin($id: ID!) {
+  getTableaulogin(id: $id) {
+    id
+    username
+    password
+    sitename
+    createdAt
+    updatedAt
+  }
+}
+query ListTableaulogins(
+  $filter: ModelTableauloginFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listTableaulogins(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      username
+      password
+      sitename
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
