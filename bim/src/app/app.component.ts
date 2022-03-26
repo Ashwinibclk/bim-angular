@@ -32,7 +32,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.showapp=Boolean;
 router.events.forEach((event)=>{
   if(event instanceof NavigationStart){
-    this.showapp = event.url !=="/tableaulogin"
+    this.showapp = event.url !=="/tableaulogin" && event.url !=="/quicksightlogin" && event.url !=="/customer" && event.url !=="/department" && event.url !=="/bimprojectlogin"
   }
 })
     this.createFormtb=FormBuilder;

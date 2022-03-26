@@ -2,8 +2,7 @@ import {Component, OnInit, OnDestroy, ChangeDetectorRef } from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {APIService, Todo, Tableaulogin} from "../API.service";
 import { Subscription } from "rxjs";
-import { Router,NavigationStart } from "@angular/router";
-import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components';
+
 
 @Component({
   selector: 'app-tableaulogin',
