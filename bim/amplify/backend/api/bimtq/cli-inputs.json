@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "bimtq",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/madhavimarri/bim-angular/bim/amplify/backend/api/bimtq/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 7
+    }
+  }
+}
