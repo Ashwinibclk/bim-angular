@@ -10,6 +10,11 @@
       "StackName": "amplify-bimtq-dev-144333",
       "StackId": "arn:aws:cloudformation:us-west-2:519510601754:stack/amplify-bimtq-dev-144333/07423330-ace5-11ec-a3d4-020169d58605",
       "AmplifyAppId": "d1ri4jkacfrvcd"
+    },
+    "categories": {
+      "auth": {
+        "bimtqa4f4e973": {}
+      }
     }
   }
 }

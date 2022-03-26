@@ -1,7 +1,8 @@
-import {Component, OnInit, OnDestroy} from "@angular/core";
+import {Component, OnInit, OnDestroy, ChangeDetectorRef } from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {APIService, Todo} from "./API.service";
 import { Subscription } from "rxjs";
+import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components';
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",

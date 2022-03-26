@@ -1,4 +1,4 @@
-<div class="form-body">
+<!--<div class="form-body">
   <form
     autocomplete="off"
     [formGroup]="createForm"
@@ -24,4 +24,14 @@
   <div>{{ restaurant.city }}</div>
   <div>{{ restaurant.name }}</div>
   <div>{{ restaurant.description }}</div>
-</div>
+</div>-->
+<amplify-authenticator>
+  <ng-template
+    amplifySlot="authenticated"
+    let-user="user"
+    let-signOut="signOut"
+  >
+    <h1>Welcome {{ user.username }}!</h1>
+    <button (click)="signOut()">Sign Out</button>
+  </ng-template>
+</amplify-authenticator>
