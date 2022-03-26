@@ -59,3 +59,228 @@ subscription OnDeleteTableaulogin {
     updatedAt
   }
 }
+subscription OnCreateQuicksightlogin {
+  onCreateQuicksightlogin {
+    id
+    awsaccountId
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateQuicksightlogin {
+  onUpdateQuicksightlogin {
+    id
+    awsaccountId
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteQuicksightlogin {
+  onDeleteQuicksightlogin {
+    id
+    awsaccountId
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateCustomer {
+  onCreateCustomer {
+    CustomerId
+    name
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateCustomer {
+  onUpdateCustomer {
+    CustomerId
+    name
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteCustomer {
+  onDeleteCustomer {
+    CustomerId
+    name
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateDepartment {
+  onCreateDepartment {
+    Did
+    CustomerId
+    Dname
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateDepartment {
+  onUpdateDepartment {
+    Did
+    CustomerId
+    Dname
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteDepartment {
+  onDeleteDepartment {
+    Did
+    CustomerId
+    Dname
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateTableauProject {
+  onCreateTableauProject {
+    TProId
+    name
+    Did
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateTableauProject {
+  onUpdateTableauProject {
+    TProId
+    name
+    Did
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteTableauProject {
+  onDeleteTableauProject {
+    TProId
+    name
+    Did
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateTableauWorkbook {
+  onCreateTableauWorkbook {
+    WbId
+    name
+    TProId
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateTableauWorkbook {
+  onUpdateTableauWorkbook {
+    WbId
+    name
+    TProId
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteTableauWorkbook {
+  onDeleteTableauWorkbook {
+    WbId
+    name
+    TProId
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateTableauSheet {
+  onCreateTableauSheet {
+    name
+    WbId
+    Tsid
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateTableauSheet {
+  onUpdateTableauSheet {
+    name
+    WbId
+    Tsid
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteTableauSheet {
+  onDeleteTableauSheet {
+    name
+    WbId
+    Tsid
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateTableauGraph {
+  onCreateTableauGraph {
+    name
+    Tsid
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateTableauGraph {
+  onUpdateTableauGraph {
+    name
+    Tsid
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteTableauGraph {
+  onDeleteTableauGraph {
+    name
+    Tsid
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateTableauEnv {
+  onCreateTableauEnv {
+    name
+    TProId
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateTableauEnv {
+  onUpdateTableauEnv {
+    name
+    TProId
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteTableauEnv {
+  onDeleteTableauEnv {
+    name
+    TProId
+    id
+    createdAt
+    updatedAt
+  }
+}

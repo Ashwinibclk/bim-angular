@@ -96,9 +96,9 @@ QProId:ID!
 
 type BIMProject{
   Did:ID!
-  name:String;
-  source:BIPlatform;
-  destination:BIPlatform;
+  name:String!
+  source:BIPlatform!
+  destination:BIPlatform!
 }
 
 enum BIPlatform{

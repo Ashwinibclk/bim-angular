@@ -53,3 +53,209 @@ query ListTableaulogins(
     nextToken
   }
 }
+query GetQuicksightlogin($id: ID!) {
+  getQuicksightlogin(id: $id) {
+    id
+    awsaccountId
+    createdAt
+    updatedAt
+  }
+}
+query ListQuicksightlogins(
+  $filter: ModelQuicksightloginFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listQuicksightlogins(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      awsaccountId
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetCustomer($id: ID!) {
+  getCustomer(id: $id) {
+    CustomerId
+    name
+    id
+    createdAt
+    updatedAt
+  }
+}
+query ListCustomers(
+  $filter: ModelCustomerFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listCustomers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      CustomerId
+      name
+      id
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetDepartment($id: ID!) {
+  getDepartment(id: $id) {
+    Did
+    CustomerId
+    Dname
+    id
+    createdAt
+    updatedAt
+  }
+}
+query ListDepartments(
+  $filter: ModelDepartmentFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listDepartments(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      Did
+      CustomerId
+      Dname
+      id
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetTableauProject($id: ID!) {
+  getTableauProject(id: $id) {
+    TProId
+    name
+    Did
+    id
+    createdAt
+    updatedAt
+  }
+}
+query ListTableauProjects(
+  $filter: ModelTableauProjectFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listTableauProjects(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      TProId
+      name
+      Did
+      id
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetTableauWorkbook($id: ID!) {
+  getTableauWorkbook(id: $id) {
+    WbId
+    name
+    TProId
+    id
+    createdAt
+    updatedAt
+  }
+}
+query ListTableauWorkbooks(
+  $filter: ModelTableauWorkbookFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listTableauWorkbooks(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      WbId
+      name
+      TProId
+      id
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetTableauSheet($id: ID!) {
+  getTableauSheet(id: $id) {
+    name
+    WbId
+    Tsid
+    id
+    createdAt
+    updatedAt
+  }
+}
+query ListTableauSheets(
+  $filter: ModelTableauSheetFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listTableauSheets(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      name
+      WbId
+      Tsid
+      id
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetTableauGraph($id: ID!) {
+  getTableauGraph(id: $id) {
+    name
+    Tsid
+    id
+    createdAt
+    updatedAt
+  }
+}
+query ListTableauGraphs(
+  $filter: ModelTableauGraphFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listTableauGraphs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      name
+      Tsid
+      id
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetTableauEnv($id: ID!) {
+  getTableauEnv(id: $id) {
+    name
+    TProId
+    id
+    createdAt
+    updatedAt
+  }
+}
+query ListTableauEnvs(
+  $filter: ModelTableauEnvFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listTableauEnvs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      name
+      TProId
+      id
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
