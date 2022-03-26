@@ -24,7 +24,7 @@
   <div>{{ restaurant.city }}</div>
   <div>{{ restaurant.name }}</div>
   <div>{{ restaurant.description }}</div>
-</div>-->
+</div>
 <amplify-authenticator>
   <ng-template
     amplifySlot="authenticated"
@@ -34,4 +34,13 @@
     <h1>Welcome {{ user.username }}!</h1>
     <button (click)="signOut()">Sign Out</button>
   </ng-template>
-</amplify-authenticator>
+</amplify-authenticator>-->
+<amplify-auth-container>
+<amplify-authenticator *ngIf="authState !== 'signedin'"></amplify-authenticator>
+
+<div *ngIf="authState === 'signedin' && user" class="App">
+  <amplify-sign-out></amplify-sign-out>
+  <div>Hello, {{user.username}}</div>
+  <!-- This is where you application template code goes -->
+</div>
+</amplify-auth-container>

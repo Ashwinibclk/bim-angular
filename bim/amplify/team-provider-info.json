@@ -1,20 +1,26 @@
 {
-  "dev": {
-    "awscloudformation": {
-      "AuthRoleName": "amplify-bimtq-dev-144333-authRole",
-      "UnauthRoleArn": "arn:aws:iam::519510601754:role/amplify-bimtq-dev-144333-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::519510601754:role/amplify-bimtq-dev-144333-authRole",
-      "Region": "us-west-2",
-      "DeploymentBucketName": "amplify-bimtq-dev-144333-deployment",
-      "UnauthRoleName": "amplify-bimtq-dev-144333-unauthRole",
-      "StackName": "amplify-bimtq-dev-144333",
-      "StackId": "arn:aws:cloudformation:us-west-2:519510601754:stack/amplify-bimtq-dev-144333/07423330-ace5-11ec-a3d4-020169d58605",
-      "AmplifyAppId": "d1ri4jkacfrvcd"
-    },
-    "categories": {
-      "auth": {
-        "bimtqa4f4e973": {}
-      }
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-bimtq-dev-144333-authRole",
+            "UnauthRoleArn": "arn:aws:iam::519510601754:role/amplify-bimtq-dev-144333-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::519510601754:role/amplify-bimtq-dev-144333-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "amplify-bimtq-dev-144333-deployment",
+            "UnauthRoleName": "amplify-bimtq-dev-144333-unauthRole",
+            "StackName": "amplify-bimtq-dev-144333",
+            "StackId": "arn:aws:cloudformation:us-west-2:519510601754:stack/amplify-bimtq-dev-144333/07423330-ace5-11ec-a3d4-020169d58605",
+            "AmplifyAppId": "d1ri4jkacfrvcd"
+        },
+        "categories": {
+            "auth": {
+                "bimtqa4f4e973": {}
+            },
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d1ri4jkacfrvcd",
+                    "type": "manual"
+                }
+            }
+        }
     }
-  }
 }

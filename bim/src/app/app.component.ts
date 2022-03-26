@@ -11,11 +11,13 @@ import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-ampli
 export class AppComponent implements OnInit, OnDestroy {
   title = "amplify-angular-app";
   public createForm: FormGroup;
-
+  user: CognitoUserInterface | undefined;
+  authState: any;
+  
   /* declare restaurants variable */
   public todos: Array<Todo> = [];
 
-  constructor(private api: APIService, private fb: FormBuilder) {
+  constructor(private api: APIService, private fb: FormBuilder, private ref: ChangeDetectorRef) {
     this.createForm = this.fb.group({
       name: ["", Validators.required],
       description: ["", Validators.required],
@@ -34,6 +36,12 @@ export class AppComponent implements OnInit, OnDestroy {
         this.todos = [newRestaurant, ...this.todos];
       })
     );
+    onAuthUIStateChange((authState, authData) => {
+      this.authState=AuthState;
+      this.authState = authState;
+      this.user = authData as CognitoUserInterface;
+      this.ref.detectChanges();
+    })
   }
   
 
@@ -54,6 +62,7 @@ export class AppComponent implements OnInit, OnDestroy {
       this.subscription.unsubscribe();
     }
     this.subscription = null;
+    return onAuthUIStateChange;
   }
   
 }
