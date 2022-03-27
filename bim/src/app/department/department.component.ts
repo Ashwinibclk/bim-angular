@@ -9,10 +9,10 @@ import { Subscription } from "rxjs";
   styleUrls: ['./department.component.css']
 })
 export class DepartmentComponent implements OnInit {
-  public createFormqk: any;
-  public qks: Array<Department> =[];
-  constructor(private api: APIService, private fb: FormBuilder) { this.createFormqk=FormBuilder;
-    this.createFormqk= this.fb.group({
+  public createFormd: any;
+  public deps: Array<Department> =[];
+  constructor(private api: APIService, private fb: FormBuilder) { this.createFormd=FormBuilder;
+    this.createFormd= this.fb.group({
       Dname: ["", Validators.required],
       Did: ["", Validators.required],
       
@@ -22,24 +22,24 @@ export class DepartmentComponent implements OnInit {
 
   async ngOnInit() {
     this.api.ListDepartments().then((event) => {
-      this.qks = event.items as Department[];
+      this.deps = event.items as Department[];
     });
   
     
     this.subscription = <Subscription>(
       this.api.OnCreateDepartmentListener.subscribe((event: any) => {
-        const newtb = event.value.data.onCreatetb;
-        this.qks = [newtb, ...this.qks];
+        const newtb = event.value.data.onCreateqk;
+        this.deps = [newtb, ...this.deps];
       })
     );
   }
   
-  public onCreateqk(todo: any) {
+  public onCreated(todo: any) {
     this.api
       .CreateDepartment(todo)
       .then((event) => {
         console.log("item created!");
-        this.createFormqk.reset();
+        this.createFormd.reset();
       })
       .catch((e) => {
         console.log("error creating restaurant...", e);

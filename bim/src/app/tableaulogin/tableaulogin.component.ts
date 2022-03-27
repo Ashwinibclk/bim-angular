@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy, ChangeDetectorRef } from "@angular/core";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators,ReactiveFormsModule} from "@angular/forms";
 import {APIService, Todo, Tableaulogin} from "../API.service";
 import { Subscription } from "rxjs";
 

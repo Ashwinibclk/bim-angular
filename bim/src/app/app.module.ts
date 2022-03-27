@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TableauloginComponent } from './tableaulogin/tableaulogin.component';
 import { QuicksightloginComponent } from './quicksightlogin/quicksightlogin.component';
-import { CustomerComponent } from './customer/customer.component';
+
 import { DepartmentComponent } from './department/department.component';
 import { BIMProjectComponent } from './bimproject/bimproject.component';
 
@@ -18,7 +18,7 @@ import { BIMProjectComponent } from './bimproject/bimproject.component';
     AppComponent,
     TableauloginComponent,
     QuicksightloginComponent,
-    CustomerComponent,
+  
     DepartmentComponent,
     BIMProjectComponent,
    

@@ -2,13 +2,13 @@
 <div  class="form-body">
     <form
       autocomplete="off"
-      [formGroup]="createFormqk"
-      (ngSubmit)="onCreateqk(createFormqk.value)"
+      [formGroup]="createFormd"
+      (ngSubmit)="onCreated(createFormd.value)"
     >
       <div>
         <label>
             DepartmentName: </label>
-        <input type="text" formControlName="DName" autocomplete="off" />
+        <input type="text" formControlName="Dname" autocomplete="off" />
       </div>
       <div>
         <label>
@@ -20,7 +20,7 @@
     </form>
   </div>
   
-  <div *ngFor="let i of qks">
+  <div *ngFor="let i of deps">
     <div>{{ i.Dname }}</div>
     <div>{{ i.Did }}</div>
     
