@@ -10,9 +10,6 @@ export interface SubscriptionResponse<T> {
 }
 
 export type __SubscriptionContainer = {
-  onCreateTodo: OnCreateTodoSubscription;
-  onUpdateTodo: OnUpdateTodoSubscription;
-  onDeleteTodo: OnDeleteTodoSubscription;
   onCreateTableaulogin: OnCreateTableauloginSubscription;
   onUpdateTableaulogin: OnUpdateTableauloginSubscription;
   onDeleteTableaulogin: OnDeleteTableauloginSubscription;
@@ -78,20 +75,21 @@ export type __SubscriptionContainer = {
   onDeleteTable: OnDeleteTableSubscription;
 };
 
-export type CreateTodoInput = {
+export type CreateTableauloginInput = {
   id?: string | null;
-  name: string;
-  description: string;
-  city: string;
+  username: string;
+  password: string;
+  sitename: string;
+  _version?: number | null;
 };
 
-export type ModelTodoConditionInput = {
-  name?: ModelStringInput | null;
-  description?: ModelStringInput | null;
-  city?: ModelStringInput | null;
-  and?: Array<ModelTodoConditionInput | null> | null;
-  or?: Array<ModelTodoConditionInput | null> | null;
-  not?: ModelTodoConditionInput | null;
+export type ModelTableauloginConditionInput = {
+  username?: ModelStringInput | null;
+  password?: ModelStringInput | null;
+  sitename?: ModelStringInput | null;
+  and?: Array<ModelTableauloginConditionInput | null> | null;
+  or?: Array<ModelTableauloginConditionInput | null> | null;
+  not?: ModelTableauloginConditionInput | null;
 };
 
 export type ModelStringInput = {
@@ -133,43 +131,6 @@ export type ModelSizeInput = {
   between?: Array<number | null> | null;
 };
 
-export type Todo = {
-  __typename: "Todo";
-  id: string;
-  name: string;
-  description: string;
-  city: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type UpdateTodoInput = {
-  id: string;
-  name?: string | null;
-  description?: string | null;
-  city?: string | null;
-};
-
-export type DeleteTodoInput = {
-  id: string;
-};
-
-export type CreateTableauloginInput = {
-  id?: string | null;
-  username: string;
-  password: string;
-  sitename: string;
-};
-
-export type ModelTableauloginConditionInput = {
-  username?: ModelStringInput | null;
-  password?: ModelStringInput | null;
-  sitename?: ModelStringInput | null;
-  and?: Array<ModelTableauloginConditionInput | null> | null;
-  or?: Array<ModelTableauloginConditionInput | null> | null;
-  not?: ModelTableauloginConditionInput | null;
-};
-
 export type Tableaulogin = {
   __typename: "Tableaulogin";
   id: string;
@@ -178,6 +139,9 @@ export type Tableaulogin = {
   sitename: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type UpdateTableauloginInput = {
@@ -185,15 +149,18 @@ export type UpdateTableauloginInput = {
   username?: string | null;
   password?: string | null;
   sitename?: string | null;
+  _version?: number | null;
 };
 
 export type DeleteTableauloginInput = {
   id: string;
+  _version?: number | null;
 };
 
 export type CreateQuicksightloginInput = {
   id?: string | null;
   awsaccountId: string;
+  _version?: number | null;
 };
 
 export type ModelQuicksightloginConditionInput = {
@@ -225,21 +192,28 @@ export type Quicksightlogin = {
   awsaccountId: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type UpdateQuicksightloginInput = {
   id: string;
   awsaccountId?: string | null;
+  _version?: number | null;
 };
 
 export type DeleteQuicksightloginInput = {
   id: string;
+  _version?: number | null;
 };
 
 export type CreateCustomerInput = {
   CustomerId: string;
   name: string;
   id?: string | null;
+  _version?: number | null;
+  customerDidId?: string | null;
 };
 
 export type ModelCustomerConditionInput = {
@@ -248,420 +222,520 @@ export type ModelCustomerConditionInput = {
   and?: Array<ModelCustomerConditionInput | null> | null;
   or?: Array<ModelCustomerConditionInput | null> | null;
   not?: ModelCustomerConditionInput | null;
+  customerDidId?: ModelIDInput | null;
 };
 
 export type Customer = {
   __typename: "Customer";
   CustomerId: string;
   name: string;
+  Did?: Department | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  customerDidId?: string | null;
+};
+
+export type Department = {
+  __typename: "Department";
+  Did: string;
+  CustomerId?: Customer | null;
+  Dname: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  departmentCustomerIdId?: string | null;
 };
 
 export type UpdateCustomerInput = {
   CustomerId?: string | null;
   name?: string | null;
   id: string;
+  _version?: number | null;
+  customerDidId?: string | null;
 };
 
 export type DeleteCustomerInput = {
   id: string;
+  _version?: number | null;
 };
 
 export type CreateDepartmentInput = {
   Did: string;
-  CustomerId: string;
   Dname: string;
   id?: string | null;
+  _version?: number | null;
+  departmentCustomerIdId?: string | null;
 };
 
 export type ModelDepartmentConditionInput = {
   Did?: ModelIDInput | null;
-  CustomerId?: ModelIDInput | null;
   Dname?: ModelStringInput | null;
   and?: Array<ModelDepartmentConditionInput | null> | null;
   or?: Array<ModelDepartmentConditionInput | null> | null;
   not?: ModelDepartmentConditionInput | null;
-};
-
-export type Department = {
-  __typename: "Department";
-  Did: string;
-  CustomerId: string;
-  Dname: string;
-  id: string;
-  createdAt: string;
-  updatedAt: string;
+  departmentCustomerIdId?: ModelIDInput | null;
 };
 
 export type UpdateDepartmentInput = {
   Did?: string | null;
-  CustomerId?: string | null;
   Dname?: string | null;
   id: string;
+  _version?: number | null;
+  departmentCustomerIdId?: string | null;
 };
 
 export type DeleteDepartmentInput = {
   id: string;
+  _version?: number | null;
 };
 
 export type CreateTableauProjectInput = {
   TProId: string;
   name: string;
-  Did: string;
   id?: string | null;
+  _version?: number | null;
+  tableauProjectDidId?: string | null;
+  tableauProjectEnvnameId?: string | null;
 };
 
 export type ModelTableauProjectConditionInput = {
   TProId?: ModelIDInput | null;
   name?: ModelStringInput | null;
-  Did?: ModelStringInput | null;
   and?: Array<ModelTableauProjectConditionInput | null> | null;
   or?: Array<ModelTableauProjectConditionInput | null> | null;
   not?: ModelTableauProjectConditionInput | null;
+  tableauProjectDidId?: ModelIDInput | null;
+  tableauProjectEnvnameId?: ModelIDInput | null;
 };
 
 export type TableauProject = {
   __typename: "TableauProject";
   TProId: string;
   name: string;
-  Did: string;
+  Did?: Department | null;
+  envname?: TableauEnv | null;
+  WbId?: ModelTableauWorkbookConnection | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauProjectDidId?: string | null;
+  tableauProjectEnvnameId?: string | null;
 };
 
-export type UpdateTableauProjectInput = {
-  TProId?: string | null;
-  name?: string | null;
-  Did?: string | null;
-  id: string;
-};
-
-export type DeleteTableauProjectInput = {
-  id: string;
-};
-
-export type CreateTableauWorkbookInput = {
-  WbId: string;
+export type TableauEnv = {
+  __typename: "TableauEnv";
   name: string;
-  TProId: string;
-  id?: string | null;
+  TProId?: TableauProject | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauEnvTProIdId?: string | null;
 };
 
-export type ModelTableauWorkbookConditionInput = {
-  WbId?: ModelIDInput | null;
-  name?: ModelStringInput | null;
-  TProId?: ModelIDInput | null;
-  and?: Array<ModelTableauWorkbookConditionInput | null> | null;
-  or?: Array<ModelTableauWorkbookConditionInput | null> | null;
-  not?: ModelTableauWorkbookConditionInput | null;
+export type ModelTableauWorkbookConnection = {
+  __typename: "ModelTableauWorkbookConnection";
+  items: Array<TableauWorkbook | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type TableauWorkbook = {
   __typename: "TableauWorkbook";
   WbId: string;
   name: string;
-  TProId: string;
+  TProId?: TableauProject | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauProjectWbIdId?: string | null;
+};
+
+export type UpdateTableauProjectInput = {
+  TProId?: string | null;
+  name?: string | null;
+  id: string;
+  _version?: number | null;
+  tableauProjectDidId?: string | null;
+  tableauProjectEnvnameId?: string | null;
+};
+
+export type DeleteTableauProjectInput = {
+  id: string;
+  _version?: number | null;
+};
+
+export type CreateTableauWorkbookInput = {
+  WbId: string;
+  name: string;
+  id?: string | null;
+  _version?: number | null;
+  tableauProjectWbIdId?: string | null;
+};
+
+export type ModelTableauWorkbookConditionInput = {
+  WbId?: ModelIDInput | null;
+  name?: ModelStringInput | null;
+  and?: Array<ModelTableauWorkbookConditionInput | null> | null;
+  or?: Array<ModelTableauWorkbookConditionInput | null> | null;
+  not?: ModelTableauWorkbookConditionInput | null;
+  tableauProjectWbIdId?: ModelIDInput | null;
 };
 
 export type UpdateTableauWorkbookInput = {
   WbId?: string | null;
   name?: string | null;
-  TProId?: string | null;
   id: string;
+  _version?: number | null;
+  tableauProjectWbIdId?: string | null;
 };
 
 export type DeleteTableauWorkbookInput = {
   id: string;
+  _version?: number | null;
 };
 
 export type CreateTableauSheetInput = {
   name: string;
-  WbId: string;
   Tsid: string;
   id?: string | null;
+  _version?: number | null;
+  tableauSheetWbIdId?: string | null;
 };
 
 export type ModelTableauSheetConditionInput = {
   name?: ModelStringInput | null;
-  WbId?: ModelIDInput | null;
   Tsid?: ModelIDInput | null;
   and?: Array<ModelTableauSheetConditionInput | null> | null;
   or?: Array<ModelTableauSheetConditionInput | null> | null;
   not?: ModelTableauSheetConditionInput | null;
+  tableauSheetWbIdId?: ModelIDInput | null;
 };
 
 export type TableauSheet = {
   __typename: "TableauSheet";
   name: string;
-  WbId: string;
+  WbId?: TableauWorkbook | null;
   Tsid: string;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauSheetWbIdId?: string | null;
 };
 
 export type UpdateTableauSheetInput = {
   name?: string | null;
-  WbId?: string | null;
   Tsid?: string | null;
   id: string;
+  _version?: number | null;
+  tableauSheetWbIdId?: string | null;
 };
 
 export type DeleteTableauSheetInput = {
   id: string;
+  _version?: number | null;
 };
 
 export type CreateTableauGraphInput = {
   name: string;
-  Tsid: string;
   id?: string | null;
+  _version?: number | null;
+  tableauGraphTsidId?: string | null;
 };
 
 export type ModelTableauGraphConditionInput = {
   name?: ModelStringInput | null;
-  Tsid?: ModelIDInput | null;
   and?: Array<ModelTableauGraphConditionInput | null> | null;
   or?: Array<ModelTableauGraphConditionInput | null> | null;
   not?: ModelTableauGraphConditionInput | null;
+  tableauGraphTsidId?: ModelIDInput | null;
 };
 
 export type TableauGraph = {
   __typename: "TableauGraph";
   name: string;
-  Tsid: string;
+  Tsid?: TableauSheet | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauGraphTsidId?: string | null;
 };
 
 export type UpdateTableauGraphInput = {
   name?: string | null;
-  Tsid?: string | null;
   id: string;
+  _version?: number | null;
+  tableauGraphTsidId?: string | null;
 };
 
 export type DeleteTableauGraphInput = {
   id: string;
+  _version?: number | null;
 };
 
 export type CreateTableauEnvInput = {
   name: string;
-  TProId: string;
   id?: string | null;
+  _version?: number | null;
+  tableauEnvTProIdId?: string | null;
 };
 
 export type ModelTableauEnvConditionInput = {
   name?: ModelStringInput | null;
-  TProId?: ModelIDInput | null;
   and?: Array<ModelTableauEnvConditionInput | null> | null;
   or?: Array<ModelTableauEnvConditionInput | null> | null;
   not?: ModelTableauEnvConditionInput | null;
-};
-
-export type TableauEnv = {
-  __typename: "TableauEnv";
-  name: string;
-  TProId: string;
-  id: string;
-  createdAt: string;
-  updatedAt: string;
+  tableauEnvTProIdId?: ModelIDInput | null;
 };
 
 export type UpdateTableauEnvInput = {
   name?: string | null;
-  TProId?: string | null;
   id: string;
+  _version?: number | null;
+  tableauEnvTProIdId?: string | null;
 };
 
 export type DeleteTableauEnvInput = {
   id: string;
+  _version?: number | null;
 };
 
 export type CreateQuicksiteProjectInput = {
   name: string;
   QProId: string;
-  Did: string;
   id?: string | null;
+  _version?: number | null;
+  quicksiteProjectDidId?: string | null;
 };
 
 export type ModelQuicksiteProjectConditionInput = {
   name?: ModelStringInput | null;
   QProId?: ModelIDInput | null;
-  Did?: ModelIDInput | null;
   and?: Array<ModelQuicksiteProjectConditionInput | null> | null;
   or?: Array<ModelQuicksiteProjectConditionInput | null> | null;
   not?: ModelQuicksiteProjectConditionInput | null;
+  quicksiteProjectDidId?: ModelIDInput | null;
 };
 
 export type QuicksiteProject = {
   __typename: "QuicksiteProject";
   name: string;
   QProId: string;
-  Did: string;
+  Did?: Department | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteProjectDidId?: string | null;
 };
 
 export type UpdateQuicksiteProjectInput = {
   name?: string | null;
   QProId?: string | null;
-  Did?: string | null;
   id: string;
+  _version?: number | null;
+  quicksiteProjectDidId?: string | null;
 };
 
 export type DeleteQuicksiteProjectInput = {
   id: string;
+  _version?: number | null;
 };
 
 export type CreateQuicksiteTemplateInput = {
   QtemId: string;
   name: string;
-  analysisId: string;
-  QProId: string;
   id?: string | null;
+  _version?: number | null;
+  quicksiteTemplateAnalysisIdId?: string | null;
+  quicksiteTemplateQProIdId?: string | null;
 };
 
 export type ModelQuicksiteTemplateConditionInput = {
   QtemId?: ModelIDInput | null;
   name?: ModelStringInput | null;
-  analysisId?: ModelIDInput | null;
-  QProId?: ModelIDInput | null;
   and?: Array<ModelQuicksiteTemplateConditionInput | null> | null;
   or?: Array<ModelQuicksiteTemplateConditionInput | null> | null;
   not?: ModelQuicksiteTemplateConditionInput | null;
+  quicksiteTemplateAnalysisIdId?: ModelIDInput | null;
+  quicksiteTemplateQProIdId?: ModelIDInput | null;
 };
 
 export type QuicksiteTemplate = {
   __typename: "QuicksiteTemplate";
   QtemId: string;
   name: string;
-  analysisId: string;
-  QProId: string;
+  analysisId?: QuicksiteAnalysis | null;
+  QProId?: QuicksiteProject | null;
   id: string;
   createdAt: string;
   updatedAt: string;
-};
-
-export type UpdateQuicksiteTemplateInput = {
-  QtemId?: string | null;
-  name?: string | null;
-  analysisId?: string | null;
-  QProId?: string | null;
-  id: string;
-};
-
-export type DeleteQuicksiteTemplateInput = {
-  id: string;
-};
-
-export type CreateQuicksiteAnalysisInput = {
-  name: string;
-  analysisId: string;
-  QtemId: string;
-  id?: string | null;
-};
-
-export type ModelQuicksiteAnalysisConditionInput = {
-  name?: ModelStringInput | null;
-  analysisId?: ModelIDInput | null;
-  QtemId?: ModelIDInput | null;
-  and?: Array<ModelQuicksiteAnalysisConditionInput | null> | null;
-  or?: Array<ModelQuicksiteAnalysisConditionInput | null> | null;
-  not?: ModelQuicksiteAnalysisConditionInput | null;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteTemplateAnalysisIdId?: string | null;
+  quicksiteTemplateQProIdId?: string | null;
 };
 
 export type QuicksiteAnalysis = {
   __typename: "QuicksiteAnalysis";
   name: string;
   analysisId: string;
-  QtemId: string;
+  QtemId?: QuicksiteTemplate | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteAnalysisQtemIdId?: string | null;
+};
+
+export type UpdateQuicksiteTemplateInput = {
+  QtemId?: string | null;
+  name?: string | null;
+  id: string;
+  _version?: number | null;
+  quicksiteTemplateAnalysisIdId?: string | null;
+  quicksiteTemplateQProIdId?: string | null;
+};
+
+export type DeleteQuicksiteTemplateInput = {
+  id: string;
+  _version?: number | null;
+};
+
+export type CreateQuicksiteAnalysisInput = {
+  name: string;
+  analysisId: string;
+  id?: string | null;
+  _version?: number | null;
+  quicksiteAnalysisQtemIdId?: string | null;
+};
+
+export type ModelQuicksiteAnalysisConditionInput = {
+  name?: ModelStringInput | null;
+  analysisId?: ModelIDInput | null;
+  and?: Array<ModelQuicksiteAnalysisConditionInput | null> | null;
+  or?: Array<ModelQuicksiteAnalysisConditionInput | null> | null;
+  not?: ModelQuicksiteAnalysisConditionInput | null;
+  quicksiteAnalysisQtemIdId?: ModelIDInput | null;
 };
 
 export type UpdateQuicksiteAnalysisInput = {
   name?: string | null;
   analysisId?: string | null;
-  QtemId?: string | null;
   id: string;
+  _version?: number | null;
+  quicksiteAnalysisQtemIdId?: string | null;
 };
 
 export type DeleteQuicksiteAnalysisInput = {
   id: string;
+  _version?: number | null;
 };
 
 export type CreateQuicksiteDashboardInput = {
   name: string;
-  QtemId: string;
   id?: string | null;
+  _version?: number | null;
+  quicksiteDashboardQtemIdId?: string | null;
 };
 
 export type ModelQuicksiteDashboardConditionInput = {
   name?: ModelStringInput | null;
-  QtemId?: ModelIDInput | null;
   and?: Array<ModelQuicksiteDashboardConditionInput | null> | null;
   or?: Array<ModelQuicksiteDashboardConditionInput | null> | null;
   not?: ModelQuicksiteDashboardConditionInput | null;
+  quicksiteDashboardQtemIdId?: ModelIDInput | null;
 };
 
 export type QuicksiteDashboard = {
   __typename: "QuicksiteDashboard";
   name: string;
-  QtemId: string;
+  QtemId?: QuicksiteTemplate | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteDashboardQtemIdId?: string | null;
 };
 
 export type UpdateQuicksiteDashboardInput = {
   name?: string | null;
-  QtemId?: string | null;
   id: string;
+  _version?: number | null;
+  quicksiteDashboardQtemIdId?: string | null;
 };
 
 export type DeleteQuicksiteDashboardInput = {
   id: string;
+  _version?: number | null;
 };
 
 export type CreateQuicksiteEnvInput = {
   name: string;
-  QProId: string;
   id?: string | null;
+  _version?: number | null;
+  quicksiteEnvQProIdId?: string | null;
 };
 
 export type ModelQuicksiteEnvConditionInput = {
   name?: ModelStringInput | null;
-  QProId?: ModelIDInput | null;
   and?: Array<ModelQuicksiteEnvConditionInput | null> | null;
   or?: Array<ModelQuicksiteEnvConditionInput | null> | null;
   not?: ModelQuicksiteEnvConditionInput | null;
+  quicksiteEnvQProIdId?: ModelIDInput | null;
 };
 
 export type QuicksiteEnv = {
   __typename: "QuicksiteEnv";
   name: string;
-  QProId: string;
+  QProId?: QuicksiteProject | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteEnvQProIdId?: string | null;
 };
 
 export type UpdateQuicksiteEnvInput = {
   name?: string | null;
-  QProId?: string | null;
   id: string;
+  _version?: number | null;
+  quicksiteEnvQProIdId?: string | null;
 };
 
 export type DeleteQuicksiteEnvInput = {
   id: string;
+  _version?: number | null;
 };
 
 export type CreateBIMProjectInput = {
@@ -670,6 +744,7 @@ export type CreateBIMProjectInput = {
   source: BIPlatform;
   destination: BIPlatform;
   id?: string | null;
+  _version?: number | null;
 };
 
 export enum BIPlatform {
@@ -701,6 +776,9 @@ export type BIMProject = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type UpdateBIMProjectInput = {
@@ -709,10 +787,12 @@ export type UpdateBIMProjectInput = {
   source?: BIPlatform | null;
   destination?: BIPlatform | null;
   id: string;
+  _version?: number | null;
 };
 
 export type DeleteBIMProjectInput = {
   id: string;
+  _version?: number | null;
 };
 
 export type CreateDatasetInput = {
@@ -720,6 +800,7 @@ export type CreateDatasetInput = {
   datasources: string;
   files: string;
   id?: string | null;
+  _version?: number | null;
 };
 
 export type ModelDatasetConditionInput = {
@@ -739,6 +820,9 @@ export type Dataset = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type UpdateDatasetInput = {
@@ -746,16 +830,19 @@ export type UpdateDatasetInput = {
   datasources?: string | null;
   files?: string | null;
   id: string;
+  _version?: number | null;
 };
 
 export type DeleteDatasetInput = {
   id: string;
+  _version?: number | null;
 };
 
 export type CreateDatasouceInput = {
-  name: string;
+  name?: Array<string | null> | null;
   dsid: string;
   id?: string | null;
+  _version?: number | null;
 };
 
 export type ModelDatasouceConditionInput = {
@@ -768,26 +855,32 @@ export type ModelDatasouceConditionInput = {
 
 export type Datasouce = {
   __typename: "Datasouce";
-  name: string;
+  name?: Array<string | null> | null;
   dsid: string;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type UpdateDatasouceInput = {
-  name?: string | null;
+  name?: Array<string | null> | null;
   dsid?: string | null;
   id: string;
+  _version?: number | null;
 };
 
 export type DeleteDatasouceInput = {
   id: string;
+  _version?: number | null;
 };
 
 export type CreateQuicksightFolderInput = {
   name: string;
   id?: string | null;
+  _version?: number | null;
 };
 
 export type ModelQuicksightFolderConditionInput = {
@@ -803,20 +896,26 @@ export type QuicksightFolder = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type UpdateQuicksightFolderInput = {
   name?: string | null;
   id: string;
+  _version?: number | null;
 };
 
 export type DeleteQuicksightFolderInput = {
   id: string;
+  _version?: number | null;
 };
 
 export type CreateQuicksightGroupInput = {
   name: string;
   id?: string | null;
+  _version?: number | null;
 };
 
 export type ModelQuicksightGroupConditionInput = {
@@ -832,20 +931,26 @@ export type QuicksightGroup = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type UpdateQuicksightGroupInput = {
   name?: string | null;
   id: string;
+  _version?: number | null;
 };
 
 export type DeleteQuicksightGroupInput = {
   id: string;
+  _version?: number | null;
 };
 
 export type CreateFileInput = {
   name: string;
   id?: string | null;
+  _version?: number | null;
 };
 
 export type ModelFileConditionInput = {
@@ -861,21 +966,27 @@ export type File = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type UpdateFileInput = {
   name?: string | null;
   id: string;
+  _version?: number | null;
 };
 
 export type DeleteFileInput = {
   id: string;
+  _version?: number | null;
 };
 
 export type CreateTableInput = {
   name: string;
   dsid: string;
   id?: string | null;
+  _version?: number | null;
 };
 
 export type ModelTableConditionInput = {
@@ -893,32 +1004,21 @@ export type Table = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type UpdateTableInput = {
   name?: string | null;
   dsid?: string | null;
   id: string;
+  _version?: number | null;
 };
 
 export type DeleteTableInput = {
   id: string;
-};
-
-export type ModelTodoFilterInput = {
-  id?: ModelIDInput | null;
-  name?: ModelStringInput | null;
-  description?: ModelStringInput | null;
-  city?: ModelStringInput | null;
-  and?: Array<ModelTodoFilterInput | null> | null;
-  or?: Array<ModelTodoFilterInput | null> | null;
-  not?: ModelTodoFilterInput | null;
-};
-
-export type ModelTodoConnection = {
-  __typename: "ModelTodoConnection";
-  items: Array<Todo | null>;
-  nextToken?: string | null;
+  _version?: number | null;
 };
 
 export type ModelTableauloginFilterInput = {
@@ -935,6 +1035,7 @@ export type ModelTableauloginConnection = {
   __typename: "ModelTableauloginConnection";
   items: Array<Tableaulogin | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type ModelQuicksightloginFilterInput = {
@@ -949,6 +1050,7 @@ export type ModelQuicksightloginConnection = {
   __typename: "ModelQuicksightloginConnection";
   items: Array<Quicksightlogin | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type ModelCustomerFilterInput = {
@@ -957,174 +1059,181 @@ export type ModelCustomerFilterInput = {
   and?: Array<ModelCustomerFilterInput | null> | null;
   or?: Array<ModelCustomerFilterInput | null> | null;
   not?: ModelCustomerFilterInput | null;
+  customerDidId?: ModelIDInput | null;
 };
 
 export type ModelCustomerConnection = {
   __typename: "ModelCustomerConnection";
   items: Array<Customer | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type ModelDepartmentFilterInput = {
   Did?: ModelIDInput | null;
-  CustomerId?: ModelIDInput | null;
   Dname?: ModelStringInput | null;
   and?: Array<ModelDepartmentFilterInput | null> | null;
   or?: Array<ModelDepartmentFilterInput | null> | null;
   not?: ModelDepartmentFilterInput | null;
+  departmentCustomerIdId?: ModelIDInput | null;
 };
 
 export type ModelDepartmentConnection = {
   __typename: "ModelDepartmentConnection";
   items: Array<Department | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type ModelTableauProjectFilterInput = {
   TProId?: ModelIDInput | null;
   name?: ModelStringInput | null;
-  Did?: ModelStringInput | null;
   and?: Array<ModelTableauProjectFilterInput | null> | null;
   or?: Array<ModelTableauProjectFilterInput | null> | null;
   not?: ModelTableauProjectFilterInput | null;
+  tableauProjectDidId?: ModelIDInput | null;
+  tableauProjectEnvnameId?: ModelIDInput | null;
 };
 
 export type ModelTableauProjectConnection = {
   __typename: "ModelTableauProjectConnection";
   items: Array<TableauProject | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type ModelTableauWorkbookFilterInput = {
   WbId?: ModelIDInput | null;
   name?: ModelStringInput | null;
-  TProId?: ModelIDInput | null;
   and?: Array<ModelTableauWorkbookFilterInput | null> | null;
   or?: Array<ModelTableauWorkbookFilterInput | null> | null;
   not?: ModelTableauWorkbookFilterInput | null;
-};
-
-export type ModelTableauWorkbookConnection = {
-  __typename: "ModelTableauWorkbookConnection";
-  items: Array<TableauWorkbook | null>;
-  nextToken?: string | null;
+  tableauProjectWbIdId?: ModelIDInput | null;
 };
 
 export type ModelTableauSheetFilterInput = {
   name?: ModelStringInput | null;
-  WbId?: ModelIDInput | null;
   Tsid?: ModelIDInput | null;
   and?: Array<ModelTableauSheetFilterInput | null> | null;
   or?: Array<ModelTableauSheetFilterInput | null> | null;
   not?: ModelTableauSheetFilterInput | null;
+  tableauSheetWbIdId?: ModelIDInput | null;
 };
 
 export type ModelTableauSheetConnection = {
   __typename: "ModelTableauSheetConnection";
   items: Array<TableauSheet | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type ModelTableauGraphFilterInput = {
   name?: ModelStringInput | null;
-  Tsid?: ModelIDInput | null;
   and?: Array<ModelTableauGraphFilterInput | null> | null;
   or?: Array<ModelTableauGraphFilterInput | null> | null;
   not?: ModelTableauGraphFilterInput | null;
+  tableauGraphTsidId?: ModelIDInput | null;
 };
 
 export type ModelTableauGraphConnection = {
   __typename: "ModelTableauGraphConnection";
   items: Array<TableauGraph | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type ModelTableauEnvFilterInput = {
   name?: ModelStringInput | null;
-  TProId?: ModelIDInput | null;
   and?: Array<ModelTableauEnvFilterInput | null> | null;
   or?: Array<ModelTableauEnvFilterInput | null> | null;
   not?: ModelTableauEnvFilterInput | null;
+  tableauEnvTProIdId?: ModelIDInput | null;
 };
 
 export type ModelTableauEnvConnection = {
   __typename: "ModelTableauEnvConnection";
   items: Array<TableauEnv | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type ModelQuicksiteProjectFilterInput = {
   name?: ModelStringInput | null;
   QProId?: ModelIDInput | null;
-  Did?: ModelIDInput | null;
   and?: Array<ModelQuicksiteProjectFilterInput | null> | null;
   or?: Array<ModelQuicksiteProjectFilterInput | null> | null;
   not?: ModelQuicksiteProjectFilterInput | null;
+  quicksiteProjectDidId?: ModelIDInput | null;
 };
 
 export type ModelQuicksiteProjectConnection = {
   __typename: "ModelQuicksiteProjectConnection";
   items: Array<QuicksiteProject | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type ModelQuicksiteTemplateFilterInput = {
   QtemId?: ModelIDInput | null;
   name?: ModelStringInput | null;
-  analysisId?: ModelIDInput | null;
-  QProId?: ModelIDInput | null;
   and?: Array<ModelQuicksiteTemplateFilterInput | null> | null;
   or?: Array<ModelQuicksiteTemplateFilterInput | null> | null;
   not?: ModelQuicksiteTemplateFilterInput | null;
+  quicksiteTemplateAnalysisIdId?: ModelIDInput | null;
+  quicksiteTemplateQProIdId?: ModelIDInput | null;
 };
 
 export type ModelQuicksiteTemplateConnection = {
   __typename: "ModelQuicksiteTemplateConnection";
   items: Array<QuicksiteTemplate | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type ModelQuicksiteAnalysisFilterInput = {
   name?: ModelStringInput | null;
   analysisId?: ModelIDInput | null;
-  QtemId?: ModelIDInput | null;
   and?: Array<ModelQuicksiteAnalysisFilterInput | null> | null;
   or?: Array<ModelQuicksiteAnalysisFilterInput | null> | null;
   not?: ModelQuicksiteAnalysisFilterInput | null;
+  quicksiteAnalysisQtemIdId?: ModelIDInput | null;
 };
 
 export type ModelQuicksiteAnalysisConnection = {
   __typename: "ModelQuicksiteAnalysisConnection";
   items: Array<QuicksiteAnalysis | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type ModelQuicksiteDashboardFilterInput = {
   name?: ModelStringInput | null;
-  QtemId?: ModelIDInput | null;
   and?: Array<ModelQuicksiteDashboardFilterInput | null> | null;
   or?: Array<ModelQuicksiteDashboardFilterInput | null> | null;
   not?: ModelQuicksiteDashboardFilterInput | null;
+  quicksiteDashboardQtemIdId?: ModelIDInput | null;
 };
 
 export type ModelQuicksiteDashboardConnection = {
   __typename: "ModelQuicksiteDashboardConnection";
   items: Array<QuicksiteDashboard | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type ModelQuicksiteEnvFilterInput = {
   name?: ModelStringInput | null;
-  QProId?: ModelIDInput | null;
   and?: Array<ModelQuicksiteEnvFilterInput | null> | null;
   or?: Array<ModelQuicksiteEnvFilterInput | null> | null;
   not?: ModelQuicksiteEnvFilterInput | null;
+  quicksiteEnvQProIdId?: ModelIDInput | null;
 };
 
 export type ModelQuicksiteEnvConnection = {
   __typename: "ModelQuicksiteEnvConnection";
   items: Array<QuicksiteEnv | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type ModelBIMProjectFilterInput = {
@@ -1141,6 +1250,7 @@ export type ModelBIMProjectConnection = {
   __typename: "ModelBIMProjectConnection";
   items: Array<BIMProject | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type ModelDatasetFilterInput = {
@@ -1156,6 +1266,7 @@ export type ModelDatasetConnection = {
   __typename: "ModelDatasetConnection";
   items: Array<Dataset | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type ModelDatasouceFilterInput = {
@@ -1170,6 +1281,7 @@ export type ModelDatasouceConnection = {
   __typename: "ModelDatasouceConnection";
   items: Array<Datasouce | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type ModelQuicksightFolderFilterInput = {
@@ -1183,6 +1295,7 @@ export type ModelQuicksightFolderConnection = {
   __typename: "ModelQuicksightFolderConnection";
   items: Array<QuicksightFolder | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type ModelQuicksightGroupFilterInput = {
@@ -1196,6 +1309,7 @@ export type ModelQuicksightGroupConnection = {
   __typename: "ModelQuicksightGroupConnection";
   items: Array<QuicksightGroup | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type ModelFileFilterInput = {
@@ -1209,6 +1323,7 @@ export type ModelFileConnection = {
   __typename: "ModelFileConnection";
   items: Array<File | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type ModelTableFilterInput = {
@@ -1223,36 +1338,7 @@ export type ModelTableConnection = {
   __typename: "ModelTableConnection";
   items: Array<Table | null>;
   nextToken?: string | null;
-};
-
-export type CreateTodoMutation = {
-  __typename: "Todo";
-  id: string;
-  name: string;
-  description: string;
-  city: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type UpdateTodoMutation = {
-  __typename: "Todo";
-  id: string;
-  name: string;
-  description: string;
-  city: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type DeleteTodoMutation = {
-  __typename: "Todo";
-  id: string;
-  name: string;
-  description: string;
-  city: string;
-  createdAt: string;
-  updatedAt: string;
+  startedAt?: number | null;
 };
 
 export type CreateTableauloginMutation = {
@@ -1263,6 +1349,9 @@ export type CreateTableauloginMutation = {
   sitename: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type UpdateTableauloginMutation = {
@@ -1273,6 +1362,9 @@ export type UpdateTableauloginMutation = {
   sitename: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type DeleteTableauloginMutation = {
@@ -1283,6 +1375,9 @@ export type DeleteTableauloginMutation = {
   sitename: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type CreateQuicksightloginMutation = {
@@ -1291,6 +1386,9 @@ export type CreateQuicksightloginMutation = {
   awsaccountId: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type UpdateQuicksightloginMutation = {
@@ -1299,6 +1397,9 @@ export type UpdateQuicksightloginMutation = {
   awsaccountId: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type DeleteQuicksightloginMutation = {
@@ -1307,354 +1408,1716 @@ export type DeleteQuicksightloginMutation = {
   awsaccountId: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type CreateCustomerMutation = {
   __typename: "Customer";
   CustomerId: string;
   name: string;
+  Did?: {
+    __typename: "Department";
+    Did: string;
+    CustomerId?: {
+      __typename: "Customer";
+      CustomerId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      customerDidId?: string | null;
+    } | null;
+    Dname: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    departmentCustomerIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  customerDidId?: string | null;
 };
 
 export type UpdateCustomerMutation = {
   __typename: "Customer";
   CustomerId: string;
   name: string;
+  Did?: {
+    __typename: "Department";
+    Did: string;
+    CustomerId?: {
+      __typename: "Customer";
+      CustomerId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      customerDidId?: string | null;
+    } | null;
+    Dname: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    departmentCustomerIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  customerDidId?: string | null;
 };
 
 export type DeleteCustomerMutation = {
   __typename: "Customer";
   CustomerId: string;
   name: string;
+  Did?: {
+    __typename: "Department";
+    Did: string;
+    CustomerId?: {
+      __typename: "Customer";
+      CustomerId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      customerDidId?: string | null;
+    } | null;
+    Dname: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    departmentCustomerIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  customerDidId?: string | null;
 };
 
 export type CreateDepartmentMutation = {
   __typename: "Department";
   Did: string;
-  CustomerId: string;
+  CustomerId?: {
+    __typename: "Customer";
+    CustomerId: string;
+    name: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    customerDidId?: string | null;
+  } | null;
   Dname: string;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  departmentCustomerIdId?: string | null;
 };
 
 export type UpdateDepartmentMutation = {
   __typename: "Department";
   Did: string;
-  CustomerId: string;
+  CustomerId?: {
+    __typename: "Customer";
+    CustomerId: string;
+    name: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    customerDidId?: string | null;
+  } | null;
   Dname: string;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  departmentCustomerIdId?: string | null;
 };
 
 export type DeleteDepartmentMutation = {
   __typename: "Department";
   Did: string;
-  CustomerId: string;
+  CustomerId?: {
+    __typename: "Customer";
+    CustomerId: string;
+    name: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    customerDidId?: string | null;
+  } | null;
   Dname: string;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  departmentCustomerIdId?: string | null;
 };
 
 export type CreateTableauProjectMutation = {
   __typename: "TableauProject";
   TProId: string;
   name: string;
-  Did: string;
+  Did?: {
+    __typename: "Department";
+    Did: string;
+    CustomerId?: {
+      __typename: "Customer";
+      CustomerId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      customerDidId?: string | null;
+    } | null;
+    Dname: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    departmentCustomerIdId?: string | null;
+  } | null;
+  envname?: {
+    __typename: "TableauEnv";
+    name: string;
+    TProId?: {
+      __typename: "TableauProject";
+      TProId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectDidId?: string | null;
+      tableauProjectEnvnameId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauEnvTProIdId?: string | null;
+  } | null;
+  WbId?: {
+    __typename: "ModelTableauWorkbookConnection";
+    items: Array<{
+      __typename: "TableauWorkbook";
+      WbId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectWbIdId?: string | null;
+    } | null>;
+    nextToken?: string | null;
+    startedAt?: number | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauProjectDidId?: string | null;
+  tableauProjectEnvnameId?: string | null;
 };
 
 export type UpdateTableauProjectMutation = {
   __typename: "TableauProject";
   TProId: string;
   name: string;
-  Did: string;
+  Did?: {
+    __typename: "Department";
+    Did: string;
+    CustomerId?: {
+      __typename: "Customer";
+      CustomerId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      customerDidId?: string | null;
+    } | null;
+    Dname: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    departmentCustomerIdId?: string | null;
+  } | null;
+  envname?: {
+    __typename: "TableauEnv";
+    name: string;
+    TProId?: {
+      __typename: "TableauProject";
+      TProId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectDidId?: string | null;
+      tableauProjectEnvnameId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauEnvTProIdId?: string | null;
+  } | null;
+  WbId?: {
+    __typename: "ModelTableauWorkbookConnection";
+    items: Array<{
+      __typename: "TableauWorkbook";
+      WbId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectWbIdId?: string | null;
+    } | null>;
+    nextToken?: string | null;
+    startedAt?: number | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauProjectDidId?: string | null;
+  tableauProjectEnvnameId?: string | null;
 };
 
 export type DeleteTableauProjectMutation = {
   __typename: "TableauProject";
   TProId: string;
   name: string;
-  Did: string;
+  Did?: {
+    __typename: "Department";
+    Did: string;
+    CustomerId?: {
+      __typename: "Customer";
+      CustomerId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      customerDidId?: string | null;
+    } | null;
+    Dname: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    departmentCustomerIdId?: string | null;
+  } | null;
+  envname?: {
+    __typename: "TableauEnv";
+    name: string;
+    TProId?: {
+      __typename: "TableauProject";
+      TProId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectDidId?: string | null;
+      tableauProjectEnvnameId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauEnvTProIdId?: string | null;
+  } | null;
+  WbId?: {
+    __typename: "ModelTableauWorkbookConnection";
+    items: Array<{
+      __typename: "TableauWorkbook";
+      WbId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectWbIdId?: string | null;
+    } | null>;
+    nextToken?: string | null;
+    startedAt?: number | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauProjectDidId?: string | null;
+  tableauProjectEnvnameId?: string | null;
 };
 
 export type CreateTableauWorkbookMutation = {
   __typename: "TableauWorkbook";
   WbId: string;
   name: string;
-  TProId: string;
+  TProId?: {
+    __typename: "TableauProject";
+    TProId: string;
+    name: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    envname?: {
+      __typename: "TableauEnv";
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauEnvTProIdId?: string | null;
+    } | null;
+    WbId?: {
+      __typename: "ModelTableauWorkbookConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauProjectDidId?: string | null;
+    tableauProjectEnvnameId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauProjectWbIdId?: string | null;
 };
 
 export type UpdateTableauWorkbookMutation = {
   __typename: "TableauWorkbook";
   WbId: string;
   name: string;
-  TProId: string;
+  TProId?: {
+    __typename: "TableauProject";
+    TProId: string;
+    name: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    envname?: {
+      __typename: "TableauEnv";
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauEnvTProIdId?: string | null;
+    } | null;
+    WbId?: {
+      __typename: "ModelTableauWorkbookConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauProjectDidId?: string | null;
+    tableauProjectEnvnameId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauProjectWbIdId?: string | null;
 };
 
 export type DeleteTableauWorkbookMutation = {
   __typename: "TableauWorkbook";
   WbId: string;
   name: string;
-  TProId: string;
+  TProId?: {
+    __typename: "TableauProject";
+    TProId: string;
+    name: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    envname?: {
+      __typename: "TableauEnv";
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauEnvTProIdId?: string | null;
+    } | null;
+    WbId?: {
+      __typename: "ModelTableauWorkbookConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauProjectDidId?: string | null;
+    tableauProjectEnvnameId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauProjectWbIdId?: string | null;
 };
 
 export type CreateTableauSheetMutation = {
   __typename: "TableauSheet";
   name: string;
-  WbId: string;
+  WbId?: {
+    __typename: "TableauWorkbook";
+    WbId: string;
+    name: string;
+    TProId?: {
+      __typename: "TableauProject";
+      TProId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectDidId?: string | null;
+      tableauProjectEnvnameId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauProjectWbIdId?: string | null;
+  } | null;
   Tsid: string;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauSheetWbIdId?: string | null;
 };
 
 export type UpdateTableauSheetMutation = {
   __typename: "TableauSheet";
   name: string;
-  WbId: string;
+  WbId?: {
+    __typename: "TableauWorkbook";
+    WbId: string;
+    name: string;
+    TProId?: {
+      __typename: "TableauProject";
+      TProId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectDidId?: string | null;
+      tableauProjectEnvnameId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauProjectWbIdId?: string | null;
+  } | null;
   Tsid: string;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauSheetWbIdId?: string | null;
 };
 
 export type DeleteTableauSheetMutation = {
   __typename: "TableauSheet";
   name: string;
-  WbId: string;
+  WbId?: {
+    __typename: "TableauWorkbook";
+    WbId: string;
+    name: string;
+    TProId?: {
+      __typename: "TableauProject";
+      TProId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectDidId?: string | null;
+      tableauProjectEnvnameId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauProjectWbIdId?: string | null;
+  } | null;
   Tsid: string;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauSheetWbIdId?: string | null;
 };
 
 export type CreateTableauGraphMutation = {
   __typename: "TableauGraph";
   name: string;
-  Tsid: string;
+  Tsid?: {
+    __typename: "TableauSheet";
+    name: string;
+    WbId?: {
+      __typename: "TableauWorkbook";
+      WbId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectWbIdId?: string | null;
+    } | null;
+    Tsid: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauSheetWbIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauGraphTsidId?: string | null;
 };
 
 export type UpdateTableauGraphMutation = {
   __typename: "TableauGraph";
   name: string;
-  Tsid: string;
+  Tsid?: {
+    __typename: "TableauSheet";
+    name: string;
+    WbId?: {
+      __typename: "TableauWorkbook";
+      WbId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectWbIdId?: string | null;
+    } | null;
+    Tsid: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauSheetWbIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauGraphTsidId?: string | null;
 };
 
 export type DeleteTableauGraphMutation = {
   __typename: "TableauGraph";
   name: string;
-  Tsid: string;
+  Tsid?: {
+    __typename: "TableauSheet";
+    name: string;
+    WbId?: {
+      __typename: "TableauWorkbook";
+      WbId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectWbIdId?: string | null;
+    } | null;
+    Tsid: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauSheetWbIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauGraphTsidId?: string | null;
 };
 
 export type CreateTableauEnvMutation = {
   __typename: "TableauEnv";
   name: string;
-  TProId: string;
+  TProId?: {
+    __typename: "TableauProject";
+    TProId: string;
+    name: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    envname?: {
+      __typename: "TableauEnv";
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauEnvTProIdId?: string | null;
+    } | null;
+    WbId?: {
+      __typename: "ModelTableauWorkbookConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauProjectDidId?: string | null;
+    tableauProjectEnvnameId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauEnvTProIdId?: string | null;
 };
 
 export type UpdateTableauEnvMutation = {
   __typename: "TableauEnv";
   name: string;
-  TProId: string;
+  TProId?: {
+    __typename: "TableauProject";
+    TProId: string;
+    name: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    envname?: {
+      __typename: "TableauEnv";
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauEnvTProIdId?: string | null;
+    } | null;
+    WbId?: {
+      __typename: "ModelTableauWorkbookConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauProjectDidId?: string | null;
+    tableauProjectEnvnameId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauEnvTProIdId?: string | null;
 };
 
 export type DeleteTableauEnvMutation = {
   __typename: "TableauEnv";
   name: string;
-  TProId: string;
+  TProId?: {
+    __typename: "TableauProject";
+    TProId: string;
+    name: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    envname?: {
+      __typename: "TableauEnv";
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauEnvTProIdId?: string | null;
+    } | null;
+    WbId?: {
+      __typename: "ModelTableauWorkbookConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauProjectDidId?: string | null;
+    tableauProjectEnvnameId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauEnvTProIdId?: string | null;
 };
 
 export type CreateQuicksiteProjectMutation = {
   __typename: "QuicksiteProject";
   name: string;
   QProId: string;
-  Did: string;
+  Did?: {
+    __typename: "Department";
+    Did: string;
+    CustomerId?: {
+      __typename: "Customer";
+      CustomerId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      customerDidId?: string | null;
+    } | null;
+    Dname: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    departmentCustomerIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteProjectDidId?: string | null;
 };
 
 export type UpdateQuicksiteProjectMutation = {
   __typename: "QuicksiteProject";
   name: string;
   QProId: string;
-  Did: string;
+  Did?: {
+    __typename: "Department";
+    Did: string;
+    CustomerId?: {
+      __typename: "Customer";
+      CustomerId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      customerDidId?: string | null;
+    } | null;
+    Dname: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    departmentCustomerIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteProjectDidId?: string | null;
 };
 
 export type DeleteQuicksiteProjectMutation = {
   __typename: "QuicksiteProject";
   name: string;
   QProId: string;
-  Did: string;
+  Did?: {
+    __typename: "Department";
+    Did: string;
+    CustomerId?: {
+      __typename: "Customer";
+      CustomerId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      customerDidId?: string | null;
+    } | null;
+    Dname: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    departmentCustomerIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteProjectDidId?: string | null;
 };
 
 export type CreateQuicksiteTemplateMutation = {
   __typename: "QuicksiteTemplate";
   QtemId: string;
   name: string;
-  analysisId: string;
-  QProId: string;
+  analysisId?: {
+    __typename: "QuicksiteAnalysis";
+    name: string;
+    analysisId: string;
+    QtemId?: {
+      __typename: "QuicksiteTemplate";
+      QtemId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteTemplateAnalysisIdId?: string | null;
+      quicksiteTemplateQProIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteAnalysisQtemIdId?: string | null;
+  } | null;
+  QProId?: {
+    __typename: "QuicksiteProject";
+    name: string;
+    QProId: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteProjectDidId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteTemplateAnalysisIdId?: string | null;
+  quicksiteTemplateQProIdId?: string | null;
 };
 
 export type UpdateQuicksiteTemplateMutation = {
   __typename: "QuicksiteTemplate";
   QtemId: string;
   name: string;
-  analysisId: string;
-  QProId: string;
+  analysisId?: {
+    __typename: "QuicksiteAnalysis";
+    name: string;
+    analysisId: string;
+    QtemId?: {
+      __typename: "QuicksiteTemplate";
+      QtemId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteTemplateAnalysisIdId?: string | null;
+      quicksiteTemplateQProIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteAnalysisQtemIdId?: string | null;
+  } | null;
+  QProId?: {
+    __typename: "QuicksiteProject";
+    name: string;
+    QProId: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteProjectDidId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteTemplateAnalysisIdId?: string | null;
+  quicksiteTemplateQProIdId?: string | null;
 };
 
 export type DeleteQuicksiteTemplateMutation = {
   __typename: "QuicksiteTemplate";
   QtemId: string;
   name: string;
-  analysisId: string;
-  QProId: string;
+  analysisId?: {
+    __typename: "QuicksiteAnalysis";
+    name: string;
+    analysisId: string;
+    QtemId?: {
+      __typename: "QuicksiteTemplate";
+      QtemId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteTemplateAnalysisIdId?: string | null;
+      quicksiteTemplateQProIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteAnalysisQtemIdId?: string | null;
+  } | null;
+  QProId?: {
+    __typename: "QuicksiteProject";
+    name: string;
+    QProId: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteProjectDidId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteTemplateAnalysisIdId?: string | null;
+  quicksiteTemplateQProIdId?: string | null;
 };
 
 export type CreateQuicksiteAnalysisMutation = {
   __typename: "QuicksiteAnalysis";
   name: string;
   analysisId: string;
-  QtemId: string;
+  QtemId?: {
+    __typename: "QuicksiteTemplate";
+    QtemId: string;
+    name: string;
+    analysisId?: {
+      __typename: "QuicksiteAnalysis";
+      name: string;
+      analysisId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteAnalysisQtemIdId?: string | null;
+    } | null;
+    QProId?: {
+      __typename: "QuicksiteProject";
+      name: string;
+      QProId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteProjectDidId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteTemplateAnalysisIdId?: string | null;
+    quicksiteTemplateQProIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteAnalysisQtemIdId?: string | null;
 };
 
 export type UpdateQuicksiteAnalysisMutation = {
   __typename: "QuicksiteAnalysis";
   name: string;
   analysisId: string;
-  QtemId: string;
+  QtemId?: {
+    __typename: "QuicksiteTemplate";
+    QtemId: string;
+    name: string;
+    analysisId?: {
+      __typename: "QuicksiteAnalysis";
+      name: string;
+      analysisId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteAnalysisQtemIdId?: string | null;
+    } | null;
+    QProId?: {
+      __typename: "QuicksiteProject";
+      name: string;
+      QProId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteProjectDidId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteTemplateAnalysisIdId?: string | null;
+    quicksiteTemplateQProIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteAnalysisQtemIdId?: string | null;
 };
 
 export type DeleteQuicksiteAnalysisMutation = {
   __typename: "QuicksiteAnalysis";
   name: string;
   analysisId: string;
-  QtemId: string;
+  QtemId?: {
+    __typename: "QuicksiteTemplate";
+    QtemId: string;
+    name: string;
+    analysisId?: {
+      __typename: "QuicksiteAnalysis";
+      name: string;
+      analysisId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteAnalysisQtemIdId?: string | null;
+    } | null;
+    QProId?: {
+      __typename: "QuicksiteProject";
+      name: string;
+      QProId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteProjectDidId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteTemplateAnalysisIdId?: string | null;
+    quicksiteTemplateQProIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteAnalysisQtemIdId?: string | null;
 };
 
 export type CreateQuicksiteDashboardMutation = {
   __typename: "QuicksiteDashboard";
   name: string;
-  QtemId: string;
+  QtemId?: {
+    __typename: "QuicksiteTemplate";
+    QtemId: string;
+    name: string;
+    analysisId?: {
+      __typename: "QuicksiteAnalysis";
+      name: string;
+      analysisId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteAnalysisQtemIdId?: string | null;
+    } | null;
+    QProId?: {
+      __typename: "QuicksiteProject";
+      name: string;
+      QProId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteProjectDidId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteTemplateAnalysisIdId?: string | null;
+    quicksiteTemplateQProIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteDashboardQtemIdId?: string | null;
 };
 
 export type UpdateQuicksiteDashboardMutation = {
   __typename: "QuicksiteDashboard";
   name: string;
-  QtemId: string;
+  QtemId?: {
+    __typename: "QuicksiteTemplate";
+    QtemId: string;
+    name: string;
+    analysisId?: {
+      __typename: "QuicksiteAnalysis";
+      name: string;
+      analysisId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteAnalysisQtemIdId?: string | null;
+    } | null;
+    QProId?: {
+      __typename: "QuicksiteProject";
+      name: string;
+      QProId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteProjectDidId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteTemplateAnalysisIdId?: string | null;
+    quicksiteTemplateQProIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteDashboardQtemIdId?: string | null;
 };
 
 export type DeleteQuicksiteDashboardMutation = {
   __typename: "QuicksiteDashboard";
   name: string;
-  QtemId: string;
+  QtemId?: {
+    __typename: "QuicksiteTemplate";
+    QtemId: string;
+    name: string;
+    analysisId?: {
+      __typename: "QuicksiteAnalysis";
+      name: string;
+      analysisId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteAnalysisQtemIdId?: string | null;
+    } | null;
+    QProId?: {
+      __typename: "QuicksiteProject";
+      name: string;
+      QProId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteProjectDidId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteTemplateAnalysisIdId?: string | null;
+    quicksiteTemplateQProIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteDashboardQtemIdId?: string | null;
 };
 
 export type CreateQuicksiteEnvMutation = {
   __typename: "QuicksiteEnv";
   name: string;
-  QProId: string;
+  QProId?: {
+    __typename: "QuicksiteProject";
+    name: string;
+    QProId: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteProjectDidId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteEnvQProIdId?: string | null;
 };
 
 export type UpdateQuicksiteEnvMutation = {
   __typename: "QuicksiteEnv";
   name: string;
-  QProId: string;
+  QProId?: {
+    __typename: "QuicksiteProject";
+    name: string;
+    QProId: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteProjectDidId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteEnvQProIdId?: string | null;
 };
 
 export type DeleteQuicksiteEnvMutation = {
   __typename: "QuicksiteEnv";
   name: string;
-  QProId: string;
+  QProId?: {
+    __typename: "QuicksiteProject";
+    name: string;
+    QProId: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteProjectDidId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteEnvQProIdId?: string | null;
 };
 
 export type CreateBIMProjectMutation = {
@@ -1666,6 +3129,9 @@ export type CreateBIMProjectMutation = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type UpdateBIMProjectMutation = {
@@ -1677,6 +3143,9 @@ export type UpdateBIMProjectMutation = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type DeleteBIMProjectMutation = {
@@ -1688,6 +3157,9 @@ export type DeleteBIMProjectMutation = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type CreateDatasetMutation = {
@@ -1698,6 +3170,9 @@ export type CreateDatasetMutation = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type UpdateDatasetMutation = {
@@ -1708,6 +3183,9 @@ export type UpdateDatasetMutation = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type DeleteDatasetMutation = {
@@ -1718,33 +3196,45 @@ export type DeleteDatasetMutation = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type CreateDatasouceMutation = {
   __typename: "Datasouce";
-  name: string;
+  name?: Array<string | null> | null;
   dsid: string;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type UpdateDatasouceMutation = {
   __typename: "Datasouce";
-  name: string;
+  name?: Array<string | null> | null;
   dsid: string;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type DeleteDatasouceMutation = {
   __typename: "Datasouce";
-  name: string;
+  name?: Array<string | null> | null;
   dsid: string;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type CreateQuicksightFolderMutation = {
@@ -1753,6 +3243,9 @@ export type CreateQuicksightFolderMutation = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type UpdateQuicksightFolderMutation = {
@@ -1761,6 +3254,9 @@ export type UpdateQuicksightFolderMutation = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type DeleteQuicksightFolderMutation = {
@@ -1769,6 +3265,9 @@ export type DeleteQuicksightFolderMutation = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type CreateQuicksightGroupMutation = {
@@ -1777,6 +3276,9 @@ export type CreateQuicksightGroupMutation = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type UpdateQuicksightGroupMutation = {
@@ -1785,6 +3287,9 @@ export type UpdateQuicksightGroupMutation = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type DeleteQuicksightGroupMutation = {
@@ -1793,6 +3298,9 @@ export type DeleteQuicksightGroupMutation = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type CreateFileMutation = {
@@ -1801,6 +3309,9 @@ export type CreateFileMutation = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type UpdateFileMutation = {
@@ -1809,6 +3320,9 @@ export type UpdateFileMutation = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type DeleteFileMutation = {
@@ -1817,6 +3331,9 @@ export type DeleteFileMutation = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type CreateTableMutation = {
@@ -1826,6 +3343,9 @@ export type CreateTableMutation = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type UpdateTableMutation = {
@@ -1835,6 +3355,9 @@ export type UpdateTableMutation = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type DeleteTableMutation = {
@@ -1844,30 +3367,9 @@ export type DeleteTableMutation = {
   id: string;
   createdAt: string;
   updatedAt: string;
-};
-
-export type GetTodoQuery = {
-  __typename: "Todo";
-  id: string;
-  name: string;
-  description: string;
-  city: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type ListTodosQuery = {
-  __typename: "ModelTodoConnection";
-  items: Array<{
-    __typename: "Todo";
-    id: string;
-    name: string;
-    description: string;
-    city: string;
-    createdAt: string;
-    updatedAt: string;
-  } | null>;
-  nextToken?: string | null;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type GetTableauloginQuery = {
@@ -1878,6 +3380,9 @@ export type GetTableauloginQuery = {
   sitename: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type ListTableauloginsQuery = {
@@ -1890,8 +3395,30 @@ export type ListTableauloginsQuery = {
     sitename: string;
     createdAt: string;
     updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
   } | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type SyncTableauloginsQuery = {
+  __typename: "ModelTableauloginConnection";
+  items: Array<{
+    __typename: "Tableaulogin";
+    id: string;
+    username: string;
+    password: string;
+    sitename: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type GetQuicksightloginQuery = {
@@ -1900,6 +3427,9 @@ export type GetQuicksightloginQuery = {
   awsaccountId: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type ListQuicksightloginsQuery = {
@@ -1910,17 +3440,65 @@ export type ListQuicksightloginsQuery = {
     awsaccountId: string;
     createdAt: string;
     updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
   } | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type SyncQuicksightloginsQuery = {
+  __typename: "ModelQuicksightloginConnection";
+  items: Array<{
+    __typename: "Quicksightlogin";
+    id: string;
+    awsaccountId: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type GetCustomerQuery = {
   __typename: "Customer";
   CustomerId: string;
   name: string;
+  Did?: {
+    __typename: "Department";
+    Did: string;
+    CustomerId?: {
+      __typename: "Customer";
+      CustomerId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      customerDidId?: string | null;
+    } | null;
+    Dname: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    departmentCustomerIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  customerDidId?: string | null;
 };
 
 export type ListCustomersQuery = {
@@ -1929,21 +3507,95 @@ export type ListCustomersQuery = {
     __typename: "Customer";
     CustomerId: string;
     name: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
     id: string;
     createdAt: string;
     updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    customerDidId?: string | null;
   } | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type SyncCustomersQuery = {
+  __typename: "ModelCustomerConnection";
+  items: Array<{
+    __typename: "Customer";
+    CustomerId: string;
+    name: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    customerDidId?: string | null;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type GetDepartmentQuery = {
   __typename: "Department";
   Did: string;
-  CustomerId: string;
+  CustomerId?: {
+    __typename: "Customer";
+    CustomerId: string;
+    name: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    customerDidId?: string | null;
+  } | null;
   Dname: string;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  departmentCustomerIdId?: string | null;
 };
 
 export type ListDepartmentsQuery = {
@@ -1951,23 +3603,138 @@ export type ListDepartmentsQuery = {
   items: Array<{
     __typename: "Department";
     Did: string;
-    CustomerId: string;
+    CustomerId?: {
+      __typename: "Customer";
+      CustomerId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      customerDidId?: string | null;
+    } | null;
     Dname: string;
     id: string;
     createdAt: string;
     updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    departmentCustomerIdId?: string | null;
   } | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type SyncDepartmentsQuery = {
+  __typename: "ModelDepartmentConnection";
+  items: Array<{
+    __typename: "Department";
+    Did: string;
+    CustomerId?: {
+      __typename: "Customer";
+      CustomerId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      customerDidId?: string | null;
+    } | null;
+    Dname: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    departmentCustomerIdId?: string | null;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type GetTableauProjectQuery = {
   __typename: "TableauProject";
   TProId: string;
   name: string;
-  Did: string;
+  Did?: {
+    __typename: "Department";
+    Did: string;
+    CustomerId?: {
+      __typename: "Customer";
+      CustomerId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      customerDidId?: string | null;
+    } | null;
+    Dname: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    departmentCustomerIdId?: string | null;
+  } | null;
+  envname?: {
+    __typename: "TableauEnv";
+    name: string;
+    TProId?: {
+      __typename: "TableauProject";
+      TProId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectDidId?: string | null;
+      tableauProjectEnvnameId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauEnvTProIdId?: string | null;
+  } | null;
+  WbId?: {
+    __typename: "ModelTableauWorkbookConnection";
+    items: Array<{
+      __typename: "TableauWorkbook";
+      WbId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectWbIdId?: string | null;
+    } | null>;
+    nextToken?: string | null;
+    startedAt?: number | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauProjectDidId?: string | null;
+  tableauProjectEnvnameId?: string | null;
 };
 
 export type ListTableauProjectsQuery = {
@@ -1976,22 +3743,146 @@ export type ListTableauProjectsQuery = {
     __typename: "TableauProject";
     TProId: string;
     name: string;
-    Did: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    envname?: {
+      __typename: "TableauEnv";
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauEnvTProIdId?: string | null;
+    } | null;
+    WbId?: {
+      __typename: "ModelTableauWorkbookConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
     id: string;
     createdAt: string;
     updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauProjectDidId?: string | null;
+    tableauProjectEnvnameId?: string | null;
   } | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type SyncTableauProjectsQuery = {
+  __typename: "ModelTableauProjectConnection";
+  items: Array<{
+    __typename: "TableauProject";
+    TProId: string;
+    name: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    envname?: {
+      __typename: "TableauEnv";
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauEnvTProIdId?: string | null;
+    } | null;
+    WbId?: {
+      __typename: "ModelTableauWorkbookConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauProjectDidId?: string | null;
+    tableauProjectEnvnameId?: string | null;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type GetTableauWorkbookQuery = {
   __typename: "TableauWorkbook";
   WbId: string;
   name: string;
-  TProId: string;
+  TProId?: {
+    __typename: "TableauProject";
+    TProId: string;
+    name: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    envname?: {
+      __typename: "TableauEnv";
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauEnvTProIdId?: string | null;
+    } | null;
+    WbId?: {
+      __typename: "ModelTableauWorkbookConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauProjectDidId?: string | null;
+    tableauProjectEnvnameId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauProjectWbIdId?: string | null;
 };
 
 export type ListTableauWorkbooksQuery = {
@@ -2000,22 +3891,98 @@ export type ListTableauWorkbooksQuery = {
     __typename: "TableauWorkbook";
     WbId: string;
     name: string;
-    TProId: string;
+    TProId?: {
+      __typename: "TableauProject";
+      TProId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectDidId?: string | null;
+      tableauProjectEnvnameId?: string | null;
+    } | null;
     id: string;
     createdAt: string;
     updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauProjectWbIdId?: string | null;
   } | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type SyncTableauWorkbooksQuery = {
+  __typename: "ModelTableauWorkbookConnection";
+  items: Array<{
+    __typename: "TableauWorkbook";
+    WbId: string;
+    name: string;
+    TProId?: {
+      __typename: "TableauProject";
+      TProId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectDidId?: string | null;
+      tableauProjectEnvnameId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauProjectWbIdId?: string | null;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type GetTableauSheetQuery = {
   __typename: "TableauSheet";
   name: string;
-  WbId: string;
+  WbId?: {
+    __typename: "TableauWorkbook";
+    WbId: string;
+    name: string;
+    TProId?: {
+      __typename: "TableauProject";
+      TProId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectDidId?: string | null;
+      tableauProjectEnvnameId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauProjectWbIdId?: string | null;
+  } | null;
   Tsid: string;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauSheetWbIdId?: string | null;
 };
 
 export type ListTableauSheetsQuery = {
@@ -2023,22 +3990,95 @@ export type ListTableauSheetsQuery = {
   items: Array<{
     __typename: "TableauSheet";
     name: string;
-    WbId: string;
+    WbId?: {
+      __typename: "TableauWorkbook";
+      WbId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectWbIdId?: string | null;
+    } | null;
     Tsid: string;
     id: string;
     createdAt: string;
     updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauSheetWbIdId?: string | null;
   } | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type SyncTableauSheetsQuery = {
+  __typename: "ModelTableauSheetConnection";
+  items: Array<{
+    __typename: "TableauSheet";
+    name: string;
+    WbId?: {
+      __typename: "TableauWorkbook";
+      WbId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectWbIdId?: string | null;
+    } | null;
+    Tsid: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauSheetWbIdId?: string | null;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type GetTableauGraphQuery = {
   __typename: "TableauGraph";
   name: string;
-  Tsid: string;
+  Tsid?: {
+    __typename: "TableauSheet";
+    name: string;
+    WbId?: {
+      __typename: "TableauWorkbook";
+      WbId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectWbIdId?: string | null;
+    } | null;
+    Tsid: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauSheetWbIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauGraphTsidId?: string | null;
 };
 
 export type ListTableauGraphsQuery = {
@@ -2046,21 +4086,110 @@ export type ListTableauGraphsQuery = {
   items: Array<{
     __typename: "TableauGraph";
     name: string;
-    Tsid: string;
+    Tsid?: {
+      __typename: "TableauSheet";
+      name: string;
+      Tsid: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauSheetWbIdId?: string | null;
+    } | null;
     id: string;
     createdAt: string;
     updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauGraphTsidId?: string | null;
   } | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type SyncTableauGraphsQuery = {
+  __typename: "ModelTableauGraphConnection";
+  items: Array<{
+    __typename: "TableauGraph";
+    name: string;
+    Tsid?: {
+      __typename: "TableauSheet";
+      name: string;
+      Tsid: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauSheetWbIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauGraphTsidId?: string | null;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type GetTableauEnvQuery = {
   __typename: "TableauEnv";
   name: string;
-  TProId: string;
+  TProId?: {
+    __typename: "TableauProject";
+    TProId: string;
+    name: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    envname?: {
+      __typename: "TableauEnv";
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauEnvTProIdId?: string | null;
+    } | null;
+    WbId?: {
+      __typename: "ModelTableauWorkbookConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauProjectDidId?: string | null;
+    tableauProjectEnvnameId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauEnvTProIdId?: string | null;
 };
 
 export type ListTableauEnvsQuery = {
@@ -2068,22 +4197,96 @@ export type ListTableauEnvsQuery = {
   items: Array<{
     __typename: "TableauEnv";
     name: string;
-    TProId: string;
+    TProId?: {
+      __typename: "TableauProject";
+      TProId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectDidId?: string | null;
+      tableauProjectEnvnameId?: string | null;
+    } | null;
     id: string;
     createdAt: string;
     updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauEnvTProIdId?: string | null;
   } | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type SyncTableauEnvsQuery = {
+  __typename: "ModelTableauEnvConnection";
+  items: Array<{
+    __typename: "TableauEnv";
+    name: string;
+    TProId?: {
+      __typename: "TableauProject";
+      TProId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectDidId?: string | null;
+      tableauProjectEnvnameId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauEnvTProIdId?: string | null;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type GetQuicksiteProjectQuery = {
   __typename: "QuicksiteProject";
   name: string;
   QProId: string;
-  Did: string;
+  Did?: {
+    __typename: "Department";
+    Did: string;
+    CustomerId?: {
+      __typename: "Customer";
+      CustomerId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      customerDidId?: string | null;
+    } | null;
+    Dname: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    departmentCustomerIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteProjectDidId?: string | null;
 };
 
 export type ListQuicksiteProjectsQuery = {
@@ -2092,23 +4295,121 @@ export type ListQuicksiteProjectsQuery = {
     __typename: "QuicksiteProject";
     name: string;
     QProId: string;
-    Did: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
     id: string;
     createdAt: string;
     updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteProjectDidId?: string | null;
   } | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type SyncQuicksiteProjectsQuery = {
+  __typename: "ModelQuicksiteProjectConnection";
+  items: Array<{
+    __typename: "QuicksiteProject";
+    name: string;
+    QProId: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteProjectDidId?: string | null;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type GetQuicksiteTemplateQuery = {
   __typename: "QuicksiteTemplate";
   QtemId: string;
   name: string;
-  analysisId: string;
-  QProId: string;
+  analysisId?: {
+    __typename: "QuicksiteAnalysis";
+    name: string;
+    analysisId: string;
+    QtemId?: {
+      __typename: "QuicksiteTemplate";
+      QtemId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteTemplateAnalysisIdId?: string | null;
+      quicksiteTemplateQProIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteAnalysisQtemIdId?: string | null;
+  } | null;
+  QProId?: {
+    __typename: "QuicksiteProject";
+    name: string;
+    QProId: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteProjectDidId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteTemplateAnalysisIdId?: string | null;
+  quicksiteTemplateQProIdId?: string | null;
 };
 
 export type ListQuicksiteTemplatesQuery = {
@@ -2117,23 +4418,134 @@ export type ListQuicksiteTemplatesQuery = {
     __typename: "QuicksiteTemplate";
     QtemId: string;
     name: string;
-    analysisId: string;
-    QProId: string;
+    analysisId?: {
+      __typename: "QuicksiteAnalysis";
+      name: string;
+      analysisId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteAnalysisQtemIdId?: string | null;
+    } | null;
+    QProId?: {
+      __typename: "QuicksiteProject";
+      name: string;
+      QProId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteProjectDidId?: string | null;
+    } | null;
     id: string;
     createdAt: string;
     updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteTemplateAnalysisIdId?: string | null;
+    quicksiteTemplateQProIdId?: string | null;
   } | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type SyncQuicksiteTemplatesQuery = {
+  __typename: "ModelQuicksiteTemplateConnection";
+  items: Array<{
+    __typename: "QuicksiteTemplate";
+    QtemId: string;
+    name: string;
+    analysisId?: {
+      __typename: "QuicksiteAnalysis";
+      name: string;
+      analysisId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteAnalysisQtemIdId?: string | null;
+    } | null;
+    QProId?: {
+      __typename: "QuicksiteProject";
+      name: string;
+      QProId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteProjectDidId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteTemplateAnalysisIdId?: string | null;
+    quicksiteTemplateQProIdId?: string | null;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type GetQuicksiteAnalysisQuery = {
   __typename: "QuicksiteAnalysis";
   name: string;
   analysisId: string;
-  QtemId: string;
+  QtemId?: {
+    __typename: "QuicksiteTemplate";
+    QtemId: string;
+    name: string;
+    analysisId?: {
+      __typename: "QuicksiteAnalysis";
+      name: string;
+      analysisId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteAnalysisQtemIdId?: string | null;
+    } | null;
+    QProId?: {
+      __typename: "QuicksiteProject";
+      name: string;
+      QProId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteProjectDidId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteTemplateAnalysisIdId?: string | null;
+    quicksiteTemplateQProIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteAnalysisQtemIdId?: string | null;
 };
 
 export type ListQuicksiteAnalysesQuery = {
@@ -2142,21 +4554,109 @@ export type ListQuicksiteAnalysesQuery = {
     __typename: "QuicksiteAnalysis";
     name: string;
     analysisId: string;
-    QtemId: string;
+    QtemId?: {
+      __typename: "QuicksiteTemplate";
+      QtemId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteTemplateAnalysisIdId?: string | null;
+      quicksiteTemplateQProIdId?: string | null;
+    } | null;
     id: string;
     createdAt: string;
     updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteAnalysisQtemIdId?: string | null;
   } | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type SyncQuicksiteAnalysesQuery = {
+  __typename: "ModelQuicksiteAnalysisConnection";
+  items: Array<{
+    __typename: "QuicksiteAnalysis";
+    name: string;
+    analysisId: string;
+    QtemId?: {
+      __typename: "QuicksiteTemplate";
+      QtemId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteTemplateAnalysisIdId?: string | null;
+      quicksiteTemplateQProIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteAnalysisQtemIdId?: string | null;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type GetQuicksiteDashboardQuery = {
   __typename: "QuicksiteDashboard";
   name: string;
-  QtemId: string;
+  QtemId?: {
+    __typename: "QuicksiteTemplate";
+    QtemId: string;
+    name: string;
+    analysisId?: {
+      __typename: "QuicksiteAnalysis";
+      name: string;
+      analysisId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteAnalysisQtemIdId?: string | null;
+    } | null;
+    QProId?: {
+      __typename: "QuicksiteProject";
+      name: string;
+      QProId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteProjectDidId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteTemplateAnalysisIdId?: string | null;
+    quicksiteTemplateQProIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteDashboardQtemIdId?: string | null;
 };
 
 export type ListQuicksiteDashboardsQuery = {
@@ -2164,21 +4664,95 @@ export type ListQuicksiteDashboardsQuery = {
   items: Array<{
     __typename: "QuicksiteDashboard";
     name: string;
-    QtemId: string;
+    QtemId?: {
+      __typename: "QuicksiteTemplate";
+      QtemId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteTemplateAnalysisIdId?: string | null;
+      quicksiteTemplateQProIdId?: string | null;
+    } | null;
     id: string;
     createdAt: string;
     updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteDashboardQtemIdId?: string | null;
   } | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type SyncQuicksiteDashboardsQuery = {
+  __typename: "ModelQuicksiteDashboardConnection";
+  items: Array<{
+    __typename: "QuicksiteDashboard";
+    name: string;
+    QtemId?: {
+      __typename: "QuicksiteTemplate";
+      QtemId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteTemplateAnalysisIdId?: string | null;
+      quicksiteTemplateQProIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteDashboardQtemIdId?: string | null;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type GetQuicksiteEnvQuery = {
   __typename: "QuicksiteEnv";
   name: string;
-  QProId: string;
+  QProId?: {
+    __typename: "QuicksiteProject";
+    name: string;
+    QProId: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteProjectDidId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteEnvQProIdId?: string | null;
 };
 
 export type ListQuicksiteEnvsQuery = {
@@ -2186,12 +4760,57 @@ export type ListQuicksiteEnvsQuery = {
   items: Array<{
     __typename: "QuicksiteEnv";
     name: string;
-    QProId: string;
+    QProId?: {
+      __typename: "QuicksiteProject";
+      name: string;
+      QProId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteProjectDidId?: string | null;
+    } | null;
     id: string;
     createdAt: string;
     updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteEnvQProIdId?: string | null;
   } | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type SyncQuicksiteEnvsQuery = {
+  __typename: "ModelQuicksiteEnvConnection";
+  items: Array<{
+    __typename: "QuicksiteEnv";
+    name: string;
+    QProId?: {
+      __typename: "QuicksiteProject";
+      name: string;
+      QProId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteProjectDidId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteEnvQProIdId?: string | null;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type GetBIMProjectQuery = {
@@ -2203,6 +4822,9 @@ export type GetBIMProjectQuery = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type ListBIMProjectsQuery = {
@@ -2216,8 +4838,31 @@ export type ListBIMProjectsQuery = {
     id: string;
     createdAt: string;
     updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
   } | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type SyncBIMProjectsQuery = {
+  __typename: "ModelBIMProjectConnection";
+  items: Array<{
+    __typename: "BIMProject";
+    Did: string;
+    name: string;
+    source: BIPlatform;
+    destination: BIPlatform;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type GetDatasetQuery = {
@@ -2228,6 +4873,9 @@ export type GetDatasetQuery = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type ListDatasetsQuery = {
@@ -2240,30 +4888,76 @@ export type ListDatasetsQuery = {
     id: string;
     createdAt: string;
     updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
   } | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type SyncDatasetsQuery = {
+  __typename: "ModelDatasetConnection";
+  items: Array<{
+    __typename: "Dataset";
+    name: string;
+    datasources: string;
+    files: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type GetDatasouceQuery = {
   __typename: "Datasouce";
-  name: string;
+  name?: Array<string | null> | null;
   dsid: string;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type ListDatasoucesQuery = {
   __typename: "ModelDatasouceConnection";
   items: Array<{
     __typename: "Datasouce";
-    name: string;
+    name?: Array<string | null> | null;
     dsid: string;
     id: string;
     createdAt: string;
     updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
   } | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type SyncDatasoucesQuery = {
+  __typename: "ModelDatasouceConnection";
+  items: Array<{
+    __typename: "Datasouce";
+    name?: Array<string | null> | null;
+    dsid: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type GetQuicksightFolderQuery = {
@@ -2272,6 +4966,9 @@ export type GetQuicksightFolderQuery = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type ListQuicksightFoldersQuery = {
@@ -2282,8 +4979,28 @@ export type ListQuicksightFoldersQuery = {
     id: string;
     createdAt: string;
     updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
   } | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type SyncQuicksightFoldersQuery = {
+  __typename: "ModelQuicksightFolderConnection";
+  items: Array<{
+    __typename: "QuicksightFolder";
+    name: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type GetQuicksightGroupQuery = {
@@ -2292,6 +5009,9 @@ export type GetQuicksightGroupQuery = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type ListQuicksightGroupsQuery = {
@@ -2302,8 +5022,28 @@ export type ListQuicksightGroupsQuery = {
     id: string;
     createdAt: string;
     updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
   } | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type SyncQuicksightGroupsQuery = {
+  __typename: "ModelQuicksightGroupConnection";
+  items: Array<{
+    __typename: "QuicksightGroup";
+    name: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type GetFileQuery = {
@@ -2312,6 +5052,9 @@ export type GetFileQuery = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type ListFilesQuery = {
@@ -2322,8 +5065,28 @@ export type ListFilesQuery = {
     id: string;
     createdAt: string;
     updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
   } | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type SyncFilesQuery = {
+  __typename: "ModelFileConnection";
+  items: Array<{
+    __typename: "File";
+    name: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type GetTableQuery = {
@@ -2333,6 +5096,9 @@ export type GetTableQuery = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type ListTablesQuery = {
@@ -2344,38 +5110,29 @@ export type ListTablesQuery = {
     id: string;
     createdAt: string;
     updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
   } | null>;
   nextToken?: string | null;
+  startedAt?: number | null;
 };
 
-export type OnCreateTodoSubscription = {
-  __typename: "Todo";
-  id: string;
-  name: string;
-  description: string;
-  city: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type OnUpdateTodoSubscription = {
-  __typename: "Todo";
-  id: string;
-  name: string;
-  description: string;
-  city: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type OnDeleteTodoSubscription = {
-  __typename: "Todo";
-  id: string;
-  name: string;
-  description: string;
-  city: string;
-  createdAt: string;
-  updatedAt: string;
+export type SyncTablesQuery = {
+  __typename: "ModelTableConnection";
+  items: Array<{
+    __typename: "Table";
+    name: string;
+    dsid: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type OnCreateTableauloginSubscription = {
@@ -2386,6 +5143,9 @@ export type OnCreateTableauloginSubscription = {
   sitename: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type OnUpdateTableauloginSubscription = {
@@ -2396,6 +5156,9 @@ export type OnUpdateTableauloginSubscription = {
   sitename: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type OnDeleteTableauloginSubscription = {
@@ -2406,6 +5169,9 @@ export type OnDeleteTableauloginSubscription = {
   sitename: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type OnCreateQuicksightloginSubscription = {
@@ -2414,6 +5180,9 @@ export type OnCreateQuicksightloginSubscription = {
   awsaccountId: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type OnUpdateQuicksightloginSubscription = {
@@ -2422,6 +5191,9 @@ export type OnUpdateQuicksightloginSubscription = {
   awsaccountId: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type OnDeleteQuicksightloginSubscription = {
@@ -2430,354 +5202,1716 @@ export type OnDeleteQuicksightloginSubscription = {
   awsaccountId: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type OnCreateCustomerSubscription = {
   __typename: "Customer";
   CustomerId: string;
   name: string;
+  Did?: {
+    __typename: "Department";
+    Did: string;
+    CustomerId?: {
+      __typename: "Customer";
+      CustomerId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      customerDidId?: string | null;
+    } | null;
+    Dname: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    departmentCustomerIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  customerDidId?: string | null;
 };
 
 export type OnUpdateCustomerSubscription = {
   __typename: "Customer";
   CustomerId: string;
   name: string;
+  Did?: {
+    __typename: "Department";
+    Did: string;
+    CustomerId?: {
+      __typename: "Customer";
+      CustomerId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      customerDidId?: string | null;
+    } | null;
+    Dname: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    departmentCustomerIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  customerDidId?: string | null;
 };
 
 export type OnDeleteCustomerSubscription = {
   __typename: "Customer";
   CustomerId: string;
   name: string;
+  Did?: {
+    __typename: "Department";
+    Did: string;
+    CustomerId?: {
+      __typename: "Customer";
+      CustomerId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      customerDidId?: string | null;
+    } | null;
+    Dname: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    departmentCustomerIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  customerDidId?: string | null;
 };
 
 export type OnCreateDepartmentSubscription = {
   __typename: "Department";
   Did: string;
-  CustomerId: string;
+  CustomerId?: {
+    __typename: "Customer";
+    CustomerId: string;
+    name: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    customerDidId?: string | null;
+  } | null;
   Dname: string;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  departmentCustomerIdId?: string | null;
 };
 
 export type OnUpdateDepartmentSubscription = {
   __typename: "Department";
   Did: string;
-  CustomerId: string;
+  CustomerId?: {
+    __typename: "Customer";
+    CustomerId: string;
+    name: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    customerDidId?: string | null;
+  } | null;
   Dname: string;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  departmentCustomerIdId?: string | null;
 };
 
 export type OnDeleteDepartmentSubscription = {
   __typename: "Department";
   Did: string;
-  CustomerId: string;
+  CustomerId?: {
+    __typename: "Customer";
+    CustomerId: string;
+    name: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    customerDidId?: string | null;
+  } | null;
   Dname: string;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  departmentCustomerIdId?: string | null;
 };
 
 export type OnCreateTableauProjectSubscription = {
   __typename: "TableauProject";
   TProId: string;
   name: string;
-  Did: string;
+  Did?: {
+    __typename: "Department";
+    Did: string;
+    CustomerId?: {
+      __typename: "Customer";
+      CustomerId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      customerDidId?: string | null;
+    } | null;
+    Dname: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    departmentCustomerIdId?: string | null;
+  } | null;
+  envname?: {
+    __typename: "TableauEnv";
+    name: string;
+    TProId?: {
+      __typename: "TableauProject";
+      TProId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectDidId?: string | null;
+      tableauProjectEnvnameId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauEnvTProIdId?: string | null;
+  } | null;
+  WbId?: {
+    __typename: "ModelTableauWorkbookConnection";
+    items: Array<{
+      __typename: "TableauWorkbook";
+      WbId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectWbIdId?: string | null;
+    } | null>;
+    nextToken?: string | null;
+    startedAt?: number | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauProjectDidId?: string | null;
+  tableauProjectEnvnameId?: string | null;
 };
 
 export type OnUpdateTableauProjectSubscription = {
   __typename: "TableauProject";
   TProId: string;
   name: string;
-  Did: string;
+  Did?: {
+    __typename: "Department";
+    Did: string;
+    CustomerId?: {
+      __typename: "Customer";
+      CustomerId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      customerDidId?: string | null;
+    } | null;
+    Dname: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    departmentCustomerIdId?: string | null;
+  } | null;
+  envname?: {
+    __typename: "TableauEnv";
+    name: string;
+    TProId?: {
+      __typename: "TableauProject";
+      TProId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectDidId?: string | null;
+      tableauProjectEnvnameId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauEnvTProIdId?: string | null;
+  } | null;
+  WbId?: {
+    __typename: "ModelTableauWorkbookConnection";
+    items: Array<{
+      __typename: "TableauWorkbook";
+      WbId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectWbIdId?: string | null;
+    } | null>;
+    nextToken?: string | null;
+    startedAt?: number | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauProjectDidId?: string | null;
+  tableauProjectEnvnameId?: string | null;
 };
 
 export type OnDeleteTableauProjectSubscription = {
   __typename: "TableauProject";
   TProId: string;
   name: string;
-  Did: string;
+  Did?: {
+    __typename: "Department";
+    Did: string;
+    CustomerId?: {
+      __typename: "Customer";
+      CustomerId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      customerDidId?: string | null;
+    } | null;
+    Dname: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    departmentCustomerIdId?: string | null;
+  } | null;
+  envname?: {
+    __typename: "TableauEnv";
+    name: string;
+    TProId?: {
+      __typename: "TableauProject";
+      TProId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectDidId?: string | null;
+      tableauProjectEnvnameId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauEnvTProIdId?: string | null;
+  } | null;
+  WbId?: {
+    __typename: "ModelTableauWorkbookConnection";
+    items: Array<{
+      __typename: "TableauWorkbook";
+      WbId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectWbIdId?: string | null;
+    } | null>;
+    nextToken?: string | null;
+    startedAt?: number | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauProjectDidId?: string | null;
+  tableauProjectEnvnameId?: string | null;
 };
 
 export type OnCreateTableauWorkbookSubscription = {
   __typename: "TableauWorkbook";
   WbId: string;
   name: string;
-  TProId: string;
+  TProId?: {
+    __typename: "TableauProject";
+    TProId: string;
+    name: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    envname?: {
+      __typename: "TableauEnv";
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauEnvTProIdId?: string | null;
+    } | null;
+    WbId?: {
+      __typename: "ModelTableauWorkbookConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauProjectDidId?: string | null;
+    tableauProjectEnvnameId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauProjectWbIdId?: string | null;
 };
 
 export type OnUpdateTableauWorkbookSubscription = {
   __typename: "TableauWorkbook";
   WbId: string;
   name: string;
-  TProId: string;
+  TProId?: {
+    __typename: "TableauProject";
+    TProId: string;
+    name: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    envname?: {
+      __typename: "TableauEnv";
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauEnvTProIdId?: string | null;
+    } | null;
+    WbId?: {
+      __typename: "ModelTableauWorkbookConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauProjectDidId?: string | null;
+    tableauProjectEnvnameId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauProjectWbIdId?: string | null;
 };
 
 export type OnDeleteTableauWorkbookSubscription = {
   __typename: "TableauWorkbook";
   WbId: string;
   name: string;
-  TProId: string;
+  TProId?: {
+    __typename: "TableauProject";
+    TProId: string;
+    name: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    envname?: {
+      __typename: "TableauEnv";
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauEnvTProIdId?: string | null;
+    } | null;
+    WbId?: {
+      __typename: "ModelTableauWorkbookConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauProjectDidId?: string | null;
+    tableauProjectEnvnameId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauProjectWbIdId?: string | null;
 };
 
 export type OnCreateTableauSheetSubscription = {
   __typename: "TableauSheet";
   name: string;
-  WbId: string;
+  WbId?: {
+    __typename: "TableauWorkbook";
+    WbId: string;
+    name: string;
+    TProId?: {
+      __typename: "TableauProject";
+      TProId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectDidId?: string | null;
+      tableauProjectEnvnameId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauProjectWbIdId?: string | null;
+  } | null;
   Tsid: string;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauSheetWbIdId?: string | null;
 };
 
 export type OnUpdateTableauSheetSubscription = {
   __typename: "TableauSheet";
   name: string;
-  WbId: string;
+  WbId?: {
+    __typename: "TableauWorkbook";
+    WbId: string;
+    name: string;
+    TProId?: {
+      __typename: "TableauProject";
+      TProId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectDidId?: string | null;
+      tableauProjectEnvnameId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauProjectWbIdId?: string | null;
+  } | null;
   Tsid: string;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauSheetWbIdId?: string | null;
 };
 
 export type OnDeleteTableauSheetSubscription = {
   __typename: "TableauSheet";
   name: string;
-  WbId: string;
+  WbId?: {
+    __typename: "TableauWorkbook";
+    WbId: string;
+    name: string;
+    TProId?: {
+      __typename: "TableauProject";
+      TProId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectDidId?: string | null;
+      tableauProjectEnvnameId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauProjectWbIdId?: string | null;
+  } | null;
   Tsid: string;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauSheetWbIdId?: string | null;
 };
 
 export type OnCreateTableauGraphSubscription = {
   __typename: "TableauGraph";
   name: string;
-  Tsid: string;
+  Tsid?: {
+    __typename: "TableauSheet";
+    name: string;
+    WbId?: {
+      __typename: "TableauWorkbook";
+      WbId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectWbIdId?: string | null;
+    } | null;
+    Tsid: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauSheetWbIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauGraphTsidId?: string | null;
 };
 
 export type OnUpdateTableauGraphSubscription = {
   __typename: "TableauGraph";
   name: string;
-  Tsid: string;
+  Tsid?: {
+    __typename: "TableauSheet";
+    name: string;
+    WbId?: {
+      __typename: "TableauWorkbook";
+      WbId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectWbIdId?: string | null;
+    } | null;
+    Tsid: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauSheetWbIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauGraphTsidId?: string | null;
 };
 
 export type OnDeleteTableauGraphSubscription = {
   __typename: "TableauGraph";
   name: string;
-  Tsid: string;
+  Tsid?: {
+    __typename: "TableauSheet";
+    name: string;
+    WbId?: {
+      __typename: "TableauWorkbook";
+      WbId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauProjectWbIdId?: string | null;
+    } | null;
+    Tsid: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauSheetWbIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauGraphTsidId?: string | null;
 };
 
 export type OnCreateTableauEnvSubscription = {
   __typename: "TableauEnv";
   name: string;
-  TProId: string;
+  TProId?: {
+    __typename: "TableauProject";
+    TProId: string;
+    name: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    envname?: {
+      __typename: "TableauEnv";
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauEnvTProIdId?: string | null;
+    } | null;
+    WbId?: {
+      __typename: "ModelTableauWorkbookConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauProjectDidId?: string | null;
+    tableauProjectEnvnameId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauEnvTProIdId?: string | null;
 };
 
 export type OnUpdateTableauEnvSubscription = {
   __typename: "TableauEnv";
   name: string;
-  TProId: string;
+  TProId?: {
+    __typename: "TableauProject";
+    TProId: string;
+    name: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    envname?: {
+      __typename: "TableauEnv";
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauEnvTProIdId?: string | null;
+    } | null;
+    WbId?: {
+      __typename: "ModelTableauWorkbookConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauProjectDidId?: string | null;
+    tableauProjectEnvnameId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauEnvTProIdId?: string | null;
 };
 
 export type OnDeleteTableauEnvSubscription = {
   __typename: "TableauEnv";
   name: string;
-  TProId: string;
+  TProId?: {
+    __typename: "TableauProject";
+    TProId: string;
+    name: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    envname?: {
+      __typename: "TableauEnv";
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      tableauEnvTProIdId?: string | null;
+    } | null;
+    WbId?: {
+      __typename: "ModelTableauWorkbookConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    tableauProjectDidId?: string | null;
+    tableauProjectEnvnameId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  tableauEnvTProIdId?: string | null;
 };
 
 export type OnCreateQuicksiteProjectSubscription = {
   __typename: "QuicksiteProject";
   name: string;
   QProId: string;
-  Did: string;
+  Did?: {
+    __typename: "Department";
+    Did: string;
+    CustomerId?: {
+      __typename: "Customer";
+      CustomerId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      customerDidId?: string | null;
+    } | null;
+    Dname: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    departmentCustomerIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteProjectDidId?: string | null;
 };
 
 export type OnUpdateQuicksiteProjectSubscription = {
   __typename: "QuicksiteProject";
   name: string;
   QProId: string;
-  Did: string;
+  Did?: {
+    __typename: "Department";
+    Did: string;
+    CustomerId?: {
+      __typename: "Customer";
+      CustomerId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      customerDidId?: string | null;
+    } | null;
+    Dname: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    departmentCustomerIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteProjectDidId?: string | null;
 };
 
 export type OnDeleteQuicksiteProjectSubscription = {
   __typename: "QuicksiteProject";
   name: string;
   QProId: string;
-  Did: string;
+  Did?: {
+    __typename: "Department";
+    Did: string;
+    CustomerId?: {
+      __typename: "Customer";
+      CustomerId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      customerDidId?: string | null;
+    } | null;
+    Dname: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    departmentCustomerIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteProjectDidId?: string | null;
 };
 
 export type OnCreateQuicksiteTemplateSubscription = {
   __typename: "QuicksiteTemplate";
   QtemId: string;
   name: string;
-  analysisId: string;
-  QProId: string;
+  analysisId?: {
+    __typename: "QuicksiteAnalysis";
+    name: string;
+    analysisId: string;
+    QtemId?: {
+      __typename: "QuicksiteTemplate";
+      QtemId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteTemplateAnalysisIdId?: string | null;
+      quicksiteTemplateQProIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteAnalysisQtemIdId?: string | null;
+  } | null;
+  QProId?: {
+    __typename: "QuicksiteProject";
+    name: string;
+    QProId: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteProjectDidId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteTemplateAnalysisIdId?: string | null;
+  quicksiteTemplateQProIdId?: string | null;
 };
 
 export type OnUpdateQuicksiteTemplateSubscription = {
   __typename: "QuicksiteTemplate";
   QtemId: string;
   name: string;
-  analysisId: string;
-  QProId: string;
+  analysisId?: {
+    __typename: "QuicksiteAnalysis";
+    name: string;
+    analysisId: string;
+    QtemId?: {
+      __typename: "QuicksiteTemplate";
+      QtemId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteTemplateAnalysisIdId?: string | null;
+      quicksiteTemplateQProIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteAnalysisQtemIdId?: string | null;
+  } | null;
+  QProId?: {
+    __typename: "QuicksiteProject";
+    name: string;
+    QProId: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteProjectDidId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteTemplateAnalysisIdId?: string | null;
+  quicksiteTemplateQProIdId?: string | null;
 };
 
 export type OnDeleteQuicksiteTemplateSubscription = {
   __typename: "QuicksiteTemplate";
   QtemId: string;
   name: string;
-  analysisId: string;
-  QProId: string;
+  analysisId?: {
+    __typename: "QuicksiteAnalysis";
+    name: string;
+    analysisId: string;
+    QtemId?: {
+      __typename: "QuicksiteTemplate";
+      QtemId: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteTemplateAnalysisIdId?: string | null;
+      quicksiteTemplateQProIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteAnalysisQtemIdId?: string | null;
+  } | null;
+  QProId?: {
+    __typename: "QuicksiteProject";
+    name: string;
+    QProId: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteProjectDidId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteTemplateAnalysisIdId?: string | null;
+  quicksiteTemplateQProIdId?: string | null;
 };
 
 export type OnCreateQuicksiteAnalysisSubscription = {
   __typename: "QuicksiteAnalysis";
   name: string;
   analysisId: string;
-  QtemId: string;
+  QtemId?: {
+    __typename: "QuicksiteTemplate";
+    QtemId: string;
+    name: string;
+    analysisId?: {
+      __typename: "QuicksiteAnalysis";
+      name: string;
+      analysisId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteAnalysisQtemIdId?: string | null;
+    } | null;
+    QProId?: {
+      __typename: "QuicksiteProject";
+      name: string;
+      QProId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteProjectDidId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteTemplateAnalysisIdId?: string | null;
+    quicksiteTemplateQProIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteAnalysisQtemIdId?: string | null;
 };
 
 export type OnUpdateQuicksiteAnalysisSubscription = {
   __typename: "QuicksiteAnalysis";
   name: string;
   analysisId: string;
-  QtemId: string;
+  QtemId?: {
+    __typename: "QuicksiteTemplate";
+    QtemId: string;
+    name: string;
+    analysisId?: {
+      __typename: "QuicksiteAnalysis";
+      name: string;
+      analysisId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteAnalysisQtemIdId?: string | null;
+    } | null;
+    QProId?: {
+      __typename: "QuicksiteProject";
+      name: string;
+      QProId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteProjectDidId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteTemplateAnalysisIdId?: string | null;
+    quicksiteTemplateQProIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteAnalysisQtemIdId?: string | null;
 };
 
 export type OnDeleteQuicksiteAnalysisSubscription = {
   __typename: "QuicksiteAnalysis";
   name: string;
   analysisId: string;
-  QtemId: string;
+  QtemId?: {
+    __typename: "QuicksiteTemplate";
+    QtemId: string;
+    name: string;
+    analysisId?: {
+      __typename: "QuicksiteAnalysis";
+      name: string;
+      analysisId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteAnalysisQtemIdId?: string | null;
+    } | null;
+    QProId?: {
+      __typename: "QuicksiteProject";
+      name: string;
+      QProId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteProjectDidId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteTemplateAnalysisIdId?: string | null;
+    quicksiteTemplateQProIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteAnalysisQtemIdId?: string | null;
 };
 
 export type OnCreateQuicksiteDashboardSubscription = {
   __typename: "QuicksiteDashboard";
   name: string;
-  QtemId: string;
+  QtemId?: {
+    __typename: "QuicksiteTemplate";
+    QtemId: string;
+    name: string;
+    analysisId?: {
+      __typename: "QuicksiteAnalysis";
+      name: string;
+      analysisId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteAnalysisQtemIdId?: string | null;
+    } | null;
+    QProId?: {
+      __typename: "QuicksiteProject";
+      name: string;
+      QProId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteProjectDidId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteTemplateAnalysisIdId?: string | null;
+    quicksiteTemplateQProIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteDashboardQtemIdId?: string | null;
 };
 
 export type OnUpdateQuicksiteDashboardSubscription = {
   __typename: "QuicksiteDashboard";
   name: string;
-  QtemId: string;
+  QtemId?: {
+    __typename: "QuicksiteTemplate";
+    QtemId: string;
+    name: string;
+    analysisId?: {
+      __typename: "QuicksiteAnalysis";
+      name: string;
+      analysisId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteAnalysisQtemIdId?: string | null;
+    } | null;
+    QProId?: {
+      __typename: "QuicksiteProject";
+      name: string;
+      QProId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteProjectDidId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteTemplateAnalysisIdId?: string | null;
+    quicksiteTemplateQProIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteDashboardQtemIdId?: string | null;
 };
 
 export type OnDeleteQuicksiteDashboardSubscription = {
   __typename: "QuicksiteDashboard";
   name: string;
-  QtemId: string;
+  QtemId?: {
+    __typename: "QuicksiteTemplate";
+    QtemId: string;
+    name: string;
+    analysisId?: {
+      __typename: "QuicksiteAnalysis";
+      name: string;
+      analysisId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteAnalysisQtemIdId?: string | null;
+    } | null;
+    QProId?: {
+      __typename: "QuicksiteProject";
+      name: string;
+      QProId: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      quicksiteProjectDidId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteTemplateAnalysisIdId?: string | null;
+    quicksiteTemplateQProIdId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteDashboardQtemIdId?: string | null;
 };
 
 export type OnCreateQuicksiteEnvSubscription = {
   __typename: "QuicksiteEnv";
   name: string;
-  QProId: string;
+  QProId?: {
+    __typename: "QuicksiteProject";
+    name: string;
+    QProId: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteProjectDidId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteEnvQProIdId?: string | null;
 };
 
 export type OnUpdateQuicksiteEnvSubscription = {
   __typename: "QuicksiteEnv";
   name: string;
-  QProId: string;
+  QProId?: {
+    __typename: "QuicksiteProject";
+    name: string;
+    QProId: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteProjectDidId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteEnvQProIdId?: string | null;
 };
 
 export type OnDeleteQuicksiteEnvSubscription = {
   __typename: "QuicksiteEnv";
   name: string;
-  QProId: string;
+  QProId?: {
+    __typename: "QuicksiteProject";
+    name: string;
+    QProId: string;
+    Did?: {
+      __typename: "Department";
+      Did: string;
+      Dname: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+      departmentCustomerIdId?: string | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+    quicksiteProjectDidId?: string | null;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+  quicksiteEnvQProIdId?: string | null;
 };
 
 export type OnCreateBIMProjectSubscription = {
@@ -2789,6 +6923,9 @@ export type OnCreateBIMProjectSubscription = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type OnUpdateBIMProjectSubscription = {
@@ -2800,6 +6937,9 @@ export type OnUpdateBIMProjectSubscription = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type OnDeleteBIMProjectSubscription = {
@@ -2811,6 +6951,9 @@ export type OnDeleteBIMProjectSubscription = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type OnCreateDatasetSubscription = {
@@ -2821,6 +6964,9 @@ export type OnCreateDatasetSubscription = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type OnUpdateDatasetSubscription = {
@@ -2831,6 +6977,9 @@ export type OnUpdateDatasetSubscription = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type OnDeleteDatasetSubscription = {
@@ -2841,33 +6990,45 @@ export type OnDeleteDatasetSubscription = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type OnCreateDatasouceSubscription = {
   __typename: "Datasouce";
-  name: string;
+  name?: Array<string | null> | null;
   dsid: string;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type OnUpdateDatasouceSubscription = {
   __typename: "Datasouce";
-  name: string;
+  name?: Array<string | null> | null;
   dsid: string;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type OnDeleteDatasouceSubscription = {
   __typename: "Datasouce";
-  name: string;
+  name?: Array<string | null> | null;
   dsid: string;
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type OnCreateQuicksightFolderSubscription = {
@@ -2876,6 +7037,9 @@ export type OnCreateQuicksightFolderSubscription = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type OnUpdateQuicksightFolderSubscription = {
@@ -2884,6 +7048,9 @@ export type OnUpdateQuicksightFolderSubscription = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type OnDeleteQuicksightFolderSubscription = {
@@ -2892,6 +7059,9 @@ export type OnDeleteQuicksightFolderSubscription = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type OnCreateQuicksightGroupSubscription = {
@@ -2900,6 +7070,9 @@ export type OnCreateQuicksightGroupSubscription = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type OnUpdateQuicksightGroupSubscription = {
@@ -2908,6 +7081,9 @@ export type OnUpdateQuicksightGroupSubscription = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type OnDeleteQuicksightGroupSubscription = {
@@ -2916,6 +7092,9 @@ export type OnDeleteQuicksightGroupSubscription = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type OnCreateFileSubscription = {
@@ -2924,6 +7103,9 @@ export type OnCreateFileSubscription = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type OnUpdateFileSubscription = {
@@ -2932,6 +7114,9 @@ export type OnUpdateFileSubscription = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type OnDeleteFileSubscription = {
@@ -2940,6 +7125,9 @@ export type OnDeleteFileSubscription = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type OnCreateTableSubscription = {
@@ -2949,6 +7137,9 @@ export type OnCreateTableSubscription = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type OnUpdateTableSubscription = {
@@ -2958,6 +7149,9 @@ export type OnUpdateTableSubscription = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 export type OnDeleteTableSubscription = {
@@ -2967,90 +7161,15 @@ export type OnDeleteTableSubscription = {
   id: string;
   createdAt: string;
   updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
 };
 
 @Injectable({
   providedIn: "root"
 })
 export class APIService {
-  async CreateTodo(
-    input: CreateTodoInput,
-    condition?: ModelTodoConditionInput
-  ): Promise<CreateTodoMutation> {
-    const statement = `mutation CreateTodo($input: CreateTodoInput!, $condition: ModelTodoConditionInput) {
-        createTodo(input: $input, condition: $condition) {
-          __typename
-          id
-          name
-          description
-          city
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <CreateTodoMutation>response.data.createTodo;
-  }
-  async UpdateTodo(
-    input: UpdateTodoInput,
-    condition?: ModelTodoConditionInput
-  ): Promise<UpdateTodoMutation> {
-    const statement = `mutation UpdateTodo($input: UpdateTodoInput!, $condition: ModelTodoConditionInput) {
-        updateTodo(input: $input, condition: $condition) {
-          __typename
-          id
-          name
-          description
-          city
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <UpdateTodoMutation>response.data.updateTodo;
-  }
-  async DeleteTodo(
-    input: DeleteTodoInput,
-    condition?: ModelTodoConditionInput
-  ): Promise<DeleteTodoMutation> {
-    const statement = `mutation DeleteTodo($input: DeleteTodoInput!, $condition: ModelTodoConditionInput) {
-        deleteTodo(input: $input, condition: $condition) {
-          __typename
-          id
-          name
-          description
-          city
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <DeleteTodoMutation>response.data.deleteTodo;
-  }
   async CreateTableaulogin(
     input: CreateTableauloginInput,
     condition?: ModelTableauloginConditionInput
@@ -3064,6 +7183,9 @@ export class APIService {
           sitename
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3090,6 +7212,9 @@ export class APIService {
           sitename
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3116,6 +7241,9 @@ export class APIService {
           sitename
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3140,6 +7268,9 @@ export class APIService {
           awsaccountId
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3164,6 +7295,9 @@ export class APIService {
           awsaccountId
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3188,6 +7322,9 @@ export class APIService {
           awsaccountId
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3210,9 +7347,37 @@ export class APIService {
           __typename
           CustomerId
           name
+          Did {
+            __typename
+            Did
+            CustomerId {
+              __typename
+              CustomerId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              customerDidId
+            }
+            Dname
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            departmentCustomerIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          customerDidId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3235,9 +7400,37 @@ export class APIService {
           __typename
           CustomerId
           name
+          Did {
+            __typename
+            Did
+            CustomerId {
+              __typename
+              CustomerId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              customerDidId
+            }
+            Dname
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            departmentCustomerIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          customerDidId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3260,9 +7453,37 @@ export class APIService {
           __typename
           CustomerId
           name
+          Did {
+            __typename
+            Did
+            CustomerId {
+              __typename
+              CustomerId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              customerDidId
+            }
+            Dname
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            departmentCustomerIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          customerDidId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3284,11 +7505,38 @@ export class APIService {
         createDepartment(input: $input, condition: $condition) {
           __typename
           Did
-          CustomerId
+          CustomerId {
+            __typename
+            CustomerId
+            name
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            customerDidId
+          }
           Dname
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          departmentCustomerIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3310,11 +7558,38 @@ export class APIService {
         updateDepartment(input: $input, condition: $condition) {
           __typename
           Did
-          CustomerId
+          CustomerId {
+            __typename
+            CustomerId
+            name
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            customerDidId
+          }
           Dname
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          departmentCustomerIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3336,11 +7611,38 @@ export class APIService {
         deleteDepartment(input: $input, condition: $condition) {
           __typename
           Did
-          CustomerId
+          CustomerId {
+            __typename
+            CustomerId
+            name
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            customerDidId
+          }
           Dname
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          departmentCustomerIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3363,10 +7665,79 @@ export class APIService {
           __typename
           TProId
           name
-          Did
+          Did {
+            __typename
+            Did
+            CustomerId {
+              __typename
+              CustomerId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              customerDidId
+            }
+            Dname
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            departmentCustomerIdId
+          }
+          envname {
+            __typename
+            name
+            TProId {
+              __typename
+              TProId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectDidId
+              tableauProjectEnvnameId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauEnvTProIdId
+          }
+          WbId {
+            __typename
+            items {
+              __typename
+              WbId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectWbIdId
+            }
+            nextToken
+            startedAt
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauProjectDidId
+          tableauProjectEnvnameId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3389,10 +7760,79 @@ export class APIService {
           __typename
           TProId
           name
-          Did
+          Did {
+            __typename
+            Did
+            CustomerId {
+              __typename
+              CustomerId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              customerDidId
+            }
+            Dname
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            departmentCustomerIdId
+          }
+          envname {
+            __typename
+            name
+            TProId {
+              __typename
+              TProId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectDidId
+              tableauProjectEnvnameId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauEnvTProIdId
+          }
+          WbId {
+            __typename
+            items {
+              __typename
+              WbId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectWbIdId
+            }
+            nextToken
+            startedAt
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauProjectDidId
+          tableauProjectEnvnameId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3415,10 +7855,79 @@ export class APIService {
           __typename
           TProId
           name
-          Did
+          Did {
+            __typename
+            Did
+            CustomerId {
+              __typename
+              CustomerId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              customerDidId
+            }
+            Dname
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            departmentCustomerIdId
+          }
+          envname {
+            __typename
+            name
+            TProId {
+              __typename
+              TProId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectDidId
+              tableauProjectEnvnameId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauEnvTProIdId
+          }
+          WbId {
+            __typename
+            items {
+              __typename
+              WbId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectWbIdId
+            }
+            nextToken
+            startedAt
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauProjectDidId
+          tableauProjectEnvnameId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3441,10 +7950,54 @@ export class APIService {
           __typename
           WbId
           name
-          TProId
+          TProId {
+            __typename
+            TProId
+            name
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            envname {
+              __typename
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauEnvTProIdId
+            }
+            WbId {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauProjectDidId
+            tableauProjectEnvnameId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauProjectWbIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3467,10 +8020,54 @@ export class APIService {
           __typename
           WbId
           name
-          TProId
+          TProId {
+            __typename
+            TProId
+            name
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            envname {
+              __typename
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauEnvTProIdId
+            }
+            WbId {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauProjectDidId
+            tableauProjectEnvnameId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauProjectWbIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3493,10 +8090,54 @@ export class APIService {
           __typename
           WbId
           name
-          TProId
+          TProId {
+            __typename
+            TProId
+            name
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            envname {
+              __typename
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauEnvTProIdId
+            }
+            WbId {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauProjectDidId
+            tableauProjectEnvnameId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauProjectWbIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3518,11 +8159,39 @@ export class APIService {
         createTableauSheet(input: $input, condition: $condition) {
           __typename
           name
-          WbId
+          WbId {
+            __typename
+            WbId
+            name
+            TProId {
+              __typename
+              TProId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectDidId
+              tableauProjectEnvnameId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauProjectWbIdId
+          }
           Tsid
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauSheetWbIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3544,11 +8213,39 @@ export class APIService {
         updateTableauSheet(input: $input, condition: $condition) {
           __typename
           name
-          WbId
+          WbId {
+            __typename
+            WbId
+            name
+            TProId {
+              __typename
+              TProId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectDidId
+              tableauProjectEnvnameId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauProjectWbIdId
+          }
           Tsid
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauSheetWbIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3570,11 +8267,39 @@ export class APIService {
         deleteTableauSheet(input: $input, condition: $condition) {
           __typename
           name
-          WbId
+          WbId {
+            __typename
+            WbId
+            name
+            TProId {
+              __typename
+              TProId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectDidId
+              tableauProjectEnvnameId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauProjectWbIdId
+          }
           Tsid
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauSheetWbIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3596,10 +8321,37 @@ export class APIService {
         createTableauGraph(input: $input, condition: $condition) {
           __typename
           name
-          Tsid
+          Tsid {
+            __typename
+            name
+            WbId {
+              __typename
+              WbId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectWbIdId
+            }
+            Tsid
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauSheetWbIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauGraphTsidId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3621,10 +8373,37 @@ export class APIService {
         updateTableauGraph(input: $input, condition: $condition) {
           __typename
           name
-          Tsid
+          Tsid {
+            __typename
+            name
+            WbId {
+              __typename
+              WbId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectWbIdId
+            }
+            Tsid
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauSheetWbIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauGraphTsidId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3646,10 +8425,37 @@ export class APIService {
         deleteTableauGraph(input: $input, condition: $condition) {
           __typename
           name
-          Tsid
+          Tsid {
+            __typename
+            name
+            WbId {
+              __typename
+              WbId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectWbIdId
+            }
+            Tsid
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauSheetWbIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauGraphTsidId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3671,10 +8477,54 @@ export class APIService {
         createTableauEnv(input: $input, condition: $condition) {
           __typename
           name
-          TProId
+          TProId {
+            __typename
+            TProId
+            name
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            envname {
+              __typename
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauEnvTProIdId
+            }
+            WbId {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauProjectDidId
+            tableauProjectEnvnameId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauEnvTProIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3696,10 +8546,54 @@ export class APIService {
         updateTableauEnv(input: $input, condition: $condition) {
           __typename
           name
-          TProId
+          TProId {
+            __typename
+            TProId
+            name
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            envname {
+              __typename
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauEnvTProIdId
+            }
+            WbId {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauProjectDidId
+            tableauProjectEnvnameId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauEnvTProIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3721,10 +8615,54 @@ export class APIService {
         deleteTableauEnv(input: $input, condition: $condition) {
           __typename
           name
-          TProId
+          TProId {
+            __typename
+            TProId
+            name
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            envname {
+              __typename
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauEnvTProIdId
+            }
+            WbId {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauProjectDidId
+            tableauProjectEnvnameId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauEnvTProIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3747,10 +8685,37 @@ export class APIService {
           __typename
           name
           QProId
-          Did
+          Did {
+            __typename
+            Did
+            CustomerId {
+              __typename
+              CustomerId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              customerDidId
+            }
+            Dname
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            departmentCustomerIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteProjectDidId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3773,10 +8738,37 @@ export class APIService {
           __typename
           name
           QProId
-          Did
+          Did {
+            __typename
+            Did
+            CustomerId {
+              __typename
+              CustomerId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              customerDidId
+            }
+            Dname
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            departmentCustomerIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteProjectDidId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3799,10 +8791,37 @@ export class APIService {
           __typename
           name
           QProId
-          Did
+          Did {
+            __typename
+            Did
+            CustomerId {
+              __typename
+              CustomerId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              customerDidId
+            }
+            Dname
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            departmentCustomerIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteProjectDidId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3825,11 +8844,63 @@ export class APIService {
           __typename
           QtemId
           name
-          analysisId
-          QProId
+          analysisId {
+            __typename
+            name
+            analysisId
+            QtemId {
+              __typename
+              QtemId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteTemplateAnalysisIdId
+              quicksiteTemplateQProIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteAnalysisQtemIdId
+          }
+          QProId {
+            __typename
+            name
+            QProId
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteProjectDidId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteTemplateAnalysisIdId
+          quicksiteTemplateQProIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3854,11 +8925,63 @@ export class APIService {
           __typename
           QtemId
           name
-          analysisId
-          QProId
+          analysisId {
+            __typename
+            name
+            analysisId
+            QtemId {
+              __typename
+              QtemId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteTemplateAnalysisIdId
+              quicksiteTemplateQProIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteAnalysisQtemIdId
+          }
+          QProId {
+            __typename
+            name
+            QProId
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteProjectDidId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteTemplateAnalysisIdId
+          quicksiteTemplateQProIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3883,11 +9006,63 @@ export class APIService {
           __typename
           QtemId
           name
-          analysisId
-          QProId
+          analysisId {
+            __typename
+            name
+            analysisId
+            QtemId {
+              __typename
+              QtemId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteTemplateAnalysisIdId
+              quicksiteTemplateQProIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteAnalysisQtemIdId
+          }
+          QProId {
+            __typename
+            name
+            QProId
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteProjectDidId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteTemplateAnalysisIdId
+          quicksiteTemplateQProIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3912,10 +9087,50 @@ export class APIService {
           __typename
           name
           analysisId
-          QtemId
+          QtemId {
+            __typename
+            QtemId
+            name
+            analysisId {
+              __typename
+              name
+              analysisId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteAnalysisQtemIdId
+            }
+            QProId {
+              __typename
+              name
+              QProId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteProjectDidId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteTemplateAnalysisIdId
+            quicksiteTemplateQProIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteAnalysisQtemIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3940,10 +9155,50 @@ export class APIService {
           __typename
           name
           analysisId
-          QtemId
+          QtemId {
+            __typename
+            QtemId
+            name
+            analysisId {
+              __typename
+              name
+              analysisId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteAnalysisQtemIdId
+            }
+            QProId {
+              __typename
+              name
+              QProId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteProjectDidId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteTemplateAnalysisIdId
+            quicksiteTemplateQProIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteAnalysisQtemIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3968,10 +9223,50 @@ export class APIService {
           __typename
           name
           analysisId
-          QtemId
+          QtemId {
+            __typename
+            QtemId
+            name
+            analysisId {
+              __typename
+              name
+              analysisId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteAnalysisQtemIdId
+            }
+            QProId {
+              __typename
+              name
+              QProId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteProjectDidId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteTemplateAnalysisIdId
+            quicksiteTemplateQProIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteAnalysisQtemIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -3995,10 +9290,50 @@ export class APIService {
         createQuicksiteDashboard(input: $input, condition: $condition) {
           __typename
           name
-          QtemId
+          QtemId {
+            __typename
+            QtemId
+            name
+            analysisId {
+              __typename
+              name
+              analysisId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteAnalysisQtemIdId
+            }
+            QProId {
+              __typename
+              name
+              QProId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteProjectDidId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteTemplateAnalysisIdId
+            quicksiteTemplateQProIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteDashboardQtemIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4022,10 +9357,50 @@ export class APIService {
         updateQuicksiteDashboard(input: $input, condition: $condition) {
           __typename
           name
-          QtemId
+          QtemId {
+            __typename
+            QtemId
+            name
+            analysisId {
+              __typename
+              name
+              analysisId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteAnalysisQtemIdId
+            }
+            QProId {
+              __typename
+              name
+              QProId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteProjectDidId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteTemplateAnalysisIdId
+            quicksiteTemplateQProIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteDashboardQtemIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4049,10 +9424,50 @@ export class APIService {
         deleteQuicksiteDashboard(input: $input, condition: $condition) {
           __typename
           name
-          QtemId
+          QtemId {
+            __typename
+            QtemId
+            name
+            analysisId {
+              __typename
+              name
+              analysisId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteAnalysisQtemIdId
+            }
+            QProId {
+              __typename
+              name
+              QProId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteProjectDidId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteTemplateAnalysisIdId
+            quicksiteTemplateQProIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteDashboardQtemIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4076,10 +9491,37 @@ export class APIService {
         createQuicksiteEnv(input: $input, condition: $condition) {
           __typename
           name
-          QProId
+          QProId {
+            __typename
+            name
+            QProId
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteProjectDidId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteEnvQProIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4101,10 +9543,37 @@ export class APIService {
         updateQuicksiteEnv(input: $input, condition: $condition) {
           __typename
           name
-          QProId
+          QProId {
+            __typename
+            name
+            QProId
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteProjectDidId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteEnvQProIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4126,10 +9595,37 @@ export class APIService {
         deleteQuicksiteEnv(input: $input, condition: $condition) {
           __typename
           name
-          QProId
+          QProId {
+            __typename
+            name
+            QProId
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteProjectDidId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteEnvQProIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4157,6 +9653,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4184,6 +9683,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4211,6 +9713,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4237,6 +9742,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4263,6 +9771,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4289,6 +9800,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4314,6 +9828,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4339,6 +9856,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4364,6 +9884,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4388,6 +9911,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4412,6 +9938,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4436,6 +9965,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4460,6 +9992,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4484,6 +10019,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4508,6 +10046,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4532,6 +10073,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4556,6 +10100,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4580,6 +10127,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4605,6 +10155,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4630,6 +10183,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4655,6 +10211,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4668,61 +10227,6 @@ export class APIService {
     )) as any;
     return <DeleteTableMutation>response.data.deleteTable;
   }
-  async GetTodo(id: string): Promise<GetTodoQuery> {
-    const statement = `query GetTodo($id: ID!) {
-        getTodo(id: $id) {
-          __typename
-          id
-          name
-          description
-          city
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      id
-    };
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <GetTodoQuery>response.data.getTodo;
-  }
-  async ListTodos(
-    filter?: ModelTodoFilterInput,
-    limit?: number,
-    nextToken?: string
-  ): Promise<ListTodosQuery> {
-    const statement = `query ListTodos($filter: ModelTodoFilterInput, $limit: Int, $nextToken: String) {
-        listTodos(filter: $filter, limit: $limit, nextToken: $nextToken) {
-          __typename
-          items {
-            __typename
-            id
-            name
-            description
-            city
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {};
-    if (filter) {
-      gqlAPIServiceArguments.filter = filter;
-    }
-    if (limit) {
-      gqlAPIServiceArguments.limit = limit;
-    }
-    if (nextToken) {
-      gqlAPIServiceArguments.nextToken = nextToken;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <ListTodosQuery>response.data.listTodos;
-  }
   async GetTableaulogin(id: string): Promise<GetTableauloginQuery> {
     const statement = `query GetTableaulogin($id: ID!) {
         getTableaulogin(id: $id) {
@@ -4733,6 +10237,9 @@ export class APIService {
           sitename
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4759,8 +10266,12 @@ export class APIService {
             sitename
             createdAt
             updatedAt
+            _version
+            _deleted
+            _lastChangedAt
           }
           nextToken
+          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -4778,6 +10289,49 @@ export class APIService {
     )) as any;
     return <ListTableauloginsQuery>response.data.listTableaulogins;
   }
+  async SyncTableaulogins(
+    filter?: ModelTableauloginFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncTableauloginsQuery> {
+    const statement = `query SyncTableaulogins($filter: ModelTableauloginFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncTableaulogins(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+          __typename
+          items {
+            __typename
+            id
+            username
+            password
+            sitename
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncTableauloginsQuery>response.data.syncTableaulogins;
+  }
   async GetQuicksightlogin(id: string): Promise<GetQuicksightloginQuery> {
     const statement = `query GetQuicksightlogin($id: ID!) {
         getQuicksightlogin(id: $id) {
@@ -4786,6 +10340,9 @@ export class APIService {
           awsaccountId
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4810,8 +10367,12 @@ export class APIService {
             awsaccountId
             createdAt
             updatedAt
+            _version
+            _deleted
+            _lastChangedAt
           }
           nextToken
+          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -4829,15 +10390,84 @@ export class APIService {
     )) as any;
     return <ListQuicksightloginsQuery>response.data.listQuicksightlogins;
   }
+  async SyncQuicksightlogins(
+    filter?: ModelQuicksightloginFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncQuicksightloginsQuery> {
+    const statement = `query SyncQuicksightlogins($filter: ModelQuicksightloginFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncQuicksightlogins(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+          __typename
+          items {
+            __typename
+            id
+            awsaccountId
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncQuicksightloginsQuery>response.data.syncQuicksightlogins;
+  }
   async GetCustomer(id: string): Promise<GetCustomerQuery> {
     const statement = `query GetCustomer($id: ID!) {
         getCustomer(id: $id) {
           __typename
           CustomerId
           name
+          Did {
+            __typename
+            Did
+            CustomerId {
+              __typename
+              CustomerId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              customerDidId
+            }
+            Dname
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            departmentCustomerIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          customerDidId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4860,11 +10490,28 @@ export class APIService {
             __typename
             CustomerId
             name
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
             id
             createdAt
             updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            customerDidId
           }
           nextToken
+          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -4882,16 +10529,98 @@ export class APIService {
     )) as any;
     return <ListCustomersQuery>response.data.listCustomers;
   }
+  async SyncCustomers(
+    filter?: ModelCustomerFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncCustomersQuery> {
+    const statement = `query SyncCustomers($filter: ModelCustomerFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncCustomers(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+          __typename
+          items {
+            __typename
+            CustomerId
+            name
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            customerDidId
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncCustomersQuery>response.data.syncCustomers;
+  }
   async GetDepartment(id: string): Promise<GetDepartmentQuery> {
     const statement = `query GetDepartment($id: ID!) {
         getDepartment(id: $id) {
           __typename
           Did
-          CustomerId
+          CustomerId {
+            __typename
+            CustomerId
+            name
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            customerDidId
+          }
           Dname
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          departmentCustomerIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4913,13 +10642,29 @@ export class APIService {
           items {
             __typename
             Did
-            CustomerId
+            CustomerId {
+              __typename
+              CustomerId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              customerDidId
+            }
             Dname
             id
             createdAt
             updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            departmentCustomerIdId
           }
           nextToken
+          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -4937,16 +10682,140 @@ export class APIService {
     )) as any;
     return <ListDepartmentsQuery>response.data.listDepartments;
   }
+  async SyncDepartments(
+    filter?: ModelDepartmentFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncDepartmentsQuery> {
+    const statement = `query SyncDepartments($filter: ModelDepartmentFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncDepartments(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+          __typename
+          items {
+            __typename
+            Did
+            CustomerId {
+              __typename
+              CustomerId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              customerDidId
+            }
+            Dname
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            departmentCustomerIdId
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncDepartmentsQuery>response.data.syncDepartments;
+  }
   async GetTableauProject(id: string): Promise<GetTableauProjectQuery> {
     const statement = `query GetTableauProject($id: ID!) {
         getTableauProject(id: $id) {
           __typename
           TProId
           name
-          Did
+          Did {
+            __typename
+            Did
+            CustomerId {
+              __typename
+              CustomerId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              customerDidId
+            }
+            Dname
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            departmentCustomerIdId
+          }
+          envname {
+            __typename
+            name
+            TProId {
+              __typename
+              TProId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectDidId
+              tableauProjectEnvnameId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauEnvTProIdId
+          }
+          WbId {
+            __typename
+            items {
+              __typename
+              WbId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectWbIdId
+            }
+            nextToken
+            startedAt
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauProjectDidId
+          tableauProjectEnvnameId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -4969,12 +10838,45 @@ export class APIService {
             __typename
             TProId
             name
-            Did
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            envname {
+              __typename
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauEnvTProIdId
+            }
+            WbId {
+              __typename
+              nextToken
+              startedAt
+            }
             id
             createdAt
             updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauProjectDidId
+            tableauProjectEnvnameId
           }
           nextToken
+          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -4992,16 +10894,132 @@ export class APIService {
     )) as any;
     return <ListTableauProjectsQuery>response.data.listTableauProjects;
   }
+  async SyncTableauProjects(
+    filter?: ModelTableauProjectFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncTableauProjectsQuery> {
+    const statement = `query SyncTableauProjects($filter: ModelTableauProjectFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncTableauProjects(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+          __typename
+          items {
+            __typename
+            TProId
+            name
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            envname {
+              __typename
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauEnvTProIdId
+            }
+            WbId {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauProjectDidId
+            tableauProjectEnvnameId
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncTableauProjectsQuery>response.data.syncTableauProjects;
+  }
   async GetTableauWorkbook(id: string): Promise<GetTableauWorkbookQuery> {
     const statement = `query GetTableauWorkbook($id: ID!) {
         getTableauWorkbook(id: $id) {
           __typename
           WbId
           name
-          TProId
+          TProId {
+            __typename
+            TProId
+            name
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            envname {
+              __typename
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauEnvTProIdId
+            }
+            WbId {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauProjectDidId
+            tableauProjectEnvnameId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauProjectWbIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -5024,12 +11042,29 @@ export class APIService {
             __typename
             WbId
             name
-            TProId
+            TProId {
+              __typename
+              TProId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectDidId
+              tableauProjectEnvnameId
+            }
             id
             createdAt
             updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauProjectWbIdId
           }
           nextToken
+          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -5047,16 +11082,100 @@ export class APIService {
     )) as any;
     return <ListTableauWorkbooksQuery>response.data.listTableauWorkbooks;
   }
+  async SyncTableauWorkbooks(
+    filter?: ModelTableauWorkbookFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncTableauWorkbooksQuery> {
+    const statement = `query SyncTableauWorkbooks($filter: ModelTableauWorkbookFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncTableauWorkbooks(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+          __typename
+          items {
+            __typename
+            WbId
+            name
+            TProId {
+              __typename
+              TProId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectDidId
+              tableauProjectEnvnameId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauProjectWbIdId
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncTableauWorkbooksQuery>response.data.syncTableauWorkbooks;
+  }
   async GetTableauSheet(id: string): Promise<GetTableauSheetQuery> {
     const statement = `query GetTableauSheet($id: ID!) {
         getTableauSheet(id: $id) {
           __typename
           name
-          WbId
+          WbId {
+            __typename
+            WbId
+            name
+            TProId {
+              __typename
+              TProId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectDidId
+              tableauProjectEnvnameId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauProjectWbIdId
+          }
           Tsid
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauSheetWbIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -5078,13 +11197,29 @@ export class APIService {
           items {
             __typename
             name
-            WbId
+            WbId {
+              __typename
+              WbId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectWbIdId
+            }
             Tsid
             id
             createdAt
             updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauSheetWbIdId
           }
           nextToken
+          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -5102,15 +11237,97 @@ export class APIService {
     )) as any;
     return <ListTableauSheetsQuery>response.data.listTableauSheets;
   }
+  async SyncTableauSheets(
+    filter?: ModelTableauSheetFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncTableauSheetsQuery> {
+    const statement = `query SyncTableauSheets($filter: ModelTableauSheetFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncTableauSheets(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+          __typename
+          items {
+            __typename
+            name
+            WbId {
+              __typename
+              WbId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectWbIdId
+            }
+            Tsid
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauSheetWbIdId
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncTableauSheetsQuery>response.data.syncTableauSheets;
+  }
   async GetTableauGraph(id: string): Promise<GetTableauGraphQuery> {
     const statement = `query GetTableauGraph($id: ID!) {
         getTableauGraph(id: $id) {
           __typename
           name
-          Tsid
+          Tsid {
+            __typename
+            name
+            WbId {
+              __typename
+              WbId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectWbIdId
+            }
+            Tsid
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauSheetWbIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauGraphTsidId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -5132,12 +11349,28 @@ export class APIService {
           items {
             __typename
             name
-            Tsid
+            Tsid {
+              __typename
+              name
+              Tsid
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauSheetWbIdId
+            }
             id
             createdAt
             updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauGraphTsidId
           }
           nextToken
+          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -5155,15 +11388,113 @@ export class APIService {
     )) as any;
     return <ListTableauGraphsQuery>response.data.listTableauGraphs;
   }
+  async SyncTableauGraphs(
+    filter?: ModelTableauGraphFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncTableauGraphsQuery> {
+    const statement = `query SyncTableauGraphs($filter: ModelTableauGraphFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncTableauGraphs(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+          __typename
+          items {
+            __typename
+            name
+            Tsid {
+              __typename
+              name
+              Tsid
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauSheetWbIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauGraphTsidId
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncTableauGraphsQuery>response.data.syncTableauGraphs;
+  }
   async GetTableauEnv(id: string): Promise<GetTableauEnvQuery> {
     const statement = `query GetTableauEnv($id: ID!) {
         getTableauEnv(id: $id) {
           __typename
           name
-          TProId
+          TProId {
+            __typename
+            TProId
+            name
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            envname {
+              __typename
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauEnvTProIdId
+            }
+            WbId {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauProjectDidId
+            tableauProjectEnvnameId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauEnvTProIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -5185,12 +11516,29 @@ export class APIService {
           items {
             __typename
             name
-            TProId
+            TProId {
+              __typename
+              TProId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectDidId
+              tableauProjectEnvnameId
+            }
             id
             createdAt
             updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauEnvTProIdId
           }
           nextToken
+          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -5208,16 +11556,98 @@ export class APIService {
     )) as any;
     return <ListTableauEnvsQuery>response.data.listTableauEnvs;
   }
+  async SyncTableauEnvs(
+    filter?: ModelTableauEnvFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncTableauEnvsQuery> {
+    const statement = `query SyncTableauEnvs($filter: ModelTableauEnvFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncTableauEnvs(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+          __typename
+          items {
+            __typename
+            name
+            TProId {
+              __typename
+              TProId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectDidId
+              tableauProjectEnvnameId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauEnvTProIdId
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncTableauEnvsQuery>response.data.syncTableauEnvs;
+  }
   async GetQuicksiteProject(id: string): Promise<GetQuicksiteProjectQuery> {
     const statement = `query GetQuicksiteProject($id: ID!) {
         getQuicksiteProject(id: $id) {
           __typename
           name
           QProId
-          Did
+          Did {
+            __typename
+            Did
+            CustomerId {
+              __typename
+              CustomerId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              customerDidId
+            }
+            Dname
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            departmentCustomerIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteProjectDidId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -5240,12 +11670,28 @@ export class APIService {
             __typename
             name
             QProId
-            Did
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
             id
             createdAt
             updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteProjectDidId
           }
           nextToken
+          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -5263,17 +11709,124 @@ export class APIService {
     )) as any;
     return <ListQuicksiteProjectsQuery>response.data.listQuicksiteProjects;
   }
+  async SyncQuicksiteProjects(
+    filter?: ModelQuicksiteProjectFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncQuicksiteProjectsQuery> {
+    const statement = `query SyncQuicksiteProjects($filter: ModelQuicksiteProjectFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncQuicksiteProjects(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+          __typename
+          items {
+            __typename
+            name
+            QProId
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteProjectDidId
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncQuicksiteProjectsQuery>response.data.syncQuicksiteProjects;
+  }
   async GetQuicksiteTemplate(id: string): Promise<GetQuicksiteTemplateQuery> {
     const statement = `query GetQuicksiteTemplate($id: ID!) {
         getQuicksiteTemplate(id: $id) {
           __typename
           QtemId
           name
-          analysisId
-          QProId
+          analysisId {
+            __typename
+            name
+            analysisId
+            QtemId {
+              __typename
+              QtemId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteTemplateAnalysisIdId
+              quicksiteTemplateQProIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteAnalysisQtemIdId
+          }
+          QProId {
+            __typename
+            name
+            QProId
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteProjectDidId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteTemplateAnalysisIdId
+          quicksiteTemplateQProIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -5296,13 +11849,41 @@ export class APIService {
             __typename
             QtemId
             name
-            analysisId
-            QProId
+            analysisId {
+              __typename
+              name
+              analysisId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteAnalysisQtemIdId
+            }
+            QProId {
+              __typename
+              name
+              QProId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteProjectDidId
+            }
             id
             createdAt
             updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteTemplateAnalysisIdId
+            quicksiteTemplateQProIdId
           }
           nextToken
+          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -5320,16 +11901,124 @@ export class APIService {
     )) as any;
     return <ListQuicksiteTemplatesQuery>response.data.listQuicksiteTemplates;
   }
+  async SyncQuicksiteTemplates(
+    filter?: ModelQuicksiteTemplateFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncQuicksiteTemplatesQuery> {
+    const statement = `query SyncQuicksiteTemplates($filter: ModelQuicksiteTemplateFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncQuicksiteTemplates(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+          __typename
+          items {
+            __typename
+            QtemId
+            name
+            analysisId {
+              __typename
+              name
+              analysisId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteAnalysisQtemIdId
+            }
+            QProId {
+              __typename
+              name
+              QProId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteProjectDidId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteTemplateAnalysisIdId
+            quicksiteTemplateQProIdId
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncQuicksiteTemplatesQuery>response.data.syncQuicksiteTemplates;
+  }
   async GetQuicksiteAnalysis(id: string): Promise<GetQuicksiteAnalysisQuery> {
     const statement = `query GetQuicksiteAnalysis($id: ID!) {
         getQuicksiteAnalysis(id: $id) {
           __typename
           name
           analysisId
-          QtemId
+          QtemId {
+            __typename
+            QtemId
+            name
+            analysisId {
+              __typename
+              name
+              analysisId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteAnalysisQtemIdId
+            }
+            QProId {
+              __typename
+              name
+              QProId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteProjectDidId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteTemplateAnalysisIdId
+            quicksiteTemplateQProIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteAnalysisQtemIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -5352,12 +12041,29 @@ export class APIService {
             __typename
             name
             analysisId
-            QtemId
+            QtemId {
+              __typename
+              QtemId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteTemplateAnalysisIdId
+              quicksiteTemplateQProIdId
+            }
             id
             createdAt
             updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteAnalysisQtemIdId
           }
           nextToken
+          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -5375,15 +12081,111 @@ export class APIService {
     )) as any;
     return <ListQuicksiteAnalysesQuery>response.data.listQuicksiteAnalyses;
   }
+  async SyncQuicksiteAnalyses(
+    filter?: ModelQuicksiteAnalysisFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncQuicksiteAnalysesQuery> {
+    const statement = `query SyncQuicksiteAnalyses($filter: ModelQuicksiteAnalysisFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncQuicksiteAnalyses(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+          __typename
+          items {
+            __typename
+            name
+            analysisId
+            QtemId {
+              __typename
+              QtemId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteTemplateAnalysisIdId
+              quicksiteTemplateQProIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteAnalysisQtemIdId
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncQuicksiteAnalysesQuery>response.data.syncQuicksiteAnalyses;
+  }
   async GetQuicksiteDashboard(id: string): Promise<GetQuicksiteDashboardQuery> {
     const statement = `query GetQuicksiteDashboard($id: ID!) {
         getQuicksiteDashboard(id: $id) {
           __typename
           name
-          QtemId
+          QtemId {
+            __typename
+            QtemId
+            name
+            analysisId {
+              __typename
+              name
+              analysisId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteAnalysisQtemIdId
+            }
+            QProId {
+              __typename
+              name
+              QProId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteProjectDidId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteTemplateAnalysisIdId
+            quicksiteTemplateQProIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteDashboardQtemIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -5405,12 +12207,29 @@ export class APIService {
           items {
             __typename
             name
-            QtemId
+            QtemId {
+              __typename
+              QtemId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteTemplateAnalysisIdId
+              quicksiteTemplateQProIdId
+            }
             id
             createdAt
             updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteDashboardQtemIdId
           }
           nextToken
+          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -5428,15 +12247,97 @@ export class APIService {
     )) as any;
     return <ListQuicksiteDashboardsQuery>response.data.listQuicksiteDashboards;
   }
+  async SyncQuicksiteDashboards(
+    filter?: ModelQuicksiteDashboardFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncQuicksiteDashboardsQuery> {
+    const statement = `query SyncQuicksiteDashboards($filter: ModelQuicksiteDashboardFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncQuicksiteDashboards(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+          __typename
+          items {
+            __typename
+            name
+            QtemId {
+              __typename
+              QtemId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteTemplateAnalysisIdId
+              quicksiteTemplateQProIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteDashboardQtemIdId
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncQuicksiteDashboardsQuery>response.data.syncQuicksiteDashboards;
+  }
   async GetQuicksiteEnv(id: string): Promise<GetQuicksiteEnvQuery> {
     const statement = `query GetQuicksiteEnv($id: ID!) {
         getQuicksiteEnv(id: $id) {
           __typename
           name
-          QProId
+          QProId {
+            __typename
+            name
+            QProId
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteProjectDidId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteEnvQProIdId
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -5458,12 +12359,28 @@ export class APIService {
           items {
             __typename
             name
-            QProId
+            QProId {
+              __typename
+              name
+              QProId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteProjectDidId
+            }
             id
             createdAt
             updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteEnvQProIdId
           }
           nextToken
+          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -5481,6 +12398,60 @@ export class APIService {
     )) as any;
     return <ListQuicksiteEnvsQuery>response.data.listQuicksiteEnvs;
   }
+  async SyncQuicksiteEnvs(
+    filter?: ModelQuicksiteEnvFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncQuicksiteEnvsQuery> {
+    const statement = `query SyncQuicksiteEnvs($filter: ModelQuicksiteEnvFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncQuicksiteEnvs(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+          __typename
+          items {
+            __typename
+            name
+            QProId {
+              __typename
+              name
+              QProId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteProjectDidId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteEnvQProIdId
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncQuicksiteEnvsQuery>response.data.syncQuicksiteEnvs;
+  }
   async GetBIMProject(id: string): Promise<GetBIMProjectQuery> {
     const statement = `query GetBIMProject($id: ID!) {
         getBIMProject(id: $id) {
@@ -5492,6 +12463,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -5519,8 +12493,12 @@ export class APIService {
             id
             createdAt
             updatedAt
+            _version
+            _deleted
+            _lastChangedAt
           }
           nextToken
+          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -5538,6 +12516,50 @@ export class APIService {
     )) as any;
     return <ListBIMProjectsQuery>response.data.listBIMProjects;
   }
+  async SyncBIMProjects(
+    filter?: ModelBIMProjectFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncBIMProjectsQuery> {
+    const statement = `query SyncBIMProjects($filter: ModelBIMProjectFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncBIMProjects(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+          __typename
+          items {
+            __typename
+            Did
+            name
+            source
+            destination
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncBIMProjectsQuery>response.data.syncBIMProjects;
+  }
   async GetDataset(id: string): Promise<GetDatasetQuery> {
     const statement = `query GetDataset($id: ID!) {
         getDataset(id: $id) {
@@ -5548,6 +12570,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -5574,8 +12599,12 @@ export class APIService {
             id
             createdAt
             updatedAt
+            _version
+            _deleted
+            _lastChangedAt
           }
           nextToken
+          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -5593,6 +12622,49 @@ export class APIService {
     )) as any;
     return <ListDatasetsQuery>response.data.listDatasets;
   }
+  async SyncDatasets(
+    filter?: ModelDatasetFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncDatasetsQuery> {
+    const statement = `query SyncDatasets($filter: ModelDatasetFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncDatasets(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+          __typename
+          items {
+            __typename
+            name
+            datasources
+            files
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncDatasetsQuery>response.data.syncDatasets;
+  }
   async GetDatasouce(id: string): Promise<GetDatasouceQuery> {
     const statement = `query GetDatasouce($id: ID!) {
         getDatasouce(id: $id) {
@@ -5602,6 +12674,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -5627,8 +12702,12 @@ export class APIService {
             id
             createdAt
             updatedAt
+            _version
+            _deleted
+            _lastChangedAt
           }
           nextToken
+          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -5646,6 +12725,48 @@ export class APIService {
     )) as any;
     return <ListDatasoucesQuery>response.data.listDatasouces;
   }
+  async SyncDatasouces(
+    filter?: ModelDatasouceFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncDatasoucesQuery> {
+    const statement = `query SyncDatasouces($filter: ModelDatasouceFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncDatasouces(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+          __typename
+          items {
+            __typename
+            name
+            dsid
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncDatasoucesQuery>response.data.syncDatasouces;
+  }
   async GetQuicksightFolder(id: string): Promise<GetQuicksightFolderQuery> {
     const statement = `query GetQuicksightFolder($id: ID!) {
         getQuicksightFolder(id: $id) {
@@ -5654,6 +12775,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -5678,8 +12802,12 @@ export class APIService {
             id
             createdAt
             updatedAt
+            _version
+            _deleted
+            _lastChangedAt
           }
           nextToken
+          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -5697,6 +12825,47 @@ export class APIService {
     )) as any;
     return <ListQuicksightFoldersQuery>response.data.listQuicksightFolders;
   }
+  async SyncQuicksightFolders(
+    filter?: ModelQuicksightFolderFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncQuicksightFoldersQuery> {
+    const statement = `query SyncQuicksightFolders($filter: ModelQuicksightFolderFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncQuicksightFolders(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+          __typename
+          items {
+            __typename
+            name
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncQuicksightFoldersQuery>response.data.syncQuicksightFolders;
+  }
   async GetQuicksightGroup(id: string): Promise<GetQuicksightGroupQuery> {
     const statement = `query GetQuicksightGroup($id: ID!) {
         getQuicksightGroup(id: $id) {
@@ -5705,6 +12874,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -5729,8 +12901,12 @@ export class APIService {
             id
             createdAt
             updatedAt
+            _version
+            _deleted
+            _lastChangedAt
           }
           nextToken
+          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -5748,6 +12924,47 @@ export class APIService {
     )) as any;
     return <ListQuicksightGroupsQuery>response.data.listQuicksightGroups;
   }
+  async SyncQuicksightGroups(
+    filter?: ModelQuicksightGroupFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncQuicksightGroupsQuery> {
+    const statement = `query SyncQuicksightGroups($filter: ModelQuicksightGroupFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncQuicksightGroups(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+          __typename
+          items {
+            __typename
+            name
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncQuicksightGroupsQuery>response.data.syncQuicksightGroups;
+  }
   async GetFile(id: string): Promise<GetFileQuery> {
     const statement = `query GetFile($id: ID!) {
         getFile(id: $id) {
@@ -5756,6 +12973,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -5780,8 +13000,12 @@ export class APIService {
             id
             createdAt
             updatedAt
+            _version
+            _deleted
+            _lastChangedAt
           }
           nextToken
+          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -5799,6 +13023,47 @@ export class APIService {
     )) as any;
     return <ListFilesQuery>response.data.listFiles;
   }
+  async SyncFiles(
+    filter?: ModelFileFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncFilesQuery> {
+    const statement = `query SyncFiles($filter: ModelFileFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncFiles(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+          __typename
+          items {
+            __typename
+            name
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncFilesQuery>response.data.syncFiles;
+  }
   async GetTable(id: string): Promise<GetTableQuery> {
     const statement = `query GetTable($id: ID!) {
         getTable(id: $id) {
@@ -5808,6 +13073,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -5833,8 +13101,12 @@ export class APIService {
             id
             createdAt
             updatedAt
+            _version
+            _deleted
+            _lastChangedAt
           }
           nextToken
+          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -5852,66 +13124,48 @@ export class APIService {
     )) as any;
     return <ListTablesQuery>response.data.listTables;
   }
-  OnCreateTodoListener: Observable<
-    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateTodo">>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnCreateTodo {
-        onCreateTodo {
+  async SyncTables(
+    filter?: ModelTableFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncTablesQuery> {
+    const statement = `query SyncTables($filter: ModelTableFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncTables(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
           __typename
-          id
-          name
-          description
-          city
-          createdAt
-          updatedAt
+          items {
+            __typename
+            name
+            dsid
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
         }
-      }`
-    )
-  ) as Observable<
-    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateTodo">>
-  >;
-
-  OnUpdateTodoListener: Observable<
-    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateTodo">>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnUpdateTodo {
-        onUpdateTodo {
-          __typename
-          id
-          name
-          description
-          city
-          createdAt
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<
-    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateTodo">>
-  >;
-
-  OnDeleteTodoListener: Observable<
-    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteTodo">>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnDeleteTodo {
-        onDeleteTodo {
-          __typename
-          id
-          name
-          description
-          city
-          createdAt
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<
-    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteTodo">>
-  >;
-
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncTablesQuery>response.data.syncTables;
+  }
   OnCreateTableauloginListener: Observable<
     SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateTableaulogin">>
   > = API.graphql(
@@ -5925,6 +13179,9 @@ export class APIService {
           sitename
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )
@@ -5945,6 +13202,9 @@ export class APIService {
           sitename
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )
@@ -5965,6 +13225,9 @@ export class APIService {
           sitename
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )
@@ -5985,6 +13248,9 @@ export class APIService {
           awsaccountId
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )
@@ -6007,6 +13273,9 @@ export class APIService {
           awsaccountId
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )
@@ -6029,6 +13298,9 @@ export class APIService {
           awsaccountId
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )
@@ -6047,9 +13319,37 @@ export class APIService {
           __typename
           CustomerId
           name
+          Did {
+            __typename
+            Did
+            CustomerId {
+              __typename
+              CustomerId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              customerDidId
+            }
+            Dname
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            departmentCustomerIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          customerDidId
         }
       }`
     )
@@ -6066,9 +13366,37 @@ export class APIService {
           __typename
           CustomerId
           name
+          Did {
+            __typename
+            Did
+            CustomerId {
+              __typename
+              CustomerId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              customerDidId
+            }
+            Dname
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            departmentCustomerIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          customerDidId
         }
       }`
     )
@@ -6085,9 +13413,37 @@ export class APIService {
           __typename
           CustomerId
           name
+          Did {
+            __typename
+            Did
+            CustomerId {
+              __typename
+              CustomerId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              customerDidId
+            }
+            Dname
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            departmentCustomerIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          customerDidId
         }
       }`
     )
@@ -6103,11 +13459,38 @@ export class APIService {
         onCreateDepartment {
           __typename
           Did
-          CustomerId
+          CustomerId {
+            __typename
+            CustomerId
+            name
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            customerDidId
+          }
           Dname
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          departmentCustomerIdId
         }
       }`
     )
@@ -6123,11 +13506,38 @@ export class APIService {
         onUpdateDepartment {
           __typename
           Did
-          CustomerId
+          CustomerId {
+            __typename
+            CustomerId
+            name
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            customerDidId
+          }
           Dname
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          departmentCustomerIdId
         }
       }`
     )
@@ -6143,11 +13553,38 @@ export class APIService {
         onDeleteDepartment {
           __typename
           Did
-          CustomerId
+          CustomerId {
+            __typename
+            CustomerId
+            name
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            customerDidId
+          }
           Dname
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          departmentCustomerIdId
         }
       }`
     )
@@ -6166,10 +13603,79 @@ export class APIService {
           __typename
           TProId
           name
-          Did
+          Did {
+            __typename
+            Did
+            CustomerId {
+              __typename
+              CustomerId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              customerDidId
+            }
+            Dname
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            departmentCustomerIdId
+          }
+          envname {
+            __typename
+            name
+            TProId {
+              __typename
+              TProId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectDidId
+              tableauProjectEnvnameId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauEnvTProIdId
+          }
+          WbId {
+            __typename
+            items {
+              __typename
+              WbId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectWbIdId
+            }
+            nextToken
+            startedAt
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauProjectDidId
+          tableauProjectEnvnameId
         }
       }`
     )
@@ -6190,10 +13696,79 @@ export class APIService {
           __typename
           TProId
           name
-          Did
+          Did {
+            __typename
+            Did
+            CustomerId {
+              __typename
+              CustomerId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              customerDidId
+            }
+            Dname
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            departmentCustomerIdId
+          }
+          envname {
+            __typename
+            name
+            TProId {
+              __typename
+              TProId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectDidId
+              tableauProjectEnvnameId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauEnvTProIdId
+          }
+          WbId {
+            __typename
+            items {
+              __typename
+              WbId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectWbIdId
+            }
+            nextToken
+            startedAt
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauProjectDidId
+          tableauProjectEnvnameId
         }
       }`
     )
@@ -6214,10 +13789,79 @@ export class APIService {
           __typename
           TProId
           name
-          Did
+          Did {
+            __typename
+            Did
+            CustomerId {
+              __typename
+              CustomerId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              customerDidId
+            }
+            Dname
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            departmentCustomerIdId
+          }
+          envname {
+            __typename
+            name
+            TProId {
+              __typename
+              TProId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectDidId
+              tableauProjectEnvnameId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauEnvTProIdId
+          }
+          WbId {
+            __typename
+            items {
+              __typename
+              WbId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectWbIdId
+            }
+            nextToken
+            startedAt
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauProjectDidId
+          tableauProjectEnvnameId
         }
       }`
     )
@@ -6238,10 +13882,54 @@ export class APIService {
           __typename
           WbId
           name
-          TProId
+          TProId {
+            __typename
+            TProId
+            name
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            envname {
+              __typename
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauEnvTProIdId
+            }
+            WbId {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauProjectDidId
+            tableauProjectEnvnameId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauProjectWbIdId
         }
       }`
     )
@@ -6262,10 +13950,54 @@ export class APIService {
           __typename
           WbId
           name
-          TProId
+          TProId {
+            __typename
+            TProId
+            name
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            envname {
+              __typename
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauEnvTProIdId
+            }
+            WbId {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauProjectDidId
+            tableauProjectEnvnameId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauProjectWbIdId
         }
       }`
     )
@@ -6286,10 +14018,54 @@ export class APIService {
           __typename
           WbId
           name
-          TProId
+          TProId {
+            __typename
+            TProId
+            name
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            envname {
+              __typename
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauEnvTProIdId
+            }
+            WbId {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauProjectDidId
+            tableauProjectEnvnameId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauProjectWbIdId
         }
       }`
     )
@@ -6307,11 +14083,39 @@ export class APIService {
         onCreateTableauSheet {
           __typename
           name
-          WbId
+          WbId {
+            __typename
+            WbId
+            name
+            TProId {
+              __typename
+              TProId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectDidId
+              tableauProjectEnvnameId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauProjectWbIdId
+          }
           Tsid
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauSheetWbIdId
         }
       }`
     )
@@ -6327,11 +14131,39 @@ export class APIService {
         onUpdateTableauSheet {
           __typename
           name
-          WbId
+          WbId {
+            __typename
+            WbId
+            name
+            TProId {
+              __typename
+              TProId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectDidId
+              tableauProjectEnvnameId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauProjectWbIdId
+          }
           Tsid
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauSheetWbIdId
         }
       }`
     )
@@ -6347,11 +14179,39 @@ export class APIService {
         onDeleteTableauSheet {
           __typename
           name
-          WbId
+          WbId {
+            __typename
+            WbId
+            name
+            TProId {
+              __typename
+              TProId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectDidId
+              tableauProjectEnvnameId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauProjectWbIdId
+          }
           Tsid
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauSheetWbIdId
         }
       }`
     )
@@ -6367,10 +14227,37 @@ export class APIService {
         onCreateTableauGraph {
           __typename
           name
-          Tsid
+          Tsid {
+            __typename
+            name
+            WbId {
+              __typename
+              WbId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectWbIdId
+            }
+            Tsid
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauSheetWbIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauGraphTsidId
         }
       }`
     )
@@ -6386,10 +14273,37 @@ export class APIService {
         onUpdateTableauGraph {
           __typename
           name
-          Tsid
+          Tsid {
+            __typename
+            name
+            WbId {
+              __typename
+              WbId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectWbIdId
+            }
+            Tsid
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauSheetWbIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauGraphTsidId
         }
       }`
     )
@@ -6405,10 +14319,37 @@ export class APIService {
         onDeleteTableauGraph {
           __typename
           name
-          Tsid
+          Tsid {
+            __typename
+            name
+            WbId {
+              __typename
+              WbId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauProjectWbIdId
+            }
+            Tsid
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauSheetWbIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauGraphTsidId
         }
       }`
     )
@@ -6424,10 +14365,54 @@ export class APIService {
         onCreateTableauEnv {
           __typename
           name
-          TProId
+          TProId {
+            __typename
+            TProId
+            name
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            envname {
+              __typename
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauEnvTProIdId
+            }
+            WbId {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauProjectDidId
+            tableauProjectEnvnameId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauEnvTProIdId
         }
       }`
     )
@@ -6443,10 +14428,54 @@ export class APIService {
         onUpdateTableauEnv {
           __typename
           name
-          TProId
+          TProId {
+            __typename
+            TProId
+            name
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            envname {
+              __typename
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauEnvTProIdId
+            }
+            WbId {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauProjectDidId
+            tableauProjectEnvnameId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauEnvTProIdId
         }
       }`
     )
@@ -6462,10 +14491,54 @@ export class APIService {
         onDeleteTableauEnv {
           __typename
           name
-          TProId
+          TProId {
+            __typename
+            TProId
+            name
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            envname {
+              __typename
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              tableauEnvTProIdId
+            }
+            WbId {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            tableauProjectDidId
+            tableauProjectEnvnameId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          tableauEnvTProIdId
         }
       }`
     )
@@ -6484,10 +14557,37 @@ export class APIService {
           __typename
           name
           QProId
-          Did
+          Did {
+            __typename
+            Did
+            CustomerId {
+              __typename
+              CustomerId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              customerDidId
+            }
+            Dname
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            departmentCustomerIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteProjectDidId
         }
       }`
     )
@@ -6508,10 +14608,37 @@ export class APIService {
           __typename
           name
           QProId
-          Did
+          Did {
+            __typename
+            Did
+            CustomerId {
+              __typename
+              CustomerId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              customerDidId
+            }
+            Dname
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            departmentCustomerIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteProjectDidId
         }
       }`
     )
@@ -6532,10 +14659,37 @@ export class APIService {
           __typename
           name
           QProId
-          Did
+          Did {
+            __typename
+            Did
+            CustomerId {
+              __typename
+              CustomerId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              customerDidId
+            }
+            Dname
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            departmentCustomerIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteProjectDidId
         }
       }`
     )
@@ -6556,11 +14710,63 @@ export class APIService {
           __typename
           QtemId
           name
-          analysisId
-          QProId
+          analysisId {
+            __typename
+            name
+            analysisId
+            QtemId {
+              __typename
+              QtemId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteTemplateAnalysisIdId
+              quicksiteTemplateQProIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteAnalysisQtemIdId
+          }
+          QProId {
+            __typename
+            name
+            QProId
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteProjectDidId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteTemplateAnalysisIdId
+          quicksiteTemplateQProIdId
         }
       }`
     )
@@ -6581,11 +14787,63 @@ export class APIService {
           __typename
           QtemId
           name
-          analysisId
-          QProId
+          analysisId {
+            __typename
+            name
+            analysisId
+            QtemId {
+              __typename
+              QtemId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteTemplateAnalysisIdId
+              quicksiteTemplateQProIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteAnalysisQtemIdId
+          }
+          QProId {
+            __typename
+            name
+            QProId
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteProjectDidId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteTemplateAnalysisIdId
+          quicksiteTemplateQProIdId
         }
       }`
     )
@@ -6606,11 +14864,63 @@ export class APIService {
           __typename
           QtemId
           name
-          analysisId
-          QProId
+          analysisId {
+            __typename
+            name
+            analysisId
+            QtemId {
+              __typename
+              QtemId
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteTemplateAnalysisIdId
+              quicksiteTemplateQProIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteAnalysisQtemIdId
+          }
+          QProId {
+            __typename
+            name
+            QProId
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteProjectDidId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteTemplateAnalysisIdId
+          quicksiteTemplateQProIdId
         }
       }`
     )
@@ -6631,10 +14941,50 @@ export class APIService {
           __typename
           name
           analysisId
-          QtemId
+          QtemId {
+            __typename
+            QtemId
+            name
+            analysisId {
+              __typename
+              name
+              analysisId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteAnalysisQtemIdId
+            }
+            QProId {
+              __typename
+              name
+              QProId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteProjectDidId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteTemplateAnalysisIdId
+            quicksiteTemplateQProIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteAnalysisQtemIdId
         }
       }`
     )
@@ -6655,10 +15005,50 @@ export class APIService {
           __typename
           name
           analysisId
-          QtemId
+          QtemId {
+            __typename
+            QtemId
+            name
+            analysisId {
+              __typename
+              name
+              analysisId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteAnalysisQtemIdId
+            }
+            QProId {
+              __typename
+              name
+              QProId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteProjectDidId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteTemplateAnalysisIdId
+            quicksiteTemplateQProIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteAnalysisQtemIdId
         }
       }`
     )
@@ -6679,10 +15069,50 @@ export class APIService {
           __typename
           name
           analysisId
-          QtemId
+          QtemId {
+            __typename
+            QtemId
+            name
+            analysisId {
+              __typename
+              name
+              analysisId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteAnalysisQtemIdId
+            }
+            QProId {
+              __typename
+              name
+              QProId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteProjectDidId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteTemplateAnalysisIdId
+            quicksiteTemplateQProIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteAnalysisQtemIdId
         }
       }`
     )
@@ -6702,10 +15132,50 @@ export class APIService {
         onCreateQuicksiteDashboard {
           __typename
           name
-          QtemId
+          QtemId {
+            __typename
+            QtemId
+            name
+            analysisId {
+              __typename
+              name
+              analysisId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteAnalysisQtemIdId
+            }
+            QProId {
+              __typename
+              name
+              QProId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteProjectDidId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteTemplateAnalysisIdId
+            quicksiteTemplateQProIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteDashboardQtemIdId
         }
       }`
     )
@@ -6725,10 +15195,50 @@ export class APIService {
         onUpdateQuicksiteDashboard {
           __typename
           name
-          QtemId
+          QtemId {
+            __typename
+            QtemId
+            name
+            analysisId {
+              __typename
+              name
+              analysisId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteAnalysisQtemIdId
+            }
+            QProId {
+              __typename
+              name
+              QProId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteProjectDidId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteTemplateAnalysisIdId
+            quicksiteTemplateQProIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteDashboardQtemIdId
         }
       }`
     )
@@ -6748,10 +15258,50 @@ export class APIService {
         onDeleteQuicksiteDashboard {
           __typename
           name
-          QtemId
+          QtemId {
+            __typename
+            QtemId
+            name
+            analysisId {
+              __typename
+              name
+              analysisId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteAnalysisQtemIdId
+            }
+            QProId {
+              __typename
+              name
+              QProId
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              quicksiteProjectDidId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteTemplateAnalysisIdId
+            quicksiteTemplateQProIdId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteDashboardQtemIdId
         }
       }`
     )
@@ -6769,10 +15319,37 @@ export class APIService {
         onCreateQuicksiteEnv {
           __typename
           name
-          QProId
+          QProId {
+            __typename
+            name
+            QProId
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteProjectDidId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteEnvQProIdId
         }
       }`
     )
@@ -6788,10 +15365,37 @@ export class APIService {
         onUpdateQuicksiteEnv {
           __typename
           name
-          QProId
+          QProId {
+            __typename
+            name
+            QProId
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteProjectDidId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteEnvQProIdId
         }
       }`
     )
@@ -6807,10 +15411,37 @@ export class APIService {
         onDeleteQuicksiteEnv {
           __typename
           name
-          QProId
+          QProId {
+            __typename
+            name
+            QProId
+            Did {
+              __typename
+              Did
+              Dname
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+              departmentCustomerIdId
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+            quicksiteProjectDidId
+          }
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+          quicksiteEnvQProIdId
         }
       }`
     )
@@ -6832,6 +15463,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )
@@ -6853,6 +15487,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )
@@ -6874,6 +15511,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )
@@ -6894,6 +15534,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )
@@ -6914,6 +15557,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )
@@ -6934,6 +15580,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )
@@ -6953,6 +15602,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )
@@ -6972,6 +15624,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )
@@ -6991,6 +15646,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )
@@ -7011,6 +15669,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )
@@ -7033,6 +15694,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )
@@ -7055,6 +15719,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )
@@ -7077,6 +15744,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )
@@ -7099,6 +15769,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )
@@ -7121,6 +15794,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )
@@ -7141,6 +15817,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )
@@ -7159,6 +15838,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )
@@ -7177,6 +15859,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )
@@ -7196,6 +15881,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )
@@ -7215,6 +15903,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )
@@ -7234,6 +15925,9 @@ export class APIService {
           id
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
       }`
     )

@@ -1,43 +1,4 @@
 # this is an auto generated file. This will be overwritten
-mutation CreateTodo(
-  $input: CreateTodoInput!
-  $condition: ModelTodoConditionInput
-) {
-  createTodo(input: $input, condition: $condition) {
-    id
-    name
-    description
-    city
-    createdAt
-    updatedAt
-  }
-}
-mutation UpdateTodo(
-  $input: UpdateTodoInput!
-  $condition: ModelTodoConditionInput
-) {
-  updateTodo(input: $input, condition: $condition) {
-    id
-    name
-    description
-    city
-    createdAt
-    updatedAt
-  }
-}
-mutation DeleteTodo(
-  $input: DeleteTodoInput!
-  $condition: ModelTodoConditionInput
-) {
-  deleteTodo(input: $input, condition: $condition) {
-    id
-    name
-    description
-    city
-    createdAt
-    updatedAt
-  }
-}
 mutation CreateTableaulogin(
   $input: CreateTableauloginInput!
   $condition: ModelTableauloginConditionInput
@@ -49,6 +10,9 @@ mutation CreateTableaulogin(
     sitename
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation UpdateTableaulogin(
@@ -62,6 +26,9 @@ mutation UpdateTableaulogin(
     sitename
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation DeleteTableaulogin(
@@ -75,6 +42,9 @@ mutation DeleteTableaulogin(
     sitename
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation CreateQuicksightlogin(
@@ -86,6 +56,9 @@ mutation CreateQuicksightlogin(
     awsaccountId
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation UpdateQuicksightlogin(
@@ -97,6 +70,9 @@ mutation UpdateQuicksightlogin(
     awsaccountId
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation DeleteQuicksightlogin(
@@ -108,6 +84,9 @@ mutation DeleteQuicksightlogin(
     awsaccountId
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation CreateCustomer(
@@ -117,9 +96,35 @@ mutation CreateCustomer(
   createCustomer(input: $input, condition: $condition) {
     CustomerId
     name
+    Did {
+      Did
+      CustomerId {
+        CustomerId
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        customerDidId
+      }
+      Dname
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      departmentCustomerIdId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    customerDidId
   }
 }
 mutation UpdateCustomer(
@@ -129,9 +134,35 @@ mutation UpdateCustomer(
   updateCustomer(input: $input, condition: $condition) {
     CustomerId
     name
+    Did {
+      Did
+      CustomerId {
+        CustomerId
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        customerDidId
+      }
+      Dname
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      departmentCustomerIdId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    customerDidId
   }
 }
 mutation DeleteCustomer(
@@ -141,9 +172,35 @@ mutation DeleteCustomer(
   deleteCustomer(input: $input, condition: $condition) {
     CustomerId
     name
+    Did {
+      Did
+      CustomerId {
+        CustomerId
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        customerDidId
+      }
+      Dname
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      departmentCustomerIdId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    customerDidId
   }
 }
 mutation CreateDepartment(
@@ -152,11 +209,36 @@ mutation CreateDepartment(
 ) {
   createDepartment(input: $input, condition: $condition) {
     Did
-    CustomerId
+    CustomerId {
+      CustomerId
+      name
+      Did {
+        Did
+        Dname
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        departmentCustomerIdId
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      customerDidId
+    }
     Dname
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    departmentCustomerIdId
   }
 }
 mutation UpdateDepartment(
@@ -165,11 +247,36 @@ mutation UpdateDepartment(
 ) {
   updateDepartment(input: $input, condition: $condition) {
     Did
-    CustomerId
+    CustomerId {
+      CustomerId
+      name
+      Did {
+        Did
+        Dname
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        departmentCustomerIdId
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      customerDidId
+    }
     Dname
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    departmentCustomerIdId
   }
 }
 mutation DeleteDepartment(
@@ -178,11 +285,36 @@ mutation DeleteDepartment(
 ) {
   deleteDepartment(input: $input, condition: $condition) {
     Did
-    CustomerId
+    CustomerId {
+      CustomerId
+      name
+      Did {
+        Did
+        Dname
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        departmentCustomerIdId
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      customerDidId
+    }
     Dname
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    departmentCustomerIdId
   }
 }
 mutation CreateTableauProject(
@@ -192,10 +324,73 @@ mutation CreateTableauProject(
   createTableauProject(input: $input, condition: $condition) {
     TProId
     name
-    Did
+    Did {
+      Did
+      CustomerId {
+        CustomerId
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        customerDidId
+      }
+      Dname
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      departmentCustomerIdId
+    }
+    envname {
+      name
+      TProId {
+        TProId
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        tableauProjectDidId
+        tableauProjectEnvnameId
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      tableauEnvTProIdId
+    }
+    WbId {
+      items {
+        WbId
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        tableauProjectWbIdId
+      }
+      nextToken
+      startedAt
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    tableauProjectDidId
+    tableauProjectEnvnameId
   }
 }
 mutation UpdateTableauProject(
@@ -205,10 +400,73 @@ mutation UpdateTableauProject(
   updateTableauProject(input: $input, condition: $condition) {
     TProId
     name
-    Did
+    Did {
+      Did
+      CustomerId {
+        CustomerId
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        customerDidId
+      }
+      Dname
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      departmentCustomerIdId
+    }
+    envname {
+      name
+      TProId {
+        TProId
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        tableauProjectDidId
+        tableauProjectEnvnameId
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      tableauEnvTProIdId
+    }
+    WbId {
+      items {
+        WbId
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        tableauProjectWbIdId
+      }
+      nextToken
+      startedAt
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    tableauProjectDidId
+    tableauProjectEnvnameId
   }
 }
 mutation DeleteTableauProject(
@@ -218,10 +476,73 @@ mutation DeleteTableauProject(
   deleteTableauProject(input: $input, condition: $condition) {
     TProId
     name
-    Did
+    Did {
+      Did
+      CustomerId {
+        CustomerId
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        customerDidId
+      }
+      Dname
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      departmentCustomerIdId
+    }
+    envname {
+      name
+      TProId {
+        TProId
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        tableauProjectDidId
+        tableauProjectEnvnameId
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      tableauEnvTProIdId
+    }
+    WbId {
+      items {
+        WbId
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        tableauProjectWbIdId
+      }
+      nextToken
+      startedAt
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    tableauProjectDidId
+    tableauProjectEnvnameId
   }
 }
 mutation CreateTableauWorkbook(
@@ -231,10 +552,50 @@ mutation CreateTableauWorkbook(
   createTableauWorkbook(input: $input, condition: $condition) {
     WbId
     name
-    TProId
+    TProId {
+      TProId
+      name
+      Did {
+        Did
+        Dname
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        departmentCustomerIdId
+      }
+      envname {
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        tableauEnvTProIdId
+      }
+      WbId {
+        nextToken
+        startedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      tableauProjectDidId
+      tableauProjectEnvnameId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    tableauProjectWbIdId
   }
 }
 mutation UpdateTableauWorkbook(
@@ -244,10 +605,50 @@ mutation UpdateTableauWorkbook(
   updateTableauWorkbook(input: $input, condition: $condition) {
     WbId
     name
-    TProId
+    TProId {
+      TProId
+      name
+      Did {
+        Did
+        Dname
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        departmentCustomerIdId
+      }
+      envname {
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        tableauEnvTProIdId
+      }
+      WbId {
+        nextToken
+        startedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      tableauProjectDidId
+      tableauProjectEnvnameId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    tableauProjectWbIdId
   }
 }
 mutation DeleteTableauWorkbook(
@@ -257,10 +658,50 @@ mutation DeleteTableauWorkbook(
   deleteTableauWorkbook(input: $input, condition: $condition) {
     WbId
     name
-    TProId
+    TProId {
+      TProId
+      name
+      Did {
+        Did
+        Dname
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        departmentCustomerIdId
+      }
+      envname {
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        tableauEnvTProIdId
+      }
+      WbId {
+        nextToken
+        startedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      tableauProjectDidId
+      tableauProjectEnvnameId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    tableauProjectWbIdId
   }
 }
 mutation CreateTableauSheet(
@@ -269,11 +710,37 @@ mutation CreateTableauSheet(
 ) {
   createTableauSheet(input: $input, condition: $condition) {
     name
-    WbId
+    WbId {
+      WbId
+      name
+      TProId {
+        TProId
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        tableauProjectDidId
+        tableauProjectEnvnameId
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      tableauProjectWbIdId
+    }
     Tsid
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    tableauSheetWbIdId
   }
 }
 mutation UpdateTableauSheet(
@@ -282,11 +749,37 @@ mutation UpdateTableauSheet(
 ) {
   updateTableauSheet(input: $input, condition: $condition) {
     name
-    WbId
+    WbId {
+      WbId
+      name
+      TProId {
+        TProId
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        tableauProjectDidId
+        tableauProjectEnvnameId
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      tableauProjectWbIdId
+    }
     Tsid
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    tableauSheetWbIdId
   }
 }
 mutation DeleteTableauSheet(
@@ -295,11 +788,37 @@ mutation DeleteTableauSheet(
 ) {
   deleteTableauSheet(input: $input, condition: $condition) {
     name
-    WbId
+    WbId {
+      WbId
+      name
+      TProId {
+        TProId
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        tableauProjectDidId
+        tableauProjectEnvnameId
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      tableauProjectWbIdId
+    }
     Tsid
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    tableauSheetWbIdId
   }
 }
 mutation CreateTableauGraph(
@@ -308,10 +827,35 @@ mutation CreateTableauGraph(
 ) {
   createTableauGraph(input: $input, condition: $condition) {
     name
-    Tsid
+    Tsid {
+      name
+      WbId {
+        WbId
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        tableauProjectWbIdId
+      }
+      Tsid
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      tableauSheetWbIdId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    tableauGraphTsidId
   }
 }
 mutation UpdateTableauGraph(
@@ -320,10 +864,35 @@ mutation UpdateTableauGraph(
 ) {
   updateTableauGraph(input: $input, condition: $condition) {
     name
-    Tsid
+    Tsid {
+      name
+      WbId {
+        WbId
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        tableauProjectWbIdId
+      }
+      Tsid
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      tableauSheetWbIdId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    tableauGraphTsidId
   }
 }
 mutation DeleteTableauGraph(
@@ -332,10 +901,35 @@ mutation DeleteTableauGraph(
 ) {
   deleteTableauGraph(input: $input, condition: $condition) {
     name
-    Tsid
+    Tsid {
+      name
+      WbId {
+        WbId
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        tableauProjectWbIdId
+      }
+      Tsid
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      tableauSheetWbIdId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    tableauGraphTsidId
   }
 }
 mutation CreateTableauEnv(
@@ -344,10 +938,50 @@ mutation CreateTableauEnv(
 ) {
   createTableauEnv(input: $input, condition: $condition) {
     name
-    TProId
+    TProId {
+      TProId
+      name
+      Did {
+        Did
+        Dname
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        departmentCustomerIdId
+      }
+      envname {
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        tableauEnvTProIdId
+      }
+      WbId {
+        nextToken
+        startedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      tableauProjectDidId
+      tableauProjectEnvnameId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    tableauEnvTProIdId
   }
 }
 mutation UpdateTableauEnv(
@@ -356,10 +990,50 @@ mutation UpdateTableauEnv(
 ) {
   updateTableauEnv(input: $input, condition: $condition) {
     name
-    TProId
+    TProId {
+      TProId
+      name
+      Did {
+        Did
+        Dname
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        departmentCustomerIdId
+      }
+      envname {
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        tableauEnvTProIdId
+      }
+      WbId {
+        nextToken
+        startedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      tableauProjectDidId
+      tableauProjectEnvnameId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    tableauEnvTProIdId
   }
 }
 mutation DeleteTableauEnv(
@@ -368,10 +1042,50 @@ mutation DeleteTableauEnv(
 ) {
   deleteTableauEnv(input: $input, condition: $condition) {
     name
-    TProId
+    TProId {
+      TProId
+      name
+      Did {
+        Did
+        Dname
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        departmentCustomerIdId
+      }
+      envname {
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        tableauEnvTProIdId
+      }
+      WbId {
+        nextToken
+        startedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      tableauProjectDidId
+      tableauProjectEnvnameId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    tableauEnvTProIdId
   }
 }
 mutation CreateQuicksiteProject(
@@ -381,10 +1095,35 @@ mutation CreateQuicksiteProject(
   createQuicksiteProject(input: $input, condition: $condition) {
     name
     QProId
-    Did
+    Did {
+      Did
+      CustomerId {
+        CustomerId
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        customerDidId
+      }
+      Dname
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      departmentCustomerIdId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    quicksiteProjectDidId
   }
 }
 mutation UpdateQuicksiteProject(
@@ -394,10 +1133,35 @@ mutation UpdateQuicksiteProject(
   updateQuicksiteProject(input: $input, condition: $condition) {
     name
     QProId
-    Did
+    Did {
+      Did
+      CustomerId {
+        CustomerId
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        customerDidId
+      }
+      Dname
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      departmentCustomerIdId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    quicksiteProjectDidId
   }
 }
 mutation DeleteQuicksiteProject(
@@ -407,10 +1171,35 @@ mutation DeleteQuicksiteProject(
   deleteQuicksiteProject(input: $input, condition: $condition) {
     name
     QProId
-    Did
+    Did {
+      Did
+      CustomerId {
+        CustomerId
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        customerDidId
+      }
+      Dname
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      departmentCustomerIdId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    quicksiteProjectDidId
   }
 }
 mutation CreateQuicksiteTemplate(
@@ -420,11 +1209,59 @@ mutation CreateQuicksiteTemplate(
   createQuicksiteTemplate(input: $input, condition: $condition) {
     QtemId
     name
-    analysisId
-    QProId
+    analysisId {
+      name
+      analysisId
+      QtemId {
+        QtemId
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        quicksiteTemplateAnalysisIdId
+        quicksiteTemplateQProIdId
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      quicksiteAnalysisQtemIdId
+    }
+    QProId {
+      name
+      QProId
+      Did {
+        Did
+        Dname
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        departmentCustomerIdId
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      quicksiteProjectDidId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    quicksiteTemplateAnalysisIdId
+    quicksiteTemplateQProIdId
   }
 }
 mutation UpdateQuicksiteTemplate(
@@ -434,11 +1271,59 @@ mutation UpdateQuicksiteTemplate(
   updateQuicksiteTemplate(input: $input, condition: $condition) {
     QtemId
     name
-    analysisId
-    QProId
+    analysisId {
+      name
+      analysisId
+      QtemId {
+        QtemId
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        quicksiteTemplateAnalysisIdId
+        quicksiteTemplateQProIdId
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      quicksiteAnalysisQtemIdId
+    }
+    QProId {
+      name
+      QProId
+      Did {
+        Did
+        Dname
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        departmentCustomerIdId
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      quicksiteProjectDidId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    quicksiteTemplateAnalysisIdId
+    quicksiteTemplateQProIdId
   }
 }
 mutation DeleteQuicksiteTemplate(
@@ -448,11 +1333,59 @@ mutation DeleteQuicksiteTemplate(
   deleteQuicksiteTemplate(input: $input, condition: $condition) {
     QtemId
     name
-    analysisId
-    QProId
+    analysisId {
+      name
+      analysisId
+      QtemId {
+        QtemId
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        quicksiteTemplateAnalysisIdId
+        quicksiteTemplateQProIdId
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      quicksiteAnalysisQtemIdId
+    }
+    QProId {
+      name
+      QProId
+      Did {
+        Did
+        Dname
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        departmentCustomerIdId
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      quicksiteProjectDidId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    quicksiteTemplateAnalysisIdId
+    quicksiteTemplateQProIdId
   }
 }
 mutation CreateQuicksiteAnalysis(
@@ -462,10 +1395,47 @@ mutation CreateQuicksiteAnalysis(
   createQuicksiteAnalysis(input: $input, condition: $condition) {
     name
     analysisId
-    QtemId
+    QtemId {
+      QtemId
+      name
+      analysisId {
+        name
+        analysisId
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        quicksiteAnalysisQtemIdId
+      }
+      QProId {
+        name
+        QProId
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        quicksiteProjectDidId
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      quicksiteTemplateAnalysisIdId
+      quicksiteTemplateQProIdId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    quicksiteAnalysisQtemIdId
   }
 }
 mutation UpdateQuicksiteAnalysis(
@@ -475,10 +1445,47 @@ mutation UpdateQuicksiteAnalysis(
   updateQuicksiteAnalysis(input: $input, condition: $condition) {
     name
     analysisId
-    QtemId
+    QtemId {
+      QtemId
+      name
+      analysisId {
+        name
+        analysisId
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        quicksiteAnalysisQtemIdId
+      }
+      QProId {
+        name
+        QProId
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        quicksiteProjectDidId
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      quicksiteTemplateAnalysisIdId
+      quicksiteTemplateQProIdId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    quicksiteAnalysisQtemIdId
   }
 }
 mutation DeleteQuicksiteAnalysis(
@@ -488,10 +1495,47 @@ mutation DeleteQuicksiteAnalysis(
   deleteQuicksiteAnalysis(input: $input, condition: $condition) {
     name
     analysisId
-    QtemId
+    QtemId {
+      QtemId
+      name
+      analysisId {
+        name
+        analysisId
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        quicksiteAnalysisQtemIdId
+      }
+      QProId {
+        name
+        QProId
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        quicksiteProjectDidId
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      quicksiteTemplateAnalysisIdId
+      quicksiteTemplateQProIdId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    quicksiteAnalysisQtemIdId
   }
 }
 mutation CreateQuicksiteDashboard(
@@ -500,10 +1544,47 @@ mutation CreateQuicksiteDashboard(
 ) {
   createQuicksiteDashboard(input: $input, condition: $condition) {
     name
-    QtemId
+    QtemId {
+      QtemId
+      name
+      analysisId {
+        name
+        analysisId
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        quicksiteAnalysisQtemIdId
+      }
+      QProId {
+        name
+        QProId
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        quicksiteProjectDidId
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      quicksiteTemplateAnalysisIdId
+      quicksiteTemplateQProIdId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    quicksiteDashboardQtemIdId
   }
 }
 mutation UpdateQuicksiteDashboard(
@@ -512,10 +1593,47 @@ mutation UpdateQuicksiteDashboard(
 ) {
   updateQuicksiteDashboard(input: $input, condition: $condition) {
     name
-    QtemId
+    QtemId {
+      QtemId
+      name
+      analysisId {
+        name
+        analysisId
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        quicksiteAnalysisQtemIdId
+      }
+      QProId {
+        name
+        QProId
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        quicksiteProjectDidId
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      quicksiteTemplateAnalysisIdId
+      quicksiteTemplateQProIdId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    quicksiteDashboardQtemIdId
   }
 }
 mutation DeleteQuicksiteDashboard(
@@ -524,10 +1642,47 @@ mutation DeleteQuicksiteDashboard(
 ) {
   deleteQuicksiteDashboard(input: $input, condition: $condition) {
     name
-    QtemId
+    QtemId {
+      QtemId
+      name
+      analysisId {
+        name
+        analysisId
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        quicksiteAnalysisQtemIdId
+      }
+      QProId {
+        name
+        QProId
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        quicksiteProjectDidId
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      quicksiteTemplateAnalysisIdId
+      quicksiteTemplateQProIdId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    quicksiteDashboardQtemIdId
   }
 }
 mutation CreateQuicksiteEnv(
@@ -536,10 +1691,35 @@ mutation CreateQuicksiteEnv(
 ) {
   createQuicksiteEnv(input: $input, condition: $condition) {
     name
-    QProId
+    QProId {
+      name
+      QProId
+      Did {
+        Did
+        Dname
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        departmentCustomerIdId
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      quicksiteProjectDidId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    quicksiteEnvQProIdId
   }
 }
 mutation UpdateQuicksiteEnv(
@@ -548,10 +1728,35 @@ mutation UpdateQuicksiteEnv(
 ) {
   updateQuicksiteEnv(input: $input, condition: $condition) {
     name
-    QProId
+    QProId {
+      name
+      QProId
+      Did {
+        Did
+        Dname
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        departmentCustomerIdId
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      quicksiteProjectDidId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    quicksiteEnvQProIdId
   }
 }
 mutation DeleteQuicksiteEnv(
@@ -560,10 +1765,35 @@ mutation DeleteQuicksiteEnv(
 ) {
   deleteQuicksiteEnv(input: $input, condition: $condition) {
     name
-    QProId
+    QProId {
+      name
+      QProId
+      Did {
+        Did
+        Dname
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        departmentCustomerIdId
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      quicksiteProjectDidId
+    }
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+    quicksiteEnvQProIdId
   }
 }
 mutation CreateBIMProject(
@@ -578,6 +1808,9 @@ mutation CreateBIMProject(
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation UpdateBIMProject(
@@ -592,6 +1825,9 @@ mutation UpdateBIMProject(
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation DeleteBIMProject(
@@ -606,6 +1842,9 @@ mutation DeleteBIMProject(
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation CreateDataset(
@@ -619,6 +1858,9 @@ mutation CreateDataset(
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation UpdateDataset(
@@ -632,6 +1874,9 @@ mutation UpdateDataset(
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation DeleteDataset(
@@ -645,6 +1890,9 @@ mutation DeleteDataset(
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation CreateDatasouce(
@@ -657,6 +1905,9 @@ mutation CreateDatasouce(
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation UpdateDatasouce(
@@ -669,6 +1920,9 @@ mutation UpdateDatasouce(
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation DeleteDatasouce(
@@ -681,6 +1935,9 @@ mutation DeleteDatasouce(
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation CreateQuicksightFolder(
@@ -692,6 +1949,9 @@ mutation CreateQuicksightFolder(
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation UpdateQuicksightFolder(
@@ -703,6 +1963,9 @@ mutation UpdateQuicksightFolder(
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation DeleteQuicksightFolder(
@@ -714,6 +1977,9 @@ mutation DeleteQuicksightFolder(
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation CreateQuicksightGroup(
@@ -725,6 +1991,9 @@ mutation CreateQuicksightGroup(
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation UpdateQuicksightGroup(
@@ -736,6 +2005,9 @@ mutation UpdateQuicksightGroup(
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation DeleteQuicksightGroup(
@@ -747,6 +2019,9 @@ mutation DeleteQuicksightGroup(
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation CreateFile(
@@ -758,6 +2033,9 @@ mutation CreateFile(
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation UpdateFile(
@@ -769,6 +2047,9 @@ mutation UpdateFile(
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation DeleteFile(
@@ -780,6 +2061,9 @@ mutation DeleteFile(
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation CreateTable(
@@ -792,6 +2076,9 @@ mutation CreateTable(
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation UpdateTable(
@@ -804,6 +2091,9 @@ mutation UpdateTable(
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }
 mutation DeleteTable(
@@ -816,5 +2106,8 @@ mutation DeleteTable(
     id
     createdAt
     updatedAt
+    _version
+    _deleted
+    _lastChangedAt
   }
 }

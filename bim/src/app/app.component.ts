@@ -1,6 +1,6 @@
 import {Component, OnInit, OnDestroy, ChangeDetectorRef } from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {APIService, Todo, Tableaulogin} from "./API.service";
+import {APIService, Tableaulogin} from "./API.service";
 import { Subscription } from "rxjs";
 import { Router,NavigationStart } from "@angular/router";
 import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components';
@@ -20,7 +20,7 @@ export class AppComponent implements OnInit, OnDestroy {
   authState: any;
   
   /* declare restaurants variable */
-  public todos: Array<Todo> = [];
+  
   public tbs: Array<Tableaulogin> =[];
 
   constructor(private api: APIService, private fb: FormBuilder, private ref: ChangeDetectorRef, private router:Router) {
@@ -45,15 +45,7 @@ router.events.forEach((event)=>{
   private subscription: Subscription | null = null;
   async ngOnInit() {
     /* fetch restaurants when app loads */
-    this.api.ListTodos().then((event) => {
-      this.todos = event.items as Todo[];
-    });
-    this.subscription = <Subscription>(
-      this.api.OnCreateTodoListener.subscribe((event: any) => {
-        const newTodo = event.value.data.onCreateTodo;
-        this.todos = [newTodo, ...this.todos];
-      })
-    );
+    
 
     this.api.ListTableaulogins().then((event) => {
       this.tbs = event.items as Tableaulogin[];
@@ -73,18 +65,7 @@ router.events.forEach((event)=>{
   }
   
 
-  public onCreate(todo: any) {
-    this.api
-      .CreateTodo(todo)
-      .then((event) => {
-        console.log("item created!");
-        this.createForm.reset();
-      })
-      .catch((e) => {
-        console.log("error creating restaurant...", e);
-      });
-  }
-
+  
   public onCreatetb(todo: any) {
     this.api
       .CreateTableaulogin(todo)

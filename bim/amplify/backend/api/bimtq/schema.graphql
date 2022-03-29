@@ -2,12 +2,7 @@
 # all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
 input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
 
-type Todo @model {
-  id: ID!
-  name: String!
-  description: String!
-  city: String!
-}
+
 
 type Tableaulogin @model {
   id: ID!
@@ -24,11 +19,12 @@ type Quicksightlogin @model {
 type Customer @model {
   CustomerId:ID!
   name: String!
+  Did: Department @hasOne
 }
 
 type Department @model {
 Did: ID!
-CustomerId:ID!
+CustomerId:Customer @belongsTo
 Dname: String!
 
 }
@@ -36,62 +32,63 @@ Dname: String!
 type TableauProject @model {
   TProId:ID!
 name:String!
-Did:String!
+Did:Department @hasOne
+envname: TableauEnv @hasOne
+WbId: [TableauWorkbook] @hasMany
 }
 
 type TableauWorkbook @model {
   WbId:ID!
   name:String!
-TProId:ID!
+TProId:TableauProject @belongsTo
 
 }
 
 type TableauSheet @model {
   name:String!
-  WbId:ID!
+  WbId:TableauWorkbook @hasOne
 Tsid:ID!
 }
 
 type TableauGraph @model {
   name:String!
-  Tsid:ID!
+  Tsid:TableauSheet @hasOne
 }
 
 type TableauEnv @model {
 name:String!
-TProId:ID!
+TProId:TableauProject @belongsTo
 }
 
 
 type QuicksiteProject @model{
 name:String!
 QProId:ID!
-Did:ID!
+Did:Department @hasOne
 
 }
 
 type QuicksiteTemplate @model{
 QtemId:ID! 
 name:String!
-analysisId:ID!
-QProId:ID!
+analysisId:QuicksiteAnalysis @hasOne
+QProId:QuicksiteProject @hasOne
  
 }
 type QuicksiteAnalysis @model{
 name:String!
 analysisId:ID!
- QtemId:ID! 
+ QtemId:QuicksiteTemplate @belongsTo
 }
 type QuicksiteDashboard @model{ 
 name:String!
-QtemId:ID!
+QtemId:QuicksiteTemplate @hasOne
   
 }
 
 type QuicksiteEnv @model{
 name:String!
-QProId:ID!
-  
+QProId:QuicksiteProject @hasOne
 }
 
 type BIMProject @model{
@@ -113,7 +110,7 @@ type Dataset @model{
 }
 
 type Datasouce @model{
-  name:String!
+  name:[String]
   dsid:ID!
 }
 

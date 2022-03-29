@@ -1,6 +1,6 @@
 import {Component, OnInit, OnDestroy, ChangeDetectorRef } from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {APIService, Todo, Quicksightlogin} from "../API.service";
+import {APIService, Quicksightlogin} from "../API.service";
 import { Subscription } from "rxjs";
 
 @Component({
