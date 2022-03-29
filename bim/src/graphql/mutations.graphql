@@ -374,3 +374,447 @@ mutation DeleteTableauEnv(
     updatedAt
   }
 }
+mutation CreateQuicksiteProject(
+  $input: CreateQuicksiteProjectInput!
+  $condition: ModelQuicksiteProjectConditionInput
+) {
+  createQuicksiteProject(input: $input, condition: $condition) {
+    name
+    QProId
+    Did
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateQuicksiteProject(
+  $input: UpdateQuicksiteProjectInput!
+  $condition: ModelQuicksiteProjectConditionInput
+) {
+  updateQuicksiteProject(input: $input, condition: $condition) {
+    name
+    QProId
+    Did
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteQuicksiteProject(
+  $input: DeleteQuicksiteProjectInput!
+  $condition: ModelQuicksiteProjectConditionInput
+) {
+  deleteQuicksiteProject(input: $input, condition: $condition) {
+    name
+    QProId
+    Did
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateQuicksiteTemplate(
+  $input: CreateQuicksiteTemplateInput!
+  $condition: ModelQuicksiteTemplateConditionInput
+) {
+  createQuicksiteTemplate(input: $input, condition: $condition) {
+    QtemId
+    name
+    analysisId
+    QProId
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateQuicksiteTemplate(
+  $input: UpdateQuicksiteTemplateInput!
+  $condition: ModelQuicksiteTemplateConditionInput
+) {
+  updateQuicksiteTemplate(input: $input, condition: $condition) {
+    QtemId
+    name
+    analysisId
+    QProId
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteQuicksiteTemplate(
+  $input: DeleteQuicksiteTemplateInput!
+  $condition: ModelQuicksiteTemplateConditionInput
+) {
+  deleteQuicksiteTemplate(input: $input, condition: $condition) {
+    QtemId
+    name
+    analysisId
+    QProId
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateQuicksiteAnalysis(
+  $input: CreateQuicksiteAnalysisInput!
+  $condition: ModelQuicksiteAnalysisConditionInput
+) {
+  createQuicksiteAnalysis(input: $input, condition: $condition) {
+    name
+    analysisId
+    QtemId
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateQuicksiteAnalysis(
+  $input: UpdateQuicksiteAnalysisInput!
+  $condition: ModelQuicksiteAnalysisConditionInput
+) {
+  updateQuicksiteAnalysis(input: $input, condition: $condition) {
+    name
+    analysisId
+    QtemId
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteQuicksiteAnalysis(
+  $input: DeleteQuicksiteAnalysisInput!
+  $condition: ModelQuicksiteAnalysisConditionInput
+) {
+  deleteQuicksiteAnalysis(input: $input, condition: $condition) {
+    name
+    analysisId
+    QtemId
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateQuicksiteDashboard(
+  $input: CreateQuicksiteDashboardInput!
+  $condition: ModelQuicksiteDashboardConditionInput
+) {
+  createQuicksiteDashboard(input: $input, condition: $condition) {
+    name
+    QtemId
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateQuicksiteDashboard(
+  $input: UpdateQuicksiteDashboardInput!
+  $condition: ModelQuicksiteDashboardConditionInput
+) {
+  updateQuicksiteDashboard(input: $input, condition: $condition) {
+    name
+    QtemId
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteQuicksiteDashboard(
+  $input: DeleteQuicksiteDashboardInput!
+  $condition: ModelQuicksiteDashboardConditionInput
+) {
+  deleteQuicksiteDashboard(input: $input, condition: $condition) {
+    name
+    QtemId
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateQuicksiteEnv(
+  $input: CreateQuicksiteEnvInput!
+  $condition: ModelQuicksiteEnvConditionInput
+) {
+  createQuicksiteEnv(input: $input, condition: $condition) {
+    name
+    QProId
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateQuicksiteEnv(
+  $input: UpdateQuicksiteEnvInput!
+  $condition: ModelQuicksiteEnvConditionInput
+) {
+  updateQuicksiteEnv(input: $input, condition: $condition) {
+    name
+    QProId
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteQuicksiteEnv(
+  $input: DeleteQuicksiteEnvInput!
+  $condition: ModelQuicksiteEnvConditionInput
+) {
+  deleteQuicksiteEnv(input: $input, condition: $condition) {
+    name
+    QProId
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateBIMProject(
+  $input: CreateBIMProjectInput!
+  $condition: ModelBIMProjectConditionInput
+) {
+  createBIMProject(input: $input, condition: $condition) {
+    Did
+    name
+    source
+    destination
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateBIMProject(
+  $input: UpdateBIMProjectInput!
+  $condition: ModelBIMProjectConditionInput
+) {
+  updateBIMProject(input: $input, condition: $condition) {
+    Did
+    name
+    source
+    destination
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteBIMProject(
+  $input: DeleteBIMProjectInput!
+  $condition: ModelBIMProjectConditionInput
+) {
+  deleteBIMProject(input: $input, condition: $condition) {
+    Did
+    name
+    source
+    destination
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateDataset(
+  $input: CreateDatasetInput!
+  $condition: ModelDatasetConditionInput
+) {
+  createDataset(input: $input, condition: $condition) {
+    name
+    datasources
+    files
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateDataset(
+  $input: UpdateDatasetInput!
+  $condition: ModelDatasetConditionInput
+) {
+  updateDataset(input: $input, condition: $condition) {
+    name
+    datasources
+    files
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteDataset(
+  $input: DeleteDatasetInput!
+  $condition: ModelDatasetConditionInput
+) {
+  deleteDataset(input: $input, condition: $condition) {
+    name
+    datasources
+    files
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateDatasouce(
+  $input: CreateDatasouceInput!
+  $condition: ModelDatasouceConditionInput
+) {
+  createDatasouce(input: $input, condition: $condition) {
+    name
+    dsid
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateDatasouce(
+  $input: UpdateDatasouceInput!
+  $condition: ModelDatasouceConditionInput
+) {
+  updateDatasouce(input: $input, condition: $condition) {
+    name
+    dsid
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteDatasouce(
+  $input: DeleteDatasouceInput!
+  $condition: ModelDatasouceConditionInput
+) {
+  deleteDatasouce(input: $input, condition: $condition) {
+    name
+    dsid
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateQuicksightFolder(
+  $input: CreateQuicksightFolderInput!
+  $condition: ModelQuicksightFolderConditionInput
+) {
+  createQuicksightFolder(input: $input, condition: $condition) {
+    name
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateQuicksightFolder(
+  $input: UpdateQuicksightFolderInput!
+  $condition: ModelQuicksightFolderConditionInput
+) {
+  updateQuicksightFolder(input: $input, condition: $condition) {
+    name
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteQuicksightFolder(
+  $input: DeleteQuicksightFolderInput!
+  $condition: ModelQuicksightFolderConditionInput
+) {
+  deleteQuicksightFolder(input: $input, condition: $condition) {
+    name
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateQuicksightGroup(
+  $input: CreateQuicksightGroupInput!
+  $condition: ModelQuicksightGroupConditionInput
+) {
+  createQuicksightGroup(input: $input, condition: $condition) {
+    name
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateQuicksightGroup(
+  $input: UpdateQuicksightGroupInput!
+  $condition: ModelQuicksightGroupConditionInput
+) {
+  updateQuicksightGroup(input: $input, condition: $condition) {
+    name
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteQuicksightGroup(
+  $input: DeleteQuicksightGroupInput!
+  $condition: ModelQuicksightGroupConditionInput
+) {
+  deleteQuicksightGroup(input: $input, condition: $condition) {
+    name
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateFile(
+  $input: CreateFileInput!
+  $condition: ModelFileConditionInput
+) {
+  createFile(input: $input, condition: $condition) {
+    name
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateFile(
+  $input: UpdateFileInput!
+  $condition: ModelFileConditionInput
+) {
+  updateFile(input: $input, condition: $condition) {
+    name
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteFile(
+  $input: DeleteFileInput!
+  $condition: ModelFileConditionInput
+) {
+  deleteFile(input: $input, condition: $condition) {
+    name
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateTable(
+  $input: CreateTableInput!
+  $condition: ModelTableConditionInput
+) {
+  createTable(input: $input, condition: $condition) {
+    name
+    dsid
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateTable(
+  $input: UpdateTableInput!
+  $condition: ModelTableConditionInput
+) {
+  updateTable(input: $input, condition: $condition) {
+    name
+    dsid
+    id
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteTable(
+  $input: DeleteTableInput!
+  $condition: ModelTableConditionInput
+) {
+  deleteTable(input: $input, condition: $condition) {
+    name
+    dsid
+    id
+    createdAt
+    updatedAt
+  }
+}

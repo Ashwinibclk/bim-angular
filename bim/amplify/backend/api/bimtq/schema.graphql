@@ -63,75 +63,75 @@ TProId:ID!
 }
 
 
-type QuicksiteProject{
+type QuicksiteProject @model{
 name:String!
 QProId:ID!
 Did:ID!
 
 }
 
-type QuicksiteTemplate{
+type QuicksiteTemplate @model{
 QtemId:ID! 
 name:String!
 analysisId:ID!
 QProId:ID!
  
 }
-type QuicksiteAnalysis{
+type QuicksiteAnalysis @model{
 name:String!
 analysisId:ID!
  QtemId:ID! 
 }
-type QuicksiteDashboard{
+type QuicksiteDashboard @model{ 
 name:String!
 QtemId:ID!
   
 }
 
-type QuicksiteEnv{
+type QuicksiteEnv @model{
 name:String!
 QProId:ID!
   
 }
 
-type BIMProject{
+type BIMProject @model{
   Did:ID!
   name:String!
   source:BIPlatform!
   destination:BIPlatform!
 }
 
-enum BIPlatform{
+enum BIPlatform {
   TABLEAU
   QUICKSIGHT
 }
 
-type Dataset{
+type Dataset @model{
   name:String!
   datasources: String!
   files: String!
 }
 
-type Datasouce{
+type Datasouce @model{
   name:String!
   dsid:ID!
 }
 
-type QuicksightFolder{
+type QuicksightFolder @model{
 name:String!
 }
 
-type QuicksightGroup{
+type QuicksightGroup @model{
 name:String!
 }
 
-type File{
+type File @model{
 
   name:String!
 
 }
 
-type Table{
+type Table @model{
   name:String!
   dsid:ID!
 }

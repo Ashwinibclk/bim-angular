@@ -259,3 +259,319 @@ query ListTableauEnvs(
     nextToken
   }
 }
+query GetQuicksiteProject($id: ID!) {
+  getQuicksiteProject(id: $id) {
+    name
+    QProId
+    Did
+    id
+    createdAt
+    updatedAt
+  }
+}
+query ListQuicksiteProjects(
+  $filter: ModelQuicksiteProjectFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listQuicksiteProjects(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      name
+      QProId
+      Did
+      id
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetQuicksiteTemplate($id: ID!) {
+  getQuicksiteTemplate(id: $id) {
+    QtemId
+    name
+    analysisId
+    QProId
+    id
+    createdAt
+    updatedAt
+  }
+}
+query ListQuicksiteTemplates(
+  $filter: ModelQuicksiteTemplateFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listQuicksiteTemplates(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      QtemId
+      name
+      analysisId
+      QProId
+      id
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetQuicksiteAnalysis($id: ID!) {
+  getQuicksiteAnalysis(id: $id) {
+    name
+    analysisId
+    QtemId
+    id
+    createdAt
+    updatedAt
+  }
+}
+query ListQuicksiteAnalyses(
+  $filter: ModelQuicksiteAnalysisFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listQuicksiteAnalyses(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      name
+      analysisId
+      QtemId
+      id
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetQuicksiteDashboard($id: ID!) {
+  getQuicksiteDashboard(id: $id) {
+    name
+    QtemId
+    id
+    createdAt
+    updatedAt
+  }
+}
+query ListQuicksiteDashboards(
+  $filter: ModelQuicksiteDashboardFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listQuicksiteDashboards(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      name
+      QtemId
+      id
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetQuicksiteEnv($id: ID!) {
+  getQuicksiteEnv(id: $id) {
+    name
+    QProId
+    id
+    createdAt
+    updatedAt
+  }
+}
+query ListQuicksiteEnvs(
+  $filter: ModelQuicksiteEnvFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listQuicksiteEnvs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      name
+      QProId
+      id
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetBIMProject($id: ID!) {
+  getBIMProject(id: $id) {
+    Did
+    name
+    source
+    destination
+    id
+    createdAt
+    updatedAt
+  }
+}
+query ListBIMProjects(
+  $filter: ModelBIMProjectFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listBIMProjects(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      Did
+      name
+      source
+      destination
+      id
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetDataset($id: ID!) {
+  getDataset(id: $id) {
+    name
+    datasources
+    files
+    id
+    createdAt
+    updatedAt
+  }
+}
+query ListDatasets(
+  $filter: ModelDatasetFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listDatasets(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      name
+      datasources
+      files
+      id
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetDatasouce($id: ID!) {
+  getDatasouce(id: $id) {
+    name
+    dsid
+    id
+    createdAt
+    updatedAt
+  }
+}
+query ListDatasouces(
+  $filter: ModelDatasouceFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listDatasouces(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      name
+      dsid
+      id
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetQuicksightFolder($id: ID!) {
+  getQuicksightFolder(id: $id) {
+    name
+    id
+    createdAt
+    updatedAt
+  }
+}
+query ListQuicksightFolders(
+  $filter: ModelQuicksightFolderFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listQuicksightFolders(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      name
+      id
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetQuicksightGroup($id: ID!) {
+  getQuicksightGroup(id: $id) {
+    name
+    id
+    createdAt
+    updatedAt
+  }
+}
+query ListQuicksightGroups(
+  $filter: ModelQuicksightGroupFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listQuicksightGroups(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      name
+      id
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetFile($id: ID!) {
+  getFile(id: $id) {
+    name
+    id
+    createdAt
+    updatedAt
+  }
+}
+query ListFiles(
+  $filter: ModelFileFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listFiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      name
+      id
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetTable($id: ID!) {
+  getTable(id: $id) {
+    name
+    dsid
+    id
+    createdAt
+    updatedAt
+  }
+}
+query ListTables(
+  $filter: ModelTableFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listTables(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      name
+      dsid
+      id
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}

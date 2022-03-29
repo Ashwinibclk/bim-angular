@@ -5,8 +5,9 @@
       [formGroup]="createFormqk"
       (ngSubmit)="onCreateqk(createFormqk.value)"
     >
+    <h3>Quicksight Login</h3>
       <div>
-        <label>awsaccountId: </label>
+        <label>AwsAccountId: </label>
         <input type="text" formControlName="awsaccountId" autocomplete="off" />
       </div>
       
@@ -14,10 +15,5 @@
     </form>
   </div>
   
-  <div *ngFor="let i of qks">
-    <div>{{ i.awsaccountId }}</div>
-    
-    
-  </div>
-
+ 
   

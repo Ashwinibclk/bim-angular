@@ -40,6 +40,42 @@ export type __SubscriptionContainer = {
   onCreateTableauEnv: OnCreateTableauEnvSubscription;
   onUpdateTableauEnv: OnUpdateTableauEnvSubscription;
   onDeleteTableauEnv: OnDeleteTableauEnvSubscription;
+  onCreateQuicksiteProject: OnCreateQuicksiteProjectSubscription;
+  onUpdateQuicksiteProject: OnUpdateQuicksiteProjectSubscription;
+  onDeleteQuicksiteProject: OnDeleteQuicksiteProjectSubscription;
+  onCreateQuicksiteTemplate: OnCreateQuicksiteTemplateSubscription;
+  onUpdateQuicksiteTemplate: OnUpdateQuicksiteTemplateSubscription;
+  onDeleteQuicksiteTemplate: OnDeleteQuicksiteTemplateSubscription;
+  onCreateQuicksiteAnalysis: OnCreateQuicksiteAnalysisSubscription;
+  onUpdateQuicksiteAnalysis: OnUpdateQuicksiteAnalysisSubscription;
+  onDeleteQuicksiteAnalysis: OnDeleteQuicksiteAnalysisSubscription;
+  onCreateQuicksiteDashboard: OnCreateQuicksiteDashboardSubscription;
+  onUpdateQuicksiteDashboard: OnUpdateQuicksiteDashboardSubscription;
+  onDeleteQuicksiteDashboard: OnDeleteQuicksiteDashboardSubscription;
+  onCreateQuicksiteEnv: OnCreateQuicksiteEnvSubscription;
+  onUpdateQuicksiteEnv: OnUpdateQuicksiteEnvSubscription;
+  onDeleteQuicksiteEnv: OnDeleteQuicksiteEnvSubscription;
+  onCreateBIMProject: OnCreateBIMProjectSubscription;
+  onUpdateBIMProject: OnUpdateBIMProjectSubscription;
+  onDeleteBIMProject: OnDeleteBIMProjectSubscription;
+  onCreateDataset: OnCreateDatasetSubscription;
+  onUpdateDataset: OnUpdateDatasetSubscription;
+  onDeleteDataset: OnDeleteDatasetSubscription;
+  onCreateDatasouce: OnCreateDatasouceSubscription;
+  onUpdateDatasouce: OnUpdateDatasouceSubscription;
+  onDeleteDatasouce: OnDeleteDatasouceSubscription;
+  onCreateQuicksightFolder: OnCreateQuicksightFolderSubscription;
+  onUpdateQuicksightFolder: OnUpdateQuicksightFolderSubscription;
+  onDeleteQuicksightFolder: OnDeleteQuicksightFolderSubscription;
+  onCreateQuicksightGroup: OnCreateQuicksightGroupSubscription;
+  onUpdateQuicksightGroup: OnUpdateQuicksightGroupSubscription;
+  onDeleteQuicksightGroup: OnDeleteQuicksightGroupSubscription;
+  onCreateFile: OnCreateFileSubscription;
+  onUpdateFile: OnUpdateFileSubscription;
+  onDeleteFile: OnDeleteFileSubscription;
+  onCreateTable: OnCreateTableSubscription;
+  onUpdateTable: OnUpdateTableSubscription;
+  onDeleteTable: OnDeleteTableSubscription;
 };
 
 export type CreateTodoInput = {
@@ -447,6 +483,428 @@ export type DeleteTableauEnvInput = {
   id: string;
 };
 
+export type CreateQuicksiteProjectInput = {
+  name: string;
+  QProId: string;
+  Did: string;
+  id?: string | null;
+};
+
+export type ModelQuicksiteProjectConditionInput = {
+  name?: ModelStringInput | null;
+  QProId?: ModelIDInput | null;
+  Did?: ModelIDInput | null;
+  and?: Array<ModelQuicksiteProjectConditionInput | null> | null;
+  or?: Array<ModelQuicksiteProjectConditionInput | null> | null;
+  not?: ModelQuicksiteProjectConditionInput | null;
+};
+
+export type QuicksiteProject = {
+  __typename: "QuicksiteProject";
+  name: string;
+  QProId: string;
+  Did: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateQuicksiteProjectInput = {
+  name?: string | null;
+  QProId?: string | null;
+  Did?: string | null;
+  id: string;
+};
+
+export type DeleteQuicksiteProjectInput = {
+  id: string;
+};
+
+export type CreateQuicksiteTemplateInput = {
+  QtemId: string;
+  name: string;
+  analysisId: string;
+  QProId: string;
+  id?: string | null;
+};
+
+export type ModelQuicksiteTemplateConditionInput = {
+  QtemId?: ModelIDInput | null;
+  name?: ModelStringInput | null;
+  analysisId?: ModelIDInput | null;
+  QProId?: ModelIDInput | null;
+  and?: Array<ModelQuicksiteTemplateConditionInput | null> | null;
+  or?: Array<ModelQuicksiteTemplateConditionInput | null> | null;
+  not?: ModelQuicksiteTemplateConditionInput | null;
+};
+
+export type QuicksiteTemplate = {
+  __typename: "QuicksiteTemplate";
+  QtemId: string;
+  name: string;
+  analysisId: string;
+  QProId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateQuicksiteTemplateInput = {
+  QtemId?: string | null;
+  name?: string | null;
+  analysisId?: string | null;
+  QProId?: string | null;
+  id: string;
+};
+
+export type DeleteQuicksiteTemplateInput = {
+  id: string;
+};
+
+export type CreateQuicksiteAnalysisInput = {
+  name: string;
+  analysisId: string;
+  QtemId: string;
+  id?: string | null;
+};
+
+export type ModelQuicksiteAnalysisConditionInput = {
+  name?: ModelStringInput | null;
+  analysisId?: ModelIDInput | null;
+  QtemId?: ModelIDInput | null;
+  and?: Array<ModelQuicksiteAnalysisConditionInput | null> | null;
+  or?: Array<ModelQuicksiteAnalysisConditionInput | null> | null;
+  not?: ModelQuicksiteAnalysisConditionInput | null;
+};
+
+export type QuicksiteAnalysis = {
+  __typename: "QuicksiteAnalysis";
+  name: string;
+  analysisId: string;
+  QtemId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateQuicksiteAnalysisInput = {
+  name?: string | null;
+  analysisId?: string | null;
+  QtemId?: string | null;
+  id: string;
+};
+
+export type DeleteQuicksiteAnalysisInput = {
+  id: string;
+};
+
+export type CreateQuicksiteDashboardInput = {
+  name: string;
+  QtemId: string;
+  id?: string | null;
+};
+
+export type ModelQuicksiteDashboardConditionInput = {
+  name?: ModelStringInput | null;
+  QtemId?: ModelIDInput | null;
+  and?: Array<ModelQuicksiteDashboardConditionInput | null> | null;
+  or?: Array<ModelQuicksiteDashboardConditionInput | null> | null;
+  not?: ModelQuicksiteDashboardConditionInput | null;
+};
+
+export type QuicksiteDashboard = {
+  __typename: "QuicksiteDashboard";
+  name: string;
+  QtemId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateQuicksiteDashboardInput = {
+  name?: string | null;
+  QtemId?: string | null;
+  id: string;
+};
+
+export type DeleteQuicksiteDashboardInput = {
+  id: string;
+};
+
+export type CreateQuicksiteEnvInput = {
+  name: string;
+  QProId: string;
+  id?: string | null;
+};
+
+export type ModelQuicksiteEnvConditionInput = {
+  name?: ModelStringInput | null;
+  QProId?: ModelIDInput | null;
+  and?: Array<ModelQuicksiteEnvConditionInput | null> | null;
+  or?: Array<ModelQuicksiteEnvConditionInput | null> | null;
+  not?: ModelQuicksiteEnvConditionInput | null;
+};
+
+export type QuicksiteEnv = {
+  __typename: "QuicksiteEnv";
+  name: string;
+  QProId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateQuicksiteEnvInput = {
+  name?: string | null;
+  QProId?: string | null;
+  id: string;
+};
+
+export type DeleteQuicksiteEnvInput = {
+  id: string;
+};
+
+export type CreateBIMProjectInput = {
+  Did: string;
+  name: string;
+  source: BIPlatform;
+  destination: BIPlatform;
+  id?: string | null;
+};
+
+export enum BIPlatform {
+  TABLEAU = "TABLEAU",
+  QUICKSIGHT = "QUICKSIGHT"
+}
+
+export type ModelBIMProjectConditionInput = {
+  Did?: ModelIDInput | null;
+  name?: ModelStringInput | null;
+  source?: ModelBIPlatformInput | null;
+  destination?: ModelBIPlatformInput | null;
+  and?: Array<ModelBIMProjectConditionInput | null> | null;
+  or?: Array<ModelBIMProjectConditionInput | null> | null;
+  not?: ModelBIMProjectConditionInput | null;
+};
+
+export type ModelBIPlatformInput = {
+  eq?: BIPlatform | null;
+  ne?: BIPlatform | null;
+};
+
+export type BIMProject = {
+  __typename: "BIMProject";
+  Did: string;
+  name: string;
+  source: BIPlatform;
+  destination: BIPlatform;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateBIMProjectInput = {
+  Did?: string | null;
+  name?: string | null;
+  source?: BIPlatform | null;
+  destination?: BIPlatform | null;
+  id: string;
+};
+
+export type DeleteBIMProjectInput = {
+  id: string;
+};
+
+export type CreateDatasetInput = {
+  name: string;
+  datasources: string;
+  files: string;
+  id?: string | null;
+};
+
+export type ModelDatasetConditionInput = {
+  name?: ModelStringInput | null;
+  datasources?: ModelStringInput | null;
+  files?: ModelStringInput | null;
+  and?: Array<ModelDatasetConditionInput | null> | null;
+  or?: Array<ModelDatasetConditionInput | null> | null;
+  not?: ModelDatasetConditionInput | null;
+};
+
+export type Dataset = {
+  __typename: "Dataset";
+  name: string;
+  datasources: string;
+  files: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateDatasetInput = {
+  name?: string | null;
+  datasources?: string | null;
+  files?: string | null;
+  id: string;
+};
+
+export type DeleteDatasetInput = {
+  id: string;
+};
+
+export type CreateDatasouceInput = {
+  name: string;
+  dsid: string;
+  id?: string | null;
+};
+
+export type ModelDatasouceConditionInput = {
+  name?: ModelStringInput | null;
+  dsid?: ModelIDInput | null;
+  and?: Array<ModelDatasouceConditionInput | null> | null;
+  or?: Array<ModelDatasouceConditionInput | null> | null;
+  not?: ModelDatasouceConditionInput | null;
+};
+
+export type Datasouce = {
+  __typename: "Datasouce";
+  name: string;
+  dsid: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateDatasouceInput = {
+  name?: string | null;
+  dsid?: string | null;
+  id: string;
+};
+
+export type DeleteDatasouceInput = {
+  id: string;
+};
+
+export type CreateQuicksightFolderInput = {
+  name: string;
+  id?: string | null;
+};
+
+export type ModelQuicksightFolderConditionInput = {
+  name?: ModelStringInput | null;
+  and?: Array<ModelQuicksightFolderConditionInput | null> | null;
+  or?: Array<ModelQuicksightFolderConditionInput | null> | null;
+  not?: ModelQuicksightFolderConditionInput | null;
+};
+
+export type QuicksightFolder = {
+  __typename: "QuicksightFolder";
+  name: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateQuicksightFolderInput = {
+  name?: string | null;
+  id: string;
+};
+
+export type DeleteQuicksightFolderInput = {
+  id: string;
+};
+
+export type CreateQuicksightGroupInput = {
+  name: string;
+  id?: string | null;
+};
+
+export type ModelQuicksightGroupConditionInput = {
+  name?: ModelStringInput | null;
+  and?: Array<ModelQuicksightGroupConditionInput | null> | null;
+  or?: Array<ModelQuicksightGroupConditionInput | null> | null;
+  not?: ModelQuicksightGroupConditionInput | null;
+};
+
+export type QuicksightGroup = {
+  __typename: "QuicksightGroup";
+  name: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateQuicksightGroupInput = {
+  name?: string | null;
+  id: string;
+};
+
+export type DeleteQuicksightGroupInput = {
+  id: string;
+};
+
+export type CreateFileInput = {
+  name: string;
+  id?: string | null;
+};
+
+export type ModelFileConditionInput = {
+  name?: ModelStringInput | null;
+  and?: Array<ModelFileConditionInput | null> | null;
+  or?: Array<ModelFileConditionInput | null> | null;
+  not?: ModelFileConditionInput | null;
+};
+
+export type File = {
+  __typename: "File";
+  name: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateFileInput = {
+  name?: string | null;
+  id: string;
+};
+
+export type DeleteFileInput = {
+  id: string;
+};
+
+export type CreateTableInput = {
+  name: string;
+  dsid: string;
+  id?: string | null;
+};
+
+export type ModelTableConditionInput = {
+  name?: ModelStringInput | null;
+  dsid?: ModelIDInput | null;
+  and?: Array<ModelTableConditionInput | null> | null;
+  or?: Array<ModelTableConditionInput | null> | null;
+  not?: ModelTableConditionInput | null;
+};
+
+export type Table = {
+  __typename: "Table";
+  name: string;
+  dsid: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateTableInput = {
+  name?: string | null;
+  dsid?: string | null;
+  id: string;
+};
+
+export type DeleteTableInput = {
+  id: string;
+};
+
 export type ModelTodoFilterInput = {
   id?: ModelIDInput | null;
   name?: ModelStringInput | null;
@@ -592,6 +1050,178 @@ export type ModelTableauEnvFilterInput = {
 export type ModelTableauEnvConnection = {
   __typename: "ModelTableauEnvConnection";
   items: Array<TableauEnv | null>;
+  nextToken?: string | null;
+};
+
+export type ModelQuicksiteProjectFilterInput = {
+  name?: ModelStringInput | null;
+  QProId?: ModelIDInput | null;
+  Did?: ModelIDInput | null;
+  and?: Array<ModelQuicksiteProjectFilterInput | null> | null;
+  or?: Array<ModelQuicksiteProjectFilterInput | null> | null;
+  not?: ModelQuicksiteProjectFilterInput | null;
+};
+
+export type ModelQuicksiteProjectConnection = {
+  __typename: "ModelQuicksiteProjectConnection";
+  items: Array<QuicksiteProject | null>;
+  nextToken?: string | null;
+};
+
+export type ModelQuicksiteTemplateFilterInput = {
+  QtemId?: ModelIDInput | null;
+  name?: ModelStringInput | null;
+  analysisId?: ModelIDInput | null;
+  QProId?: ModelIDInput | null;
+  and?: Array<ModelQuicksiteTemplateFilterInput | null> | null;
+  or?: Array<ModelQuicksiteTemplateFilterInput | null> | null;
+  not?: ModelQuicksiteTemplateFilterInput | null;
+};
+
+export type ModelQuicksiteTemplateConnection = {
+  __typename: "ModelQuicksiteTemplateConnection";
+  items: Array<QuicksiteTemplate | null>;
+  nextToken?: string | null;
+};
+
+export type ModelQuicksiteAnalysisFilterInput = {
+  name?: ModelStringInput | null;
+  analysisId?: ModelIDInput | null;
+  QtemId?: ModelIDInput | null;
+  and?: Array<ModelQuicksiteAnalysisFilterInput | null> | null;
+  or?: Array<ModelQuicksiteAnalysisFilterInput | null> | null;
+  not?: ModelQuicksiteAnalysisFilterInput | null;
+};
+
+export type ModelQuicksiteAnalysisConnection = {
+  __typename: "ModelQuicksiteAnalysisConnection";
+  items: Array<QuicksiteAnalysis | null>;
+  nextToken?: string | null;
+};
+
+export type ModelQuicksiteDashboardFilterInput = {
+  name?: ModelStringInput | null;
+  QtemId?: ModelIDInput | null;
+  and?: Array<ModelQuicksiteDashboardFilterInput | null> | null;
+  or?: Array<ModelQuicksiteDashboardFilterInput | null> | null;
+  not?: ModelQuicksiteDashboardFilterInput | null;
+};
+
+export type ModelQuicksiteDashboardConnection = {
+  __typename: "ModelQuicksiteDashboardConnection";
+  items: Array<QuicksiteDashboard | null>;
+  nextToken?: string | null;
+};
+
+export type ModelQuicksiteEnvFilterInput = {
+  name?: ModelStringInput | null;
+  QProId?: ModelIDInput | null;
+  and?: Array<ModelQuicksiteEnvFilterInput | null> | null;
+  or?: Array<ModelQuicksiteEnvFilterInput | null> | null;
+  not?: ModelQuicksiteEnvFilterInput | null;
+};
+
+export type ModelQuicksiteEnvConnection = {
+  __typename: "ModelQuicksiteEnvConnection";
+  items: Array<QuicksiteEnv | null>;
+  nextToken?: string | null;
+};
+
+export type ModelBIMProjectFilterInput = {
+  Did?: ModelIDInput | null;
+  name?: ModelStringInput | null;
+  source?: ModelBIPlatformInput | null;
+  destination?: ModelBIPlatformInput | null;
+  and?: Array<ModelBIMProjectFilterInput | null> | null;
+  or?: Array<ModelBIMProjectFilterInput | null> | null;
+  not?: ModelBIMProjectFilterInput | null;
+};
+
+export type ModelBIMProjectConnection = {
+  __typename: "ModelBIMProjectConnection";
+  items: Array<BIMProject | null>;
+  nextToken?: string | null;
+};
+
+export type ModelDatasetFilterInput = {
+  name?: ModelStringInput | null;
+  datasources?: ModelStringInput | null;
+  files?: ModelStringInput | null;
+  and?: Array<ModelDatasetFilterInput | null> | null;
+  or?: Array<ModelDatasetFilterInput | null> | null;
+  not?: ModelDatasetFilterInput | null;
+};
+
+export type ModelDatasetConnection = {
+  __typename: "ModelDatasetConnection";
+  items: Array<Dataset | null>;
+  nextToken?: string | null;
+};
+
+export type ModelDatasouceFilterInput = {
+  name?: ModelStringInput | null;
+  dsid?: ModelIDInput | null;
+  and?: Array<ModelDatasouceFilterInput | null> | null;
+  or?: Array<ModelDatasouceFilterInput | null> | null;
+  not?: ModelDatasouceFilterInput | null;
+};
+
+export type ModelDatasouceConnection = {
+  __typename: "ModelDatasouceConnection";
+  items: Array<Datasouce | null>;
+  nextToken?: string | null;
+};
+
+export type ModelQuicksightFolderFilterInput = {
+  name?: ModelStringInput | null;
+  and?: Array<ModelQuicksightFolderFilterInput | null> | null;
+  or?: Array<ModelQuicksightFolderFilterInput | null> | null;
+  not?: ModelQuicksightFolderFilterInput | null;
+};
+
+export type ModelQuicksightFolderConnection = {
+  __typename: "ModelQuicksightFolderConnection";
+  items: Array<QuicksightFolder | null>;
+  nextToken?: string | null;
+};
+
+export type ModelQuicksightGroupFilterInput = {
+  name?: ModelStringInput | null;
+  and?: Array<ModelQuicksightGroupFilterInput | null> | null;
+  or?: Array<ModelQuicksightGroupFilterInput | null> | null;
+  not?: ModelQuicksightGroupFilterInput | null;
+};
+
+export type ModelQuicksightGroupConnection = {
+  __typename: "ModelQuicksightGroupConnection";
+  items: Array<QuicksightGroup | null>;
+  nextToken?: string | null;
+};
+
+export type ModelFileFilterInput = {
+  name?: ModelStringInput | null;
+  and?: Array<ModelFileFilterInput | null> | null;
+  or?: Array<ModelFileFilterInput | null> | null;
+  not?: ModelFileFilterInput | null;
+};
+
+export type ModelFileConnection = {
+  __typename: "ModelFileConnection";
+  items: Array<File | null>;
+  nextToken?: string | null;
+};
+
+export type ModelTableFilterInput = {
+  name?: ModelStringInput | null;
+  dsid?: ModelIDInput | null;
+  and?: Array<ModelTableFilterInput | null> | null;
+  or?: Array<ModelTableFilterInput | null> | null;
+  not?: ModelTableFilterInput | null;
+};
+
+export type ModelTableConnection = {
+  __typename: "ModelTableConnection";
+  items: Array<Table | null>;
   nextToken?: string | null;
 };
 
@@ -880,6 +1510,342 @@ export type DeleteTableauEnvMutation = {
   updatedAt: string;
 };
 
+export type CreateQuicksiteProjectMutation = {
+  __typename: "QuicksiteProject";
+  name: string;
+  QProId: string;
+  Did: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateQuicksiteProjectMutation = {
+  __typename: "QuicksiteProject";
+  name: string;
+  QProId: string;
+  Did: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteQuicksiteProjectMutation = {
+  __typename: "QuicksiteProject";
+  name: string;
+  QProId: string;
+  Did: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateQuicksiteTemplateMutation = {
+  __typename: "QuicksiteTemplate";
+  QtemId: string;
+  name: string;
+  analysisId: string;
+  QProId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateQuicksiteTemplateMutation = {
+  __typename: "QuicksiteTemplate";
+  QtemId: string;
+  name: string;
+  analysisId: string;
+  QProId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteQuicksiteTemplateMutation = {
+  __typename: "QuicksiteTemplate";
+  QtemId: string;
+  name: string;
+  analysisId: string;
+  QProId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateQuicksiteAnalysisMutation = {
+  __typename: "QuicksiteAnalysis";
+  name: string;
+  analysisId: string;
+  QtemId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateQuicksiteAnalysisMutation = {
+  __typename: "QuicksiteAnalysis";
+  name: string;
+  analysisId: string;
+  QtemId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteQuicksiteAnalysisMutation = {
+  __typename: "QuicksiteAnalysis";
+  name: string;
+  analysisId: string;
+  QtemId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateQuicksiteDashboardMutation = {
+  __typename: "QuicksiteDashboard";
+  name: string;
+  QtemId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateQuicksiteDashboardMutation = {
+  __typename: "QuicksiteDashboard";
+  name: string;
+  QtemId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteQuicksiteDashboardMutation = {
+  __typename: "QuicksiteDashboard";
+  name: string;
+  QtemId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateQuicksiteEnvMutation = {
+  __typename: "QuicksiteEnv";
+  name: string;
+  QProId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateQuicksiteEnvMutation = {
+  __typename: "QuicksiteEnv";
+  name: string;
+  QProId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteQuicksiteEnvMutation = {
+  __typename: "QuicksiteEnv";
+  name: string;
+  QProId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateBIMProjectMutation = {
+  __typename: "BIMProject";
+  Did: string;
+  name: string;
+  source: BIPlatform;
+  destination: BIPlatform;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateBIMProjectMutation = {
+  __typename: "BIMProject";
+  Did: string;
+  name: string;
+  source: BIPlatform;
+  destination: BIPlatform;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteBIMProjectMutation = {
+  __typename: "BIMProject";
+  Did: string;
+  name: string;
+  source: BIPlatform;
+  destination: BIPlatform;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateDatasetMutation = {
+  __typename: "Dataset";
+  name: string;
+  datasources: string;
+  files: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateDatasetMutation = {
+  __typename: "Dataset";
+  name: string;
+  datasources: string;
+  files: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteDatasetMutation = {
+  __typename: "Dataset";
+  name: string;
+  datasources: string;
+  files: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateDatasouceMutation = {
+  __typename: "Datasouce";
+  name: string;
+  dsid: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateDatasouceMutation = {
+  __typename: "Datasouce";
+  name: string;
+  dsid: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteDatasouceMutation = {
+  __typename: "Datasouce";
+  name: string;
+  dsid: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateQuicksightFolderMutation = {
+  __typename: "QuicksightFolder";
+  name: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateQuicksightFolderMutation = {
+  __typename: "QuicksightFolder";
+  name: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteQuicksightFolderMutation = {
+  __typename: "QuicksightFolder";
+  name: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateQuicksightGroupMutation = {
+  __typename: "QuicksightGroup";
+  name: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateQuicksightGroupMutation = {
+  __typename: "QuicksightGroup";
+  name: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteQuicksightGroupMutation = {
+  __typename: "QuicksightGroup";
+  name: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateFileMutation = {
+  __typename: "File";
+  name: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateFileMutation = {
+  __typename: "File";
+  name: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteFileMutation = {
+  __typename: "File";
+  name: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateTableMutation = {
+  __typename: "Table";
+  name: string;
+  dsid: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateTableMutation = {
+  __typename: "Table";
+  name: string;
+  dsid: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteTableMutation = {
+  __typename: "Table";
+  name: string;
+  dsid: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type GetTodoQuery = {
   __typename: "Todo";
   id: string;
@@ -1103,6 +2069,278 @@ export type ListTableauEnvsQuery = {
     __typename: "TableauEnv";
     name: string;
     TProId: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null>;
+  nextToken?: string | null;
+};
+
+export type GetQuicksiteProjectQuery = {
+  __typename: "QuicksiteProject";
+  name: string;
+  QProId: string;
+  Did: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListQuicksiteProjectsQuery = {
+  __typename: "ModelQuicksiteProjectConnection";
+  items: Array<{
+    __typename: "QuicksiteProject";
+    name: string;
+    QProId: string;
+    Did: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null>;
+  nextToken?: string | null;
+};
+
+export type GetQuicksiteTemplateQuery = {
+  __typename: "QuicksiteTemplate";
+  QtemId: string;
+  name: string;
+  analysisId: string;
+  QProId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListQuicksiteTemplatesQuery = {
+  __typename: "ModelQuicksiteTemplateConnection";
+  items: Array<{
+    __typename: "QuicksiteTemplate";
+    QtemId: string;
+    name: string;
+    analysisId: string;
+    QProId: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null>;
+  nextToken?: string | null;
+};
+
+export type GetQuicksiteAnalysisQuery = {
+  __typename: "QuicksiteAnalysis";
+  name: string;
+  analysisId: string;
+  QtemId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListQuicksiteAnalysesQuery = {
+  __typename: "ModelQuicksiteAnalysisConnection";
+  items: Array<{
+    __typename: "QuicksiteAnalysis";
+    name: string;
+    analysisId: string;
+    QtemId: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null>;
+  nextToken?: string | null;
+};
+
+export type GetQuicksiteDashboardQuery = {
+  __typename: "QuicksiteDashboard";
+  name: string;
+  QtemId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListQuicksiteDashboardsQuery = {
+  __typename: "ModelQuicksiteDashboardConnection";
+  items: Array<{
+    __typename: "QuicksiteDashboard";
+    name: string;
+    QtemId: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null>;
+  nextToken?: string | null;
+};
+
+export type GetQuicksiteEnvQuery = {
+  __typename: "QuicksiteEnv";
+  name: string;
+  QProId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListQuicksiteEnvsQuery = {
+  __typename: "ModelQuicksiteEnvConnection";
+  items: Array<{
+    __typename: "QuicksiteEnv";
+    name: string;
+    QProId: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null>;
+  nextToken?: string | null;
+};
+
+export type GetBIMProjectQuery = {
+  __typename: "BIMProject";
+  Did: string;
+  name: string;
+  source: BIPlatform;
+  destination: BIPlatform;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListBIMProjectsQuery = {
+  __typename: "ModelBIMProjectConnection";
+  items: Array<{
+    __typename: "BIMProject";
+    Did: string;
+    name: string;
+    source: BIPlatform;
+    destination: BIPlatform;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null>;
+  nextToken?: string | null;
+};
+
+export type GetDatasetQuery = {
+  __typename: "Dataset";
+  name: string;
+  datasources: string;
+  files: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListDatasetsQuery = {
+  __typename: "ModelDatasetConnection";
+  items: Array<{
+    __typename: "Dataset";
+    name: string;
+    datasources: string;
+    files: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null>;
+  nextToken?: string | null;
+};
+
+export type GetDatasouceQuery = {
+  __typename: "Datasouce";
+  name: string;
+  dsid: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListDatasoucesQuery = {
+  __typename: "ModelDatasouceConnection";
+  items: Array<{
+    __typename: "Datasouce";
+    name: string;
+    dsid: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null>;
+  nextToken?: string | null;
+};
+
+export type GetQuicksightFolderQuery = {
+  __typename: "QuicksightFolder";
+  name: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListQuicksightFoldersQuery = {
+  __typename: "ModelQuicksightFolderConnection";
+  items: Array<{
+    __typename: "QuicksightFolder";
+    name: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null>;
+  nextToken?: string | null;
+};
+
+export type GetQuicksightGroupQuery = {
+  __typename: "QuicksightGroup";
+  name: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListQuicksightGroupsQuery = {
+  __typename: "ModelQuicksightGroupConnection";
+  items: Array<{
+    __typename: "QuicksightGroup";
+    name: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null>;
+  nextToken?: string | null;
+};
+
+export type GetFileQuery = {
+  __typename: "File";
+  name: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListFilesQuery = {
+  __typename: "ModelFileConnection";
+  items: Array<{
+    __typename: "File";
+    name: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null>;
+  nextToken?: string | null;
+};
+
+export type GetTableQuery = {
+  __typename: "Table";
+  name: string;
+  dsid: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListTablesQuery = {
+  __typename: "ModelTableConnection";
+  items: Array<{
+    __typename: "Table";
+    name: string;
+    dsid: string;
     id: string;
     createdAt: string;
     updatedAt: string;
@@ -1390,6 +2628,342 @@ export type OnDeleteTableauEnvSubscription = {
   __typename: "TableauEnv";
   name: string;
   TProId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateQuicksiteProjectSubscription = {
+  __typename: "QuicksiteProject";
+  name: string;
+  QProId: string;
+  Did: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateQuicksiteProjectSubscription = {
+  __typename: "QuicksiteProject";
+  name: string;
+  QProId: string;
+  Did: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteQuicksiteProjectSubscription = {
+  __typename: "QuicksiteProject";
+  name: string;
+  QProId: string;
+  Did: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateQuicksiteTemplateSubscription = {
+  __typename: "QuicksiteTemplate";
+  QtemId: string;
+  name: string;
+  analysisId: string;
+  QProId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateQuicksiteTemplateSubscription = {
+  __typename: "QuicksiteTemplate";
+  QtemId: string;
+  name: string;
+  analysisId: string;
+  QProId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteQuicksiteTemplateSubscription = {
+  __typename: "QuicksiteTemplate";
+  QtemId: string;
+  name: string;
+  analysisId: string;
+  QProId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateQuicksiteAnalysisSubscription = {
+  __typename: "QuicksiteAnalysis";
+  name: string;
+  analysisId: string;
+  QtemId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateQuicksiteAnalysisSubscription = {
+  __typename: "QuicksiteAnalysis";
+  name: string;
+  analysisId: string;
+  QtemId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteQuicksiteAnalysisSubscription = {
+  __typename: "QuicksiteAnalysis";
+  name: string;
+  analysisId: string;
+  QtemId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateQuicksiteDashboardSubscription = {
+  __typename: "QuicksiteDashboard";
+  name: string;
+  QtemId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateQuicksiteDashboardSubscription = {
+  __typename: "QuicksiteDashboard";
+  name: string;
+  QtemId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteQuicksiteDashboardSubscription = {
+  __typename: "QuicksiteDashboard";
+  name: string;
+  QtemId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateQuicksiteEnvSubscription = {
+  __typename: "QuicksiteEnv";
+  name: string;
+  QProId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateQuicksiteEnvSubscription = {
+  __typename: "QuicksiteEnv";
+  name: string;
+  QProId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteQuicksiteEnvSubscription = {
+  __typename: "QuicksiteEnv";
+  name: string;
+  QProId: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateBIMProjectSubscription = {
+  __typename: "BIMProject";
+  Did: string;
+  name: string;
+  source: BIPlatform;
+  destination: BIPlatform;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateBIMProjectSubscription = {
+  __typename: "BIMProject";
+  Did: string;
+  name: string;
+  source: BIPlatform;
+  destination: BIPlatform;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteBIMProjectSubscription = {
+  __typename: "BIMProject";
+  Did: string;
+  name: string;
+  source: BIPlatform;
+  destination: BIPlatform;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateDatasetSubscription = {
+  __typename: "Dataset";
+  name: string;
+  datasources: string;
+  files: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateDatasetSubscription = {
+  __typename: "Dataset";
+  name: string;
+  datasources: string;
+  files: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteDatasetSubscription = {
+  __typename: "Dataset";
+  name: string;
+  datasources: string;
+  files: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateDatasouceSubscription = {
+  __typename: "Datasouce";
+  name: string;
+  dsid: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateDatasouceSubscription = {
+  __typename: "Datasouce";
+  name: string;
+  dsid: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteDatasouceSubscription = {
+  __typename: "Datasouce";
+  name: string;
+  dsid: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateQuicksightFolderSubscription = {
+  __typename: "QuicksightFolder";
+  name: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateQuicksightFolderSubscription = {
+  __typename: "QuicksightFolder";
+  name: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteQuicksightFolderSubscription = {
+  __typename: "QuicksightFolder";
+  name: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateQuicksightGroupSubscription = {
+  __typename: "QuicksightGroup";
+  name: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateQuicksightGroupSubscription = {
+  __typename: "QuicksightGroup";
+  name: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteQuicksightGroupSubscription = {
+  __typename: "QuicksightGroup";
+  name: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateFileSubscription = {
+  __typename: "File";
+  name: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateFileSubscription = {
+  __typename: "File";
+  name: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteFileSubscription = {
+  __typename: "File";
+  name: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateTableSubscription = {
+  __typename: "Table";
+  name: string;
+  dsid: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateTableSubscription = {
+  __typename: "Table";
+  name: string;
+  dsid: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteTableSubscription = {
+  __typename: "Table";
+  name: string;
+  dsid: string;
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -2164,6 +3738,936 @@ export class APIService {
     )) as any;
     return <DeleteTableauEnvMutation>response.data.deleteTableauEnv;
   }
+  async CreateQuicksiteProject(
+    input: CreateQuicksiteProjectInput,
+    condition?: ModelQuicksiteProjectConditionInput
+  ): Promise<CreateQuicksiteProjectMutation> {
+    const statement = `mutation CreateQuicksiteProject($input: CreateQuicksiteProjectInput!, $condition: ModelQuicksiteProjectConditionInput) {
+        createQuicksiteProject(input: $input, condition: $condition) {
+          __typename
+          name
+          QProId
+          Did
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateQuicksiteProjectMutation>response.data.createQuicksiteProject;
+  }
+  async UpdateQuicksiteProject(
+    input: UpdateQuicksiteProjectInput,
+    condition?: ModelQuicksiteProjectConditionInput
+  ): Promise<UpdateQuicksiteProjectMutation> {
+    const statement = `mutation UpdateQuicksiteProject($input: UpdateQuicksiteProjectInput!, $condition: ModelQuicksiteProjectConditionInput) {
+        updateQuicksiteProject(input: $input, condition: $condition) {
+          __typename
+          name
+          QProId
+          Did
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateQuicksiteProjectMutation>response.data.updateQuicksiteProject;
+  }
+  async DeleteQuicksiteProject(
+    input: DeleteQuicksiteProjectInput,
+    condition?: ModelQuicksiteProjectConditionInput
+  ): Promise<DeleteQuicksiteProjectMutation> {
+    const statement = `mutation DeleteQuicksiteProject($input: DeleteQuicksiteProjectInput!, $condition: ModelQuicksiteProjectConditionInput) {
+        deleteQuicksiteProject(input: $input, condition: $condition) {
+          __typename
+          name
+          QProId
+          Did
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteQuicksiteProjectMutation>response.data.deleteQuicksiteProject;
+  }
+  async CreateQuicksiteTemplate(
+    input: CreateQuicksiteTemplateInput,
+    condition?: ModelQuicksiteTemplateConditionInput
+  ): Promise<CreateQuicksiteTemplateMutation> {
+    const statement = `mutation CreateQuicksiteTemplate($input: CreateQuicksiteTemplateInput!, $condition: ModelQuicksiteTemplateConditionInput) {
+        createQuicksiteTemplate(input: $input, condition: $condition) {
+          __typename
+          QtemId
+          name
+          analysisId
+          QProId
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateQuicksiteTemplateMutation>(
+      response.data.createQuicksiteTemplate
+    );
+  }
+  async UpdateQuicksiteTemplate(
+    input: UpdateQuicksiteTemplateInput,
+    condition?: ModelQuicksiteTemplateConditionInput
+  ): Promise<UpdateQuicksiteTemplateMutation> {
+    const statement = `mutation UpdateQuicksiteTemplate($input: UpdateQuicksiteTemplateInput!, $condition: ModelQuicksiteTemplateConditionInput) {
+        updateQuicksiteTemplate(input: $input, condition: $condition) {
+          __typename
+          QtemId
+          name
+          analysisId
+          QProId
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateQuicksiteTemplateMutation>(
+      response.data.updateQuicksiteTemplate
+    );
+  }
+  async DeleteQuicksiteTemplate(
+    input: DeleteQuicksiteTemplateInput,
+    condition?: ModelQuicksiteTemplateConditionInput
+  ): Promise<DeleteQuicksiteTemplateMutation> {
+    const statement = `mutation DeleteQuicksiteTemplate($input: DeleteQuicksiteTemplateInput!, $condition: ModelQuicksiteTemplateConditionInput) {
+        deleteQuicksiteTemplate(input: $input, condition: $condition) {
+          __typename
+          QtemId
+          name
+          analysisId
+          QProId
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteQuicksiteTemplateMutation>(
+      response.data.deleteQuicksiteTemplate
+    );
+  }
+  async CreateQuicksiteAnalysis(
+    input: CreateQuicksiteAnalysisInput,
+    condition?: ModelQuicksiteAnalysisConditionInput
+  ): Promise<CreateQuicksiteAnalysisMutation> {
+    const statement = `mutation CreateQuicksiteAnalysis($input: CreateQuicksiteAnalysisInput!, $condition: ModelQuicksiteAnalysisConditionInput) {
+        createQuicksiteAnalysis(input: $input, condition: $condition) {
+          __typename
+          name
+          analysisId
+          QtemId
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateQuicksiteAnalysisMutation>(
+      response.data.createQuicksiteAnalysis
+    );
+  }
+  async UpdateQuicksiteAnalysis(
+    input: UpdateQuicksiteAnalysisInput,
+    condition?: ModelQuicksiteAnalysisConditionInput
+  ): Promise<UpdateQuicksiteAnalysisMutation> {
+    const statement = `mutation UpdateQuicksiteAnalysis($input: UpdateQuicksiteAnalysisInput!, $condition: ModelQuicksiteAnalysisConditionInput) {
+        updateQuicksiteAnalysis(input: $input, condition: $condition) {
+          __typename
+          name
+          analysisId
+          QtemId
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateQuicksiteAnalysisMutation>(
+      response.data.updateQuicksiteAnalysis
+    );
+  }
+  async DeleteQuicksiteAnalysis(
+    input: DeleteQuicksiteAnalysisInput,
+    condition?: ModelQuicksiteAnalysisConditionInput
+  ): Promise<DeleteQuicksiteAnalysisMutation> {
+    const statement = `mutation DeleteQuicksiteAnalysis($input: DeleteQuicksiteAnalysisInput!, $condition: ModelQuicksiteAnalysisConditionInput) {
+        deleteQuicksiteAnalysis(input: $input, condition: $condition) {
+          __typename
+          name
+          analysisId
+          QtemId
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteQuicksiteAnalysisMutation>(
+      response.data.deleteQuicksiteAnalysis
+    );
+  }
+  async CreateQuicksiteDashboard(
+    input: CreateQuicksiteDashboardInput,
+    condition?: ModelQuicksiteDashboardConditionInput
+  ): Promise<CreateQuicksiteDashboardMutation> {
+    const statement = `mutation CreateQuicksiteDashboard($input: CreateQuicksiteDashboardInput!, $condition: ModelQuicksiteDashboardConditionInput) {
+        createQuicksiteDashboard(input: $input, condition: $condition) {
+          __typename
+          name
+          QtemId
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateQuicksiteDashboardMutation>(
+      response.data.createQuicksiteDashboard
+    );
+  }
+  async UpdateQuicksiteDashboard(
+    input: UpdateQuicksiteDashboardInput,
+    condition?: ModelQuicksiteDashboardConditionInput
+  ): Promise<UpdateQuicksiteDashboardMutation> {
+    const statement = `mutation UpdateQuicksiteDashboard($input: UpdateQuicksiteDashboardInput!, $condition: ModelQuicksiteDashboardConditionInput) {
+        updateQuicksiteDashboard(input: $input, condition: $condition) {
+          __typename
+          name
+          QtemId
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateQuicksiteDashboardMutation>(
+      response.data.updateQuicksiteDashboard
+    );
+  }
+  async DeleteQuicksiteDashboard(
+    input: DeleteQuicksiteDashboardInput,
+    condition?: ModelQuicksiteDashboardConditionInput
+  ): Promise<DeleteQuicksiteDashboardMutation> {
+    const statement = `mutation DeleteQuicksiteDashboard($input: DeleteQuicksiteDashboardInput!, $condition: ModelQuicksiteDashboardConditionInput) {
+        deleteQuicksiteDashboard(input: $input, condition: $condition) {
+          __typename
+          name
+          QtemId
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteQuicksiteDashboardMutation>(
+      response.data.deleteQuicksiteDashboard
+    );
+  }
+  async CreateQuicksiteEnv(
+    input: CreateQuicksiteEnvInput,
+    condition?: ModelQuicksiteEnvConditionInput
+  ): Promise<CreateQuicksiteEnvMutation> {
+    const statement = `mutation CreateQuicksiteEnv($input: CreateQuicksiteEnvInput!, $condition: ModelQuicksiteEnvConditionInput) {
+        createQuicksiteEnv(input: $input, condition: $condition) {
+          __typename
+          name
+          QProId
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateQuicksiteEnvMutation>response.data.createQuicksiteEnv;
+  }
+  async UpdateQuicksiteEnv(
+    input: UpdateQuicksiteEnvInput,
+    condition?: ModelQuicksiteEnvConditionInput
+  ): Promise<UpdateQuicksiteEnvMutation> {
+    const statement = `mutation UpdateQuicksiteEnv($input: UpdateQuicksiteEnvInput!, $condition: ModelQuicksiteEnvConditionInput) {
+        updateQuicksiteEnv(input: $input, condition: $condition) {
+          __typename
+          name
+          QProId
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateQuicksiteEnvMutation>response.data.updateQuicksiteEnv;
+  }
+  async DeleteQuicksiteEnv(
+    input: DeleteQuicksiteEnvInput,
+    condition?: ModelQuicksiteEnvConditionInput
+  ): Promise<DeleteQuicksiteEnvMutation> {
+    const statement = `mutation DeleteQuicksiteEnv($input: DeleteQuicksiteEnvInput!, $condition: ModelQuicksiteEnvConditionInput) {
+        deleteQuicksiteEnv(input: $input, condition: $condition) {
+          __typename
+          name
+          QProId
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteQuicksiteEnvMutation>response.data.deleteQuicksiteEnv;
+  }
+  async CreateBIMProject(
+    input: CreateBIMProjectInput,
+    condition?: ModelBIMProjectConditionInput
+  ): Promise<CreateBIMProjectMutation> {
+    const statement = `mutation CreateBIMProject($input: CreateBIMProjectInput!, $condition: ModelBIMProjectConditionInput) {
+        createBIMProject(input: $input, condition: $condition) {
+          __typename
+          Did
+          name
+          source
+          destination
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateBIMProjectMutation>response.data.createBIMProject;
+  }
+  async UpdateBIMProject(
+    input: UpdateBIMProjectInput,
+    condition?: ModelBIMProjectConditionInput
+  ): Promise<UpdateBIMProjectMutation> {
+    const statement = `mutation UpdateBIMProject($input: UpdateBIMProjectInput!, $condition: ModelBIMProjectConditionInput) {
+        updateBIMProject(input: $input, condition: $condition) {
+          __typename
+          Did
+          name
+          source
+          destination
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateBIMProjectMutation>response.data.updateBIMProject;
+  }
+  async DeleteBIMProject(
+    input: DeleteBIMProjectInput,
+    condition?: ModelBIMProjectConditionInput
+  ): Promise<DeleteBIMProjectMutation> {
+    const statement = `mutation DeleteBIMProject($input: DeleteBIMProjectInput!, $condition: ModelBIMProjectConditionInput) {
+        deleteBIMProject(input: $input, condition: $condition) {
+          __typename
+          Did
+          name
+          source
+          destination
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteBIMProjectMutation>response.data.deleteBIMProject;
+  }
+  async CreateDataset(
+    input: CreateDatasetInput,
+    condition?: ModelDatasetConditionInput
+  ): Promise<CreateDatasetMutation> {
+    const statement = `mutation CreateDataset($input: CreateDatasetInput!, $condition: ModelDatasetConditionInput) {
+        createDataset(input: $input, condition: $condition) {
+          __typename
+          name
+          datasources
+          files
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateDatasetMutation>response.data.createDataset;
+  }
+  async UpdateDataset(
+    input: UpdateDatasetInput,
+    condition?: ModelDatasetConditionInput
+  ): Promise<UpdateDatasetMutation> {
+    const statement = `mutation UpdateDataset($input: UpdateDatasetInput!, $condition: ModelDatasetConditionInput) {
+        updateDataset(input: $input, condition: $condition) {
+          __typename
+          name
+          datasources
+          files
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateDatasetMutation>response.data.updateDataset;
+  }
+  async DeleteDataset(
+    input: DeleteDatasetInput,
+    condition?: ModelDatasetConditionInput
+  ): Promise<DeleteDatasetMutation> {
+    const statement = `mutation DeleteDataset($input: DeleteDatasetInput!, $condition: ModelDatasetConditionInput) {
+        deleteDataset(input: $input, condition: $condition) {
+          __typename
+          name
+          datasources
+          files
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteDatasetMutation>response.data.deleteDataset;
+  }
+  async CreateDatasouce(
+    input: CreateDatasouceInput,
+    condition?: ModelDatasouceConditionInput
+  ): Promise<CreateDatasouceMutation> {
+    const statement = `mutation CreateDatasouce($input: CreateDatasouceInput!, $condition: ModelDatasouceConditionInput) {
+        createDatasouce(input: $input, condition: $condition) {
+          __typename
+          name
+          dsid
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateDatasouceMutation>response.data.createDatasouce;
+  }
+  async UpdateDatasouce(
+    input: UpdateDatasouceInput,
+    condition?: ModelDatasouceConditionInput
+  ): Promise<UpdateDatasouceMutation> {
+    const statement = `mutation UpdateDatasouce($input: UpdateDatasouceInput!, $condition: ModelDatasouceConditionInput) {
+        updateDatasouce(input: $input, condition: $condition) {
+          __typename
+          name
+          dsid
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateDatasouceMutation>response.data.updateDatasouce;
+  }
+  async DeleteDatasouce(
+    input: DeleteDatasouceInput,
+    condition?: ModelDatasouceConditionInput
+  ): Promise<DeleteDatasouceMutation> {
+    const statement = `mutation DeleteDatasouce($input: DeleteDatasouceInput!, $condition: ModelDatasouceConditionInput) {
+        deleteDatasouce(input: $input, condition: $condition) {
+          __typename
+          name
+          dsid
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteDatasouceMutation>response.data.deleteDatasouce;
+  }
+  async CreateQuicksightFolder(
+    input: CreateQuicksightFolderInput,
+    condition?: ModelQuicksightFolderConditionInput
+  ): Promise<CreateQuicksightFolderMutation> {
+    const statement = `mutation CreateQuicksightFolder($input: CreateQuicksightFolderInput!, $condition: ModelQuicksightFolderConditionInput) {
+        createQuicksightFolder(input: $input, condition: $condition) {
+          __typename
+          name
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateQuicksightFolderMutation>response.data.createQuicksightFolder;
+  }
+  async UpdateQuicksightFolder(
+    input: UpdateQuicksightFolderInput,
+    condition?: ModelQuicksightFolderConditionInput
+  ): Promise<UpdateQuicksightFolderMutation> {
+    const statement = `mutation UpdateQuicksightFolder($input: UpdateQuicksightFolderInput!, $condition: ModelQuicksightFolderConditionInput) {
+        updateQuicksightFolder(input: $input, condition: $condition) {
+          __typename
+          name
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateQuicksightFolderMutation>response.data.updateQuicksightFolder;
+  }
+  async DeleteQuicksightFolder(
+    input: DeleteQuicksightFolderInput,
+    condition?: ModelQuicksightFolderConditionInput
+  ): Promise<DeleteQuicksightFolderMutation> {
+    const statement = `mutation DeleteQuicksightFolder($input: DeleteQuicksightFolderInput!, $condition: ModelQuicksightFolderConditionInput) {
+        deleteQuicksightFolder(input: $input, condition: $condition) {
+          __typename
+          name
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteQuicksightFolderMutation>response.data.deleteQuicksightFolder;
+  }
+  async CreateQuicksightGroup(
+    input: CreateQuicksightGroupInput,
+    condition?: ModelQuicksightGroupConditionInput
+  ): Promise<CreateQuicksightGroupMutation> {
+    const statement = `mutation CreateQuicksightGroup($input: CreateQuicksightGroupInput!, $condition: ModelQuicksightGroupConditionInput) {
+        createQuicksightGroup(input: $input, condition: $condition) {
+          __typename
+          name
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateQuicksightGroupMutation>response.data.createQuicksightGroup;
+  }
+  async UpdateQuicksightGroup(
+    input: UpdateQuicksightGroupInput,
+    condition?: ModelQuicksightGroupConditionInput
+  ): Promise<UpdateQuicksightGroupMutation> {
+    const statement = `mutation UpdateQuicksightGroup($input: UpdateQuicksightGroupInput!, $condition: ModelQuicksightGroupConditionInput) {
+        updateQuicksightGroup(input: $input, condition: $condition) {
+          __typename
+          name
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateQuicksightGroupMutation>response.data.updateQuicksightGroup;
+  }
+  async DeleteQuicksightGroup(
+    input: DeleteQuicksightGroupInput,
+    condition?: ModelQuicksightGroupConditionInput
+  ): Promise<DeleteQuicksightGroupMutation> {
+    const statement = `mutation DeleteQuicksightGroup($input: DeleteQuicksightGroupInput!, $condition: ModelQuicksightGroupConditionInput) {
+        deleteQuicksightGroup(input: $input, condition: $condition) {
+          __typename
+          name
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteQuicksightGroupMutation>response.data.deleteQuicksightGroup;
+  }
+  async CreateFile(
+    input: CreateFileInput,
+    condition?: ModelFileConditionInput
+  ): Promise<CreateFileMutation> {
+    const statement = `mutation CreateFile($input: CreateFileInput!, $condition: ModelFileConditionInput) {
+        createFile(input: $input, condition: $condition) {
+          __typename
+          name
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateFileMutation>response.data.createFile;
+  }
+  async UpdateFile(
+    input: UpdateFileInput,
+    condition?: ModelFileConditionInput
+  ): Promise<UpdateFileMutation> {
+    const statement = `mutation UpdateFile($input: UpdateFileInput!, $condition: ModelFileConditionInput) {
+        updateFile(input: $input, condition: $condition) {
+          __typename
+          name
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateFileMutation>response.data.updateFile;
+  }
+  async DeleteFile(
+    input: DeleteFileInput,
+    condition?: ModelFileConditionInput
+  ): Promise<DeleteFileMutation> {
+    const statement = `mutation DeleteFile($input: DeleteFileInput!, $condition: ModelFileConditionInput) {
+        deleteFile(input: $input, condition: $condition) {
+          __typename
+          name
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteFileMutation>response.data.deleteFile;
+  }
+  async CreateTable(
+    input: CreateTableInput,
+    condition?: ModelTableConditionInput
+  ): Promise<CreateTableMutation> {
+    const statement = `mutation CreateTable($input: CreateTableInput!, $condition: ModelTableConditionInput) {
+        createTable(input: $input, condition: $condition) {
+          __typename
+          name
+          dsid
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateTableMutation>response.data.createTable;
+  }
+  async UpdateTable(
+    input: UpdateTableInput,
+    condition?: ModelTableConditionInput
+  ): Promise<UpdateTableMutation> {
+    const statement = `mutation UpdateTable($input: UpdateTableInput!, $condition: ModelTableConditionInput) {
+        updateTable(input: $input, condition: $condition) {
+          __typename
+          name
+          dsid
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateTableMutation>response.data.updateTable;
+  }
+  async DeleteTable(
+    input: DeleteTableInput,
+    condition?: ModelTableConditionInput
+  ): Promise<DeleteTableMutation> {
+    const statement = `mutation DeleteTable($input: DeleteTableInput!, $condition: ModelTableConditionInput) {
+        deleteTable(input: $input, condition: $condition) {
+          __typename
+          name
+          dsid
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteTableMutation>response.data.deleteTable;
+  }
   async GetTodo(id: string): Promise<GetTodoQuery> {
     const statement = `query GetTodo($id: ID!) {
         getTodo(id: $id) {
@@ -2703,6 +5207,650 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <ListTableauEnvsQuery>response.data.listTableauEnvs;
+  }
+  async GetQuicksiteProject(id: string): Promise<GetQuicksiteProjectQuery> {
+    const statement = `query GetQuicksiteProject($id: ID!) {
+        getQuicksiteProject(id: $id) {
+          __typename
+          name
+          QProId
+          Did
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetQuicksiteProjectQuery>response.data.getQuicksiteProject;
+  }
+  async ListQuicksiteProjects(
+    filter?: ModelQuicksiteProjectFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListQuicksiteProjectsQuery> {
+    const statement = `query ListQuicksiteProjects($filter: ModelQuicksiteProjectFilterInput, $limit: Int, $nextToken: String) {
+        listQuicksiteProjects(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            name
+            QProId
+            Did
+            id
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListQuicksiteProjectsQuery>response.data.listQuicksiteProjects;
+  }
+  async GetQuicksiteTemplate(id: string): Promise<GetQuicksiteTemplateQuery> {
+    const statement = `query GetQuicksiteTemplate($id: ID!) {
+        getQuicksiteTemplate(id: $id) {
+          __typename
+          QtemId
+          name
+          analysisId
+          QProId
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetQuicksiteTemplateQuery>response.data.getQuicksiteTemplate;
+  }
+  async ListQuicksiteTemplates(
+    filter?: ModelQuicksiteTemplateFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListQuicksiteTemplatesQuery> {
+    const statement = `query ListQuicksiteTemplates($filter: ModelQuicksiteTemplateFilterInput, $limit: Int, $nextToken: String) {
+        listQuicksiteTemplates(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            QtemId
+            name
+            analysisId
+            QProId
+            id
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListQuicksiteTemplatesQuery>response.data.listQuicksiteTemplates;
+  }
+  async GetQuicksiteAnalysis(id: string): Promise<GetQuicksiteAnalysisQuery> {
+    const statement = `query GetQuicksiteAnalysis($id: ID!) {
+        getQuicksiteAnalysis(id: $id) {
+          __typename
+          name
+          analysisId
+          QtemId
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetQuicksiteAnalysisQuery>response.data.getQuicksiteAnalysis;
+  }
+  async ListQuicksiteAnalyses(
+    filter?: ModelQuicksiteAnalysisFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListQuicksiteAnalysesQuery> {
+    const statement = `query ListQuicksiteAnalyses($filter: ModelQuicksiteAnalysisFilterInput, $limit: Int, $nextToken: String) {
+        listQuicksiteAnalyses(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            name
+            analysisId
+            QtemId
+            id
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListQuicksiteAnalysesQuery>response.data.listQuicksiteAnalyses;
+  }
+  async GetQuicksiteDashboard(id: string): Promise<GetQuicksiteDashboardQuery> {
+    const statement = `query GetQuicksiteDashboard($id: ID!) {
+        getQuicksiteDashboard(id: $id) {
+          __typename
+          name
+          QtemId
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetQuicksiteDashboardQuery>response.data.getQuicksiteDashboard;
+  }
+  async ListQuicksiteDashboards(
+    filter?: ModelQuicksiteDashboardFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListQuicksiteDashboardsQuery> {
+    const statement = `query ListQuicksiteDashboards($filter: ModelQuicksiteDashboardFilterInput, $limit: Int, $nextToken: String) {
+        listQuicksiteDashboards(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            name
+            QtemId
+            id
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListQuicksiteDashboardsQuery>response.data.listQuicksiteDashboards;
+  }
+  async GetQuicksiteEnv(id: string): Promise<GetQuicksiteEnvQuery> {
+    const statement = `query GetQuicksiteEnv($id: ID!) {
+        getQuicksiteEnv(id: $id) {
+          __typename
+          name
+          QProId
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetQuicksiteEnvQuery>response.data.getQuicksiteEnv;
+  }
+  async ListQuicksiteEnvs(
+    filter?: ModelQuicksiteEnvFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListQuicksiteEnvsQuery> {
+    const statement = `query ListQuicksiteEnvs($filter: ModelQuicksiteEnvFilterInput, $limit: Int, $nextToken: String) {
+        listQuicksiteEnvs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            name
+            QProId
+            id
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListQuicksiteEnvsQuery>response.data.listQuicksiteEnvs;
+  }
+  async GetBIMProject(id: string): Promise<GetBIMProjectQuery> {
+    const statement = `query GetBIMProject($id: ID!) {
+        getBIMProject(id: $id) {
+          __typename
+          Did
+          name
+          source
+          destination
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetBIMProjectQuery>response.data.getBIMProject;
+  }
+  async ListBIMProjects(
+    filter?: ModelBIMProjectFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListBIMProjectsQuery> {
+    const statement = `query ListBIMProjects($filter: ModelBIMProjectFilterInput, $limit: Int, $nextToken: String) {
+        listBIMProjects(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            Did
+            name
+            source
+            destination
+            id
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListBIMProjectsQuery>response.data.listBIMProjects;
+  }
+  async GetDataset(id: string): Promise<GetDatasetQuery> {
+    const statement = `query GetDataset($id: ID!) {
+        getDataset(id: $id) {
+          __typename
+          name
+          datasources
+          files
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetDatasetQuery>response.data.getDataset;
+  }
+  async ListDatasets(
+    filter?: ModelDatasetFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListDatasetsQuery> {
+    const statement = `query ListDatasets($filter: ModelDatasetFilterInput, $limit: Int, $nextToken: String) {
+        listDatasets(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            name
+            datasources
+            files
+            id
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListDatasetsQuery>response.data.listDatasets;
+  }
+  async GetDatasouce(id: string): Promise<GetDatasouceQuery> {
+    const statement = `query GetDatasouce($id: ID!) {
+        getDatasouce(id: $id) {
+          __typename
+          name
+          dsid
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetDatasouceQuery>response.data.getDatasouce;
+  }
+  async ListDatasouces(
+    filter?: ModelDatasouceFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListDatasoucesQuery> {
+    const statement = `query ListDatasouces($filter: ModelDatasouceFilterInput, $limit: Int, $nextToken: String) {
+        listDatasouces(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            name
+            dsid
+            id
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListDatasoucesQuery>response.data.listDatasouces;
+  }
+  async GetQuicksightFolder(id: string): Promise<GetQuicksightFolderQuery> {
+    const statement = `query GetQuicksightFolder($id: ID!) {
+        getQuicksightFolder(id: $id) {
+          __typename
+          name
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetQuicksightFolderQuery>response.data.getQuicksightFolder;
+  }
+  async ListQuicksightFolders(
+    filter?: ModelQuicksightFolderFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListQuicksightFoldersQuery> {
+    const statement = `query ListQuicksightFolders($filter: ModelQuicksightFolderFilterInput, $limit: Int, $nextToken: String) {
+        listQuicksightFolders(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            name
+            id
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListQuicksightFoldersQuery>response.data.listQuicksightFolders;
+  }
+  async GetQuicksightGroup(id: string): Promise<GetQuicksightGroupQuery> {
+    const statement = `query GetQuicksightGroup($id: ID!) {
+        getQuicksightGroup(id: $id) {
+          __typename
+          name
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetQuicksightGroupQuery>response.data.getQuicksightGroup;
+  }
+  async ListQuicksightGroups(
+    filter?: ModelQuicksightGroupFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListQuicksightGroupsQuery> {
+    const statement = `query ListQuicksightGroups($filter: ModelQuicksightGroupFilterInput, $limit: Int, $nextToken: String) {
+        listQuicksightGroups(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            name
+            id
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListQuicksightGroupsQuery>response.data.listQuicksightGroups;
+  }
+  async GetFile(id: string): Promise<GetFileQuery> {
+    const statement = `query GetFile($id: ID!) {
+        getFile(id: $id) {
+          __typename
+          name
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetFileQuery>response.data.getFile;
+  }
+  async ListFiles(
+    filter?: ModelFileFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListFilesQuery> {
+    const statement = `query ListFiles($filter: ModelFileFilterInput, $limit: Int, $nextToken: String) {
+        listFiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            name
+            id
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListFilesQuery>response.data.listFiles;
+  }
+  async GetTable(id: string): Promise<GetTableQuery> {
+    const statement = `query GetTable($id: ID!) {
+        getTable(id: $id) {
+          __typename
+          name
+          dsid
+          id
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetTableQuery>response.data.getTable;
+  }
+  async ListTables(
+    filter?: ModelTableFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListTablesQuery> {
+    const statement = `query ListTables($filter: ModelTableFilterInput, $limit: Int, $nextToken: String) {
+        listTables(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            name
+            dsid
+            id
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListTablesQuery>response.data.listTables;
   }
   OnCreateTodoListener: Observable<
     SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateTodo">>
@@ -3323,5 +6471,773 @@ export class APIService {
     )
   ) as Observable<
     SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteTableauEnv">>
+  >;
+
+  OnCreateQuicksiteProjectListener: Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onCreateQuicksiteProject">
+    >
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateQuicksiteProject {
+        onCreateQuicksiteProject {
+          __typename
+          name
+          QProId
+          Did
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onCreateQuicksiteProject">
+    >
+  >;
+
+  OnUpdateQuicksiteProjectListener: Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onUpdateQuicksiteProject">
+    >
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateQuicksiteProject {
+        onUpdateQuicksiteProject {
+          __typename
+          name
+          QProId
+          Did
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onUpdateQuicksiteProject">
+    >
+  >;
+
+  OnDeleteQuicksiteProjectListener: Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onDeleteQuicksiteProject">
+    >
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteQuicksiteProject {
+        onDeleteQuicksiteProject {
+          __typename
+          name
+          QProId
+          Did
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onDeleteQuicksiteProject">
+    >
+  >;
+
+  OnCreateQuicksiteTemplateListener: Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onCreateQuicksiteTemplate">
+    >
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateQuicksiteTemplate {
+        onCreateQuicksiteTemplate {
+          __typename
+          QtemId
+          name
+          analysisId
+          QProId
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onCreateQuicksiteTemplate">
+    >
+  >;
+
+  OnUpdateQuicksiteTemplateListener: Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onUpdateQuicksiteTemplate">
+    >
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateQuicksiteTemplate {
+        onUpdateQuicksiteTemplate {
+          __typename
+          QtemId
+          name
+          analysisId
+          QProId
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onUpdateQuicksiteTemplate">
+    >
+  >;
+
+  OnDeleteQuicksiteTemplateListener: Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onDeleteQuicksiteTemplate">
+    >
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteQuicksiteTemplate {
+        onDeleteQuicksiteTemplate {
+          __typename
+          QtemId
+          name
+          analysisId
+          QProId
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onDeleteQuicksiteTemplate">
+    >
+  >;
+
+  OnCreateQuicksiteAnalysisListener: Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onCreateQuicksiteAnalysis">
+    >
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateQuicksiteAnalysis {
+        onCreateQuicksiteAnalysis {
+          __typename
+          name
+          analysisId
+          QtemId
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onCreateQuicksiteAnalysis">
+    >
+  >;
+
+  OnUpdateQuicksiteAnalysisListener: Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onUpdateQuicksiteAnalysis">
+    >
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateQuicksiteAnalysis {
+        onUpdateQuicksiteAnalysis {
+          __typename
+          name
+          analysisId
+          QtemId
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onUpdateQuicksiteAnalysis">
+    >
+  >;
+
+  OnDeleteQuicksiteAnalysisListener: Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onDeleteQuicksiteAnalysis">
+    >
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteQuicksiteAnalysis {
+        onDeleteQuicksiteAnalysis {
+          __typename
+          name
+          analysisId
+          QtemId
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onDeleteQuicksiteAnalysis">
+    >
+  >;
+
+  OnCreateQuicksiteDashboardListener: Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onCreateQuicksiteDashboard">
+    >
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateQuicksiteDashboard {
+        onCreateQuicksiteDashboard {
+          __typename
+          name
+          QtemId
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onCreateQuicksiteDashboard">
+    >
+  >;
+
+  OnUpdateQuicksiteDashboardListener: Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onUpdateQuicksiteDashboard">
+    >
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateQuicksiteDashboard {
+        onUpdateQuicksiteDashboard {
+          __typename
+          name
+          QtemId
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onUpdateQuicksiteDashboard">
+    >
+  >;
+
+  OnDeleteQuicksiteDashboardListener: Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onDeleteQuicksiteDashboard">
+    >
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteQuicksiteDashboard {
+        onDeleteQuicksiteDashboard {
+          __typename
+          name
+          QtemId
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onDeleteQuicksiteDashboard">
+    >
+  >;
+
+  OnCreateQuicksiteEnvListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateQuicksiteEnv">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateQuicksiteEnv {
+        onCreateQuicksiteEnv {
+          __typename
+          name
+          QProId
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateQuicksiteEnv">>
+  >;
+
+  OnUpdateQuicksiteEnvListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateQuicksiteEnv">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateQuicksiteEnv {
+        onUpdateQuicksiteEnv {
+          __typename
+          name
+          QProId
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateQuicksiteEnv">>
+  >;
+
+  OnDeleteQuicksiteEnvListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteQuicksiteEnv">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteQuicksiteEnv {
+        onDeleteQuicksiteEnv {
+          __typename
+          name
+          QProId
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteQuicksiteEnv">>
+  >;
+
+  OnCreateBIMProjectListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateBIMProject">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateBIMProject {
+        onCreateBIMProject {
+          __typename
+          Did
+          name
+          source
+          destination
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateBIMProject">>
+  >;
+
+  OnUpdateBIMProjectListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateBIMProject">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateBIMProject {
+        onUpdateBIMProject {
+          __typename
+          Did
+          name
+          source
+          destination
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateBIMProject">>
+  >;
+
+  OnDeleteBIMProjectListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteBIMProject">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteBIMProject {
+        onDeleteBIMProject {
+          __typename
+          Did
+          name
+          source
+          destination
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteBIMProject">>
+  >;
+
+  OnCreateDatasetListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateDataset">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateDataset {
+        onCreateDataset {
+          __typename
+          name
+          datasources
+          files
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateDataset">>
+  >;
+
+  OnUpdateDatasetListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateDataset">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateDataset {
+        onUpdateDataset {
+          __typename
+          name
+          datasources
+          files
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateDataset">>
+  >;
+
+  OnDeleteDatasetListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteDataset">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteDataset {
+        onDeleteDataset {
+          __typename
+          name
+          datasources
+          files
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteDataset">>
+  >;
+
+  OnCreateDatasouceListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateDatasouce">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateDatasouce {
+        onCreateDatasouce {
+          __typename
+          name
+          dsid
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateDatasouce">>
+  >;
+
+  OnUpdateDatasouceListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateDatasouce">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateDatasouce {
+        onUpdateDatasouce {
+          __typename
+          name
+          dsid
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateDatasouce">>
+  >;
+
+  OnDeleteDatasouceListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteDatasouce">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteDatasouce {
+        onDeleteDatasouce {
+          __typename
+          name
+          dsid
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteDatasouce">>
+  >;
+
+  OnCreateQuicksightFolderListener: Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onCreateQuicksightFolder">
+    >
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateQuicksightFolder {
+        onCreateQuicksightFolder {
+          __typename
+          name
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onCreateQuicksightFolder">
+    >
+  >;
+
+  OnUpdateQuicksightFolderListener: Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onUpdateQuicksightFolder">
+    >
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateQuicksightFolder {
+        onUpdateQuicksightFolder {
+          __typename
+          name
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onUpdateQuicksightFolder">
+    >
+  >;
+
+  OnDeleteQuicksightFolderListener: Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onDeleteQuicksightFolder">
+    >
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteQuicksightFolder {
+        onDeleteQuicksightFolder {
+          __typename
+          name
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onDeleteQuicksightFolder">
+    >
+  >;
+
+  OnCreateQuicksightGroupListener: Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onCreateQuicksightGroup">
+    >
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateQuicksightGroup {
+        onCreateQuicksightGroup {
+          __typename
+          name
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onCreateQuicksightGroup">
+    >
+  >;
+
+  OnUpdateQuicksightGroupListener: Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onUpdateQuicksightGroup">
+    >
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateQuicksightGroup {
+        onUpdateQuicksightGroup {
+          __typename
+          name
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onUpdateQuicksightGroup">
+    >
+  >;
+
+  OnDeleteQuicksightGroupListener: Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onDeleteQuicksightGroup">
+    >
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteQuicksightGroup {
+        onDeleteQuicksightGroup {
+          __typename
+          name
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<
+      Pick<__SubscriptionContainer, "onDeleteQuicksightGroup">
+    >
+  >;
+
+  OnCreateFileListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateFile">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateFile {
+        onCreateFile {
+          __typename
+          name
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateFile">>
+  >;
+
+  OnUpdateFileListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateFile">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateFile {
+        onUpdateFile {
+          __typename
+          name
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateFile">>
+  >;
+
+  OnDeleteFileListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteFile">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteFile {
+        onDeleteFile {
+          __typename
+          name
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteFile">>
+  >;
+
+  OnCreateTableListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateTable">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateTable {
+        onCreateTable {
+          __typename
+          name
+          dsid
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateTable">>
+  >;
+
+  OnUpdateTableListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateTable">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateTable {
+        onUpdateTable {
+          __typename
+          name
+          dsid
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateTable">>
+  >;
+
+  OnDeleteTableListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteTable">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteTable {
+        onDeleteTable {
+          __typename
+          name
+          dsid
+          id
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteTable">>
   >;
 }

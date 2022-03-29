@@ -15,7 +15,7 @@ export class DepartmentComponent implements OnInit {
     this.createFormd= this.fb.group({
       Dname: ["", Validators.required],
       Did: ["", Validators.required],
-      
+      CustomerId:["", Validators.required],
     });
   }
   private subscription: Subscription | null = null; 

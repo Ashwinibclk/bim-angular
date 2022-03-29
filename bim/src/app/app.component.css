@@ -1,0 +1,76 @@
+body {
+    font-family: "Lato", sans-serif;
+  }
+  
+  .sidenav {
+    height: 100%;
+    width: 150px;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    background-color: #B0E0E6;
+    overflow-x: hidden;
+    padding-top: 20px;
+    position: absolute;
+    margin-top: 50px;
+  }
+  
+  .sidenav a {
+    padding: 6px 8px 10px 16px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block;
+    border-top:1px solid purple;
+    border-bottom: 1px solid purple;
+    
+  }
+  
+  .sidenav a:hover {
+   
+    background-color: #ddd;
+  }
+  
+  .main {
+    margin-left: 150px; /* Same as the width of the sidenav */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+    margin-top: 50px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+
+.topnav {
+  overflow: hidden;
+  background-color: #B0E0E6;
+  margin-top: -10px;
+  margin-left: -10px;
+  margin-right:-8px;
+
+}
+
+.topnav a {
+  float: right;
+  color: black;
+  text-align: center;
+  padding: 19px 16px;
+  text-decoration: none;
+  font-size: 18px;
+  
+  
+}
+
+.topnav a:hover, h1 {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}

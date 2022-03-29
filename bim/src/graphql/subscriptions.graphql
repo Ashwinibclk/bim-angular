@@ -284,3 +284,339 @@ subscription OnDeleteTableauEnv {
     updatedAt
   }
 }
+subscription OnCreateQuicksiteProject {
+  onCreateQuicksiteProject {
+    name
+    QProId
+    Did
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateQuicksiteProject {
+  onUpdateQuicksiteProject {
+    name
+    QProId
+    Did
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteQuicksiteProject {
+  onDeleteQuicksiteProject {
+    name
+    QProId
+    Did
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateQuicksiteTemplate {
+  onCreateQuicksiteTemplate {
+    QtemId
+    name
+    analysisId
+    QProId
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateQuicksiteTemplate {
+  onUpdateQuicksiteTemplate {
+    QtemId
+    name
+    analysisId
+    QProId
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteQuicksiteTemplate {
+  onDeleteQuicksiteTemplate {
+    QtemId
+    name
+    analysisId
+    QProId
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateQuicksiteAnalysis {
+  onCreateQuicksiteAnalysis {
+    name
+    analysisId
+    QtemId
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateQuicksiteAnalysis {
+  onUpdateQuicksiteAnalysis {
+    name
+    analysisId
+    QtemId
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteQuicksiteAnalysis {
+  onDeleteQuicksiteAnalysis {
+    name
+    analysisId
+    QtemId
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateQuicksiteDashboard {
+  onCreateQuicksiteDashboard {
+    name
+    QtemId
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateQuicksiteDashboard {
+  onUpdateQuicksiteDashboard {
+    name
+    QtemId
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteQuicksiteDashboard {
+  onDeleteQuicksiteDashboard {
+    name
+    QtemId
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateQuicksiteEnv {
+  onCreateQuicksiteEnv {
+    name
+    QProId
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateQuicksiteEnv {
+  onUpdateQuicksiteEnv {
+    name
+    QProId
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteQuicksiteEnv {
+  onDeleteQuicksiteEnv {
+    name
+    QProId
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateBIMProject {
+  onCreateBIMProject {
+    Did
+    name
+    source
+    destination
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateBIMProject {
+  onUpdateBIMProject {
+    Did
+    name
+    source
+    destination
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteBIMProject {
+  onDeleteBIMProject {
+    Did
+    name
+    source
+    destination
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateDataset {
+  onCreateDataset {
+    name
+    datasources
+    files
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateDataset {
+  onUpdateDataset {
+    name
+    datasources
+    files
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteDataset {
+  onDeleteDataset {
+    name
+    datasources
+    files
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateDatasouce {
+  onCreateDatasouce {
+    name
+    dsid
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateDatasouce {
+  onUpdateDatasouce {
+    name
+    dsid
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteDatasouce {
+  onDeleteDatasouce {
+    name
+    dsid
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateQuicksightFolder {
+  onCreateQuicksightFolder {
+    name
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateQuicksightFolder {
+  onUpdateQuicksightFolder {
+    name
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteQuicksightFolder {
+  onDeleteQuicksightFolder {
+    name
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateQuicksightGroup {
+  onCreateQuicksightGroup {
+    name
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateQuicksightGroup {
+  onUpdateQuicksightGroup {
+    name
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteQuicksightGroup {
+  onDeleteQuicksightGroup {
+    name
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateFile {
+  onCreateFile {
+    name
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateFile {
+  onUpdateFile {
+    name
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteFile {
+  onDeleteFile {
+    name
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateTable {
+  onCreateTable {
+    name
+    dsid
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateTable {
+  onUpdateTable {
+    name
+    dsid
+    id
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteTable {
+  onDeleteTable {
+    name
+    dsid
+    id
+    createdAt
+    updatedAt
+  }
+}

@@ -5,8 +5,9 @@
       [formGroup]="createFormtb"
       (ngSubmit)="onCreatetb(createFormtb.value)"
     >
+    <h3>Tableau Login</h3>
       <div>
-        <label>Name: </label>
+        <label>UserName: </label>
         <input type="text" formControlName="username" autocomplete="off" />
       </div>
       <div>
@@ -21,11 +22,6 @@
     </form>
   </div>
   
-  <div *ngFor="let i of tbs">
-    <div>{{ i.username }}</div>
-    <div>{{ i.password }}</div>
-    <div>{{ i.sitename }}</div>
-    
-  </div>
+  
 
   

@@ -1,1 +1,39 @@
-<p>bimproject works!</p>
+
+
+<div  class="form-body">
+  <form
+    autocomplete="off"
+    [formGroup]="createFormbim"
+    (ngSubmit)="onCreatebim(createFormbim.value)"
+  >
+  <h3>BIMProject Login</h3>
+    <div>
+      <label>DepartmentId: </label>
+      <input type="text" formControlName="Did" autocomplete="off" />
+    </div>
+    <div>
+      <label>Name: </label>
+      <input type="text" formControlName="name" autocomplete="off" />
+    </div>
+    <div class="row" >
+      <div class="column">
+      <label for="source">Source: </label>
+      <select id="source" name="source" style="height:50px; width:100px;">
+        <option value="Tableau">Tableau</option>
+        <option value="Quicksight">Quicksight</option>
+        </select>
+      </div>
+      <div class="column">
+      <label>Destination: </label>
+      <select id="Destination" name="Destination" style="height:50px; width:100px;">
+        <option value="Tableau">Tableau</option>
+        <option value="Quicksight">Quicksight</option>
+        </select>
+        </div>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+
+
+

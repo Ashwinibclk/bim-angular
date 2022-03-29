@@ -5,6 +5,7 @@
       [formGroup]="createFormd"
       (ngSubmit)="onCreated(createFormd.value)"
     >
+    <h3>Department</h3>
       <div>
         <label>
             DepartmentName: </label>
@@ -15,17 +16,17 @@
             DepartmentId: </label>
         <input type="text" formControlName="Did" autocomplete="off" />
       </div>
+      <div>
+        <label>
+            CustomerId: </label>
+        <input type="text" formControlName="CustomerId" autocomplete="off" />
+      </div>
       
       <button type="submit">Submit</button>
     </form>
   </div>
   
-  <div *ngFor="let i of deps">
-    <div>{{ i.Dname }}</div>
-    <div>{{ i.Did }}</div>
-    
-    
-  </div>
+ 
 
   
 
