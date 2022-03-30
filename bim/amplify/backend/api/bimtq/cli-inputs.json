@@ -5,20 +5,16 @@
     "serviceName": "AppSync",
     "gqlSchemaPath": "/Users/madhavimarri/bim-angular/bim/amplify/backend/api/bimtq/schema.graphql",
     "defaultAuthType": {
-      "mode": "AWS_IAM"
+      "mode": "API_KEY",
+      "expirationTime": 7,
+      "apiKeyExpirationDate": "2022-04-05T11:57:25.000Z",
+      "keyDescription": ""
     },
     "conflictResolution": {
       "defaultResolutionStrategy": {
         "type": "AUTOMERGE"
       }
     },
-    "additionalAuthTypes": [
-      {
-        "mode": "API_KEY",
-        "expirationTime": 7,
-        "apiKeyExpirationDate": "2022-04-05T06:05:49.357Z",
-        "keyDescription": ""
-      }
-    ]
+    "additionalAuthTypes": []
   }
 }

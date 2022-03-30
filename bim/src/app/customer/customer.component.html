@@ -1,0 +1,28 @@
+
+<div  class="form-body">
+    <form
+      autocomplete="off"
+      [formGroup]="createFormtb"
+      (ngSubmit)="onCreatetb(createFormtb.value)"
+    >
+    <h3>Customer</h3>
+      <div>
+        <label>CustomerName: </label>
+        <input type="text" formControlName="name" autocomplete="off" />
+      </div>
+      <div>
+        <label>
+            DepartmentId: </label>
+        <input type="text" formControlName="Did" autocomplete="off" />
+      </div>
+      <div>
+        <label>CustomerId: </label>
+        <input type="text" formControlName="CustomerId" autocomplete="off" />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  
+  
+
+  

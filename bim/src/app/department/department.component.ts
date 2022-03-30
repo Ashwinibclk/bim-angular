@@ -2,6 +2,7 @@ import {Component, OnInit, OnDestroy, ChangeDetectorRef } from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {APIService, Department} from "../API.service";
 import { Subscription } from "rxjs";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-department',
@@ -11,7 +12,7 @@ import { Subscription } from "rxjs";
 export class DepartmentComponent implements OnInit {
   public createFormd: any;
   public deps: Array<Department> =[];
-  constructor(private api: APIService, private fb: FormBuilder) { this.createFormd=FormBuilder;
+  constructor(private api: APIService, private fb: FormBuilder, private router: Router) { this.createFormd=FormBuilder;
     this.createFormd= this.fb.group({
       Dname: ["", Validators.required],
       Did: ["", Validators.required],
@@ -28,7 +29,7 @@ export class DepartmentComponent implements OnInit {
     
     this.subscription = <Subscription>(
       this.api.OnCreateDepartmentListener.subscribe((event: any) => {
-        const newtb = event.value.data.onCreateqk;
+        const newtb = event.value.data.onCreated;
         this.deps = [newtb, ...this.deps];
       })
     );
@@ -44,6 +45,7 @@ export class DepartmentComponent implements OnInit {
       .catch((e) => {
         console.log("error creating restaurant...", e);
       });
+      this.router.navigate(["/bimprojectlogin"]);
   }
   
   /*public onDelete(username:any){

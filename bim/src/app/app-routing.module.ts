@@ -5,7 +5,7 @@ import { QuicksightloginComponent } from './quicksightlogin/quicksightlogin.comp
 
 import { DepartmentComponent } from './department/department.component';
 import { BIMProjectComponent } from './bimproject/bimproject.component';
-
+import { CustomerComponent } from './customer/customer.component';
 
 const routes: Routes = [
   { path: 'tableaulogin', component: TableauloginComponent },
@@ -13,6 +13,8 @@ const routes: Routes = [
  
   { path: 'bimprojectlogin', component: BIMProjectComponent },
   { path: 'department', component: DepartmentComponent },
+  { path: 'customer', component: CustomerComponent },
+
 ];
 
 @NgModule({

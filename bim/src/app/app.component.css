@@ -9,7 +9,7 @@ body {
     z-index: 2;
     top: 0;
     left: 0;
-    background-color: #B0E0E6;
+    background-color: #F5FFFA;
     overflow-x: hidden;
     padding-top: 20px;
     position: absolute;
@@ -47,7 +47,7 @@ body {
 
 .topnav {
   overflow: hidden;
-  background-color: #B0E0E6;
+  background-color: #F5FFFA;
   margin-top: -10px;
   margin-left: -10px;
   margin-right:-8px;

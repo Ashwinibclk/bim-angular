@@ -11,6 +11,9 @@ import { QuicksightloginComponent } from './quicksightlogin/quicksightlogin.comp
 
 import { DepartmentComponent } from './department/department.component';
 import { BIMProjectComponent } from './bimproject/bimproject.component';
+import { CustomerComponent } from './customer/customer.component';
+
+
 
 
 @NgModule({
@@ -21,6 +24,9 @@ import { BIMProjectComponent } from './bimproject/bimproject.component';
   
     DepartmentComponent,
     BIMProjectComponent,
+    CustomerComponent,
+   
+  
    
   ],
   imports: [
