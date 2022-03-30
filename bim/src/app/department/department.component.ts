@@ -14,9 +14,9 @@ export class DepartmentComponent implements OnInit {
   public deps: Array<Department> =[];
   constructor(private api: APIService, private fb: FormBuilder, private router: Router) { this.createFormd=FormBuilder;
     this.createFormd= this.fb.group({
-      Dname: ["", Validators.required],
-      Did: ["", Validators.required],
-      CustomerId:["", Validators.required],
+      DName: ["", Validators.required],
+      id: ["", Validators.required],
+      
     });
   }
   private subscription: Subscription | null = null; 
@@ -45,7 +45,7 @@ export class DepartmentComponent implements OnInit {
       .catch((e) => {
         console.log("error creating restaurant...", e);
       });
-      this.router.navigate(["/bimprojectlogin"]);
+      this.router.navigate(["/bimlogin"]);
   }
   
   /*public onDelete(username:any){

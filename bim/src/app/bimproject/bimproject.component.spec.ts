@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BIMProjectComponent } from './bimproject.component';
+import { BimprojectComponent } from './bimproject.component';
 
-describe('BIMProjectComponent', () => {
-  let component: BIMProjectComponent;
-  let fixture: ComponentFixture<BIMProjectComponent>;
+describe('BimprojectComponent', () => {
+  let component: BimprojectComponent;
+  let fixture: ComponentFixture<BimprojectComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BIMProjectComponent ]
+      declarations: [ BimprojectComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BIMProjectComponent);
+    fixture = TestBed.createComponent(BimprojectComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

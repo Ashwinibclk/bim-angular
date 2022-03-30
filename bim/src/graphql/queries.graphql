@@ -117,37 +117,27 @@ query SyncQuicksightlogins(
 }
 query GetCustomer($id: ID!) {
   getCustomer(id: $id) {
-    CustomerId
+    id
     name
-    Did {
-      Did
-      CustomerId {
-        CustomerId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        customerDidId
-      }
-      Dname
+    Did
+    department {
       id
+      DName
+      customers {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      departmentCustomerIdId
     }
-    id
     createdAt
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    customerDidId
   }
 }
 query ListCustomers(
@@ -157,26 +147,23 @@ query ListCustomers(
 ) {
   listCustomers(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
-      CustomerId
+      id
       name
-      Did {
-        Did
-        Dname
+      Did
+      department {
         id
+        DName
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        departmentCustomerIdId
       }
-      id
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      customerDidId
     }
     nextToken
     startedAt
@@ -195,26 +182,23 @@ query SyncCustomers(
     lastSync: $lastSync
   ) {
     items {
-      CustomerId
+      id
       name
-      Did {
-        Did
-        Dname
+      Did
+      department {
         id
+        DName
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        departmentCustomerIdId
       }
-      id
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      customerDidId
     }
     nextToken
     startedAt
@@ -222,37 +206,27 @@ query SyncCustomers(
 }
 query GetDepartment($id: ID!) {
   getDepartment(id: $id) {
-    Did
-    CustomerId {
-      CustomerId
-      name
-      Did {
-        Did
-        Dname
+    id
+    DName
+    customers {
+      items {
         id
+        name
+        Did
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        departmentCustomerIdId
       }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      customerDidId
+      nextToken
+      startedAt
     }
-    Dname
-    id
     createdAt
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    departmentCustomerIdId
   }
 }
 query ListDepartments(
@@ -262,26 +236,17 @@ query ListDepartments(
 ) {
   listDepartments(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
-      Did
-      CustomerId {
-        CustomerId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        customerDidId
-      }
-      Dname
       id
+      DName
+      customers {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      departmentCustomerIdId
     }
     nextToken
     startedAt
@@ -300,1251 +265,17 @@ query SyncDepartments(
     lastSync: $lastSync
   ) {
     items {
-      Did
-      CustomerId {
-        CustomerId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        customerDidId
-      }
-      Dname
       id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      departmentCustomerIdId
-    }
-    nextToken
-    startedAt
-  }
-}
-query GetTableauProject($id: ID!) {
-  getTableauProject(id: $id) {
-    TProId
-    name
-    Did {
-      Did
-      CustomerId {
-        CustomerId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        customerDidId
-      }
-      Dname
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      departmentCustomerIdId
-    }
-    envname {
-      name
-      TProId {
-        TProId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectDidId
-        tableauProjectEnvnameId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauEnvTProIdId
-    }
-    WbId {
-      items {
-        WbId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectWbIdId
-      }
-      nextToken
-      startedAt
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauProjectDidId
-    tableauProjectEnvnameId
-  }
-}
-query ListTableauProjects(
-  $filter: ModelTableauProjectFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listTableauProjects(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      TProId
-      name
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      envname {
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauEnvTProIdId
-      }
-      WbId {
+      DName
+      customers {
         nextToken
         startedAt
       }
-      id
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      tableauProjectDidId
-      tableauProjectEnvnameId
-    }
-    nextToken
-    startedAt
-  }
-}
-query SyncTableauProjects(
-  $filter: ModelTableauProjectFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncTableauProjects(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      TProId
-      name
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      envname {
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauEnvTProIdId
-      }
-      WbId {
-        nextToken
-        startedAt
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauProjectDidId
-      tableauProjectEnvnameId
-    }
-    nextToken
-    startedAt
-  }
-}
-query GetTableauWorkbook($id: ID!) {
-  getTableauWorkbook(id: $id) {
-    WbId
-    name
-    TProId {
-      TProId
-      name
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      envname {
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauEnvTProIdId
-      }
-      WbId {
-        nextToken
-        startedAt
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauProjectDidId
-      tableauProjectEnvnameId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauProjectWbIdId
-  }
-}
-query ListTableauWorkbooks(
-  $filter: ModelTableauWorkbookFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listTableauWorkbooks(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      WbId
-      name
-      TProId {
-        TProId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectDidId
-        tableauProjectEnvnameId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauProjectWbIdId
-    }
-    nextToken
-    startedAt
-  }
-}
-query SyncTableauWorkbooks(
-  $filter: ModelTableauWorkbookFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncTableauWorkbooks(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      WbId
-      name
-      TProId {
-        TProId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectDidId
-        tableauProjectEnvnameId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauProjectWbIdId
-    }
-    nextToken
-    startedAt
-  }
-}
-query GetTableauSheet($id: ID!) {
-  getTableauSheet(id: $id) {
-    name
-    WbId {
-      WbId
-      name
-      TProId {
-        TProId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectDidId
-        tableauProjectEnvnameId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauProjectWbIdId
-    }
-    Tsid
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauSheetWbIdId
-  }
-}
-query ListTableauSheets(
-  $filter: ModelTableauSheetFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listTableauSheets(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      name
-      WbId {
-        WbId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectWbIdId
-      }
-      Tsid
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauSheetWbIdId
-    }
-    nextToken
-    startedAt
-  }
-}
-query SyncTableauSheets(
-  $filter: ModelTableauSheetFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncTableauSheets(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      name
-      WbId {
-        WbId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectWbIdId
-      }
-      Tsid
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauSheetWbIdId
-    }
-    nextToken
-    startedAt
-  }
-}
-query GetTableauGraph($id: ID!) {
-  getTableauGraph(id: $id) {
-    name
-    Tsid {
-      name
-      WbId {
-        WbId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectWbIdId
-      }
-      Tsid
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauSheetWbIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauGraphTsidId
-  }
-}
-query ListTableauGraphs(
-  $filter: ModelTableauGraphFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listTableauGraphs(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      name
-      Tsid {
-        name
-        Tsid
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauSheetWbIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauGraphTsidId
-    }
-    nextToken
-    startedAt
-  }
-}
-query SyncTableauGraphs(
-  $filter: ModelTableauGraphFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncTableauGraphs(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      name
-      Tsid {
-        name
-        Tsid
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauSheetWbIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauGraphTsidId
-    }
-    nextToken
-    startedAt
-  }
-}
-query GetTableauEnv($id: ID!) {
-  getTableauEnv(id: $id) {
-    name
-    TProId {
-      TProId
-      name
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      envname {
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauEnvTProIdId
-      }
-      WbId {
-        nextToken
-        startedAt
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauProjectDidId
-      tableauProjectEnvnameId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauEnvTProIdId
-  }
-}
-query ListTableauEnvs(
-  $filter: ModelTableauEnvFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listTableauEnvs(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      name
-      TProId {
-        TProId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectDidId
-        tableauProjectEnvnameId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauEnvTProIdId
-    }
-    nextToken
-    startedAt
-  }
-}
-query SyncTableauEnvs(
-  $filter: ModelTableauEnvFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncTableauEnvs(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      name
-      TProId {
-        TProId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectDidId
-        tableauProjectEnvnameId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauEnvTProIdId
-    }
-    nextToken
-    startedAt
-  }
-}
-query GetQuicksiteProject($id: ID!) {
-  getQuicksiteProject(id: $id) {
-    name
-    QProId
-    Did {
-      Did
-      CustomerId {
-        CustomerId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        customerDidId
-      }
-      Dname
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      departmentCustomerIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteProjectDidId
-  }
-}
-query ListQuicksiteProjects(
-  $filter: ModelQuicksiteProjectFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listQuicksiteProjects(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      name
-      QProId
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteProjectDidId
-    }
-    nextToken
-    startedAt
-  }
-}
-query SyncQuicksiteProjects(
-  $filter: ModelQuicksiteProjectFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncQuicksiteProjects(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      name
-      QProId
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteProjectDidId
-    }
-    nextToken
-    startedAt
-  }
-}
-query GetQuicksiteTemplate($id: ID!) {
-  getQuicksiteTemplate(id: $id) {
-    QtemId
-    name
-    analysisId {
-      name
-      analysisId
-      QtemId {
-        QtemId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteTemplateAnalysisIdId
-        quicksiteTemplateQProIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteAnalysisQtemIdId
-    }
-    QProId {
-      name
-      QProId
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteProjectDidId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteTemplateAnalysisIdId
-    quicksiteTemplateQProIdId
-  }
-}
-query ListQuicksiteTemplates(
-  $filter: ModelQuicksiteTemplateFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listQuicksiteTemplates(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-  ) {
-    items {
-      QtemId
-      name
-      analysisId {
-        name
-        analysisId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteAnalysisQtemIdId
-      }
-      QProId {
-        name
-        QProId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteProjectDidId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteTemplateAnalysisIdId
-      quicksiteTemplateQProIdId
-    }
-    nextToken
-    startedAt
-  }
-}
-query SyncQuicksiteTemplates(
-  $filter: ModelQuicksiteTemplateFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncQuicksiteTemplates(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      QtemId
-      name
-      analysisId {
-        name
-        analysisId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteAnalysisQtemIdId
-      }
-      QProId {
-        name
-        QProId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteProjectDidId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteTemplateAnalysisIdId
-      quicksiteTemplateQProIdId
-    }
-    nextToken
-    startedAt
-  }
-}
-query GetQuicksiteAnalysis($id: ID!) {
-  getQuicksiteAnalysis(id: $id) {
-    name
-    analysisId
-    QtemId {
-      QtemId
-      name
-      analysisId {
-        name
-        analysisId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteAnalysisQtemIdId
-      }
-      QProId {
-        name
-        QProId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteProjectDidId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteTemplateAnalysisIdId
-      quicksiteTemplateQProIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteAnalysisQtemIdId
-  }
-}
-query ListQuicksiteAnalyses(
-  $filter: ModelQuicksiteAnalysisFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listQuicksiteAnalyses(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      name
-      analysisId
-      QtemId {
-        QtemId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteTemplateAnalysisIdId
-        quicksiteTemplateQProIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteAnalysisQtemIdId
-    }
-    nextToken
-    startedAt
-  }
-}
-query SyncQuicksiteAnalyses(
-  $filter: ModelQuicksiteAnalysisFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncQuicksiteAnalyses(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      name
-      analysisId
-      QtemId {
-        QtemId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteTemplateAnalysisIdId
-        quicksiteTemplateQProIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteAnalysisQtemIdId
-    }
-    nextToken
-    startedAt
-  }
-}
-query GetQuicksiteDashboard($id: ID!) {
-  getQuicksiteDashboard(id: $id) {
-    name
-    QtemId {
-      QtemId
-      name
-      analysisId {
-        name
-        analysisId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteAnalysisQtemIdId
-      }
-      QProId {
-        name
-        QProId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteProjectDidId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteTemplateAnalysisIdId
-      quicksiteTemplateQProIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteDashboardQtemIdId
-  }
-}
-query ListQuicksiteDashboards(
-  $filter: ModelQuicksiteDashboardFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listQuicksiteDashboards(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-  ) {
-    items {
-      name
-      QtemId {
-        QtemId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteTemplateAnalysisIdId
-        quicksiteTemplateQProIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteDashboardQtemIdId
-    }
-    nextToken
-    startedAt
-  }
-}
-query SyncQuicksiteDashboards(
-  $filter: ModelQuicksiteDashboardFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncQuicksiteDashboards(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      name
-      QtemId {
-        QtemId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteTemplateAnalysisIdId
-        quicksiteTemplateQProIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteDashboardQtemIdId
-    }
-    nextToken
-    startedAt
-  }
-}
-query GetQuicksiteEnv($id: ID!) {
-  getQuicksiteEnv(id: $id) {
-    name
-    QProId {
-      name
-      QProId
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteProjectDidId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteEnvQProIdId
-  }
-}
-query ListQuicksiteEnvs(
-  $filter: ModelQuicksiteEnvFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listQuicksiteEnvs(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      name
-      QProId {
-        name
-        QProId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteProjectDidId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteEnvQProIdId
-    }
-    nextToken
-    startedAt
-  }
-}
-query SyncQuicksiteEnvs(
-  $filter: ModelQuicksiteEnvFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncQuicksiteEnvs(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      name
-      QProId {
-        name
-        QProId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteProjectDidId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteEnvQProIdId
     }
     nextToken
     startedAt
@@ -1553,6 +284,20 @@ query SyncQuicksiteEnvs(
 query GetBIMProject($id: ID!) {
   getBIMProject(id: $id) {
     Did
+    department {
+      id
+      DName
+      customers {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    migrationid
     name
     source
     destination
@@ -1572,6 +317,16 @@ query ListBIMProjects(
   listBIMProjects(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       Did
+      department {
+        id
+        DName
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      migrationid
       name
       source
       destination
@@ -1600,351 +355,19 @@ query SyncBIMProjects(
   ) {
     items {
       Did
+      department {
+        id
+        DName
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      migrationid
       name
       source
       destination
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-    nextToken
-    startedAt
-  }
-}
-query GetDataset($id: ID!) {
-  getDataset(id: $id) {
-    name
-    datasources
-    files
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-query ListDatasets(
-  $filter: ModelDatasetFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listDatasets(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      name
-      datasources
-      files
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-    nextToken
-    startedAt
-  }
-}
-query SyncDatasets(
-  $filter: ModelDatasetFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncDatasets(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      name
-      datasources
-      files
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-    nextToken
-    startedAt
-  }
-}
-query GetDatasouce($id: ID!) {
-  getDatasouce(id: $id) {
-    name
-    dsid
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-query ListDatasouces(
-  $filter: ModelDatasouceFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listDatasouces(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      name
-      dsid
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-    nextToken
-    startedAt
-  }
-}
-query SyncDatasouces(
-  $filter: ModelDatasouceFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncDatasouces(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      name
-      dsid
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-    nextToken
-    startedAt
-  }
-}
-query GetQuicksightFolder($id: ID!) {
-  getQuicksightFolder(id: $id) {
-    name
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-query ListQuicksightFolders(
-  $filter: ModelQuicksightFolderFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listQuicksightFolders(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      name
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-    nextToken
-    startedAt
-  }
-}
-query SyncQuicksightFolders(
-  $filter: ModelQuicksightFolderFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncQuicksightFolders(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      name
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-    nextToken
-    startedAt
-  }
-}
-query GetQuicksightGroup($id: ID!) {
-  getQuicksightGroup(id: $id) {
-    name
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-query ListQuicksightGroups(
-  $filter: ModelQuicksightGroupFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listQuicksightGroups(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      name
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-    nextToken
-    startedAt
-  }
-}
-query SyncQuicksightGroups(
-  $filter: ModelQuicksightGroupFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncQuicksightGroups(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      name
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-    nextToken
-    startedAt
-  }
-}
-query GetFile($id: ID!) {
-  getFile(id: $id) {
-    name
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-query ListFiles(
-  $filter: ModelFileFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listFiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      name
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-    nextToken
-    startedAt
-  }
-}
-query SyncFiles(
-  $filter: ModelFileFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncFiles(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      name
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-    nextToken
-    startedAt
-  }
-}
-query GetTable($id: ID!) {
-  getTable(id: $id) {
-    name
-    dsid
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-query ListTables(
-  $filter: ModelTableFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listTables(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      name
-      dsid
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-    nextToken
-    startedAt
-  }
-}
-query SyncTables(
-  $filter: ModelTableFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncTables(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      name
-      dsid
       id
       createdAt
       updatedAt

@@ -10,8 +10,9 @@ import { TableauloginComponent } from './tableaulogin/tableaulogin.component';
 import { QuicksightloginComponent } from './quicksightlogin/quicksightlogin.component';
 
 import { DepartmentComponent } from './department/department.component';
-import { BIMProjectComponent } from './bimproject/bimproject.component';
+
 import { CustomerComponent } from './customer/customer.component';
+import { BimprojectComponent } from './bimproject/bimproject.component';
 
 
 
@@ -23,8 +24,9 @@ import { CustomerComponent } from './customer/customer.component';
     QuicksightloginComponent,
   
     DepartmentComponent,
-    BIMProjectComponent,
+  
     CustomerComponent,
+       BimprojectComponent,
    
   
    

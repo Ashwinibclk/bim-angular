@@ -14,9 +14,9 @@ export class CustomerComponent implements OnInit {
   constructor(private api: APIService, private fb: FormBuilder, private router: Router) { 
     this.createFormtb=FormBuilder;
     this.createFormtb= this.fb.group({
-      CustomerId: ["", Validators.required],
+      id: ["", Validators.required],
       name: ["", Validators.required],
-      Did: ["", Validators.required],
+      Did:["",Validators.required],
     });
   }
   private subscription: Subscription | null = null;

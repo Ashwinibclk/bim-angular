@@ -73,1606 +73,171 @@ subscription OnDeleteQuicksightlogin {
 }
 subscription OnCreateCustomer {
   onCreateCustomer {
-    CustomerId
+    id
     name
-    Did {
-      Did
-      CustomerId {
-        CustomerId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        customerDidId
-      }
-      Dname
+    Did
+    department {
       id
+      DName
+      customers {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      departmentCustomerIdId
     }
-    id
     createdAt
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    customerDidId
   }
 }
 subscription OnUpdateCustomer {
   onUpdateCustomer {
-    CustomerId
+    id
     name
-    Did {
-      Did
-      CustomerId {
-        CustomerId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        customerDidId
-      }
-      Dname
+    Did
+    department {
       id
+      DName
+      customers {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      departmentCustomerIdId
     }
-    id
     createdAt
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    customerDidId
   }
 }
 subscription OnDeleteCustomer {
   onDeleteCustomer {
-    CustomerId
+    id
     name
-    Did {
-      Did
-      CustomerId {
-        CustomerId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        customerDidId
-      }
-      Dname
+    Did
+    department {
       id
+      DName
+      customers {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      departmentCustomerIdId
     }
-    id
     createdAt
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    customerDidId
   }
 }
 subscription OnCreateDepartment {
   onCreateDepartment {
-    Did
-    CustomerId {
-      CustomerId
-      name
-      Did {
-        Did
-        Dname
+    id
+    DName
+    customers {
+      items {
         id
+        name
+        Did
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        departmentCustomerIdId
       }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      customerDidId
+      nextToken
+      startedAt
     }
-    Dname
-    id
     createdAt
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    departmentCustomerIdId
   }
 }
 subscription OnUpdateDepartment {
   onUpdateDepartment {
-    Did
-    CustomerId {
-      CustomerId
-      name
-      Did {
-        Did
-        Dname
+    id
+    DName
+    customers {
+      items {
         id
+        name
+        Did
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        departmentCustomerIdId
       }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      customerDidId
+      nextToken
+      startedAt
     }
-    Dname
-    id
     createdAt
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    departmentCustomerIdId
   }
 }
 subscription OnDeleteDepartment {
   onDeleteDepartment {
-    Did
-    CustomerId {
-      CustomerId
-      name
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      customerDidId
-    }
-    Dname
     id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    departmentCustomerIdId
-  }
-}
-subscription OnCreateTableauProject {
-  onCreateTableauProject {
-    TProId
-    name
-    Did {
-      Did
-      CustomerId {
-        CustomerId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        customerDidId
-      }
-      Dname
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      departmentCustomerIdId
-    }
-    envname {
-      name
-      TProId {
-        TProId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectDidId
-        tableauProjectEnvnameId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauEnvTProIdId
-    }
-    WbId {
+    DName
+    customers {
       items {
-        WbId
-        name
         id
+        name
+        Did
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        tableauProjectWbIdId
       }
       nextToken
       startedAt
     }
-    id
     createdAt
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    tableauProjectDidId
-    tableauProjectEnvnameId
-  }
-}
-subscription OnUpdateTableauProject {
-  onUpdateTableauProject {
-    TProId
-    name
-    Did {
-      Did
-      CustomerId {
-        CustomerId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        customerDidId
-      }
-      Dname
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      departmentCustomerIdId
-    }
-    envname {
-      name
-      TProId {
-        TProId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectDidId
-        tableauProjectEnvnameId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauEnvTProIdId
-    }
-    WbId {
-      items {
-        WbId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectWbIdId
-      }
-      nextToken
-      startedAt
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauProjectDidId
-    tableauProjectEnvnameId
-  }
-}
-subscription OnDeleteTableauProject {
-  onDeleteTableauProject {
-    TProId
-    name
-    Did {
-      Did
-      CustomerId {
-        CustomerId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        customerDidId
-      }
-      Dname
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      departmentCustomerIdId
-    }
-    envname {
-      name
-      TProId {
-        TProId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectDidId
-        tableauProjectEnvnameId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauEnvTProIdId
-    }
-    WbId {
-      items {
-        WbId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectWbIdId
-      }
-      nextToken
-      startedAt
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauProjectDidId
-    tableauProjectEnvnameId
-  }
-}
-subscription OnCreateTableauWorkbook {
-  onCreateTableauWorkbook {
-    WbId
-    name
-    TProId {
-      TProId
-      name
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      envname {
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauEnvTProIdId
-      }
-      WbId {
-        nextToken
-        startedAt
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauProjectDidId
-      tableauProjectEnvnameId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauProjectWbIdId
-  }
-}
-subscription OnUpdateTableauWorkbook {
-  onUpdateTableauWorkbook {
-    WbId
-    name
-    TProId {
-      TProId
-      name
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      envname {
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauEnvTProIdId
-      }
-      WbId {
-        nextToken
-        startedAt
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauProjectDidId
-      tableauProjectEnvnameId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauProjectWbIdId
-  }
-}
-subscription OnDeleteTableauWorkbook {
-  onDeleteTableauWorkbook {
-    WbId
-    name
-    TProId {
-      TProId
-      name
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      envname {
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauEnvTProIdId
-      }
-      WbId {
-        nextToken
-        startedAt
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauProjectDidId
-      tableauProjectEnvnameId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauProjectWbIdId
-  }
-}
-subscription OnCreateTableauSheet {
-  onCreateTableauSheet {
-    name
-    WbId {
-      WbId
-      name
-      TProId {
-        TProId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectDidId
-        tableauProjectEnvnameId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauProjectWbIdId
-    }
-    Tsid
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauSheetWbIdId
-  }
-}
-subscription OnUpdateTableauSheet {
-  onUpdateTableauSheet {
-    name
-    WbId {
-      WbId
-      name
-      TProId {
-        TProId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectDidId
-        tableauProjectEnvnameId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauProjectWbIdId
-    }
-    Tsid
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauSheetWbIdId
-  }
-}
-subscription OnDeleteTableauSheet {
-  onDeleteTableauSheet {
-    name
-    WbId {
-      WbId
-      name
-      TProId {
-        TProId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectDidId
-        tableauProjectEnvnameId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauProjectWbIdId
-    }
-    Tsid
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauSheetWbIdId
-  }
-}
-subscription OnCreateTableauGraph {
-  onCreateTableauGraph {
-    name
-    Tsid {
-      name
-      WbId {
-        WbId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectWbIdId
-      }
-      Tsid
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauSheetWbIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauGraphTsidId
-  }
-}
-subscription OnUpdateTableauGraph {
-  onUpdateTableauGraph {
-    name
-    Tsid {
-      name
-      WbId {
-        WbId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectWbIdId
-      }
-      Tsid
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauSheetWbIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauGraphTsidId
-  }
-}
-subscription OnDeleteTableauGraph {
-  onDeleteTableauGraph {
-    name
-    Tsid {
-      name
-      WbId {
-        WbId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectWbIdId
-      }
-      Tsid
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauSheetWbIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauGraphTsidId
-  }
-}
-subscription OnCreateTableauEnv {
-  onCreateTableauEnv {
-    name
-    TProId {
-      TProId
-      name
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      envname {
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauEnvTProIdId
-      }
-      WbId {
-        nextToken
-        startedAt
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauProjectDidId
-      tableauProjectEnvnameId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauEnvTProIdId
-  }
-}
-subscription OnUpdateTableauEnv {
-  onUpdateTableauEnv {
-    name
-    TProId {
-      TProId
-      name
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      envname {
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauEnvTProIdId
-      }
-      WbId {
-        nextToken
-        startedAt
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauProjectDidId
-      tableauProjectEnvnameId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauEnvTProIdId
-  }
-}
-subscription OnDeleteTableauEnv {
-  onDeleteTableauEnv {
-    name
-    TProId {
-      TProId
-      name
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      envname {
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauEnvTProIdId
-      }
-      WbId {
-        nextToken
-        startedAt
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauProjectDidId
-      tableauProjectEnvnameId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauEnvTProIdId
-  }
-}
-subscription OnCreateQuicksiteProject {
-  onCreateQuicksiteProject {
-    name
-    QProId
-    Did {
-      Did
-      CustomerId {
-        CustomerId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        customerDidId
-      }
-      Dname
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      departmentCustomerIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteProjectDidId
-  }
-}
-subscription OnUpdateQuicksiteProject {
-  onUpdateQuicksiteProject {
-    name
-    QProId
-    Did {
-      Did
-      CustomerId {
-        CustomerId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        customerDidId
-      }
-      Dname
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      departmentCustomerIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteProjectDidId
-  }
-}
-subscription OnDeleteQuicksiteProject {
-  onDeleteQuicksiteProject {
-    name
-    QProId
-    Did {
-      Did
-      CustomerId {
-        CustomerId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        customerDidId
-      }
-      Dname
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      departmentCustomerIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteProjectDidId
-  }
-}
-subscription OnCreateQuicksiteTemplate {
-  onCreateQuicksiteTemplate {
-    QtemId
-    name
-    analysisId {
-      name
-      analysisId
-      QtemId {
-        QtemId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteTemplateAnalysisIdId
-        quicksiteTemplateQProIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteAnalysisQtemIdId
-    }
-    QProId {
-      name
-      QProId
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteProjectDidId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteTemplateAnalysisIdId
-    quicksiteTemplateQProIdId
-  }
-}
-subscription OnUpdateQuicksiteTemplate {
-  onUpdateQuicksiteTemplate {
-    QtemId
-    name
-    analysisId {
-      name
-      analysisId
-      QtemId {
-        QtemId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteTemplateAnalysisIdId
-        quicksiteTemplateQProIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteAnalysisQtemIdId
-    }
-    QProId {
-      name
-      QProId
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteProjectDidId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteTemplateAnalysisIdId
-    quicksiteTemplateQProIdId
-  }
-}
-subscription OnDeleteQuicksiteTemplate {
-  onDeleteQuicksiteTemplate {
-    QtemId
-    name
-    analysisId {
-      name
-      analysisId
-      QtemId {
-        QtemId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteTemplateAnalysisIdId
-        quicksiteTemplateQProIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteAnalysisQtemIdId
-    }
-    QProId {
-      name
-      QProId
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteProjectDidId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteTemplateAnalysisIdId
-    quicksiteTemplateQProIdId
-  }
-}
-subscription OnCreateQuicksiteAnalysis {
-  onCreateQuicksiteAnalysis {
-    name
-    analysisId
-    QtemId {
-      QtemId
-      name
-      analysisId {
-        name
-        analysisId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteAnalysisQtemIdId
-      }
-      QProId {
-        name
-        QProId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteProjectDidId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteTemplateAnalysisIdId
-      quicksiteTemplateQProIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteAnalysisQtemIdId
-  }
-}
-subscription OnUpdateQuicksiteAnalysis {
-  onUpdateQuicksiteAnalysis {
-    name
-    analysisId
-    QtemId {
-      QtemId
-      name
-      analysisId {
-        name
-        analysisId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteAnalysisQtemIdId
-      }
-      QProId {
-        name
-        QProId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteProjectDidId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteTemplateAnalysisIdId
-      quicksiteTemplateQProIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteAnalysisQtemIdId
-  }
-}
-subscription OnDeleteQuicksiteAnalysis {
-  onDeleteQuicksiteAnalysis {
-    name
-    analysisId
-    QtemId {
-      QtemId
-      name
-      analysisId {
-        name
-        analysisId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteAnalysisQtemIdId
-      }
-      QProId {
-        name
-        QProId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteProjectDidId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteTemplateAnalysisIdId
-      quicksiteTemplateQProIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteAnalysisQtemIdId
-  }
-}
-subscription OnCreateQuicksiteDashboard {
-  onCreateQuicksiteDashboard {
-    name
-    QtemId {
-      QtemId
-      name
-      analysisId {
-        name
-        analysisId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteAnalysisQtemIdId
-      }
-      QProId {
-        name
-        QProId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteProjectDidId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteTemplateAnalysisIdId
-      quicksiteTemplateQProIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteDashboardQtemIdId
-  }
-}
-subscription OnUpdateQuicksiteDashboard {
-  onUpdateQuicksiteDashboard {
-    name
-    QtemId {
-      QtemId
-      name
-      analysisId {
-        name
-        analysisId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteAnalysisQtemIdId
-      }
-      QProId {
-        name
-        QProId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteProjectDidId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteTemplateAnalysisIdId
-      quicksiteTemplateQProIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteDashboardQtemIdId
-  }
-}
-subscription OnDeleteQuicksiteDashboard {
-  onDeleteQuicksiteDashboard {
-    name
-    QtemId {
-      QtemId
-      name
-      analysisId {
-        name
-        analysisId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteAnalysisQtemIdId
-      }
-      QProId {
-        name
-        QProId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteProjectDidId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteTemplateAnalysisIdId
-      quicksiteTemplateQProIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteDashboardQtemIdId
-  }
-}
-subscription OnCreateQuicksiteEnv {
-  onCreateQuicksiteEnv {
-    name
-    QProId {
-      name
-      QProId
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteProjectDidId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteEnvQProIdId
-  }
-}
-subscription OnUpdateQuicksiteEnv {
-  onUpdateQuicksiteEnv {
-    name
-    QProId {
-      name
-      QProId
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteProjectDidId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteEnvQProIdId
-  }
-}
-subscription OnDeleteQuicksiteEnv {
-  onDeleteQuicksiteEnv {
-    name
-    QProId {
-      name
-      QProId
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteProjectDidId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteEnvQProIdId
   }
 }
 subscription OnCreateBIMProject {
   onCreateBIMProject {
     Did
+    department {
+      id
+      DName
+      customers {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    migrationid
     name
     source
     destination
@@ -1687,6 +252,20 @@ subscription OnCreateBIMProject {
 subscription OnUpdateBIMProject {
   onUpdateBIMProject {
     Did
+    department {
+      id
+      DName
+      customers {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    migrationid
     name
     source
     destination
@@ -1701,219 +280,23 @@ subscription OnUpdateBIMProject {
 subscription OnDeleteBIMProject {
   onDeleteBIMProject {
     Did
+    department {
+      id
+      DName
+      customers {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    migrationid
     name
     source
     destination
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-subscription OnCreateDataset {
-  onCreateDataset {
-    name
-    datasources
-    files
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-subscription OnUpdateDataset {
-  onUpdateDataset {
-    name
-    datasources
-    files
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-subscription OnDeleteDataset {
-  onDeleteDataset {
-    name
-    datasources
-    files
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-subscription OnCreateDatasouce {
-  onCreateDatasouce {
-    name
-    dsid
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-subscription OnUpdateDatasouce {
-  onUpdateDatasouce {
-    name
-    dsid
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-subscription OnDeleteDatasouce {
-  onDeleteDatasouce {
-    name
-    dsid
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-subscription OnCreateQuicksightFolder {
-  onCreateQuicksightFolder {
-    name
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-subscription OnUpdateQuicksightFolder {
-  onUpdateQuicksightFolder {
-    name
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-subscription OnDeleteQuicksightFolder {
-  onDeleteQuicksightFolder {
-    name
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-subscription OnCreateQuicksightGroup {
-  onCreateQuicksightGroup {
-    name
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-subscription OnUpdateQuicksightGroup {
-  onUpdateQuicksightGroup {
-    name
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-subscription OnDeleteQuicksightGroup {
-  onDeleteQuicksightGroup {
-    name
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-subscription OnCreateFile {
-  onCreateFile {
-    name
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-subscription OnUpdateFile {
-  onUpdateFile {
-    name
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-subscription OnDeleteFile {
-  onDeleteFile {
-    name
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-subscription OnCreateTable {
-  onCreateTable {
-    name
-    dsid
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-subscription OnUpdateTable {
-  onUpdateTable {
-    name
-    dsid
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-subscription OnDeleteTable {
-  onDeleteTable {
-    name
-    dsid
     id
     createdAt
     updatedAt

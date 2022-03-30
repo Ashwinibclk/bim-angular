@@ -3,7 +3,6 @@
 input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
 
 
-
 type Tableaulogin @model {
   id: ID!
   username: String!
@@ -17,82 +16,22 @@ type Quicksightlogin @model {
 }
 
 type Customer @model {
-  CustomerId:ID!
+  id: ID!
   name: String!
-  Did: Department @hasOne
+  Did:ID!
+  department: Department @belongsTo(fields:["Did"])
 }
 
 type Department @model {
-Did: ID!
-CustomerId:Customer @belongsTo
-Dname: String!
-
-}
-
-type TableauProject @model {
-  TProId:ID!
-name:String!
-Did:Department @hasOne
-envname: TableauEnv @hasOne
-WbId: [TableauWorkbook] @hasMany
-}
-
-type TableauWorkbook @model {
-  WbId:ID!
-  name:String!
-TProId:TableauProject @belongsTo
-
-}
-
-type TableauSheet @model {
-  name:String!
-  WbId:TableauWorkbook @hasOne
-Tsid:ID!
-}
-
-type TableauGraph @model {
-  name:String!
-  Tsid:TableauSheet @hasOne
-}
-
-type TableauEnv @model {
-name:String!
-TProId:TableauProject @belongsTo
-}
-
-
-type QuicksiteProject @model{
-name:String!
-QProId:ID!
-Did:Department @hasOne
-
-}
-
-type QuicksiteTemplate @model{
-QtemId:ID! 
-name:String!
-analysisId:QuicksiteAnalysis @hasOne
-QProId:QuicksiteProject @hasOne
- 
-}
-type QuicksiteAnalysis @model{
-name:String!
-analysisId:ID!
- QtemId:QuicksiteTemplate @belongsTo
-}
-type QuicksiteDashboard @model{ 
-name:String!
-QtemId:QuicksiteTemplate @hasOne
-  
-}
-
-type QuicksiteEnv @model{
-name:String!
-QProId:QuicksiteProject @hasOne
+  id: ID!
+  DName: String!
+  customers: [Customer] @hasMany(fields:["id"])
 }
 
 type BIMProject @model{
   Did:ID!
+  department:Department @hasOne(fields: ["Did"])
+  migrationid:ID!
   name:String!
   source:BIPlatform!
   destination:BIPlatform!
@@ -103,32 +42,3 @@ enum BIPlatform {
   QUICKSIGHT
 }
 
-type Dataset @model{
-  name:String!
-  datasources: String!
-  files: String!
-}
-
-type Datasouce @model{
-  name:[String]
-  dsid:ID!
-}
-
-type QuicksightFolder @model{
-name:String!
-}
-
-type QuicksightGroup @model{
-name:String!
-}
-
-type File @model{
-
-  name:String!
-
-}
-
-type Table @model{
-  name:String!
-  dsid:ID!
-}

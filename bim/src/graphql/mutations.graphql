@@ -94,37 +94,27 @@ mutation CreateCustomer(
   $condition: ModelCustomerConditionInput
 ) {
   createCustomer(input: $input, condition: $condition) {
-    CustomerId
+    id
     name
-    Did {
-      Did
-      CustomerId {
-        CustomerId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        customerDidId
-      }
-      Dname
+    Did
+    department {
       id
+      DName
+      customers {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      departmentCustomerIdId
     }
-    id
     createdAt
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    customerDidId
   }
 }
 mutation UpdateCustomer(
@@ -132,37 +122,27 @@ mutation UpdateCustomer(
   $condition: ModelCustomerConditionInput
 ) {
   updateCustomer(input: $input, condition: $condition) {
-    CustomerId
+    id
     name
-    Did {
-      Did
-      CustomerId {
-        CustomerId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        customerDidId
-      }
-      Dname
+    Did
+    department {
       id
+      DName
+      customers {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      departmentCustomerIdId
     }
-    id
     createdAt
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    customerDidId
   }
 }
 mutation DeleteCustomer(
@@ -170,37 +150,27 @@ mutation DeleteCustomer(
   $condition: ModelCustomerConditionInput
 ) {
   deleteCustomer(input: $input, condition: $condition) {
-    CustomerId
+    id
     name
-    Did {
-      Did
-      CustomerId {
-        CustomerId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        customerDidId
-      }
-      Dname
+    Did
+    department {
       id
+      DName
+      customers {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      departmentCustomerIdId
     }
-    id
     createdAt
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    customerDidId
   }
 }
 mutation CreateDepartment(
@@ -208,37 +178,27 @@ mutation CreateDepartment(
   $condition: ModelDepartmentConditionInput
 ) {
   createDepartment(input: $input, condition: $condition) {
-    Did
-    CustomerId {
-      CustomerId
-      name
-      Did {
-        Did
-        Dname
+    id
+    DName
+    customers {
+      items {
         id
+        name
+        Did
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        departmentCustomerIdId
       }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      customerDidId
+      nextToken
+      startedAt
     }
-    Dname
-    id
     createdAt
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    departmentCustomerIdId
   }
 }
 mutation UpdateDepartment(
@@ -246,37 +206,27 @@ mutation UpdateDepartment(
   $condition: ModelDepartmentConditionInput
 ) {
   updateDepartment(input: $input, condition: $condition) {
-    Did
-    CustomerId {
-      CustomerId
-      name
-      Did {
-        Did
-        Dname
+    id
+    DName
+    customers {
+      items {
         id
+        name
+        Did
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        departmentCustomerIdId
       }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      customerDidId
+      nextToken
+      startedAt
     }
-    Dname
-    id
     createdAt
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    departmentCustomerIdId
   }
 }
 mutation DeleteDepartment(
@@ -284,1516 +234,27 @@ mutation DeleteDepartment(
   $condition: ModelDepartmentConditionInput
 ) {
   deleteDepartment(input: $input, condition: $condition) {
-    Did
-    CustomerId {
-      CustomerId
-      name
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      customerDidId
-    }
-    Dname
     id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    departmentCustomerIdId
-  }
-}
-mutation CreateTableauProject(
-  $input: CreateTableauProjectInput!
-  $condition: ModelTableauProjectConditionInput
-) {
-  createTableauProject(input: $input, condition: $condition) {
-    TProId
-    name
-    Did {
-      Did
-      CustomerId {
-        CustomerId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        customerDidId
-      }
-      Dname
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      departmentCustomerIdId
-    }
-    envname {
-      name
-      TProId {
-        TProId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectDidId
-        tableauProjectEnvnameId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauEnvTProIdId
-    }
-    WbId {
+    DName
+    customers {
       items {
-        WbId
-        name
         id
+        name
+        Did
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        tableauProjectWbIdId
       }
       nextToken
       startedAt
     }
-    id
     createdAt
     updatedAt
     _version
     _deleted
     _lastChangedAt
-    tableauProjectDidId
-    tableauProjectEnvnameId
-  }
-}
-mutation UpdateTableauProject(
-  $input: UpdateTableauProjectInput!
-  $condition: ModelTableauProjectConditionInput
-) {
-  updateTableauProject(input: $input, condition: $condition) {
-    TProId
-    name
-    Did {
-      Did
-      CustomerId {
-        CustomerId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        customerDidId
-      }
-      Dname
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      departmentCustomerIdId
-    }
-    envname {
-      name
-      TProId {
-        TProId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectDidId
-        tableauProjectEnvnameId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauEnvTProIdId
-    }
-    WbId {
-      items {
-        WbId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectWbIdId
-      }
-      nextToken
-      startedAt
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauProjectDidId
-    tableauProjectEnvnameId
-  }
-}
-mutation DeleteTableauProject(
-  $input: DeleteTableauProjectInput!
-  $condition: ModelTableauProjectConditionInput
-) {
-  deleteTableauProject(input: $input, condition: $condition) {
-    TProId
-    name
-    Did {
-      Did
-      CustomerId {
-        CustomerId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        customerDidId
-      }
-      Dname
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      departmentCustomerIdId
-    }
-    envname {
-      name
-      TProId {
-        TProId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectDidId
-        tableauProjectEnvnameId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauEnvTProIdId
-    }
-    WbId {
-      items {
-        WbId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectWbIdId
-      }
-      nextToken
-      startedAt
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauProjectDidId
-    tableauProjectEnvnameId
-  }
-}
-mutation CreateTableauWorkbook(
-  $input: CreateTableauWorkbookInput!
-  $condition: ModelTableauWorkbookConditionInput
-) {
-  createTableauWorkbook(input: $input, condition: $condition) {
-    WbId
-    name
-    TProId {
-      TProId
-      name
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      envname {
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauEnvTProIdId
-      }
-      WbId {
-        nextToken
-        startedAt
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauProjectDidId
-      tableauProjectEnvnameId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauProjectWbIdId
-  }
-}
-mutation UpdateTableauWorkbook(
-  $input: UpdateTableauWorkbookInput!
-  $condition: ModelTableauWorkbookConditionInput
-) {
-  updateTableauWorkbook(input: $input, condition: $condition) {
-    WbId
-    name
-    TProId {
-      TProId
-      name
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      envname {
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauEnvTProIdId
-      }
-      WbId {
-        nextToken
-        startedAt
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauProjectDidId
-      tableauProjectEnvnameId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauProjectWbIdId
-  }
-}
-mutation DeleteTableauWorkbook(
-  $input: DeleteTableauWorkbookInput!
-  $condition: ModelTableauWorkbookConditionInput
-) {
-  deleteTableauWorkbook(input: $input, condition: $condition) {
-    WbId
-    name
-    TProId {
-      TProId
-      name
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      envname {
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauEnvTProIdId
-      }
-      WbId {
-        nextToken
-        startedAt
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauProjectDidId
-      tableauProjectEnvnameId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauProjectWbIdId
-  }
-}
-mutation CreateTableauSheet(
-  $input: CreateTableauSheetInput!
-  $condition: ModelTableauSheetConditionInput
-) {
-  createTableauSheet(input: $input, condition: $condition) {
-    name
-    WbId {
-      WbId
-      name
-      TProId {
-        TProId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectDidId
-        tableauProjectEnvnameId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauProjectWbIdId
-    }
-    Tsid
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauSheetWbIdId
-  }
-}
-mutation UpdateTableauSheet(
-  $input: UpdateTableauSheetInput!
-  $condition: ModelTableauSheetConditionInput
-) {
-  updateTableauSheet(input: $input, condition: $condition) {
-    name
-    WbId {
-      WbId
-      name
-      TProId {
-        TProId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectDidId
-        tableauProjectEnvnameId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauProjectWbIdId
-    }
-    Tsid
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauSheetWbIdId
-  }
-}
-mutation DeleteTableauSheet(
-  $input: DeleteTableauSheetInput!
-  $condition: ModelTableauSheetConditionInput
-) {
-  deleteTableauSheet(input: $input, condition: $condition) {
-    name
-    WbId {
-      WbId
-      name
-      TProId {
-        TProId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectDidId
-        tableauProjectEnvnameId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauProjectWbIdId
-    }
-    Tsid
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauSheetWbIdId
-  }
-}
-mutation CreateTableauGraph(
-  $input: CreateTableauGraphInput!
-  $condition: ModelTableauGraphConditionInput
-) {
-  createTableauGraph(input: $input, condition: $condition) {
-    name
-    Tsid {
-      name
-      WbId {
-        WbId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectWbIdId
-      }
-      Tsid
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauSheetWbIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauGraphTsidId
-  }
-}
-mutation UpdateTableauGraph(
-  $input: UpdateTableauGraphInput!
-  $condition: ModelTableauGraphConditionInput
-) {
-  updateTableauGraph(input: $input, condition: $condition) {
-    name
-    Tsid {
-      name
-      WbId {
-        WbId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectWbIdId
-      }
-      Tsid
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauSheetWbIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauGraphTsidId
-  }
-}
-mutation DeleteTableauGraph(
-  $input: DeleteTableauGraphInput!
-  $condition: ModelTableauGraphConditionInput
-) {
-  deleteTableauGraph(input: $input, condition: $condition) {
-    name
-    Tsid {
-      name
-      WbId {
-        WbId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauProjectWbIdId
-      }
-      Tsid
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauSheetWbIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauGraphTsidId
-  }
-}
-mutation CreateTableauEnv(
-  $input: CreateTableauEnvInput!
-  $condition: ModelTableauEnvConditionInput
-) {
-  createTableauEnv(input: $input, condition: $condition) {
-    name
-    TProId {
-      TProId
-      name
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      envname {
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauEnvTProIdId
-      }
-      WbId {
-        nextToken
-        startedAt
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauProjectDidId
-      tableauProjectEnvnameId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauEnvTProIdId
-  }
-}
-mutation UpdateTableauEnv(
-  $input: UpdateTableauEnvInput!
-  $condition: ModelTableauEnvConditionInput
-) {
-  updateTableauEnv(input: $input, condition: $condition) {
-    name
-    TProId {
-      TProId
-      name
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      envname {
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauEnvTProIdId
-      }
-      WbId {
-        nextToken
-        startedAt
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauProjectDidId
-      tableauProjectEnvnameId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauEnvTProIdId
-  }
-}
-mutation DeleteTableauEnv(
-  $input: DeleteTableauEnvInput!
-  $condition: ModelTableauEnvConditionInput
-) {
-  deleteTableauEnv(input: $input, condition: $condition) {
-    name
-    TProId {
-      TProId
-      name
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      envname {
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        tableauEnvTProIdId
-      }
-      WbId {
-        nextToken
-        startedAt
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      tableauProjectDidId
-      tableauProjectEnvnameId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    tableauEnvTProIdId
-  }
-}
-mutation CreateQuicksiteProject(
-  $input: CreateQuicksiteProjectInput!
-  $condition: ModelQuicksiteProjectConditionInput
-) {
-  createQuicksiteProject(input: $input, condition: $condition) {
-    name
-    QProId
-    Did {
-      Did
-      CustomerId {
-        CustomerId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        customerDidId
-      }
-      Dname
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      departmentCustomerIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteProjectDidId
-  }
-}
-mutation UpdateQuicksiteProject(
-  $input: UpdateQuicksiteProjectInput!
-  $condition: ModelQuicksiteProjectConditionInput
-) {
-  updateQuicksiteProject(input: $input, condition: $condition) {
-    name
-    QProId
-    Did {
-      Did
-      CustomerId {
-        CustomerId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        customerDidId
-      }
-      Dname
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      departmentCustomerIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteProjectDidId
-  }
-}
-mutation DeleteQuicksiteProject(
-  $input: DeleteQuicksiteProjectInput!
-  $condition: ModelQuicksiteProjectConditionInput
-) {
-  deleteQuicksiteProject(input: $input, condition: $condition) {
-    name
-    QProId
-    Did {
-      Did
-      CustomerId {
-        CustomerId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        customerDidId
-      }
-      Dname
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      departmentCustomerIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteProjectDidId
-  }
-}
-mutation CreateQuicksiteTemplate(
-  $input: CreateQuicksiteTemplateInput!
-  $condition: ModelQuicksiteTemplateConditionInput
-) {
-  createQuicksiteTemplate(input: $input, condition: $condition) {
-    QtemId
-    name
-    analysisId {
-      name
-      analysisId
-      QtemId {
-        QtemId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteTemplateAnalysisIdId
-        quicksiteTemplateQProIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteAnalysisQtemIdId
-    }
-    QProId {
-      name
-      QProId
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteProjectDidId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteTemplateAnalysisIdId
-    quicksiteTemplateQProIdId
-  }
-}
-mutation UpdateQuicksiteTemplate(
-  $input: UpdateQuicksiteTemplateInput!
-  $condition: ModelQuicksiteTemplateConditionInput
-) {
-  updateQuicksiteTemplate(input: $input, condition: $condition) {
-    QtemId
-    name
-    analysisId {
-      name
-      analysisId
-      QtemId {
-        QtemId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteTemplateAnalysisIdId
-        quicksiteTemplateQProIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteAnalysisQtemIdId
-    }
-    QProId {
-      name
-      QProId
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteProjectDidId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteTemplateAnalysisIdId
-    quicksiteTemplateQProIdId
-  }
-}
-mutation DeleteQuicksiteTemplate(
-  $input: DeleteQuicksiteTemplateInput!
-  $condition: ModelQuicksiteTemplateConditionInput
-) {
-  deleteQuicksiteTemplate(input: $input, condition: $condition) {
-    QtemId
-    name
-    analysisId {
-      name
-      analysisId
-      QtemId {
-        QtemId
-        name
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteTemplateAnalysisIdId
-        quicksiteTemplateQProIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteAnalysisQtemIdId
-    }
-    QProId {
-      name
-      QProId
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteProjectDidId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteTemplateAnalysisIdId
-    quicksiteTemplateQProIdId
-  }
-}
-mutation CreateQuicksiteAnalysis(
-  $input: CreateQuicksiteAnalysisInput!
-  $condition: ModelQuicksiteAnalysisConditionInput
-) {
-  createQuicksiteAnalysis(input: $input, condition: $condition) {
-    name
-    analysisId
-    QtemId {
-      QtemId
-      name
-      analysisId {
-        name
-        analysisId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteAnalysisQtemIdId
-      }
-      QProId {
-        name
-        QProId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteProjectDidId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteTemplateAnalysisIdId
-      quicksiteTemplateQProIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteAnalysisQtemIdId
-  }
-}
-mutation UpdateQuicksiteAnalysis(
-  $input: UpdateQuicksiteAnalysisInput!
-  $condition: ModelQuicksiteAnalysisConditionInput
-) {
-  updateQuicksiteAnalysis(input: $input, condition: $condition) {
-    name
-    analysisId
-    QtemId {
-      QtemId
-      name
-      analysisId {
-        name
-        analysisId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteAnalysisQtemIdId
-      }
-      QProId {
-        name
-        QProId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteProjectDidId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteTemplateAnalysisIdId
-      quicksiteTemplateQProIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteAnalysisQtemIdId
-  }
-}
-mutation DeleteQuicksiteAnalysis(
-  $input: DeleteQuicksiteAnalysisInput!
-  $condition: ModelQuicksiteAnalysisConditionInput
-) {
-  deleteQuicksiteAnalysis(input: $input, condition: $condition) {
-    name
-    analysisId
-    QtemId {
-      QtemId
-      name
-      analysisId {
-        name
-        analysisId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteAnalysisQtemIdId
-      }
-      QProId {
-        name
-        QProId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteProjectDidId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteTemplateAnalysisIdId
-      quicksiteTemplateQProIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteAnalysisQtemIdId
-  }
-}
-mutation CreateQuicksiteDashboard(
-  $input: CreateQuicksiteDashboardInput!
-  $condition: ModelQuicksiteDashboardConditionInput
-) {
-  createQuicksiteDashboard(input: $input, condition: $condition) {
-    name
-    QtemId {
-      QtemId
-      name
-      analysisId {
-        name
-        analysisId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteAnalysisQtemIdId
-      }
-      QProId {
-        name
-        QProId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteProjectDidId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteTemplateAnalysisIdId
-      quicksiteTemplateQProIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteDashboardQtemIdId
-  }
-}
-mutation UpdateQuicksiteDashboard(
-  $input: UpdateQuicksiteDashboardInput!
-  $condition: ModelQuicksiteDashboardConditionInput
-) {
-  updateQuicksiteDashboard(input: $input, condition: $condition) {
-    name
-    QtemId {
-      QtemId
-      name
-      analysisId {
-        name
-        analysisId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteAnalysisQtemIdId
-      }
-      QProId {
-        name
-        QProId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteProjectDidId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteTemplateAnalysisIdId
-      quicksiteTemplateQProIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteDashboardQtemIdId
-  }
-}
-mutation DeleteQuicksiteDashboard(
-  $input: DeleteQuicksiteDashboardInput!
-  $condition: ModelQuicksiteDashboardConditionInput
-) {
-  deleteQuicksiteDashboard(input: $input, condition: $condition) {
-    name
-    QtemId {
-      QtemId
-      name
-      analysisId {
-        name
-        analysisId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteAnalysisQtemIdId
-      }
-      QProId {
-        name
-        QProId
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        quicksiteProjectDidId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteTemplateAnalysisIdId
-      quicksiteTemplateQProIdId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteDashboardQtemIdId
-  }
-}
-mutation CreateQuicksiteEnv(
-  $input: CreateQuicksiteEnvInput!
-  $condition: ModelQuicksiteEnvConditionInput
-) {
-  createQuicksiteEnv(input: $input, condition: $condition) {
-    name
-    QProId {
-      name
-      QProId
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteProjectDidId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteEnvQProIdId
-  }
-}
-mutation UpdateQuicksiteEnv(
-  $input: UpdateQuicksiteEnvInput!
-  $condition: ModelQuicksiteEnvConditionInput
-) {
-  updateQuicksiteEnv(input: $input, condition: $condition) {
-    name
-    QProId {
-      name
-      QProId
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteProjectDidId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteEnvQProIdId
-  }
-}
-mutation DeleteQuicksiteEnv(
-  $input: DeleteQuicksiteEnvInput!
-  $condition: ModelQuicksiteEnvConditionInput
-) {
-  deleteQuicksiteEnv(input: $input, condition: $condition) {
-    name
-    QProId {
-      name
-      QProId
-      Did {
-        Did
-        Dname
-        id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-        departmentCustomerIdId
-      }
-      id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-      quicksiteProjectDidId
-    }
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-    quicksiteEnvQProIdId
   }
 }
 mutation CreateBIMProject(
@@ -1802,6 +263,20 @@ mutation CreateBIMProject(
 ) {
   createBIMProject(input: $input, condition: $condition) {
     Did
+    department {
+      id
+      DName
+      customers {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    migrationid
     name
     source
     destination
@@ -1819,6 +294,20 @@ mutation UpdateBIMProject(
 ) {
   updateBIMProject(input: $input, condition: $condition) {
     Did
+    department {
+      id
+      DName
+      customers {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    migrationid
     name
     source
     destination
@@ -1836,273 +325,23 @@ mutation DeleteBIMProject(
 ) {
   deleteBIMProject(input: $input, condition: $condition) {
     Did
+    department {
+      id
+      DName
+      customers {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    migrationid
     name
     source
     destination
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-mutation CreateDataset(
-  $input: CreateDatasetInput!
-  $condition: ModelDatasetConditionInput
-) {
-  createDataset(input: $input, condition: $condition) {
-    name
-    datasources
-    files
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-mutation UpdateDataset(
-  $input: UpdateDatasetInput!
-  $condition: ModelDatasetConditionInput
-) {
-  updateDataset(input: $input, condition: $condition) {
-    name
-    datasources
-    files
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-mutation DeleteDataset(
-  $input: DeleteDatasetInput!
-  $condition: ModelDatasetConditionInput
-) {
-  deleteDataset(input: $input, condition: $condition) {
-    name
-    datasources
-    files
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-mutation CreateDatasouce(
-  $input: CreateDatasouceInput!
-  $condition: ModelDatasouceConditionInput
-) {
-  createDatasouce(input: $input, condition: $condition) {
-    name
-    dsid
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-mutation UpdateDatasouce(
-  $input: UpdateDatasouceInput!
-  $condition: ModelDatasouceConditionInput
-) {
-  updateDatasouce(input: $input, condition: $condition) {
-    name
-    dsid
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-mutation DeleteDatasouce(
-  $input: DeleteDatasouceInput!
-  $condition: ModelDatasouceConditionInput
-) {
-  deleteDatasouce(input: $input, condition: $condition) {
-    name
-    dsid
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-mutation CreateQuicksightFolder(
-  $input: CreateQuicksightFolderInput!
-  $condition: ModelQuicksightFolderConditionInput
-) {
-  createQuicksightFolder(input: $input, condition: $condition) {
-    name
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-mutation UpdateQuicksightFolder(
-  $input: UpdateQuicksightFolderInput!
-  $condition: ModelQuicksightFolderConditionInput
-) {
-  updateQuicksightFolder(input: $input, condition: $condition) {
-    name
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-mutation DeleteQuicksightFolder(
-  $input: DeleteQuicksightFolderInput!
-  $condition: ModelQuicksightFolderConditionInput
-) {
-  deleteQuicksightFolder(input: $input, condition: $condition) {
-    name
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-mutation CreateQuicksightGroup(
-  $input: CreateQuicksightGroupInput!
-  $condition: ModelQuicksightGroupConditionInput
-) {
-  createQuicksightGroup(input: $input, condition: $condition) {
-    name
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-mutation UpdateQuicksightGroup(
-  $input: UpdateQuicksightGroupInput!
-  $condition: ModelQuicksightGroupConditionInput
-) {
-  updateQuicksightGroup(input: $input, condition: $condition) {
-    name
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-mutation DeleteQuicksightGroup(
-  $input: DeleteQuicksightGroupInput!
-  $condition: ModelQuicksightGroupConditionInput
-) {
-  deleteQuicksightGroup(input: $input, condition: $condition) {
-    name
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-mutation CreateFile(
-  $input: CreateFileInput!
-  $condition: ModelFileConditionInput
-) {
-  createFile(input: $input, condition: $condition) {
-    name
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-mutation UpdateFile(
-  $input: UpdateFileInput!
-  $condition: ModelFileConditionInput
-) {
-  updateFile(input: $input, condition: $condition) {
-    name
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-mutation DeleteFile(
-  $input: DeleteFileInput!
-  $condition: ModelFileConditionInput
-) {
-  deleteFile(input: $input, condition: $condition) {
-    name
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-mutation CreateTable(
-  $input: CreateTableInput!
-  $condition: ModelTableConditionInput
-) {
-  createTable(input: $input, condition: $condition) {
-    name
-    dsid
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-mutation UpdateTable(
-  $input: UpdateTableInput!
-  $condition: ModelTableConditionInput
-) {
-  updateTable(input: $input, condition: $condition) {
-    name
-    dsid
-    id
-    createdAt
-    updatedAt
-    _version
-    _deleted
-    _lastChangedAt
-  }
-}
-mutation DeleteTable(
-  $input: DeleteTableInput!
-  $condition: ModelTableConditionInput
-) {
-  deleteTable(input: $input, condition: $condition) {
-    name
-    dsid
     id
     createdAt
     updatedAt
