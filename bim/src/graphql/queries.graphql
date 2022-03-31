@@ -379,3 +379,300 @@ query SyncBIMProjects(
     startedAt
   }
 }
+query GetDataset($id: ID!) {
+  getDataset(id: $id) {
+    datasetid
+    name
+    datasources {
+      items {
+        dsid
+        name
+        datasetid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+    }
+    Files {
+      items {
+        name
+        url
+        datasetid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+query ListDatasets(
+  $filter: ModelDatasetFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listDatasets(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      datasetid
+      name
+      datasources {
+        nextToken
+      }
+      Files {
+        nextToken
+        startedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query SyncDatasets(
+  $filter: ModelDatasetFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncDatasets(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      datasetid
+      name
+      datasources {
+        nextToken
+      }
+      Files {
+        nextToken
+        startedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query GetFile($id: ID!) {
+  getFile(id: $id) {
+    name
+    url
+    datasetid
+    datasets {
+      datasetid
+      name
+      datasources {
+        nextToken
+      }
+      Files {
+        nextToken
+        startedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+query ListFiles(
+  $filter: ModelFileFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listFiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      name
+      url
+      datasetid
+      datasets {
+        datasetid
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query SyncFiles(
+  $filter: ModelFileFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncFiles(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      name
+      url
+      datasetid
+      datasets {
+        datasetid
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query GetDatasources($id: ID!) {
+  getDatasources(id: $id) {
+    dsid
+    name
+    datasetid
+    datasets {
+      datasetid
+      name
+      datasources {
+        nextToken
+      }
+      Files {
+        nextToken
+        startedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+query ListDatasources(
+  $filter: ModelDatasourcesFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listDatasources(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      dsid
+      name
+      datasetid
+      datasets {
+        datasetid
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query SyncDatasources(
+  $filter: ModelDatasourcesFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncDatasources(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      dsid
+      name
+      datasetid
+      datasets {
+        datasetid
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    nextToken
+    startedAt
+  }
+}

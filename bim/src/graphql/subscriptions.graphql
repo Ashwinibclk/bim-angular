@@ -305,3 +305,306 @@ subscription OnDeleteBIMProject {
     _lastChangedAt
   }
 }
+subscription OnCreateDataset {
+  onCreateDataset {
+    datasetid
+    name
+    datasources {
+      items {
+        dsid
+        name
+        datasetid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+    }
+    Files {
+      items {
+        name
+        url
+        datasetid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnUpdateDataset {
+  onUpdateDataset {
+    datasetid
+    name
+    datasources {
+      items {
+        dsid
+        name
+        datasetid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+    }
+    Files {
+      items {
+        name
+        url
+        datasetid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnDeleteDataset {
+  onDeleteDataset {
+    datasetid
+    name
+    datasources {
+      items {
+        dsid
+        name
+        datasetid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+    }
+    Files {
+      items {
+        name
+        url
+        datasetid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnCreateFile {
+  onCreateFile {
+    name
+    url
+    datasetid
+    datasets {
+      datasetid
+      name
+      datasources {
+        nextToken
+      }
+      Files {
+        nextToken
+        startedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnUpdateFile {
+  onUpdateFile {
+    name
+    url
+    datasetid
+    datasets {
+      datasetid
+      name
+      datasources {
+        nextToken
+      }
+      Files {
+        nextToken
+        startedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnDeleteFile {
+  onDeleteFile {
+    name
+    url
+    datasetid
+    datasets {
+      datasetid
+      name
+      datasources {
+        nextToken
+      }
+      Files {
+        nextToken
+        startedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnCreateDatasources {
+  onCreateDatasources {
+    dsid
+    name
+    datasetid
+    datasets {
+      datasetid
+      name
+      datasources {
+        nextToken
+      }
+      Files {
+        nextToken
+        startedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnUpdateDatasources {
+  onUpdateDatasources {
+    dsid
+    name
+    datasetid
+    datasets {
+      datasetid
+      name
+      datasources {
+        nextToken
+      }
+      Files {
+        nextToken
+        startedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnDeleteDatasources {
+  onDeleteDatasources {
+    dsid
+    name
+    datasetid
+    datasets {
+      datasetid
+      name
+      datasources {
+        nextToken
+      }
+      Files {
+        nextToken
+        startedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}

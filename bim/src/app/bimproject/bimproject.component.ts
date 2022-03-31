@@ -2,12 +2,15 @@ import {Component, OnInit, OnDestroy, ChangeDetectorRef } from "@angular/core";
 import {FormBuilder, FormGroup, Validators,ReactiveFormsModule, FormControl} from "@angular/forms";
 import {APIService,  BIMProject} from "../API.service";
 import { Subscription } from "rxjs";
+import { BIPlatform } from "../API.service";
+
 
 @Component({
   selector: 'app-bimproject',
   templateUrl: './bimproject.component.html',
   styleUrls: ['./bimproject.component.css']
 })
+
 
 
 export class BimprojectComponent implements OnInit {

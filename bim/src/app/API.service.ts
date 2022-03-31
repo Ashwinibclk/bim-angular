@@ -25,6 +25,15 @@ export type __SubscriptionContainer = {
   onCreateBIMProject: OnCreateBIMProjectSubscription;
   onUpdateBIMProject: OnUpdateBIMProjectSubscription;
   onDeleteBIMProject: OnDeleteBIMProjectSubscription;
+  onCreateDataset: OnCreateDatasetSubscription;
+  onUpdateDataset: OnUpdateDatasetSubscription;
+  onDeleteDataset: OnDeleteDatasetSubscription;
+  onCreateFile: OnCreateFileSubscription;
+  onUpdateFile: OnUpdateFileSubscription;
+  onDeleteFile: OnDeleteFileSubscription;
+  onCreateDatasources: OnCreateDatasourcesSubscription;
+  onUpdateDatasources: OnUpdateDatasourcesSubscription;
+  onDeleteDatasources: OnDeleteDatasourcesSubscription;
 };
 
 export type CreateTableauloginInput = {
@@ -305,6 +314,148 @@ export type DeleteBIMProjectInput = {
   _version?: number | null;
 };
 
+export type CreateDatasetInput = {
+  datasetid: string;
+  name: string;
+  id?: string | null;
+  _version?: number | null;
+};
+
+export type ModelDatasetConditionInput = {
+  datasetid?: ModelIDInput | null;
+  name?: ModelStringInput | null;
+  and?: Array<ModelDatasetConditionInput | null> | null;
+  or?: Array<ModelDatasetConditionInput | null> | null;
+  not?: ModelDatasetConditionInput | null;
+};
+
+export type dataset = {
+  __typename: "dataset";
+  datasetid: string;
+  name: string;
+  datasources?: ModeldatasourcesConnection | null;
+  Files?: ModelFileConnection | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type ModeldatasourcesConnection = {
+  __typename: "ModeldatasourcesConnection";
+  items: Array<datasources | null>;
+  nextToken?: string | null;
+};
+
+export type datasources = {
+  __typename: "datasources";
+  dsid: string;
+  name: string;
+  datasetid: string;
+  datasets?: dataset | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type ModelFileConnection = {
+  __typename: "ModelFileConnection";
+  items: Array<File | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type File = {
+  __typename: "File";
+  name: string;
+  url: string;
+  datasetid: string;
+  datasets?: dataset | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type UpdateDatasetInput = {
+  datasetid?: string | null;
+  name?: string | null;
+  id: string;
+  _version?: number | null;
+};
+
+export type DeleteDatasetInput = {
+  id: string;
+  _version?: number | null;
+};
+
+export type CreateFileInput = {
+  name: string;
+  url: string;
+  datasetid: string;
+  id?: string | null;
+  _version?: number | null;
+};
+
+export type ModelFileConditionInput = {
+  name?: ModelStringInput | null;
+  url?: ModelStringInput | null;
+  datasetid?: ModelIDInput | null;
+  and?: Array<ModelFileConditionInput | null> | null;
+  or?: Array<ModelFileConditionInput | null> | null;
+  not?: ModelFileConditionInput | null;
+};
+
+export type UpdateFileInput = {
+  name?: string | null;
+  url?: string | null;
+  datasetid?: string | null;
+  id: string;
+  _version?: number | null;
+};
+
+export type DeleteFileInput = {
+  id: string;
+  _version?: number | null;
+};
+
+export type CreateDatasourcesInput = {
+  dsid: string;
+  name: string;
+  datasetid: string;
+  id?: string | null;
+  _version?: number | null;
+};
+
+export type ModelDatasourcesConditionInput = {
+  dsid?: ModelIDInput | null;
+  name?: ModelStringInput | null;
+  datasetid?: ModelIDInput | null;
+  and?: Array<ModelDatasourcesConditionInput | null> | null;
+  or?: Array<ModelDatasourcesConditionInput | null> | null;
+  not?: ModelDatasourcesConditionInput | null;
+};
+
+export type UpdateDatasourcesInput = {
+  dsid?: string | null;
+  name?: string | null;
+  datasetid?: string | null;
+  id: string;
+  _version?: number | null;
+};
+
+export type DeleteDatasourcesInput = {
+  id: string;
+  _version?: number | null;
+};
+
 export type ModelTableauloginFilterInput = {
   id?: ModelIDInput | null;
   username?: ModelStringInput | null;
@@ -375,6 +526,46 @@ export type ModelBIMProjectFilterInput = {
 export type ModelBIMProjectConnection = {
   __typename: "ModelBIMProjectConnection";
   items: Array<BIMProject | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type ModelDatasetFilterInput = {
+  datasetid?: ModelIDInput | null;
+  name?: ModelStringInput | null;
+  and?: Array<ModelDatasetFilterInput | null> | null;
+  or?: Array<ModelDatasetFilterInput | null> | null;
+  not?: ModelDatasetFilterInput | null;
+};
+
+export type ModelDatasetConnection = {
+  __typename: "ModelDatasetConnection";
+  items: Array<dataset | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type ModelFileFilterInput = {
+  name?: ModelStringInput | null;
+  url?: ModelStringInput | null;
+  datasetid?: ModelIDInput | null;
+  and?: Array<ModelFileFilterInput | null> | null;
+  or?: Array<ModelFileFilterInput | null> | null;
+  not?: ModelFileFilterInput | null;
+};
+
+export type ModelDatasourcesFilterInput = {
+  dsid?: ModelIDInput | null;
+  name?: ModelStringInput | null;
+  datasetid?: ModelIDInput | null;
+  and?: Array<ModelDatasourcesFilterInput | null> | null;
+  or?: Array<ModelDatasourcesFilterInput | null> | null;
+  not?: ModelDatasourcesFilterInput | null;
+};
+
+export type ModelDatasourcesConnection = {
+  __typename: "ModelDatasourcesConnection";
+  items: Array<datasources | null>;
   nextToken?: string | null;
   startedAt?: number | null;
 };
@@ -695,6 +886,339 @@ export type DeleteBIMProjectMutation = {
   name: string;
   source: BIPlatform;
   destination: BIPlatform;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type CreateDatasetMutation = {
+  __typename: "dataset";
+  datasetid: string;
+  name: string;
+  datasources?: {
+    __typename: "ModeldatasourcesConnection";
+    items: Array<{
+      __typename: "datasources";
+      dsid: string;
+      name: string;
+      datasetid: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null>;
+    nextToken?: string | null;
+  } | null;
+  Files?: {
+    __typename: "ModelFileConnection";
+    items: Array<{
+      __typename: "File";
+      name: string;
+      url: string;
+      datasetid: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null>;
+    nextToken?: string | null;
+    startedAt?: number | null;
+  } | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type UpdateDatasetMutation = {
+  __typename: "dataset";
+  datasetid: string;
+  name: string;
+  datasources?: {
+    __typename: "ModeldatasourcesConnection";
+    items: Array<{
+      __typename: "datasources";
+      dsid: string;
+      name: string;
+      datasetid: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null>;
+    nextToken?: string | null;
+  } | null;
+  Files?: {
+    __typename: "ModelFileConnection";
+    items: Array<{
+      __typename: "File";
+      name: string;
+      url: string;
+      datasetid: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null>;
+    nextToken?: string | null;
+    startedAt?: number | null;
+  } | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type DeleteDatasetMutation = {
+  __typename: "dataset";
+  datasetid: string;
+  name: string;
+  datasources?: {
+    __typename: "ModeldatasourcesConnection";
+    items: Array<{
+      __typename: "datasources";
+      dsid: string;
+      name: string;
+      datasetid: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null>;
+    nextToken?: string | null;
+  } | null;
+  Files?: {
+    __typename: "ModelFileConnection";
+    items: Array<{
+      __typename: "File";
+      name: string;
+      url: string;
+      datasetid: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null>;
+    nextToken?: string | null;
+    startedAt?: number | null;
+  } | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type CreateFileMutation = {
+  __typename: "File";
+  name: string;
+  url: string;
+  datasetid: string;
+  datasets?: {
+    __typename: "dataset";
+    datasetid: string;
+    name: string;
+    datasources?: {
+      __typename: "ModeldatasourcesConnection";
+      nextToken?: string | null;
+    } | null;
+    Files?: {
+      __typename: "ModelFileConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type UpdateFileMutation = {
+  __typename: "File";
+  name: string;
+  url: string;
+  datasetid: string;
+  datasets?: {
+    __typename: "dataset";
+    datasetid: string;
+    name: string;
+    datasources?: {
+      __typename: "ModeldatasourcesConnection";
+      nextToken?: string | null;
+    } | null;
+    Files?: {
+      __typename: "ModelFileConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type DeleteFileMutation = {
+  __typename: "File";
+  name: string;
+  url: string;
+  datasetid: string;
+  datasets?: {
+    __typename: "dataset";
+    datasetid: string;
+    name: string;
+    datasources?: {
+      __typename: "ModeldatasourcesConnection";
+      nextToken?: string | null;
+    } | null;
+    Files?: {
+      __typename: "ModelFileConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type CreateDatasourcesMutation = {
+  __typename: "datasources";
+  dsid: string;
+  name: string;
+  datasetid: string;
+  datasets?: {
+    __typename: "dataset";
+    datasetid: string;
+    name: string;
+    datasources?: {
+      __typename: "ModeldatasourcesConnection";
+      nextToken?: string | null;
+    } | null;
+    Files?: {
+      __typename: "ModelFileConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type UpdateDatasourcesMutation = {
+  __typename: "datasources";
+  dsid: string;
+  name: string;
+  datasetid: string;
+  datasets?: {
+    __typename: "dataset";
+    datasetid: string;
+    name: string;
+    datasources?: {
+      __typename: "ModeldatasourcesConnection";
+      nextToken?: string | null;
+    } | null;
+    Files?: {
+      __typename: "ModelFileConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type DeleteDatasourcesMutation = {
+  __typename: "datasources";
+  dsid: string;
+  name: string;
+  datasetid: string;
+  datasets?: {
+    __typename: "dataset";
+    datasetid: string;
+    name: string;
+    datasources?: {
+      __typename: "ModeldatasourcesConnection";
+      nextToken?: string | null;
+    } | null;
+    Files?: {
+      __typename: "ModelFileConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -1035,6 +1559,285 @@ export type SyncBIMProjectsQuery = {
   startedAt?: number | null;
 };
 
+export type GetDatasetQuery = {
+  __typename: "dataset";
+  datasetid: string;
+  name: string;
+  datasources?: {
+    __typename: "ModeldatasourcesConnection";
+    items: Array<{
+      __typename: "datasources";
+      dsid: string;
+      name: string;
+      datasetid: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null>;
+    nextToken?: string | null;
+  } | null;
+  Files?: {
+    __typename: "ModelFileConnection";
+    items: Array<{
+      __typename: "File";
+      name: string;
+      url: string;
+      datasetid: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null>;
+    nextToken?: string | null;
+    startedAt?: number | null;
+  } | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type ListDatasetsQuery = {
+  __typename: "ModelDatasetConnection";
+  items: Array<{
+    __typename: "dataset";
+    datasetid: string;
+    name: string;
+    datasources?: {
+      __typename: "ModeldatasourcesConnection";
+      nextToken?: string | null;
+    } | null;
+    Files?: {
+      __typename: "ModelFileConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type SyncDatasetsQuery = {
+  __typename: "ModelDatasetConnection";
+  items: Array<{
+    __typename: "dataset";
+    datasetid: string;
+    name: string;
+    datasources?: {
+      __typename: "ModeldatasourcesConnection";
+      nextToken?: string | null;
+    } | null;
+    Files?: {
+      __typename: "ModelFileConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type GetFileQuery = {
+  __typename: "File";
+  name: string;
+  url: string;
+  datasetid: string;
+  datasets?: {
+    __typename: "dataset";
+    datasetid: string;
+    name: string;
+    datasources?: {
+      __typename: "ModeldatasourcesConnection";
+      nextToken?: string | null;
+    } | null;
+    Files?: {
+      __typename: "ModelFileConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type ListFilesQuery = {
+  __typename: "ModelFileConnection";
+  items: Array<{
+    __typename: "File";
+    name: string;
+    url: string;
+    datasetid: string;
+    datasets?: {
+      __typename: "dataset";
+      datasetid: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type SyncFilesQuery = {
+  __typename: "ModelFileConnection";
+  items: Array<{
+    __typename: "File";
+    name: string;
+    url: string;
+    datasetid: string;
+    datasets?: {
+      __typename: "dataset";
+      datasetid: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type GetDatasourcesQuery = {
+  __typename: "datasources";
+  dsid: string;
+  name: string;
+  datasetid: string;
+  datasets?: {
+    __typename: "dataset";
+    datasetid: string;
+    name: string;
+    datasources?: {
+      __typename: "ModeldatasourcesConnection";
+      nextToken?: string | null;
+    } | null;
+    Files?: {
+      __typename: "ModelFileConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type ListDatasourcesQuery = {
+  __typename: "ModelDatasourcesConnection";
+  items: Array<{
+    __typename: "datasources";
+    dsid: string;
+    name: string;
+    datasetid: string;
+    datasets?: {
+      __typename: "dataset";
+      datasetid: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type SyncDatasourcesQuery = {
+  __typename: "ModelDatasourcesConnection";
+  items: Array<{
+    __typename: "datasources";
+    dsid: string;
+    name: string;
+    datasetid: string;
+    datasets?: {
+      __typename: "dataset";
+      datasetid: string;
+      name: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
+};
+
 export type OnCreateTableauloginSubscription = {
   __typename: "Tableaulogin";
   id: string;
@@ -1351,6 +2154,339 @@ export type OnDeleteBIMProjectSubscription = {
   name: string;
   source: BIPlatform;
   destination: BIPlatform;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type OnCreateDatasetSubscription = {
+  __typename: "dataset";
+  datasetid: string;
+  name: string;
+  datasources?: {
+    __typename: "ModeldatasourcesConnection";
+    items: Array<{
+      __typename: "datasources";
+      dsid: string;
+      name: string;
+      datasetid: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null>;
+    nextToken?: string | null;
+  } | null;
+  Files?: {
+    __typename: "ModelFileConnection";
+    items: Array<{
+      __typename: "File";
+      name: string;
+      url: string;
+      datasetid: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null>;
+    nextToken?: string | null;
+    startedAt?: number | null;
+  } | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type OnUpdateDatasetSubscription = {
+  __typename: "dataset";
+  datasetid: string;
+  name: string;
+  datasources?: {
+    __typename: "ModeldatasourcesConnection";
+    items: Array<{
+      __typename: "datasources";
+      dsid: string;
+      name: string;
+      datasetid: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null>;
+    nextToken?: string | null;
+  } | null;
+  Files?: {
+    __typename: "ModelFileConnection";
+    items: Array<{
+      __typename: "File";
+      name: string;
+      url: string;
+      datasetid: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null>;
+    nextToken?: string | null;
+    startedAt?: number | null;
+  } | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type OnDeleteDatasetSubscription = {
+  __typename: "dataset";
+  datasetid: string;
+  name: string;
+  datasources?: {
+    __typename: "ModeldatasourcesConnection";
+    items: Array<{
+      __typename: "datasources";
+      dsid: string;
+      name: string;
+      datasetid: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null>;
+    nextToken?: string | null;
+  } | null;
+  Files?: {
+    __typename: "ModelFileConnection";
+    items: Array<{
+      __typename: "File";
+      name: string;
+      url: string;
+      datasetid: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null>;
+    nextToken?: string | null;
+    startedAt?: number | null;
+  } | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type OnCreateFileSubscription = {
+  __typename: "File";
+  name: string;
+  url: string;
+  datasetid: string;
+  datasets?: {
+    __typename: "dataset";
+    datasetid: string;
+    name: string;
+    datasources?: {
+      __typename: "ModeldatasourcesConnection";
+      nextToken?: string | null;
+    } | null;
+    Files?: {
+      __typename: "ModelFileConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type OnUpdateFileSubscription = {
+  __typename: "File";
+  name: string;
+  url: string;
+  datasetid: string;
+  datasets?: {
+    __typename: "dataset";
+    datasetid: string;
+    name: string;
+    datasources?: {
+      __typename: "ModeldatasourcesConnection";
+      nextToken?: string | null;
+    } | null;
+    Files?: {
+      __typename: "ModelFileConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type OnDeleteFileSubscription = {
+  __typename: "File";
+  name: string;
+  url: string;
+  datasetid: string;
+  datasets?: {
+    __typename: "dataset";
+    datasetid: string;
+    name: string;
+    datasources?: {
+      __typename: "ModeldatasourcesConnection";
+      nextToken?: string | null;
+    } | null;
+    Files?: {
+      __typename: "ModelFileConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type OnCreateDatasourcesSubscription = {
+  __typename: "datasources";
+  dsid: string;
+  name: string;
+  datasetid: string;
+  datasets?: {
+    __typename: "dataset";
+    datasetid: string;
+    name: string;
+    datasources?: {
+      __typename: "ModeldatasourcesConnection";
+      nextToken?: string | null;
+    } | null;
+    Files?: {
+      __typename: "ModelFileConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type OnUpdateDatasourcesSubscription = {
+  __typename: "datasources";
+  dsid: string;
+  name: string;
+  datasetid: string;
+  datasets?: {
+    __typename: "dataset";
+    datasetid: string;
+    name: string;
+    datasources?: {
+      __typename: "ModeldatasourcesConnection";
+      nextToken?: string | null;
+    } | null;
+    Files?: {
+      __typename: "ModelFileConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type OnDeleteDatasourcesSubscription = {
+  __typename: "datasources";
+  dsid: string;
+  name: string;
+  datasetid: string;
+  datasets?: {
+    __typename: "dataset";
+    datasetid: string;
+    name: string;
+    datasources?: {
+      __typename: "ModeldatasourcesConnection";
+      nextToken?: string | null;
+    } | null;
+    Files?: {
+      __typename: "ModelFileConnection";
+      nextToken?: string | null;
+      startedAt?: number | null;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -1926,6 +3062,483 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <DeleteBIMProjectMutation>response.data.deleteBIMProject;
+  }
+  async CreateDataset(
+    input: CreateDatasetInput,
+    condition?: ModelDatasetConditionInput
+  ): Promise<CreateDatasetMutation> {
+    const statement = `mutation CreateDataset($input: CreateDatasetInput!, $condition: ModelDatasetConditionInput) {
+        createDataset(input: $input, condition: $condition) {
+          __typename
+          datasetid
+          name
+          datasources {
+            __typename
+            items {
+              __typename
+              dsid
+              name
+              datasetid
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            nextToken
+          }
+          Files {
+            __typename
+            items {
+              __typename
+              name
+              url
+              datasetid
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            nextToken
+            startedAt
+          }
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateDatasetMutation>response.data.createDataset;
+  }
+  async UpdateDataset(
+    input: UpdateDatasetInput,
+    condition?: ModelDatasetConditionInput
+  ): Promise<UpdateDatasetMutation> {
+    const statement = `mutation UpdateDataset($input: UpdateDatasetInput!, $condition: ModelDatasetConditionInput) {
+        updateDataset(input: $input, condition: $condition) {
+          __typename
+          datasetid
+          name
+          datasources {
+            __typename
+            items {
+              __typename
+              dsid
+              name
+              datasetid
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            nextToken
+          }
+          Files {
+            __typename
+            items {
+              __typename
+              name
+              url
+              datasetid
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            nextToken
+            startedAt
+          }
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateDatasetMutation>response.data.updateDataset;
+  }
+  async DeleteDataset(
+    input: DeleteDatasetInput,
+    condition?: ModelDatasetConditionInput
+  ): Promise<DeleteDatasetMutation> {
+    const statement = `mutation DeleteDataset($input: DeleteDatasetInput!, $condition: ModelDatasetConditionInput) {
+        deleteDataset(input: $input, condition: $condition) {
+          __typename
+          datasetid
+          name
+          datasources {
+            __typename
+            items {
+              __typename
+              dsid
+              name
+              datasetid
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            nextToken
+          }
+          Files {
+            __typename
+            items {
+              __typename
+              name
+              url
+              datasetid
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            nextToken
+            startedAt
+          }
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteDatasetMutation>response.data.deleteDataset;
+  }
+  async CreateFile(
+    input: CreateFileInput,
+    condition?: ModelFileConditionInput
+  ): Promise<CreateFileMutation> {
+    const statement = `mutation CreateFile($input: CreateFileInput!, $condition: ModelFileConditionInput) {
+        createFile(input: $input, condition: $condition) {
+          __typename
+          name
+          url
+          datasetid
+          datasets {
+            __typename
+            datasetid
+            name
+            datasources {
+              __typename
+              nextToken
+            }
+            Files {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateFileMutation>response.data.createFile;
+  }
+  async UpdateFile(
+    input: UpdateFileInput,
+    condition?: ModelFileConditionInput
+  ): Promise<UpdateFileMutation> {
+    const statement = `mutation UpdateFile($input: UpdateFileInput!, $condition: ModelFileConditionInput) {
+        updateFile(input: $input, condition: $condition) {
+          __typename
+          name
+          url
+          datasetid
+          datasets {
+            __typename
+            datasetid
+            name
+            datasources {
+              __typename
+              nextToken
+            }
+            Files {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateFileMutation>response.data.updateFile;
+  }
+  async DeleteFile(
+    input: DeleteFileInput,
+    condition?: ModelFileConditionInput
+  ): Promise<DeleteFileMutation> {
+    const statement = `mutation DeleteFile($input: DeleteFileInput!, $condition: ModelFileConditionInput) {
+        deleteFile(input: $input, condition: $condition) {
+          __typename
+          name
+          url
+          datasetid
+          datasets {
+            __typename
+            datasetid
+            name
+            datasources {
+              __typename
+              nextToken
+            }
+            Files {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteFileMutation>response.data.deleteFile;
+  }
+  async CreateDatasources(
+    input: CreateDatasourcesInput,
+    condition?: ModelDatasourcesConditionInput
+  ): Promise<CreateDatasourcesMutation> {
+    const statement = `mutation CreateDatasources($input: CreateDatasourcesInput!, $condition: ModelDatasourcesConditionInput) {
+        createDatasources(input: $input, condition: $condition) {
+          __typename
+          dsid
+          name
+          datasetid
+          datasets {
+            __typename
+            datasetid
+            name
+            datasources {
+              __typename
+              nextToken
+            }
+            Files {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateDatasourcesMutation>response.data.createDatasources;
+  }
+  async UpdateDatasources(
+    input: UpdateDatasourcesInput,
+    condition?: ModelDatasourcesConditionInput
+  ): Promise<UpdateDatasourcesMutation> {
+    const statement = `mutation UpdateDatasources($input: UpdateDatasourcesInput!, $condition: ModelDatasourcesConditionInput) {
+        updateDatasources(input: $input, condition: $condition) {
+          __typename
+          dsid
+          name
+          datasetid
+          datasets {
+            __typename
+            datasetid
+            name
+            datasources {
+              __typename
+              nextToken
+            }
+            Files {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateDatasourcesMutation>response.data.updateDatasources;
+  }
+  async DeleteDatasources(
+    input: DeleteDatasourcesInput,
+    condition?: ModelDatasourcesConditionInput
+  ): Promise<DeleteDatasourcesMutation> {
+    const statement = `mutation DeleteDatasources($input: DeleteDatasourcesInput!, $condition: ModelDatasourcesConditionInput) {
+        deleteDatasources(input: $input, condition: $condition) {
+          __typename
+          dsid
+          name
+          datasetid
+          datasets {
+            __typename
+            datasetid
+            name
+            datasources {
+              __typename
+              nextToken
+            }
+            Files {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteDatasourcesMutation>response.data.deleteDatasources;
   }
   async GetTableaulogin(id: string): Promise<GetTableauloginQuery> {
     const statement = `query GetTableaulogin($id: ID!) {
@@ -2539,6 +4152,453 @@ export class APIService {
     )) as any;
     return <SyncBIMProjectsQuery>response.data.syncBIMProjects;
   }
+  async GetDataset(id: string): Promise<GetDatasetQuery> {
+    const statement = `query GetDataset($id: ID!) {
+        getDataset(id: $id) {
+          __typename
+          datasetid
+          name
+          datasources {
+            __typename
+            items {
+              __typename
+              dsid
+              name
+              datasetid
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            nextToken
+          }
+          Files {
+            __typename
+            items {
+              __typename
+              name
+              url
+              datasetid
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            nextToken
+            startedAt
+          }
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetDatasetQuery>response.data.getDataset;
+  }
+  async ListDatasets(
+    filter?: ModelDatasetFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListDatasetsQuery> {
+    const statement = `query ListDatasets($filter: ModelDatasetFilterInput, $limit: Int, $nextToken: String) {
+        listDatasets(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            datasetid
+            name
+            datasources {
+              __typename
+              nextToken
+            }
+            Files {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListDatasetsQuery>response.data.listDatasets;
+  }
+  async SyncDatasets(
+    filter?: ModelDatasetFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncDatasetsQuery> {
+    const statement = `query SyncDatasets($filter: ModelDatasetFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncDatasets(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+          __typename
+          items {
+            __typename
+            datasetid
+            name
+            datasources {
+              __typename
+              nextToken
+            }
+            Files {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncDatasetsQuery>response.data.syncDatasets;
+  }
+  async GetFile(id: string): Promise<GetFileQuery> {
+    const statement = `query GetFile($id: ID!) {
+        getFile(id: $id) {
+          __typename
+          name
+          url
+          datasetid
+          datasets {
+            __typename
+            datasetid
+            name
+            datasources {
+              __typename
+              nextToken
+            }
+            Files {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetFileQuery>response.data.getFile;
+  }
+  async ListFiles(
+    filter?: ModelFileFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListFilesQuery> {
+    const statement = `query ListFiles($filter: ModelFileFilterInput, $limit: Int, $nextToken: String) {
+        listFiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            name
+            url
+            datasetid
+            datasets {
+              __typename
+              datasetid
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListFilesQuery>response.data.listFiles;
+  }
+  async SyncFiles(
+    filter?: ModelFileFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncFilesQuery> {
+    const statement = `query SyncFiles($filter: ModelFileFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncFiles(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+          __typename
+          items {
+            __typename
+            name
+            url
+            datasetid
+            datasets {
+              __typename
+              datasetid
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncFilesQuery>response.data.syncFiles;
+  }
+  async GetDatasources(id: string): Promise<GetDatasourcesQuery> {
+    const statement = `query GetDatasources($id: ID!) {
+        getDatasources(id: $id) {
+          __typename
+          dsid
+          name
+          datasetid
+          datasets {
+            __typename
+            datasetid
+            name
+            datasources {
+              __typename
+              nextToken
+            }
+            Files {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetDatasourcesQuery>response.data.getDatasources;
+  }
+  async ListDatasources(
+    filter?: ModelDatasourcesFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListDatasourcesQuery> {
+    const statement = `query ListDatasources($filter: ModelDatasourcesFilterInput, $limit: Int, $nextToken: String) {
+        listDatasources(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            dsid
+            name
+            datasetid
+            datasets {
+              __typename
+              datasetid
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListDatasourcesQuery>response.data.listDatasources;
+  }
+  async SyncDatasources(
+    filter?: ModelDatasourcesFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncDatasourcesQuery> {
+    const statement = `query SyncDatasources($filter: ModelDatasourcesFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncDatasources(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+          __typename
+          items {
+            __typename
+            dsid
+            name
+            datasetid
+            datasets {
+              __typename
+              datasetid
+              name
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncDatasourcesQuery>response.data.syncDatasources;
+  }
   OnCreateTableauloginListener: Observable<
     SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateTableaulogin">>
   > = API.graphql(
@@ -3023,5 +5083,428 @@ export class APIService {
     )
   ) as Observable<
     SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteBIMProject">>
+  >;
+
+  OnCreateDatasetListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateDataset">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateDataset {
+        onCreateDataset {
+          __typename
+          datasetid
+          name
+          datasources {
+            __typename
+            items {
+              __typename
+              dsid
+              name
+              datasetid
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            nextToken
+          }
+          Files {
+            __typename
+            items {
+              __typename
+              name
+              url
+              datasetid
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            nextToken
+            startedAt
+          }
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateDataset">>
+  >;
+
+  OnUpdateDatasetListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateDataset">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateDataset {
+        onUpdateDataset {
+          __typename
+          datasetid
+          name
+          datasources {
+            __typename
+            items {
+              __typename
+              dsid
+              name
+              datasetid
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            nextToken
+          }
+          Files {
+            __typename
+            items {
+              __typename
+              name
+              url
+              datasetid
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            nextToken
+            startedAt
+          }
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateDataset">>
+  >;
+
+  OnDeleteDatasetListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteDataset">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteDataset {
+        onDeleteDataset {
+          __typename
+          datasetid
+          name
+          datasources {
+            __typename
+            items {
+              __typename
+              dsid
+              name
+              datasetid
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            nextToken
+          }
+          Files {
+            __typename
+            items {
+              __typename
+              name
+              url
+              datasetid
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            nextToken
+            startedAt
+          }
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteDataset">>
+  >;
+
+  OnCreateFileListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateFile">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateFile {
+        onCreateFile {
+          __typename
+          name
+          url
+          datasetid
+          datasets {
+            __typename
+            datasetid
+            name
+            datasources {
+              __typename
+              nextToken
+            }
+            Files {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateFile">>
+  >;
+
+  OnUpdateFileListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateFile">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateFile {
+        onUpdateFile {
+          __typename
+          name
+          url
+          datasetid
+          datasets {
+            __typename
+            datasetid
+            name
+            datasources {
+              __typename
+              nextToken
+            }
+            Files {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateFile">>
+  >;
+
+  OnDeleteFileListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteFile">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteFile {
+        onDeleteFile {
+          __typename
+          name
+          url
+          datasetid
+          datasets {
+            __typename
+            datasetid
+            name
+            datasources {
+              __typename
+              nextToken
+            }
+            Files {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteFile">>
+  >;
+
+  OnCreateDatasourcesListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateDatasources">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateDatasources {
+        onCreateDatasources {
+          __typename
+          dsid
+          name
+          datasetid
+          datasets {
+            __typename
+            datasetid
+            name
+            datasources {
+              __typename
+              nextToken
+            }
+            Files {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateDatasources">>
+  >;
+
+  OnUpdateDatasourcesListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateDatasources">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateDatasources {
+        onUpdateDatasources {
+          __typename
+          dsid
+          name
+          datasetid
+          datasets {
+            __typename
+            datasetid
+            name
+            datasources {
+              __typename
+              nextToken
+            }
+            Files {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateDatasources">>
+  >;
+
+  OnDeleteDatasourcesListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteDatasources">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteDatasources {
+        onDeleteDatasources {
+          __typename
+          dsid
+          name
+          datasetid
+          datasets {
+            __typename
+            datasetid
+            name
+            datasources {
+              __typename
+              nextToken
+            }
+            Files {
+              __typename
+              nextToken
+              startedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteDatasources">>
   >;
 }

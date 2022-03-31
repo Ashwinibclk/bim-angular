@@ -7,7 +7,7 @@ const BiPlatform = {
   "QUICKSIGHT": "QUICKSIGHT"
 };
 
-const { Tableaulogin, Quicksightlogin, Customer, Department, BIMProject } = initSchema(schema);
+const { Tableaulogin, Quicksightlogin, Customer, Department, BIMProject, dataset, datasources, File } = initSchema(schema);
 
 export {
   Tableaulogin,
@@ -15,5 +15,8 @@ export {
   Customer,
   Department,
   BIMProject,
+  dataset,
+  datasources,
+  File,
   BiPlatform
 };

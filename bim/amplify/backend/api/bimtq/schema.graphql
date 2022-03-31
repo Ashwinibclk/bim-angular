@@ -42,3 +42,24 @@ enum BIPlatform {
   QUICKSIGHT
 }
 
+type dataset @model{
+  datasetid:ID!
+  name:String!
+  datasources:[datasources] @hasMany(fields:["datasetid"])
+  Files:[File] @hasMany(fields:["datasetid"])
+
+}
+
+type File @model{
+name:String!
+url:String!
+datasetid:ID!
+datasets:dataset @belongsTo(fields:["datasetid"])
+}
+
+type datasources @model{
+  dsid:ID!
+  name:String!
+ datasetid:ID!
+ datasets:dataset @belongsTo(fields:["datasetid"])
+}

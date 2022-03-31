@@ -350,3 +350,333 @@ mutation DeleteBIMProject(
     _lastChangedAt
   }
 }
+mutation CreateDataset(
+  $input: CreateDatasetInput!
+  $condition: ModelDatasetConditionInput
+) {
+  createDataset(input: $input, condition: $condition) {
+    datasetid
+    name
+    datasources {
+      items {
+        dsid
+        name
+        datasetid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+    }
+    Files {
+      items {
+        name
+        url
+        datasetid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation UpdateDataset(
+  $input: UpdateDatasetInput!
+  $condition: ModelDatasetConditionInput
+) {
+  updateDataset(input: $input, condition: $condition) {
+    datasetid
+    name
+    datasources {
+      items {
+        dsid
+        name
+        datasetid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+    }
+    Files {
+      items {
+        name
+        url
+        datasetid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation DeleteDataset(
+  $input: DeleteDatasetInput!
+  $condition: ModelDatasetConditionInput
+) {
+  deleteDataset(input: $input, condition: $condition) {
+    datasetid
+    name
+    datasources {
+      items {
+        dsid
+        name
+        datasetid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+    }
+    Files {
+      items {
+        name
+        url
+        datasetid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation CreateFile(
+  $input: CreateFileInput!
+  $condition: ModelFileConditionInput
+) {
+  createFile(input: $input, condition: $condition) {
+    name
+    url
+    datasetid
+    datasets {
+      datasetid
+      name
+      datasources {
+        nextToken
+      }
+      Files {
+        nextToken
+        startedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation UpdateFile(
+  $input: UpdateFileInput!
+  $condition: ModelFileConditionInput
+) {
+  updateFile(input: $input, condition: $condition) {
+    name
+    url
+    datasetid
+    datasets {
+      datasetid
+      name
+      datasources {
+        nextToken
+      }
+      Files {
+        nextToken
+        startedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation DeleteFile(
+  $input: DeleteFileInput!
+  $condition: ModelFileConditionInput
+) {
+  deleteFile(input: $input, condition: $condition) {
+    name
+    url
+    datasetid
+    datasets {
+      datasetid
+      name
+      datasources {
+        nextToken
+      }
+      Files {
+        nextToken
+        startedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation CreateDatasources(
+  $input: CreateDatasourcesInput!
+  $condition: ModelDatasourcesConditionInput
+) {
+  createDatasources(input: $input, condition: $condition) {
+    dsid
+    name
+    datasetid
+    datasets {
+      datasetid
+      name
+      datasources {
+        nextToken
+      }
+      Files {
+        nextToken
+        startedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation UpdateDatasources(
+  $input: UpdateDatasourcesInput!
+  $condition: ModelDatasourcesConditionInput
+) {
+  updateDatasources(input: $input, condition: $condition) {
+    dsid
+    name
+    datasetid
+    datasets {
+      datasetid
+      name
+      datasources {
+        nextToken
+      }
+      Files {
+        nextToken
+        startedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation DeleteDatasources(
+  $input: DeleteDatasourcesInput!
+  $condition: ModelDatasourcesConditionInput
+) {
+  deleteDatasources(input: $input, condition: $condition) {
+    dsid
+    name
+    datasetid
+    datasets {
+      datasetid
+      name
+      datasources {
+        nextToken
+      }
+      Files {
+        nextToken
+        startedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
