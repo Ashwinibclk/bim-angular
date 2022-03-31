@@ -1,0 +1,37 @@
+
+
+
+<div  class="form-body">
+    <form
+      autocomplete="off"
+      [formGroup]="createFormd"
+      (ngSubmit)="onCreated(createFormd.value)"
+    >
+    <h3>Datasets</h3>
+    <label for="datasetid">DatasetId</label>
+    <input type="text" formControlName="datasetid" autocomplete="off">
+        <label for="name"> Upload File : </label><br>
+        <input type="file" formControlName="name" value="name" accept=".xls,.csv,.tab">
+       
+        <br>
+       
+        <label for="datasources"> Select Datasources </label><br>
+       <select>
+           <option>Mysql</option>
+           <option>MariaDB</option>
+           <option>MongoDB</option>
+           <option>PostgreSQL</option>
+           <option>Oracle</option>
+           <option>CloudSystems</option>
+
+       </select>
+      
+      
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  
+ 
+
+  
+

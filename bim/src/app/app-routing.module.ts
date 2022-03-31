@@ -7,10 +7,12 @@ import { DepartmentComponent } from './department/department.component';
 
 import { CustomerComponent } from './customer/customer.component';
 import { BimprojectComponent } from './bimproject/bimproject.component';
+import { DatasetComponent } from './dataset/dataset.component';
+
 const routes: Routes = [
   { path: 'tableaulogin', component: TableauloginComponent },
   { path: 'quicksightlogin', component: QuicksightloginComponent },
- 
+  { path: 'datasets', component: DatasetComponent },
   { path: 'bimlogin', component: BimprojectComponent },
   { path: 'department', component: DepartmentComponent },
   { path: 'customer', component: CustomerComponent },

@@ -13,6 +13,7 @@ import { DepartmentComponent } from './department/department.component';
 
 import { CustomerComponent } from './customer/customer.component';
 import { BimprojectComponent } from './bimproject/bimproject.component';
+import { DatasetComponent } from './dataset/dataset.component';
 
 
 
@@ -27,6 +28,7 @@ import { BimprojectComponent } from './bimproject/bimproject.component';
   
     CustomerComponent,
        BimprojectComponent,
+       DatasetComponent,
    
   
    
