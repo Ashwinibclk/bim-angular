@@ -3,6 +3,17 @@
 input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
 
 
+type Tableaulogin @model {
+  id: ID!
+  username: String!
+  password: String!
+  sitename: String!
+}
+
+type Quicksightlogin @model {
+  id: ID!
+  awsaccountId: ID!
+}
 
 type Customer @model {
   id: ID!
