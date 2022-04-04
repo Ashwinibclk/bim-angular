@@ -2,7 +2,7 @@ import {Component, OnInit, OnDestroy, ChangeDetectorRef } from "@angular/core";
 import {FormBuilder, FormGroup, Validators,ReactiveFormsModule} from "@angular/forms";
 import {APIService,  Tableaulogin} from "../API.service";
 import { Subscription } from "rxjs";
-
+import Amplify,{ API } from "aws-amplify";
 
 @Component({
   selector: 'app-tableaulogin',
@@ -37,6 +37,23 @@ export class TableauloginComponent implements OnInit {
 }
 
 public onCreatetb(todo: any) {
+  console.log("create start");
+    
+  const PostData =async () => {
+    console.log("create start inside");
+    const data  = await API.post('Bimigration','/bimigration', { 
+
+    body: { 
+      Username: 'Toxic', 
+      Password: '2003', 
+      sitename:'example',
+      siteurl: 'https://www.example.com' 
+    } 
+  })
+  console.log("create start inside data");
+  console.log(data)
+  }
+  PostData()
   this.api
     .CreateTableaulogin(todo)
     .then((event) => {

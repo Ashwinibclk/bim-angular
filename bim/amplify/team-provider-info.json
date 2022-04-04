@@ -20,6 +20,16 @@
           "appId": "d1ri4jkacfrvcd",
           "type": "manual"
         }
+      },
+      "function": {
+        "firstexample": {
+          "deploymentBucketName": "amplify-bimtq-dev-144333-deployment",
+          "s3Key": "amplify-builds/firstexample-614f375a3845324e3441-build.zip"
+        },
+        "Bimigration": {
+          "deploymentBucketName": "amplify-bimtq-dev-144333-deployment",
+          "s3Key": "amplify-builds/Bimigration-596455704c3542554c77-build.zip"
+        }
       }
     }
   }

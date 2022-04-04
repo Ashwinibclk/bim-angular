@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/bimigration": {
+      "name": "/bimigration",
+      "lambdaFunction": "Bimigration",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

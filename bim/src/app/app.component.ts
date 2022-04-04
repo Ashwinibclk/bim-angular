@@ -4,6 +4,7 @@ import {APIService, Tableaulogin} from "./API.service";
 import { Subscription } from "rxjs";
 import { Router,NavigationStart } from "@angular/router";
 import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components';
+import Amplify,{ API } from "aws-amplify";
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
@@ -45,7 +46,18 @@ router.events.forEach((event)=>{
   private subscription: Subscription | null = null;
   async ngOnInit() {
     /* fetch restaurants when app loads */
-    
+    const myInit = { // OPTIONAL
+      headers: {}, // OPTIONAL
+  };
+  
+  
+//  const getData =async () => {
+//   console.log("hello inside");
+//    const data = await API.get('Bimigration','/bimigration',myInit)
+//    console.log("hello inside data");
+//    console.log(data);
+//  }
+//  getData()
 
     this.api.ListTableaulogins().then((event) => {
       this.tbs = event.items as Tableaulogin[];
@@ -67,6 +79,7 @@ router.events.forEach((event)=>{
 
   
   public onCreatetb(todo: any) {
+    
     this.api
       .CreateTableaulogin(todo)
       .then((event) => {
