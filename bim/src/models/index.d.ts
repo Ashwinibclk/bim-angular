@@ -11,11 +11,11 @@ type TableauloginMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-type QuicksightloginMetaData = {
+type TableauEnvMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-type CustomerMetaData = {
+type TableauProjectMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
@@ -23,7 +23,7 @@ type DepartmentMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-type TableauProjectMetaData = {
+type CustomerMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
@@ -47,6 +47,10 @@ type QuicksightEnvMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
+type QuicksightloginMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
 type BIMProjectMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
@@ -64,10 +68,6 @@ type TableMetaData = {
 }
 
 type FileMetaData = {
-  readOnlyFields: 'createdAt' | 'updatedAt';
-}
-
-type TableauEnvMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
@@ -96,29 +96,34 @@ export declare class Tableaulogin {
   readonly username: string;
   readonly password: string;
   readonly sitename: string;
+  readonly tenv?: TableauEnv | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
+  readonly i?: string | null;
   constructor(init: ModelInit<Tableaulogin, TableauloginMetaData>);
   static copyOf(source: Tableaulogin, mutator: (draft: MutableModel<Tableaulogin, TableauloginMetaData>) => MutableModel<Tableaulogin, TableauloginMetaData> | void): Tableaulogin;
 }
 
-export declare class Quicksightlogin {
+export declare class TableauEnv {
   readonly id: string;
-  readonly awsaccountId: string;
+  readonly name: string;
+  readonly tpid: string;
+  readonly tproject?: TableauProject | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  constructor(init: ModelInit<Quicksightlogin, QuicksightloginMetaData>);
-  static copyOf(source: Quicksightlogin, mutator: (draft: MutableModel<Quicksightlogin, QuicksightloginMetaData>) => MutableModel<Quicksightlogin, QuicksightloginMetaData> | void): Quicksightlogin;
+  constructor(init: ModelInit<TableauEnv, TableauEnvMetaData>);
+  static copyOf(source: TableauEnv, mutator: (draft: MutableModel<TableauEnv, TableauEnvMetaData>) => MutableModel<TableauEnv, TableauEnvMetaData> | void): TableauEnv;
 }
 
-export declare class Customer {
+export declare class TableauProject {
   readonly id: string;
+  readonly tpid: string;
   readonly name: string;
   readonly department?: Department | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  constructor(init: ModelInit<Customer, CustomerMetaData>);
-  static copyOf(source: Customer, mutator: (draft: MutableModel<Customer, CustomerMetaData>) => MutableModel<Customer, CustomerMetaData> | void): Customer;
+  constructor(init: ModelInit<TableauProject, TableauProjectMetaData>);
+  static copyOf(source: TableauProject, mutator: (draft: MutableModel<TableauProject, TableauProjectMetaData>) => MutableModel<TableauProject, TableauProjectMetaData> | void): TableauProject;
 }
 
 export declare class Department {
@@ -133,15 +138,14 @@ export declare class Department {
   static copyOf(source: Department, mutator: (draft: MutableModel<Department, DepartmentMetaData>) => MutableModel<Department, DepartmentMetaData> | void): Department;
 }
 
-export declare class TableauProject {
+export declare class Customer {
   readonly id: string;
-  readonly tpid: string;
   readonly name: string;
   readonly department?: Department | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
-  constructor(init: ModelInit<TableauProject, TableauProjectMetaData>);
-  static copyOf(source: TableauProject, mutator: (draft: MutableModel<TableauProject, TableauProjectMetaData>) => MutableModel<TableauProject, TableauProjectMetaData> | void): TableauProject;
+  constructor(init: ModelInit<Customer, CustomerMetaData>);
+  static copyOf(source: Customer, mutator: (draft: MutableModel<Customer, CustomerMetaData>) => MutableModel<Customer, CustomerMetaData> | void): Customer;
 }
 
 export declare class QuicksightProject {
@@ -198,6 +202,17 @@ export declare class QuicksightEnv {
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<QuicksightEnv, QuicksightEnvMetaData>);
   static copyOf(source: QuicksightEnv, mutator: (draft: MutableModel<QuicksightEnv, QuicksightEnvMetaData>) => MutableModel<QuicksightEnv, QuicksightEnvMetaData> | void): QuicksightEnv;
+}
+
+export declare class Quicksightlogin {
+  readonly id: string;
+  readonly awsaccountId: string;
+  readonly qenv?: QuicksightEnv | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  readonly i?: string | null;
+  constructor(init: ModelInit<Quicksightlogin, QuicksightloginMetaData>);
+  static copyOf(source: Quicksightlogin, mutator: (draft: MutableModel<Quicksightlogin, QuicksightloginMetaData>) => MutableModel<Quicksightlogin, QuicksightloginMetaData> | void): Quicksightlogin;
 }
 
 export declare class BIMProject {
@@ -257,17 +272,6 @@ export declare class File {
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<File, FileMetaData>);
   static copyOf(source: File, mutator: (draft: MutableModel<File, FileMetaData>) => MutableModel<File, FileMetaData> | void): File;
-}
-
-export declare class TableauEnv {
-  readonly id: string;
-  readonly name: string;
-  readonly tpid: string;
-  readonly tproject?: TableauProject | null;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-  constructor(init: ModelInit<TableauEnv, TableauEnvMetaData>);
-  static copyOf(source: TableauEnv, mutator: (draft: MutableModel<TableauEnv, TableauEnvMetaData>) => MutableModel<TableauEnv, TableauEnvMetaData> | void): TableauEnv;
 }
 
 export declare class TaleauWorkbook {

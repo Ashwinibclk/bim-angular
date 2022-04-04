@@ -31,6 +31,20 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "tenv": {
+                    "name": "tenv",
+                    "isArray": false,
+                    "type": {
+                        "model": "TableauEnv"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": "id",
+                        "targetName": "i"
+                    }
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -46,6 +60,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": [],
                     "isReadOnly": true
+                },
+                "i": {
+                    "name": "i",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -57,8 +78,8 @@ export const schema = {
                 }
             ]
         },
-        "Quicksightlogin": {
-            "name": "Quicksightlogin",
+        "TableauEnv": {
+            "name": "TableauEnv",
             "fields": {
                 "id": {
                     "name": "id",
@@ -67,12 +88,33 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "awsaccountId": {
-                    "name": "awsaccountId",
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "tpid": {
+                    "name": "tpid",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
                     "attributes": []
+                },
+                "tproject": {
+                    "name": "tproject",
+                    "isArray": false,
+                    "type": {
+                        "model": "TableauProject"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": "id",
+                        "targetName": "tpid"
+                    }
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -92,7 +134,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Quicksightlogins",
+            "pluralName": "TableauEnvs",
             "attributes": [
                 {
                     "type": "model",
@@ -100,11 +142,18 @@ export const schema = {
                 }
             ]
         },
-        "Customer": {
-            "name": "Customer",
+        "TableauProject": {
+            "name": "TableauProject",
             "fields": {
                 "id": {
                     "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "tpid": {
+                    "name": "tpid",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
@@ -148,7 +197,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Customers",
+            "pluralName": "TableauProjects",
             "attributes": [
                 {
                     "type": "model",
@@ -241,18 +290,11 @@ export const schema = {
                 }
             ]
         },
-        "TableauProject": {
-            "name": "TableauProject",
+        "Customer": {
+            "name": "Customer",
             "fields": {
                 "id": {
                     "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "tpid": {
-                    "name": "tpid",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
@@ -296,7 +338,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "TableauProjects",
+            "pluralName": "Customers",
             "attributes": [
                 {
                     "type": "model",
@@ -647,6 +689,70 @@ export const schema = {
             },
             "syncable": true,
             "pluralName": "QuicksightEnvs",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                }
+            ]
+        },
+        "Quicksightlogin": {
+            "name": "Quicksightlogin",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "awsaccountId": {
+                    "name": "awsaccountId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "qenv": {
+                    "name": "qenv",
+                    "isArray": false,
+                    "type": {
+                        "model": "QuicksightEnv"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": "id",
+                        "targetName": "i"
+                    }
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "i": {
+                    "name": "i",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "Quicksightlogins",
             "attributes": [
                 {
                     "type": "model",
@@ -1017,70 +1123,6 @@ export const schema = {
                 }
             ]
         },
-        "TableauEnv": {
-            "name": "TableauEnv",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "name": {
-                    "name": "name",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "tpid": {
-                    "name": "tpid",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "tproject": {
-                    "name": "tproject",
-                    "isArray": false,
-                    "type": {
-                        "model": "TableauProject"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "HAS_ONE",
-                        "associatedWith": "id",
-                        "targetName": "tpid"
-                    }
-                },
-                "createdAt": {
-                    "name": "createdAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                },
-                "updatedAt": {
-                    "name": "updatedAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                }
-            },
-            "syncable": true,
-            "pluralName": "TableauEnvs",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                }
-            ]
-        },
         "TaleauWorkbook": {
             "name": "TaleauWorkbook",
             "fields": {
@@ -1384,5 +1426,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "763fd83490d6d1483cd47afefe83ab69"
+    "version": "fd20d1a992c66a9cf363b733d5ef0efc"
 };

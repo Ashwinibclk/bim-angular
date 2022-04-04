@@ -8,11 +8,13 @@ type Tableaulogin @model {
   username: String!
   password: String!
   sitename: String!
+  tenv:TableauEnv @hasOne(fields:"id")
 }
 
 type Quicksightlogin @model {
   id: ID!
   awsaccountId: ID!
+  qenv:QuicksightEnv @hasOne(fields:"id")
 }
 
 type Customer @model {

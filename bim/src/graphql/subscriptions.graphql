@@ -5,6 +5,27 @@ subscription OnCreateTableaulogin {
     username
     password
     sitename
+    tenv {
+      name
+      tpid
+      tproject {
+        tpid
+        name
+        Did
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
     createdAt
     updatedAt
     _version
@@ -18,6 +39,27 @@ subscription OnUpdateTableaulogin {
     username
     password
     sitename
+    tenv {
+      name
+      tpid
+      tproject {
+        tpid
+        name
+        Did
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
     createdAt
     updatedAt
     _version
@@ -31,6 +73,27 @@ subscription OnDeleteTableaulogin {
     username
     password
     sitename
+    tenv {
+      name
+      tpid
+      tproject {
+        tpid
+        name
+        Did
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
     createdAt
     updatedAt
     _version
@@ -42,6 +105,26 @@ subscription OnCreateQuicksightlogin {
   onCreateQuicksightlogin {
     id
     awsaccountId
+    qenv {
+      name
+      Qpid
+      qproject {
+        id
+        name
+        Did
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
     createdAt
     updatedAt
     _version
@@ -53,6 +136,26 @@ subscription OnUpdateQuicksightlogin {
   onUpdateQuicksightlogin {
     id
     awsaccountId
+    qenv {
+      name
+      Qpid
+      qproject {
+        id
+        name
+        Did
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
     createdAt
     updatedAt
     _version
@@ -64,6 +167,26 @@ subscription OnDeleteQuicksightlogin {
   onDeleteQuicksightlogin {
     id
     awsaccountId
+    qenv {
+      name
+      Qpid
+      qproject {
+        id
+        name
+        Did
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
     createdAt
     updatedAt
     _version

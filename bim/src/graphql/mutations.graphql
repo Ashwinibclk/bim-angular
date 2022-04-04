@@ -8,6 +8,27 @@ mutation CreateTableaulogin(
     username
     password
     sitename
+    tenv {
+      name
+      tpid
+      tproject {
+        tpid
+        name
+        Did
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
     createdAt
     updatedAt
     _version
@@ -24,6 +45,27 @@ mutation UpdateTableaulogin(
     username
     password
     sitename
+    tenv {
+      name
+      tpid
+      tproject {
+        tpid
+        name
+        Did
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
     createdAt
     updatedAt
     _version
@@ -40,6 +82,27 @@ mutation DeleteTableaulogin(
     username
     password
     sitename
+    tenv {
+      name
+      tpid
+      tproject {
+        tpid
+        name
+        Did
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
     createdAt
     updatedAt
     _version
@@ -54,6 +117,26 @@ mutation CreateQuicksightlogin(
   createQuicksightlogin(input: $input, condition: $condition) {
     id
     awsaccountId
+    qenv {
+      name
+      Qpid
+      qproject {
+        id
+        name
+        Did
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
     createdAt
     updatedAt
     _version
@@ -68,6 +151,26 @@ mutation UpdateQuicksightlogin(
   updateQuicksightlogin(input: $input, condition: $condition) {
     id
     awsaccountId
+    qenv {
+      name
+      Qpid
+      qproject {
+        id
+        name
+        Did
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
     createdAt
     updatedAt
     _version
@@ -82,6 +185,26 @@ mutation DeleteQuicksightlogin(
   deleteQuicksightlogin(input: $input, condition: $condition) {
     id
     awsaccountId
+    qenv {
+      name
+      Qpid
+      qproject {
+        id
+        name
+        Did
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
     createdAt
     updatedAt
     _version

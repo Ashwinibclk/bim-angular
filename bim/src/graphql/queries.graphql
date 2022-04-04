@@ -5,6 +5,27 @@ query GetTableaulogin($id: ID!) {
     username
     password
     sitename
+    tenv {
+      name
+      tpid
+      tproject {
+        tpid
+        name
+        Did
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
     createdAt
     updatedAt
     _version
@@ -23,6 +44,16 @@ query ListTableaulogins(
       username
       password
       sitename
+      tenv {
+        name
+        tpid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
@@ -50,6 +81,16 @@ query SyncTableaulogins(
       username
       password
       sitename
+      tenv {
+        name
+        tpid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
@@ -64,6 +105,26 @@ query GetQuicksightlogin($id: ID!) {
   getQuicksightlogin(id: $id) {
     id
     awsaccountId
+    qenv {
+      name
+      Qpid
+      qproject {
+        id
+        name
+        Did
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
     createdAt
     updatedAt
     _version
@@ -80,6 +141,16 @@ query ListQuicksightlogins(
     items {
       id
       awsaccountId
+      qenv {
+        name
+        Qpid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
@@ -105,6 +176,16 @@ query SyncQuicksightlogins(
     items {
       id
       awsaccountId
+      qenv {
+        name
+        Qpid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version

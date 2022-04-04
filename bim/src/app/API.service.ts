@@ -137,6 +137,7 @@ export type Tableaulogin = {
   username: string;
   password: string;
   sitename: string;
+  tenv?: TableauEnv | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -144,91 +145,26 @@ export type Tableaulogin = {
   _lastChangedAt: number;
 };
 
-export type UpdateTableauloginInput = {
-  id: string;
-  username?: string | null;
-  password?: string | null;
-  sitename?: string | null;
-  _version?: number | null;
-};
-
-export type DeleteTableauloginInput = {
-  id: string;
-  _version?: number | null;
-};
-
-export type CreateQuicksightloginInput = {
-  id?: string | null;
-  awsaccountId: string;
-  _version?: number | null;
-};
-
-export type ModelQuicksightloginConditionInput = {
-  awsaccountId?: ModelIDInput | null;
-  and?: Array<ModelQuicksightloginConditionInput | null> | null;
-  or?: Array<ModelQuicksightloginConditionInput | null> | null;
-  not?: ModelQuicksightloginConditionInput | null;
-};
-
-export type ModelIDInput = {
-  ne?: string | null;
-  eq?: string | null;
-  le?: string | null;
-  lt?: string | null;
-  ge?: string | null;
-  gt?: string | null;
-  contains?: string | null;
-  notContains?: string | null;
-  between?: Array<string | null> | null;
-  beginsWith?: string | null;
-  attributeExists?: boolean | null;
-  attributeType?: ModelAttributeTypes | null;
-  size?: ModelSizeInput | null;
-};
-
-export type Quicksightlogin = {
-  __typename: "Quicksightlogin";
-  id: string;
-  awsaccountId: string;
-  createdAt: string;
-  updatedAt: string;
-  _version: number;
-  _deleted?: boolean | null;
-  _lastChangedAt: number;
-};
-
-export type UpdateQuicksightloginInput = {
-  id: string;
-  awsaccountId?: string | null;
-  _version?: number | null;
-};
-
-export type DeleteQuicksightloginInput = {
-  id: string;
-  _version?: number | null;
-};
-
-export type CreateCustomerInput = {
-  id?: string | null;
+export type TableauEnv = {
+  __typename: "TableauEnv";
   name: string;
-  Did: string;
-  _version?: number | null;
-};
-
-export type ModelCustomerConditionInput = {
-  name?: ModelStringInput | null;
-  Did?: ModelIDInput | null;
-  and?: Array<ModelCustomerConditionInput | null> | null;
-  or?: Array<ModelCustomerConditionInput | null> | null;
-  not?: ModelCustomerConditionInput | null;
-};
-
-export type Customer = {
-  __typename: "Customer";
+  tpid: string;
+  tproject?: TableauProject | null;
   id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type TableauProject = {
+  __typename: "TableauProject";
+  tpid: string;
   name: string;
   Did: string;
   department?: Department | null;
+  id: string;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -257,25 +193,24 @@ export type ModelCustomerConnection = {
   startedAt?: number | null;
 };
 
-export type ModelTableauProjectConnection = {
-  __typename: "ModelTableauProjectConnection";
-  items: Array<TableauProject | null>;
-  nextToken?: string | null;
-  startedAt?: number | null;
-};
-
-export type TableauProject = {
-  __typename: "TableauProject";
-  tpid: string;
+export type Customer = {
+  __typename: "Customer";
+  id: string;
   name: string;
   Did: string;
   department?: Department | null;
-  id: string;
   createdAt: string;
   updatedAt: string;
   _version: number;
   _deleted?: boolean | null;
   _lastChangedAt: number;
+};
+
+export type ModelTableauProjectConnection = {
+  __typename: "ModelTableauProjectConnection";
+  items: Array<TableauProject | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
 };
 
 export type ModelQuicksightProjectConnection = {
@@ -382,6 +317,86 @@ export type QuicksightEnv = {
   _version: number;
   _deleted?: boolean | null;
   _lastChangedAt: number;
+};
+
+export type UpdateTableauloginInput = {
+  id: string;
+  username?: string | null;
+  password?: string | null;
+  sitename?: string | null;
+  _version?: number | null;
+};
+
+export type DeleteTableauloginInput = {
+  id: string;
+  _version?: number | null;
+};
+
+export type CreateQuicksightloginInput = {
+  id?: string | null;
+  awsaccountId: string;
+  _version?: number | null;
+};
+
+export type ModelQuicksightloginConditionInput = {
+  awsaccountId?: ModelIDInput | null;
+  and?: Array<ModelQuicksightloginConditionInput | null> | null;
+  or?: Array<ModelQuicksightloginConditionInput | null> | null;
+  not?: ModelQuicksightloginConditionInput | null;
+};
+
+export type ModelIDInput = {
+  ne?: string | null;
+  eq?: string | null;
+  le?: string | null;
+  lt?: string | null;
+  ge?: string | null;
+  gt?: string | null;
+  contains?: string | null;
+  notContains?: string | null;
+  between?: Array<string | null> | null;
+  beginsWith?: string | null;
+  attributeExists?: boolean | null;
+  attributeType?: ModelAttributeTypes | null;
+  size?: ModelSizeInput | null;
+};
+
+export type Quicksightlogin = {
+  __typename: "Quicksightlogin";
+  id: string;
+  awsaccountId: string;
+  qenv?: QuicksightEnv | null;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type UpdateQuicksightloginInput = {
+  id: string;
+  awsaccountId?: string | null;
+  _version?: number | null;
+};
+
+export type DeleteQuicksightloginInput = {
+  id: string;
+  _version?: number | null;
+};
+
+export type CreateCustomerInput = {
+  id?: string | null;
+  name: string;
+  Did: string;
+  _version?: number | null;
+};
+
+export type ModelCustomerConditionInput = {
+  name?: ModelStringInput | null;
+  Did?: ModelIDInput | null;
+  and?: Array<ModelCustomerConditionInput | null> | null;
+  or?: Array<ModelCustomerConditionInput | null> | null;
+  not?: ModelCustomerConditionInput | null;
 };
 
 export type UpdateCustomerInput = {
@@ -688,19 +703,6 @@ export type ModelTableauEnvConditionInput = {
   and?: Array<ModelTableauEnvConditionInput | null> | null;
   or?: Array<ModelTableauEnvConditionInput | null> | null;
   not?: ModelTableauEnvConditionInput | null;
-};
-
-export type TableauEnv = {
-  __typename: "TableauEnv";
-  name: string;
-  tpid: string;
-  tproject?: TableauProject | null;
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-  _version: number;
-  _deleted?: boolean | null;
-  _lastChangedAt: number;
 };
 
 export type UpdateTableauEnvInput = {
@@ -1352,6 +1354,29 @@ export type CreateTableauloginMutation = {
   username: string;
   password: string;
   sitename: string;
+  tenv?: {
+    __typename: "TableauEnv";
+    name: string;
+    tpid: string;
+    tproject?: {
+      __typename: "TableauProject";
+      tpid: string;
+      name: string;
+      Did: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -1365,6 +1390,29 @@ export type UpdateTableauloginMutation = {
   username: string;
   password: string;
   sitename: string;
+  tenv?: {
+    __typename: "TableauEnv";
+    name: string;
+    tpid: string;
+    tproject?: {
+      __typename: "TableauProject";
+      tpid: string;
+      name: string;
+      Did: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -1378,6 +1426,29 @@ export type DeleteTableauloginMutation = {
   username: string;
   password: string;
   sitename: string;
+  tenv?: {
+    __typename: "TableauEnv";
+    name: string;
+    tpid: string;
+    tproject?: {
+      __typename: "TableauProject";
+      tpid: string;
+      name: string;
+      Did: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -1389,6 +1460,28 @@ export type CreateQuicksightloginMutation = {
   __typename: "Quicksightlogin";
   id: string;
   awsaccountId: string;
+  qenv?: {
+    __typename: "QuicksightEnv";
+    name: string;
+    Qpid: string;
+    qproject?: {
+      __typename: "QuicksightProject";
+      id: string;
+      name: string;
+      Did: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -1400,6 +1493,28 @@ export type UpdateQuicksightloginMutation = {
   __typename: "Quicksightlogin";
   id: string;
   awsaccountId: string;
+  qenv?: {
+    __typename: "QuicksightEnv";
+    name: string;
+    Qpid: string;
+    qproject?: {
+      __typename: "QuicksightProject";
+      id: string;
+      name: string;
+      Did: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -1411,6 +1526,28 @@ export type DeleteQuicksightloginMutation = {
   __typename: "Quicksightlogin";
   id: string;
   awsaccountId: string;
+  qenv?: {
+    __typename: "QuicksightEnv";
+    name: string;
+    Qpid: string;
+    qproject?: {
+      __typename: "QuicksightProject";
+      id: string;
+      name: string;
+      Did: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -3785,6 +3922,29 @@ export type GetTableauloginQuery = {
   username: string;
   password: string;
   sitename: string;
+  tenv?: {
+    __typename: "TableauEnv";
+    name: string;
+    tpid: string;
+    tproject?: {
+      __typename: "TableauProject";
+      tpid: string;
+      name: string;
+      Did: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -3800,6 +3960,17 @@ export type ListTableauloginsQuery = {
     username: string;
     password: string;
     sitename: string;
+    tenv?: {
+      __typename: "TableauEnv";
+      name: string;
+      tpid: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -3818,6 +3989,17 @@ export type SyncTableauloginsQuery = {
     username: string;
     password: string;
     sitename: string;
+    tenv?: {
+      __typename: "TableauEnv";
+      name: string;
+      tpid: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -3832,6 +4014,28 @@ export type GetQuicksightloginQuery = {
   __typename: "Quicksightlogin";
   id: string;
   awsaccountId: string;
+  qenv?: {
+    __typename: "QuicksightEnv";
+    name: string;
+    Qpid: string;
+    qproject?: {
+      __typename: "QuicksightProject";
+      id: string;
+      name: string;
+      Did: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -3845,6 +4049,17 @@ export type ListQuicksightloginsQuery = {
     __typename: "Quicksightlogin";
     id: string;
     awsaccountId: string;
+    qenv?: {
+      __typename: "QuicksightEnv";
+      name: string;
+      Qpid: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -3861,6 +4076,17 @@ export type SyncQuicksightloginsQuery = {
     __typename: "Quicksightlogin";
     id: string;
     awsaccountId: string;
+    qenv?: {
+      __typename: "QuicksightEnv";
+      name: string;
+      Qpid: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -5758,6 +5984,29 @@ export type OnCreateTableauloginSubscription = {
   username: string;
   password: string;
   sitename: string;
+  tenv?: {
+    __typename: "TableauEnv";
+    name: string;
+    tpid: string;
+    tproject?: {
+      __typename: "TableauProject";
+      tpid: string;
+      name: string;
+      Did: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -5771,6 +6020,29 @@ export type OnUpdateTableauloginSubscription = {
   username: string;
   password: string;
   sitename: string;
+  tenv?: {
+    __typename: "TableauEnv";
+    name: string;
+    tpid: string;
+    tproject?: {
+      __typename: "TableauProject";
+      tpid: string;
+      name: string;
+      Did: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -5784,6 +6056,29 @@ export type OnDeleteTableauloginSubscription = {
   username: string;
   password: string;
   sitename: string;
+  tenv?: {
+    __typename: "TableauEnv";
+    name: string;
+    tpid: string;
+    tproject?: {
+      __typename: "TableauProject";
+      tpid: string;
+      name: string;
+      Did: string;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -5795,6 +6090,28 @@ export type OnCreateQuicksightloginSubscription = {
   __typename: "Quicksightlogin";
   id: string;
   awsaccountId: string;
+  qenv?: {
+    __typename: "QuicksightEnv";
+    name: string;
+    Qpid: string;
+    qproject?: {
+      __typename: "QuicksightProject";
+      id: string;
+      name: string;
+      Did: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -5806,6 +6123,28 @@ export type OnUpdateQuicksightloginSubscription = {
   __typename: "Quicksightlogin";
   id: string;
   awsaccountId: string;
+  qenv?: {
+    __typename: "QuicksightEnv";
+    name: string;
+    Qpid: string;
+    qproject?: {
+      __typename: "QuicksightProject";
+      id: string;
+      name: string;
+      Did: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -5817,6 +6156,28 @@ export type OnDeleteQuicksightloginSubscription = {
   __typename: "Quicksightlogin";
   id: string;
   awsaccountId: string;
+  qenv?: {
+    __typename: "QuicksightEnv";
+    name: string;
+    Qpid: string;
+    qproject?: {
+      __typename: "QuicksightProject";
+      id: string;
+      name: string;
+      Did: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
+    } | null;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -8200,6 +8561,29 @@ export class APIService {
           username
           password
           sitename
+          tenv {
+            __typename
+            name
+            tpid
+            tproject {
+              __typename
+              tpid
+              name
+              Did
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
@@ -8229,6 +8613,29 @@ export class APIService {
           username
           password
           sitename
+          tenv {
+            __typename
+            name
+            tpid
+            tproject {
+              __typename
+              tpid
+              name
+              Did
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
@@ -8258,6 +8665,29 @@ export class APIService {
           username
           password
           sitename
+          tenv {
+            __typename
+            name
+            tpid
+            tproject {
+              __typename
+              tpid
+              name
+              Did
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
@@ -8285,6 +8715,28 @@ export class APIService {
           __typename
           id
           awsaccountId
+          qenv {
+            __typename
+            name
+            Qpid
+            qproject {
+              __typename
+              id
+              name
+              Did
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
@@ -8312,6 +8764,28 @@ export class APIService {
           __typename
           id
           awsaccountId
+          qenv {
+            __typename
+            name
+            Qpid
+            qproject {
+              __typename
+              id
+              name
+              Did
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
@@ -8339,6 +8813,28 @@ export class APIService {
           __typename
           id
           awsaccountId
+          qenv {
+            __typename
+            name
+            Qpid
+            qproject {
+              __typename
+              id
+              name
+              Did
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
@@ -11662,6 +12158,29 @@ export class APIService {
           username
           password
           sitename
+          tenv {
+            __typename
+            name
+            tpid
+            tproject {
+              __typename
+              tpid
+              name
+              Did
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
@@ -11691,6 +12210,17 @@ export class APIService {
             username
             password
             sitename
+            tenv {
+              __typename
+              name
+              tpid
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
             createdAt
             updatedAt
             _version
@@ -11731,6 +12261,17 @@ export class APIService {
             username
             password
             sitename
+            tenv {
+              __typename
+              name
+              tpid
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
             createdAt
             updatedAt
             _version
@@ -11765,6 +12306,28 @@ export class APIService {
           __typename
           id
           awsaccountId
+          qenv {
+            __typename
+            name
+            Qpid
+            qproject {
+              __typename
+              id
+              name
+              Did
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
@@ -11792,6 +12355,17 @@ export class APIService {
             __typename
             id
             awsaccountId
+            qenv {
+              __typename
+              name
+              Qpid
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
             createdAt
             updatedAt
             _version
@@ -11830,6 +12404,17 @@ export class APIService {
             __typename
             id
             awsaccountId
+            qenv {
+              __typename
+              name
+              Qpid
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
             createdAt
             updatedAt
             _version
@@ -14820,6 +15405,29 @@ export class APIService {
           username
           password
           sitename
+          tenv {
+            __typename
+            name
+            tpid
+            tproject {
+              __typename
+              tpid
+              name
+              Did
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
@@ -14843,6 +15451,29 @@ export class APIService {
           username
           password
           sitename
+          tenv {
+            __typename
+            name
+            tpid
+            tproject {
+              __typename
+              tpid
+              name
+              Did
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
@@ -14866,6 +15497,29 @@ export class APIService {
           username
           password
           sitename
+          tenv {
+            __typename
+            name
+            tpid
+            tproject {
+              __typename
+              tpid
+              name
+              Did
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
@@ -14889,6 +15543,28 @@ export class APIService {
           __typename
           id
           awsaccountId
+          qenv {
+            __typename
+            name
+            Qpid
+            qproject {
+              __typename
+              id
+              name
+              Did
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
@@ -14914,6 +15590,28 @@ export class APIService {
           __typename
           id
           awsaccountId
+          qenv {
+            __typename
+            name
+            Qpid
+            qproject {
+              __typename
+              id
+              name
+              Did
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
@@ -14939,6 +15637,28 @@ export class APIService {
           __typename
           id
           awsaccountId
+          qenv {
+            __typename
+            name
+            Qpid
+            qproject {
+              __typename
+              id
+              name
+              Did
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
+            }
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
           createdAt
           updatedAt
           _version
