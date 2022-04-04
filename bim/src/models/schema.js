@@ -978,6 +978,41 @@ export const schema = {
                         "associatedWith": "datasource"
                     }
                 },
+                "databaseserver": {
+                    "name": "databaseserver",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "port": {
+                    "name": "port",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "databasename": {
+                    "name": "databasename",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "username": {
+                    "name": "username",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "password": {
+                    "name": "password",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -1426,5 +1461,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "fd20d1a992c66a9cf363b733d5ef0efc"
+    "version": "13421de0f14fc05f4cade1f662a1e908"
 };

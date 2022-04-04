@@ -37,10 +37,10 @@ label{
 }
 input{
   display: block;
-  
+  height: 30px;
   background-color: rgba(255,255,255,0.07);
   border-radius: 3px;
-  
+  width:100%;
   
   font-size: 14px;
   font-weight: 300;
@@ -48,7 +48,7 @@ input{
 ::placeholder{
   color: #e5e5e5;
 }
-button{
+.form-body button{
   margin-top: 50px;
   width: 100%;
   background-color: #9e9797;
@@ -72,7 +72,7 @@ button{
     cursor: pointer;
 }
 
-button:hover{
+.form-body button:hover{
   background-color: rgb(29, 135, 197);
   color:white;
 }
@@ -84,4 +84,56 @@ form h3{
   text-align: center;
   color:rgb(255, 123, 0);
 
+}
+
+.modal {
+  height: 600px;
+  width: 400px;
+  background-color: rgba(255,255,255,0.13);
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 40px rgba(8,7,16,0.6);
+  padding: 50px 35px;
+  overflow: scroll;
+}
+
+.modal-content {
+  height: 600px;
+    width: 400px;
+    background-color: rgba(255,255,255,0.13);
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 50px 35px;
+    overflow: scroll;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+select{
+  width:100%;
+  height:8%;
 }

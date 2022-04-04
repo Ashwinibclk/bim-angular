@@ -572,6 +572,11 @@ subscription OnCreateDataset {
         dsid
         name
         datasetid
+        databaseserver
+        port
+        databasename
+        username
+        password
         id
         createdAt
         updatedAt
@@ -613,6 +618,11 @@ subscription OnUpdateDataset {
         dsid
         name
         datasetid
+        databaseserver
+        port
+        databasename
+        username
+        password
         id
         createdAt
         updatedAt
@@ -654,6 +664,11 @@ subscription OnDeleteDataset {
         dsid
         name
         datasetid
+        databaseserver
+        port
+        databasename
+        username
+        password
         id
         createdAt
         updatedAt
@@ -812,6 +827,11 @@ subscription OnCreateDatasources {
       nextToken
       startedAt
     }
+    databaseserver
+    port
+    databasename
+    username
+    password
     id
     createdAt
     updatedAt
@@ -856,6 +876,11 @@ subscription OnUpdateDatasources {
       nextToken
       startedAt
     }
+    databaseserver
+    port
+    databasename
+    username
+    password
     id
     createdAt
     updatedAt
@@ -900,6 +925,11 @@ subscription OnDeleteDatasources {
       nextToken
       startedAt
     }
+    databaseserver
+    port
+    databasename
+    username
+    password
     id
     createdAt
     updatedAt
@@ -2193,6 +2223,11 @@ subscription OnCreateTable {
         nextToken
         startedAt
       }
+      databaseserver
+      port
+      databasename
+      username
+      password
       id
       createdAt
       updatedAt
@@ -2230,6 +2265,11 @@ subscription OnUpdateTable {
         nextToken
         startedAt
       }
+      databaseserver
+      port
+      databasename
+      username
+      password
       id
       createdAt
       updatedAt
@@ -2267,6 +2307,11 @@ subscription OnDeleteTable {
         nextToken
         startedAt
       }
+      databaseserver
+      port
+      databasename
+      username
+      password
       id
       createdAt
       updatedAt

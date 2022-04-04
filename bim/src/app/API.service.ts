@@ -539,6 +539,11 @@ export type datasources = {
   datasetid: string;
   datasets?: dataset | null;
   table?: ModelTableConnection | null;
+  databaseserver: string;
+  port: number;
+  databasename: string;
+  username: string;
+  password: string;
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -634,6 +639,11 @@ export type CreateDatasourcesInput = {
   dsid: string;
   name: string;
   datasetid: string;
+  databaseserver: string;
+  port: number;
+  databasename: string;
+  username: string;
+  password: string;
   id?: string | null;
   _version?: number | null;
 };
@@ -642,15 +652,37 @@ export type ModelDatasourcesConditionInput = {
   dsid?: ModelIDInput | null;
   name?: ModelStringInput | null;
   datasetid?: ModelIDInput | null;
+  databaseserver?: ModelStringInput | null;
+  port?: ModelIntInput | null;
+  databasename?: ModelStringInput | null;
+  username?: ModelStringInput | null;
+  password?: ModelStringInput | null;
   and?: Array<ModelDatasourcesConditionInput | null> | null;
   or?: Array<ModelDatasourcesConditionInput | null> | null;
   not?: ModelDatasourcesConditionInput | null;
+};
+
+export type ModelIntInput = {
+  ne?: number | null;
+  eq?: number | null;
+  le?: number | null;
+  lt?: number | null;
+  ge?: number | null;
+  gt?: number | null;
+  between?: Array<number | null> | null;
+  attributeExists?: boolean | null;
+  attributeType?: ModelAttributeTypes | null;
 };
 
 export type UpdateDatasourcesInput = {
   dsid?: string | null;
   name?: string | null;
   datasetid?: string | null;
+  databaseserver?: string | null;
+  port?: number | null;
+  databasename?: string | null;
+  username?: string | null;
+  password?: string | null;
   id: string;
   _version?: number | null;
 };
@@ -1185,6 +1217,11 @@ export type ModelDatasourcesFilterInput = {
   dsid?: ModelIDInput | null;
   name?: ModelStringInput | null;
   datasetid?: ModelIDInput | null;
+  databaseserver?: ModelStringInput | null;
+  port?: ModelIntInput | null;
+  databasename?: ModelStringInput | null;
+  username?: ModelStringInput | null;
+  password?: ModelStringInput | null;
   and?: Array<ModelDatasourcesFilterInput | null> | null;
   or?: Array<ModelDatasourcesFilterInput | null> | null;
   not?: ModelDatasourcesFilterInput | null;
@@ -1977,6 +2014,11 @@ export type CreateDatasetMutation = {
       dsid: string;
       name: string;
       datasetid: string;
+      databaseserver: string;
+      port: number;
+      databasename: string;
+      username: string;
+      password: string;
       id: string;
       createdAt: string;
       updatedAt: string;
@@ -2022,6 +2064,11 @@ export type UpdateDatasetMutation = {
       dsid: string;
       name: string;
       datasetid: string;
+      databaseserver: string;
+      port: number;
+      databasename: string;
+      username: string;
+      password: string;
       id: string;
       createdAt: string;
       updatedAt: string;
@@ -2067,6 +2114,11 @@ export type DeleteDatasetMutation = {
       dsid: string;
       name: string;
       datasetid: string;
+      databaseserver: string;
+      port: number;
+      databasename: string;
+      username: string;
+      password: string;
       id: string;
       createdAt: string;
       updatedAt: string;
@@ -2241,6 +2293,11 @@ export type CreateDatasourcesMutation = {
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
+  databaseserver: string;
+  port: number;
+  databasename: string;
+  username: string;
+  password: string;
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -2290,6 +2347,11 @@ export type UpdateDatasourcesMutation = {
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
+  databaseserver: string;
+  port: number;
+  databasename: string;
+  username: string;
+  password: string;
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -2339,6 +2401,11 @@ export type DeleteDatasourcesMutation = {
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
+  databaseserver: string;
+  port: number;
+  databasename: string;
+  username: string;
+  password: string;
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -3755,6 +3822,11 @@ export type CreateTableMutation = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    databaseserver: string;
+    port: number;
+    databasename: string;
+    username: string;
+    password: string;
     id: string;
     createdAt: string;
     updatedAt: string;
@@ -3795,6 +3867,11 @@ export type UpdateTableMutation = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    databaseserver: string;
+    port: number;
+    databasename: string;
+    username: string;
+    password: string;
     id: string;
     createdAt: string;
     updatedAt: string;
@@ -3835,6 +3912,11 @@ export type DeleteTableMutation = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    databaseserver: string;
+    port: number;
+    databasename: string;
+    username: string;
+    password: string;
     id: string;
     createdAt: string;
     updatedAt: string;
@@ -4421,6 +4503,11 @@ export type GetDatasetQuery = {
       dsid: string;
       name: string;
       datasetid: string;
+      databaseserver: string;
+      port: number;
+      databasename: string;
+      username: string;
+      password: string;
       id: string;
       createdAt: string;
       updatedAt: string;
@@ -4639,6 +4726,11 @@ export type GetDatasourcesQuery = {
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
+  databaseserver: string;
+  port: number;
+  databasename: string;
+  username: string;
+  password: string;
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -4670,6 +4762,11 @@ export type ListDatasourcesQuery = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    databaseserver: string;
+    port: number;
+    databasename: string;
+    username: string;
+    password: string;
     id: string;
     createdAt: string;
     updatedAt: string;
@@ -4704,6 +4801,11 @@ export type SyncDatasourcesQuery = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    databaseserver: string;
+    port: number;
+    databasename: string;
+    username: string;
+    password: string;
     id: string;
     createdAt: string;
     updatedAt: string;
@@ -5819,6 +5921,11 @@ export type GetTableQuery = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    databaseserver: string;
+    port: number;
+    databasename: string;
+    username: string;
+    password: string;
     id: string;
     createdAt: string;
     updatedAt: string;
@@ -5845,6 +5952,11 @@ export type ListTablesQuery = {
       dsid: string;
       name: string;
       datasetid: string;
+      databaseserver: string;
+      port: number;
+      databasename: string;
+      username: string;
+      password: string;
       id: string;
       createdAt: string;
       updatedAt: string;
@@ -5874,6 +5986,11 @@ export type SyncTablesQuery = {
       dsid: string;
       name: string;
       datasetid: string;
+      databaseserver: string;
+      port: number;
+      databasename: string;
+      username: string;
+      password: string;
       id: string;
       createdAt: string;
       updatedAt: string;
@@ -6607,6 +6724,11 @@ export type OnCreateDatasetSubscription = {
       dsid: string;
       name: string;
       datasetid: string;
+      databaseserver: string;
+      port: number;
+      databasename: string;
+      username: string;
+      password: string;
       id: string;
       createdAt: string;
       updatedAt: string;
@@ -6652,6 +6774,11 @@ export type OnUpdateDatasetSubscription = {
       dsid: string;
       name: string;
       datasetid: string;
+      databaseserver: string;
+      port: number;
+      databasename: string;
+      username: string;
+      password: string;
       id: string;
       createdAt: string;
       updatedAt: string;
@@ -6697,6 +6824,11 @@ export type OnDeleteDatasetSubscription = {
       dsid: string;
       name: string;
       datasetid: string;
+      databaseserver: string;
+      port: number;
+      databasename: string;
+      username: string;
+      password: string;
       id: string;
       createdAt: string;
       updatedAt: string;
@@ -6871,6 +7003,11 @@ export type OnCreateDatasourcesSubscription = {
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
+  databaseserver: string;
+  port: number;
+  databasename: string;
+  username: string;
+  password: string;
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -6920,6 +7057,11 @@ export type OnUpdateDatasourcesSubscription = {
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
+  databaseserver: string;
+  port: number;
+  databasename: string;
+  username: string;
+  password: string;
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -6969,6 +7111,11 @@ export type OnDeleteDatasourcesSubscription = {
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
+  databaseserver: string;
+  port: number;
+  databasename: string;
+  username: string;
+  password: string;
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -8385,6 +8532,11 @@ export type OnCreateTableSubscription = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    databaseserver: string;
+    port: number;
+    databasename: string;
+    username: string;
+    password: string;
     id: string;
     createdAt: string;
     updatedAt: string;
@@ -8425,6 +8577,11 @@ export type OnUpdateTableSubscription = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    databaseserver: string;
+    port: number;
+    databasename: string;
+    username: string;
+    password: string;
     id: string;
     createdAt: string;
     updatedAt: string;
@@ -8465,6 +8622,11 @@ export type OnDeleteTableSubscription = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    databaseserver: string;
+    port: number;
+    databasename: string;
+    username: string;
+    password: string;
     id: string;
     createdAt: string;
     updatedAt: string;
@@ -9424,6 +9586,11 @@ export class APIService {
               dsid
               name
               datasetid
+              databaseserver
+              port
+              databasename
+              username
+              password
               id
               createdAt
               updatedAt
@@ -9485,6 +9652,11 @@ export class APIService {
               dsid
               name
               datasetid
+              databaseserver
+              port
+              databasename
+              username
+              password
               id
               createdAt
               updatedAt
@@ -9546,6 +9718,11 @@ export class APIService {
               dsid
               name
               datasetid
+              databaseserver
+              port
+              databasename
+              username
+              password
               id
               createdAt
               updatedAt
@@ -9784,6 +9961,11 @@ export class APIService {
             nextToken
             startedAt
           }
+          databaseserver
+          port
+          databasename
+          username
+          password
           id
           createdAt
           updatedAt
@@ -9849,6 +10031,11 @@ export class APIService {
             nextToken
             startedAt
           }
+          databaseserver
+          port
+          databasename
+          username
+          password
           id
           createdAt
           updatedAt
@@ -9914,6 +10101,11 @@ export class APIService {
             nextToken
             startedAt
           }
+          databaseserver
+          port
+          databasename
+          username
+          password
           id
           createdAt
           updatedAt
@@ -11850,6 +12042,11 @@ export class APIService {
               nextToken
               startedAt
             }
+            databaseserver
+            port
+            databasename
+            username
+            password
             id
             createdAt
             updatedAt
@@ -11906,6 +12103,11 @@ export class APIService {
               nextToken
               startedAt
             }
+            databaseserver
+            port
+            databasename
+            username
+            password
             id
             createdAt
             updatedAt
@@ -11962,6 +12164,11 @@ export class APIService {
               nextToken
               startedAt
             }
+            databaseserver
+            port
+            databasename
+            username
+            password
             id
             createdAt
             updatedAt
@@ -12937,6 +13144,11 @@ export class APIService {
               dsid
               name
               datasetid
+              databaseserver
+              port
+              databasename
+              username
+              password
               id
               createdAt
               updatedAt
@@ -13267,6 +13479,11 @@ export class APIService {
             nextToken
             startedAt
           }
+          databaseserver
+          port
+          databasename
+          username
+          password
           id
           createdAt
           updatedAt
@@ -13312,6 +13529,11 @@ export class APIService {
               nextToken
               startedAt
             }
+            databaseserver
+            port
+            databasename
+            username
+            password
             id
             createdAt
             updatedAt
@@ -13368,6 +13590,11 @@ export class APIService {
               nextToken
               startedAt
             }
+            databaseserver
+            port
+            databasename
+            username
+            password
             id
             createdAt
             updatedAt
@@ -15069,6 +15296,11 @@ export class APIService {
               nextToken
               startedAt
             }
+            databaseserver
+            port
+            databasename
+            username
+            password
             id
             createdAt
             updatedAt
@@ -15109,6 +15341,11 @@ export class APIService {
               dsid
               name
               datasetid
+              databaseserver
+              port
+              databasename
+              username
+              password
               id
               createdAt
               updatedAt
@@ -15160,6 +15397,11 @@ export class APIService {
               dsid
               name
               datasetid
+              databaseserver
+              port
+              databasename
+              username
+              password
               id
               createdAt
               updatedAt
@@ -16190,6 +16432,11 @@ export class APIService {
               dsid
               name
               datasetid
+              databaseserver
+              port
+              databasename
+              username
+              password
               id
               createdAt
               updatedAt
@@ -16245,6 +16492,11 @@ export class APIService {
               dsid
               name
               datasetid
+              databaseserver
+              port
+              databasename
+              username
+              password
               id
               createdAt
               updatedAt
@@ -16300,6 +16552,11 @@ export class APIService {
               dsid
               name
               datasetid
+              databaseserver
+              port
+              databasename
+              username
+              password
               id
               createdAt
               updatedAt
@@ -16514,6 +16771,11 @@ export class APIService {
             nextToken
             startedAt
           }
+          databaseserver
+          port
+          databasename
+          username
+          password
           id
           createdAt
           updatedAt
@@ -16573,6 +16835,11 @@ export class APIService {
             nextToken
             startedAt
           }
+          databaseserver
+          port
+          databasename
+          username
+          password
           id
           createdAt
           updatedAt
@@ -16632,6 +16899,11 @@ export class APIService {
             nextToken
             startedAt
           }
+          databaseserver
+          port
+          databasename
+          username
+          password
           id
           createdAt
           updatedAt
@@ -18430,6 +18702,11 @@ export class APIService {
               nextToken
               startedAt
             }
+            databaseserver
+            port
+            databasename
+            username
+            password
             id
             createdAt
             updatedAt
@@ -18480,6 +18757,11 @@ export class APIService {
               nextToken
               startedAt
             }
+            databaseserver
+            port
+            databasename
+            username
+            password
             id
             createdAt
             updatedAt
@@ -18530,6 +18812,11 @@ export class APIService {
               nextToken
               startedAt
             }
+            databaseserver
+            port
+            databasename
+            username
+            password
             id
             createdAt
             updatedAt

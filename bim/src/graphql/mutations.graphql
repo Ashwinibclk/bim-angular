@@ -620,6 +620,11 @@ mutation CreateDataset(
         dsid
         name
         datasetid
+        databaseserver
+        port
+        databasename
+        username
+        password
         id
         createdAt
         updatedAt
@@ -664,6 +669,11 @@ mutation UpdateDataset(
         dsid
         name
         datasetid
+        databaseserver
+        port
+        databasename
+        username
+        password
         id
         createdAt
         updatedAt
@@ -708,6 +718,11 @@ mutation DeleteDataset(
         dsid
         name
         datasetid
+        databaseserver
+        port
+        databasename
+        username
+        password
         id
         createdAt
         updatedAt
@@ -878,6 +893,11 @@ mutation CreateDatasources(
       nextToken
       startedAt
     }
+    databaseserver
+    port
+    databasename
+    username
+    password
     id
     createdAt
     updatedAt
@@ -925,6 +945,11 @@ mutation UpdateDatasources(
       nextToken
       startedAt
     }
+    databaseserver
+    port
+    databasename
+    username
+    password
     id
     createdAt
     updatedAt
@@ -972,6 +997,11 @@ mutation DeleteDatasources(
       nextToken
       startedAt
     }
+    databaseserver
+    port
+    databasename
+    username
+    password
     id
     createdAt
     updatedAt
@@ -2358,6 +2388,11 @@ mutation CreateTable(
         nextToken
         startedAt
       }
+      databaseserver
+      port
+      databasename
+      username
+      password
       id
       createdAt
       updatedAt
@@ -2398,6 +2433,11 @@ mutation UpdateTable(
         nextToken
         startedAt
       }
+      databaseserver
+      port
+      databasename
+      username
+      password
       id
       createdAt
       updatedAt
@@ -2438,6 +2478,11 @@ mutation DeleteTable(
         nextToken
         startedAt
       }
+      databaseserver
+      port
+      databasename
+      username
+      password
       id
       createdAt
       updatedAt

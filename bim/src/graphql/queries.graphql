@@ -530,6 +530,11 @@ query GetDataset($id: ID!) {
         dsid
         name
         datasetid
+        databaseserver
+        port
+        databasename
+        username
+        password
         id
         createdAt
         updatedAt
@@ -756,6 +761,11 @@ query GetDatasources($id: ID!) {
       nextToken
       startedAt
     }
+    databaseserver
+    port
+    databasename
+    username
+    password
     id
     createdAt
     updatedAt
@@ -788,6 +798,11 @@ query ListDatasources(
         nextToken
         startedAt
       }
+      databaseserver
+      port
+      databasename
+      username
+      password
       id
       createdAt
       updatedAt
@@ -829,6 +844,11 @@ query SyncDatasources(
         nextToken
         startedAt
       }
+      databaseserver
+      port
+      databasename
+      username
+      password
       id
       createdAt
       updatedAt
@@ -2009,6 +2029,11 @@ query GetTable($id: ID!) {
         nextToken
         startedAt
       }
+      databaseserver
+      port
+      databasename
+      username
+      password
       id
       createdAt
       updatedAt
@@ -2037,6 +2062,11 @@ query ListTables(
         dsid
         name
         datasetid
+        databaseserver
+        port
+        databasename
+        username
+        password
         id
         createdAt
         updatedAt
@@ -2074,6 +2104,11 @@ query SyncTables(
         dsid
         name
         datasetid
+        databaseserver
+        port
+        databasename
+        username
+        password
         id
         createdAt
         updatedAt

@@ -67,6 +67,12 @@ type datasources @model{
  datasetid:ID!
  datasets:dataset @belongsTo(fields:["datasetid"])
  table:[Table] @hasMany(fields:["dsid"])
+ databaseserver:String!
+ port:Int!
+ databasename:String!
+ username:String!
+ password:String!
+
 }
 
 

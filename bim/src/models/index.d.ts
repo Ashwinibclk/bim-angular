@@ -247,6 +247,11 @@ export declare class datasources {
   readonly name: string;
   readonly datasets?: dataset | null;
   readonly table?: (Table | null)[] | null;
+  readonly databaseserver: string;
+  readonly port: number;
+  readonly databasename: string;
+  readonly username: string;
+  readonly password: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<datasources, datasourcesMetaData>);
