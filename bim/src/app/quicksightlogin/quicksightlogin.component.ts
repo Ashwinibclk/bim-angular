@@ -20,17 +20,7 @@ export class QuicksightloginComponent implements OnInit {
   private subscription: Subscription | null = null; 
 
   async ngOnInit() {
-    this.api.ListQuicksightlogins().then((event) => {
-      this.qks = event.items as Quicksightlogin[];
-    });
-  
-    
-    this.subscription = <Subscription>(
-      this.api.OnCreateQuicksightloginListener.subscribe((event: any) => {
-        const newtb = event.value.data.onCreateak;
-        this.qks = [newtb, ...this.qks];
-      })
-    );
+   
   }
   
   public onCreateqk(todo: any) {

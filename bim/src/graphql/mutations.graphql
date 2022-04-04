@@ -104,6 +104,14 @@ mutation CreateCustomer(
         nextToken
         startedAt
       }
+      tprojects {
+        nextToken
+        startedAt
+      }
+      qprojects {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -129,6 +137,14 @@ mutation UpdateCustomer(
       id
       DName
       customers {
+        nextToken
+        startedAt
+      }
+      tprojects {
+        nextToken
+        startedAt
+      }
+      qprojects {
         nextToken
         startedAt
       }
@@ -160,6 +176,14 @@ mutation DeleteCustomer(
         nextToken
         startedAt
       }
+      tprojects {
+        nextToken
+        startedAt
+      }
+      qprojects {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -181,6 +205,35 @@ mutation CreateDepartment(
     id
     DName
     customers {
+      items {
+        id
+        name
+        Did
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    tprojects {
+      items {
+        tpid
+        name
+        Did
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    qprojects {
       items {
         id
         name
@@ -222,6 +275,35 @@ mutation UpdateDepartment(
       nextToken
       startedAt
     }
+    tprojects {
+      items {
+        tpid
+        name
+        Did
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    qprojects {
+      items {
+        id
+        name
+        Did
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
     createdAt
     updatedAt
     _version
@@ -237,6 +319,35 @@ mutation DeleteDepartment(
     id
     DName
     customers {
+      items {
+        id
+        name
+        Did
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    tprojects {
+      items {
+        tpid
+        name
+        Did
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    qprojects {
       items {
         id
         name
@@ -267,6 +378,14 @@ mutation CreateBIMProject(
       id
       DName
       customers {
+        nextToken
+        startedAt
+      }
+      tprojects {
+        nextToken
+        startedAt
+      }
+      qprojects {
         nextToken
         startedAt
       }
@@ -301,6 +420,14 @@ mutation UpdateBIMProject(
         nextToken
         startedAt
       }
+      tprojects {
+        nextToken
+        startedAt
+      }
+      qprojects {
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -329,6 +456,14 @@ mutation DeleteBIMProject(
       id
       DName
       customers {
+        nextToken
+        startedAt
+      }
+      tprojects {
+        nextToken
+        startedAt
+      }
+      qprojects {
         nextToken
         startedAt
       }
@@ -606,6 +741,20 @@ mutation CreateDatasources(
       _deleted
       _lastChangedAt
     }
+    table {
+      items {
+        name
+        dsid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
     id
     createdAt
     updatedAt
@@ -638,6 +787,20 @@ mutation UpdateDatasources(
       _version
       _deleted
       _lastChangedAt
+    }
+    table {
+      items {
+        name
+        dsid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
     }
     id
     createdAt
@@ -672,6 +835,1577 @@ mutation DeleteDatasources(
       _deleted
       _lastChangedAt
     }
+    table {
+      items {
+        name
+        dsid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation CreateTableauProject(
+  $input: CreateTableauProjectInput!
+  $condition: ModelTableauProjectConditionInput
+) {
+  createTableauProject(input: $input, condition: $condition) {
+    tpid
+    name
+    Did
+    department {
+      id
+      DName
+      customers {
+        nextToken
+        startedAt
+      }
+      tprojects {
+        nextToken
+        startedAt
+      }
+      qprojects {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation UpdateTableauProject(
+  $input: UpdateTableauProjectInput!
+  $condition: ModelTableauProjectConditionInput
+) {
+  updateTableauProject(input: $input, condition: $condition) {
+    tpid
+    name
+    Did
+    department {
+      id
+      DName
+      customers {
+        nextToken
+        startedAt
+      }
+      tprojects {
+        nextToken
+        startedAt
+      }
+      qprojects {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation DeleteTableauProject(
+  $input: DeleteTableauProjectInput!
+  $condition: ModelTableauProjectConditionInput
+) {
+  deleteTableauProject(input: $input, condition: $condition) {
+    tpid
+    name
+    Did
+    department {
+      id
+      DName
+      customers {
+        nextToken
+        startedAt
+      }
+      tprojects {
+        nextToken
+        startedAt
+      }
+      qprojects {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation CreateTableauEnv(
+  $input: CreateTableauEnvInput!
+  $condition: ModelTableauEnvConditionInput
+) {
+  createTableauEnv(input: $input, condition: $condition) {
+    name
+    tpid
+    tproject {
+      tpid
+      name
+      Did
+      department {
+        id
+        DName
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation UpdateTableauEnv(
+  $input: UpdateTableauEnvInput!
+  $condition: ModelTableauEnvConditionInput
+) {
+  updateTableauEnv(input: $input, condition: $condition) {
+    name
+    tpid
+    tproject {
+      tpid
+      name
+      Did
+      department {
+        id
+        DName
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation DeleteTableauEnv(
+  $input: DeleteTableauEnvInput!
+  $condition: ModelTableauEnvConditionInput
+) {
+  deleteTableauEnv(input: $input, condition: $condition) {
+    name
+    tpid
+    tproject {
+      tpid
+      name
+      Did
+      department {
+        id
+        DName
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation CreateTaleauWorkbook(
+  $input: CreateTaleauWorkbookInput!
+  $condition: ModelTaleauWorkbookConditionInput
+) {
+  createTaleauWorkbook(input: $input, condition: $condition) {
+    name
+    tpid
+    twbid
+    tproject {
+      tpid
+      name
+      Did
+      department {
+        id
+        DName
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation UpdateTaleauWorkbook(
+  $input: UpdateTaleauWorkbookInput!
+  $condition: ModelTaleauWorkbookConditionInput
+) {
+  updateTaleauWorkbook(input: $input, condition: $condition) {
+    name
+    tpid
+    twbid
+    tproject {
+      tpid
+      name
+      Did
+      department {
+        id
+        DName
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation DeleteTaleauWorkbook(
+  $input: DeleteTaleauWorkbookInput!
+  $condition: ModelTaleauWorkbookConditionInput
+) {
+  deleteTaleauWorkbook(input: $input, condition: $condition) {
+    name
+    tpid
+    twbid
+    tproject {
+      tpid
+      name
+      Did
+      department {
+        id
+        DName
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation CreateTableauSheet(
+  $input: CreateTableauSheetInput!
+  $condition: ModelTableauSheetConditionInput
+) {
+  createTableauSheet(input: $input, condition: $condition) {
+    name
+    twbid
+    tsid
+    tworkbook {
+      name
+      tpid
+      twbid
+      tproject {
+        tpid
+        name
+        Did
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation UpdateTableauSheet(
+  $input: UpdateTableauSheetInput!
+  $condition: ModelTableauSheetConditionInput
+) {
+  updateTableauSheet(input: $input, condition: $condition) {
+    name
+    twbid
+    tsid
+    tworkbook {
+      name
+      tpid
+      twbid
+      tproject {
+        tpid
+        name
+        Did
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation DeleteTableauSheet(
+  $input: DeleteTableauSheetInput!
+  $condition: ModelTableauSheetConditionInput
+) {
+  deleteTableauSheet(input: $input, condition: $condition) {
+    name
+    twbid
+    tsid
+    tworkbook {
+      name
+      tpid
+      twbid
+      tproject {
+        tpid
+        name
+        Did
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation CreateTableauGraph(
+  $input: CreateTableauGraphInput!
+  $condition: ModelTableauGraphConditionInput
+) {
+  createTableauGraph(input: $input, condition: $condition) {
+    name
+    tsid
+    tsheet {
+      name
+      twbid
+      tsid
+      tworkbook {
+        name
+        tpid
+        twbid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation UpdateTableauGraph(
+  $input: UpdateTableauGraphInput!
+  $condition: ModelTableauGraphConditionInput
+) {
+  updateTableauGraph(input: $input, condition: $condition) {
+    name
+    tsid
+    tsheet {
+      name
+      twbid
+      tsid
+      tworkbook {
+        name
+        tpid
+        twbid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation DeleteTableauGraph(
+  $input: DeleteTableauGraphInput!
+  $condition: ModelTableauGraphConditionInput
+) {
+  deleteTableauGraph(input: $input, condition: $condition) {
+    name
+    tsid
+    tsheet {
+      name
+      twbid
+      tsid
+      tworkbook {
+        name
+        tpid
+        twbid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation CreateQuicksightProject(
+  $input: CreateQuicksightProjectInput!
+  $condition: ModelQuicksightProjectConditionInput
+) {
+  createQuicksightProject(input: $input, condition: $condition) {
+    id
+    name
+    Did
+    department {
+      id
+      DName
+      customers {
+        nextToken
+        startedAt
+      }
+      tprojects {
+        nextToken
+        startedAt
+      }
+      qprojects {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    templates {
+      items {
+        id
+        name
+        sourceanalysisId
+        Qpid
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    env {
+      items {
+        name
+        Qpid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation UpdateQuicksightProject(
+  $input: UpdateQuicksightProjectInput!
+  $condition: ModelQuicksightProjectConditionInput
+) {
+  updateQuicksightProject(input: $input, condition: $condition) {
+    id
+    name
+    Did
+    department {
+      id
+      DName
+      customers {
+        nextToken
+        startedAt
+      }
+      tprojects {
+        nextToken
+        startedAt
+      }
+      qprojects {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    templates {
+      items {
+        id
+        name
+        sourceanalysisId
+        Qpid
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    env {
+      items {
+        name
+        Qpid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation DeleteQuicksightProject(
+  $input: DeleteQuicksightProjectInput!
+  $condition: ModelQuicksightProjectConditionInput
+) {
+  deleteQuicksightProject(input: $input, condition: $condition) {
+    id
+    name
+    Did
+    department {
+      id
+      DName
+      customers {
+        nextToken
+        startedAt
+      }
+      tprojects {
+        nextToken
+        startedAt
+      }
+      qprojects {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    templates {
+      items {
+        id
+        name
+        sourceanalysisId
+        Qpid
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    env {
+      items {
+        name
+        Qpid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation CreateQuicksightTemplate(
+  $input: CreateQuicksightTemplateInput!
+  $condition: ModelQuicksightTemplateConditionInput
+) {
+  createQuicksightTemplate(input: $input, condition: $condition) {
+    id
+    name
+    sourceanalysisId
+    Qpid
+    qproject {
+      id
+      name
+      Did
+      department {
+        id
+        DName
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      templates {
+        nextToken
+        startedAt
+      }
+      env {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    qanalysis {
+      items {
+        name
+        QuicksightTemplateId
+        sourceanalysisId
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    qdashboard {
+      items {
+        name
+        qtid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation UpdateQuicksightTemplate(
+  $input: UpdateQuicksightTemplateInput!
+  $condition: ModelQuicksightTemplateConditionInput
+) {
+  updateQuicksightTemplate(input: $input, condition: $condition) {
+    id
+    name
+    sourceanalysisId
+    Qpid
+    qproject {
+      id
+      name
+      Did
+      department {
+        id
+        DName
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      templates {
+        nextToken
+        startedAt
+      }
+      env {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    qanalysis {
+      items {
+        name
+        QuicksightTemplateId
+        sourceanalysisId
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    qdashboard {
+      items {
+        name
+        qtid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation DeleteQuicksightTemplate(
+  $input: DeleteQuicksightTemplateInput!
+  $condition: ModelQuicksightTemplateConditionInput
+) {
+  deleteQuicksightTemplate(input: $input, condition: $condition) {
+    id
+    name
+    sourceanalysisId
+    Qpid
+    qproject {
+      id
+      name
+      Did
+      department {
+        id
+        DName
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      templates {
+        nextToken
+        startedAt
+      }
+      env {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    qanalysis {
+      items {
+        name
+        QuicksightTemplateId
+        sourceanalysisId
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    qdashboard {
+      items {
+        name
+        qtid
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation CreateQuicksightAnalysis(
+  $input: CreateQuicksightAnalysisInput!
+  $condition: ModelQuicksightAnalysisConditionInput
+) {
+  createQuicksightAnalysis(input: $input, condition: $condition) {
+    name
+    QuicksightTemplateId
+    sourceanalysisId
+    qtemplate {
+      id
+      name
+      sourceanalysisId
+      Qpid
+      qproject {
+        id
+        name
+        Did
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      qanalysis {
+        nextToken
+        startedAt
+      }
+      qdashboard {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation UpdateQuicksightAnalysis(
+  $input: UpdateQuicksightAnalysisInput!
+  $condition: ModelQuicksightAnalysisConditionInput
+) {
+  updateQuicksightAnalysis(input: $input, condition: $condition) {
+    name
+    QuicksightTemplateId
+    sourceanalysisId
+    qtemplate {
+      id
+      name
+      sourceanalysisId
+      Qpid
+      qproject {
+        id
+        name
+        Did
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      qanalysis {
+        nextToken
+        startedAt
+      }
+      qdashboard {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation DeleteQuicksightAnalysis(
+  $input: DeleteQuicksightAnalysisInput!
+  $condition: ModelQuicksightAnalysisConditionInput
+) {
+  deleteQuicksightAnalysis(input: $input, condition: $condition) {
+    name
+    QuicksightTemplateId
+    sourceanalysisId
+    qtemplate {
+      id
+      name
+      sourceanalysisId
+      Qpid
+      qproject {
+        id
+        name
+        Did
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      qanalysis {
+        nextToken
+        startedAt
+      }
+      qdashboard {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation CreateQuicksightEnv(
+  $input: CreateQuicksightEnvInput!
+  $condition: ModelQuicksightEnvConditionInput
+) {
+  createQuicksightEnv(input: $input, condition: $condition) {
+    name
+    Qpid
+    qproject {
+      id
+      name
+      Did
+      department {
+        id
+        DName
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      templates {
+        nextToken
+        startedAt
+      }
+      env {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation UpdateQuicksightEnv(
+  $input: UpdateQuicksightEnvInput!
+  $condition: ModelQuicksightEnvConditionInput
+) {
+  updateQuicksightEnv(input: $input, condition: $condition) {
+    name
+    Qpid
+    qproject {
+      id
+      name
+      Did
+      department {
+        id
+        DName
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      templates {
+        nextToken
+        startedAt
+      }
+      env {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation DeleteQuicksightEnv(
+  $input: DeleteQuicksightEnvInput!
+  $condition: ModelQuicksightEnvConditionInput
+) {
+  deleteQuicksightEnv(input: $input, condition: $condition) {
+    name
+    Qpid
+    qproject {
+      id
+      name
+      Did
+      department {
+        id
+        DName
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      templates {
+        nextToken
+        startedAt
+      }
+      env {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation CreateQuicksightDashboard(
+  $input: CreateQuicksightDashboardInput!
+  $condition: ModelQuicksightDashboardConditionInput
+) {
+  createQuicksightDashboard(input: $input, condition: $condition) {
+    name
+    qtid
+    qtemplate {
+      id
+      name
+      sourceanalysisId
+      Qpid
+      qproject {
+        id
+        name
+        Did
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      qanalysis {
+        nextToken
+        startedAt
+      }
+      qdashboard {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation UpdateQuicksightDashboard(
+  $input: UpdateQuicksightDashboardInput!
+  $condition: ModelQuicksightDashboardConditionInput
+) {
+  updateQuicksightDashboard(input: $input, condition: $condition) {
+    name
+    qtid
+    qtemplate {
+      id
+      name
+      sourceanalysisId
+      Qpid
+      qproject {
+        id
+        name
+        Did
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      qanalysis {
+        nextToken
+        startedAt
+      }
+      qdashboard {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation DeleteQuicksightDashboard(
+  $input: DeleteQuicksightDashboardInput!
+  $condition: ModelQuicksightDashboardConditionInput
+) {
+  deleteQuicksightDashboard(input: $input, condition: $condition) {
+    name
+    qtid
+    qtemplate {
+      id
+      name
+      sourceanalysisId
+      Qpid
+      qproject {
+        id
+        name
+        Did
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      qanalysis {
+        nextToken
+        startedAt
+      }
+      qdashboard {
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation CreateTable(
+  $input: CreateTableInput!
+  $condition: ModelTableConditionInput
+) {
+  createTable(input: $input, condition: $condition) {
+    name
+    dsid
+    datasource {
+      dsid
+      name
+      datasetid
+      datasets {
+        datasetid
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      table {
+        nextToken
+        startedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation UpdateTable(
+  $input: UpdateTableInput!
+  $condition: ModelTableConditionInput
+) {
+  updateTable(input: $input, condition: $condition) {
+    name
+    dsid
+    datasource {
+      dsid
+      name
+      datasetid
+      datasets {
+        datasetid
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      table {
+        nextToken
+        startedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation DeleteTable(
+  $input: DeleteTableInput!
+  $condition: ModelTableConditionInput
+) {
+  deleteTable(input: $input, condition: $condition) {
+    name
+    dsid
+    datasource {
+      dsid
+      name
+      datasetid
+      datasets {
+        datasetid
+        name
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      table {
+        nextToken
+        startedAt
+      }
+      id
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation CreateQuicksightFolder(
+  $input: CreateQuicksightFolderInput!
+  $condition: ModelQuicksightFolderConditionInput
+) {
+  createQuicksightFolder(input: $input, condition: $condition) {
+    name
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation UpdateQuicksightFolder(
+  $input: UpdateQuicksightFolderInput!
+  $condition: ModelQuicksightFolderConditionInput
+) {
+  updateQuicksightFolder(input: $input, condition: $condition) {
+    name
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation DeleteQuicksightFolder(
+  $input: DeleteQuicksightFolderInput!
+  $condition: ModelQuicksightFolderConditionInput
+) {
+  deleteQuicksightFolder(input: $input, condition: $condition) {
+    name
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation CreateQuicksightGroup(
+  $input: CreateQuicksightGroupInput!
+  $condition: ModelQuicksightGroupConditionInput
+) {
+  createQuicksightGroup(input: $input, condition: $condition) {
+    name
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation UpdateQuicksightGroup(
+  $input: UpdateQuicksightGroupInput!
+  $condition: ModelQuicksightGroupConditionInput
+) {
+  updateQuicksightGroup(input: $input, condition: $condition) {
+    name
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation DeleteQuicksightGroup(
+  $input: DeleteQuicksightGroupInput!
+  $condition: ModelQuicksightGroupConditionInput
+) {
+  deleteQuicksightGroup(input: $input, condition: $condition) {
+    name
     id
     createdAt
     updatedAt

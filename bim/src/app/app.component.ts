@@ -47,15 +47,7 @@ router.events.forEach((event)=>{
     /* fetch restaurants when app loads */
     
 
-    this.api.ListTableaulogins().then((event) => {
-      this.tbs = event.items as Tableaulogin[];
-    });
-    this.subscription = <Subscription>(
-      this.api.OnCreateTableauloginListener.subscribe((event: any) => {
-        const newtb = event.value.data.onCreatetb;
-        this.tbs = [newtb, ...this.tbs];
-      })
-    );
+    
     onAuthUIStateChange((authState, authData) => {
       this.authState=AuthState;
       this.authState = authState;
@@ -66,17 +58,6 @@ router.events.forEach((event)=>{
   
 
   
-  public onCreatetb(todo: any) {
-    this.api
-      .CreateTableaulogin(todo)
-      .then((event) => {
-        console.log("item created!");
-        this.createFormtb.reset();
-      })
-      .catch((e) => {
-        console.log("error creating restaurant...", e);
-      });
-  }
 
 
   ngOnDestroy() {

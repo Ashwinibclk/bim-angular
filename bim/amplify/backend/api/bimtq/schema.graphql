@@ -3,17 +3,6 @@
 input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
 
 
-type Tableaulogin @model {
-  id: ID!
-  username: String!
-  password: String!
-  sitename: String!
-}
-
-type Quicksightlogin @model {
-  id: ID!
-  awsaccountId: ID!
-}
 
 type Customer @model {
   id: ID!
@@ -26,6 +15,8 @@ type Department @model {
   id: ID!
   DName: String!
   customers: [Customer] @hasMany(fields:["id"])
+  tprojects:[TableauProject] @hasMany(fields:["id"])
+  qprojects:[QuicksightProject] @hasMany(fields:["id"])
 }
 
 type BIMProject @model{
@@ -62,4 +53,111 @@ type datasources @model{
   name:String!
  datasetid:ID!
  datasets:dataset @belongsTo(fields:["datasetid"])
+ table:[Table] @hasMany(fields:["dsid"])
 }
+
+
+type TableauProject @model {
+  tpid:ID!
+  name:String!
+  Did:ID! 
+  department:Department @belongsTo(fields:["Did"])
+}
+
+type TableauEnv @model {
+  name:String!
+  tpid:ID!
+  tproject: TableauProject @hasOne(fields:["tpid"])
+
+}
+
+type TaleauWorkbook @model {
+
+  name: String!
+  tpid:ID!
+  twbid:ID!
+  tproject: TableauProject @hasOne(fields:["tpid"])
+  
+}
+
+type TableauSheet @model {
+  name:String!
+  twbid:ID!
+  tsid:ID!
+  tworkbook: TaleauWorkbook @hasOne(fields:["twbid"])
+}
+
+type TableauGraph @model {
+
+  name:String!
+  tsid:ID!
+  tsheet: TableauSheet @hasOne(fields:["tsid"])
+
+}
+
+
+type QuicksightProject @model {
+  id:ID!
+  name: String!
+  Did:ID!
+  department: Department @belongsTo(fields:["Did"])
+  templates: [QuicksightTemplate] @hasMany(fields:["id"])
+  env:[QuicksightEnv] @hasMany(fields:["id"])
+}
+
+type QuicksightTemplate @model {
+  id:ID!
+  name:String!
+  sourceanalysisId: ID!
+  Qpid:ID!
+  qproject: QuicksightProject @belongsTo(fields:["Qpid"])
+  qanalysis: [QuicksightAnalysis] @hasMany(fields:["id"])
+qdashboard: [QuicksightDashboard] @hasMany(fields:["id"])
+}
+
+
+type QuicksightAnalysis @model {
+  name:String!
+  QuicksightTemplateId: ID!
+  sourceanalysisId: ID!
+  qtemplate: QuicksightTemplate @belongsTo(fields:["sourceanalysisId"])
+}
+
+
+type QuicksightEnv @model {
+  name:String!
+  Qpid:ID!
+  qproject:QuicksightProject @belongsTo(fields:["Qpid"])
+}
+
+type QuicksightDashboard @model {
+  name:String!
+  qtid:ID!
+  qtemplate: QuicksightTemplate @belongsTo(fields:["qtid"])
+}
+
+type Table @model {
+
+  name:String!
+  dsid:ID!
+datasource: datasources @belongsTo(fields:["dsid"])
+}
+
+type QuicksightFolder @model {
+
+  name:String!
+
+
+}
+
+type QuicksightGroup @model {
+
+  name:String!
+  
+} 
+
+ 
+
+
+
+
