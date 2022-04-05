@@ -1,4 +1,4 @@
-<div class="sidenav">
+<!--<div class="sidenav">
   <a href="/customer" >Customer</a>
   <a href="/department" >Department</a>
   <a href="/bimlogin">BIM</a>
@@ -6,14 +6,16 @@
   <a href="/tableaulogin">Tableau</a>
   <a href="/quicksightlogin">Quicksight</a>
   
-</div>
+</div>-->
 
 <div class="topnav">
  
   <a href="#contact">Contact</a>
   <a href="#about">About</a>
+ 
   <a href="#">Home</a>
-  <a href="" style="float:left; font-size: 28px; color:rgb(173, 209, 12); font-weight: bold;">Bi-Migrator</a>
+  <a href="#">Dashboard</a>
+  <a href="" style="float:left; font-size: 24px; color:rgb(173, 209, 12); ">Bi-Migrator</a>
  
 
 </div>
@@ -32,5 +34,31 @@
    
   </div>
   </amplify-auth-container></div>-->
+
+  <div *ngIf="showapp" class="row">
+    <div class="column" style="background-color:whitesmoke; border:5px solid pink; border-radius: 20px;">
+     <p style="margin-left:10%; font-size: medium; color: rebeccapurple;">Migration projects per User</p>
+    </div>
+    <div class="column" style="background-color:whitesmoke;border:5px solid pink; border-radius: 20px;">
+      <p style="margin-left:10%; font-size: medium; color:green">Migrated projects per User</p>
+    </div>
+    <div class="column" style="background-color:whitesmoke; border:5px solid pink; border-radius: 20px;">
+      <button (click)="showm()" style="background-color:rgb(26, 133, 58); width:200px; height:50px; font-size:15px; color:white;  margin-top: 30%; margin-left:30%; border-radius: 20px;">Migrate My Project</button>
+     
+    </div>
+  </div>
   
 </div>
+
+<div *ngIf="logcred "class="modal"  role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+       <button (click)="method()" style="background-color:rgb(26, 133, 58); width:200px; height:50px; font-size:15px; color:white;   margin-left:25%; border-radius: 20px;">  Please Login!!! </button>
+        </div>
+        </div>
+        </div>
+        </div>
+        

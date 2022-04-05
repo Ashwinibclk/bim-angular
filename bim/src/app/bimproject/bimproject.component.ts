@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators,ReactiveFormsModule, FormControl} fro
 import {APIService,  BIMProject} from "../API.service";
 import { Subscription } from "rxjs";
 import { BIPlatform } from "../API.service";
-
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-bimproject',
@@ -18,7 +18,7 @@ export class BimprojectComponent implements OnInit {
   public tbs: Array<BIMProject> =[];
   
   
-  constructor(private api: APIService, private fb: FormBuilder) {
+  constructor(private api: APIService, private fb: FormBuilder, private router: Router) {
     this.createFormtb=FormBuilder;
     this.createFormtb= this.fb.group({
       name: ["", Validators.required],
@@ -55,6 +55,7 @@ export class BimprojectComponent implements OnInit {
       .catch((e) => {
         console.log("error creating restaurant...", e);
       });
+      this.router.navigate(["/tableaulogin"]);
   }
   
   /*public onDelete(username:any){

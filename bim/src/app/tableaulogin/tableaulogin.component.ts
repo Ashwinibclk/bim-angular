@@ -2,7 +2,7 @@ import {Component, OnInit, OnDestroy, ChangeDetectorRef } from "@angular/core";
 import {FormBuilder, FormGroup, Validators,ReactiveFormsModule} from "@angular/forms";
 import {APIService,  Tableaulogin} from "../API.service";
 import { Subscription } from "rxjs";
-
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-tableaulogin',
@@ -12,7 +12,7 @@ import { Subscription } from "rxjs";
 export class TableauloginComponent implements OnInit {
   public createFormtb: any;
   public tbs: Array<Tableaulogin> =[];
-  constructor(private api: APIService, private fb: FormBuilder) { 
+  constructor(private api: APIService, private fb: FormBuilder, private router: Router) { 
     this.createFormtb=FormBuilder;
     this.createFormtb= this.fb.group({
       username: ["", Validators.required],
@@ -46,6 +46,7 @@ public onCreatetb(todo: any) {
     .catch((e) => {
       console.log("error creating restaurant...", e);
     });
+    this.router.navigate(["/datasets"]);
 }
 
 /*public onDelete(username:any){

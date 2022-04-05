@@ -3,7 +3,7 @@ import {Component, OnInit, OnDestroy, ChangeDetectorRef } from "@angular/core";
   import {APIService, dataset, datasources} from "../API.service";
   import { Subscription } from "rxjs";
   import {Router} from '@angular/router';
-
+  declare const move: any;
 @Component({
   selector: 'app-dataset',
   templateUrl: './dataset.component.html',
@@ -12,8 +12,9 @@ import {Component, OnInit, OnDestroy, ChangeDetectorRef } from "@angular/core";
 
 
 export class DatasetComponent implements OnInit {
+
   
-  
+  process:boolean=false;
   showform: boolean=true;
   showmodal: boolean =false;
     public createFormd: any;
@@ -69,6 +70,10 @@ export class DatasetComponent implements OnInit {
         
     }
 
+    onclick(){
+      move();
+    }
+    
     public onCreateds(todo: any) {
       this.api
         .CreateDatasources(todo)
@@ -79,6 +84,8 @@ export class DatasetComponent implements OnInit {
         .catch((e) => {
           console.log("error creating...", e);
         });
+        this.showmodal=false;
+        this.process=true;
         
     }
     
@@ -105,6 +112,7 @@ export class DatasetComponent implements OnInit {
     }
     */
     
+
     ngOnDestroy() {
       if (this.subscription) {
         this.subscription.unsubscribe();

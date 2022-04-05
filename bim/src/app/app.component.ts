@@ -14,7 +14,8 @@ export class AppComponent implements OnInit, OnDestroy {
   public createForm: FormGroup;
   public createFormtb: any;
   showapp:any;
-
+  show:boolean=false;
+  logcred:boolean=false;
 
   user: CognitoUserInterface | undefined;
   authState: any;
@@ -56,9 +57,15 @@ router.events.forEach((event)=>{
     })
   }
   
-
+showm(){
+  this.logcred=true;
   
-
+}
+  
+method(){
+  this.logcred=false;
+  this.router.navigate(["\customer"]);
+}
 
   ngOnDestroy() {
     if (this.subscription) {
