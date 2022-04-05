@@ -1,5 +1,6 @@
 body {
     font-family: "Lato", sans-serif;
+  
   }
   
   .sidenav {
@@ -9,34 +10,37 @@ body {
     z-index: 2;
     top: 0;
     left: 0;
-    background-color: #F5FFFA;
+    background-color: #000000;
+    opacity:0.5;
     overflow-x: hidden;
     padding-top: 20px;
     position: absolute;
-    margin-top: 50px;
+    margin-top: 68px;
+   
   }
   
   .sidenav a {
     padding: 6px 8px 10px 16px;
     text-decoration: none;
     font-size: 18px;
-    color: black;
+    color: rgb(245, 241, 241);
     display: block;
-    border-top:1px solid purple;
-    border-bottom: 1px solid purple;
+    
     
   }
   
   .sidenav a:hover {
    
-    background-color: #ddd;
+    background-color: rgb(31, 174, 231);
   }
   
   .main {
     margin-left: 150px; /* Same as the width of the sidenav */
     font-size: 28px; /* Increased text to enable scrolling */
     padding: 0px 10px;
-    margin-top: 50px;
+    margin-top: 20px;
+   background-color: #b8bdbb;
+  
   }
   
   @media screen and (max-height: 450px) {
@@ -47,16 +51,17 @@ body {
 
 .topnav {
   overflow: hidden;
-  background-color: #F5FFFA;
+  
   margin-top: -10px;
   margin-left: -10px;
   margin-right:-8px;
-
+  background-color: #000000;
+  opacity:0.6;
 }
 
 .topnav a {
   float: right;
-  color: black;
+  color: rgb(252, 248, 248);
   text-align: center;
   padding: 19px 16px;
   text-decoration: none;
@@ -66,8 +71,8 @@ body {
 }
 
 .topnav a:hover, h1 {
-  background-color: #ddd;
-  color: black;
+  background-color: rgb(31, 174, 231);
+ 
 }
 
 .topnav a.active {
