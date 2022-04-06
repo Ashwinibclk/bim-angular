@@ -73,6 +73,9 @@ export type __SubscriptionContainer = {
   onCreateQuicksightGroup: OnCreateQuicksightGroupSubscription;
   onUpdateQuicksightGroup: OnUpdateQuicksightGroupSubscription;
   onDeleteQuicksightGroup: OnDeleteQuicksightGroupSubscription;
+  onCreateComments: OnCreateCommentsSubscription;
+  onUpdateComments: OnUpdateCommentsSubscription;
+  onDeleteComments: OnDeleteCommentsSubscription;
 };
 
 export type CreateTableauloginInput = {
@@ -1115,6 +1118,41 @@ export type DeleteQuicksightGroupInput = {
   _version?: number | null;
 };
 
+export type CreateCommentsInput = {
+  comments: string;
+  id?: string | null;
+  _version?: number | null;
+};
+
+export type ModelCommentsConditionInput = {
+  comments?: ModelStringInput | null;
+  and?: Array<ModelCommentsConditionInput | null> | null;
+  or?: Array<ModelCommentsConditionInput | null> | null;
+  not?: ModelCommentsConditionInput | null;
+};
+
+export type comments = {
+  __typename: "comments";
+  comments: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type UpdateCommentsInput = {
+  comments?: string | null;
+  id: string;
+  _version?: number | null;
+};
+
+export type DeleteCommentsInput = {
+  id: string;
+  _version?: number | null;
+};
+
 export type ModelTableauloginFilterInput = {
   id?: ModelIDInput | null;
   username?: ModelStringInput | null;
@@ -1381,6 +1419,20 @@ export type ModelQuicksightGroupFilterInput = {
 export type ModelQuicksightGroupConnection = {
   __typename: "ModelQuicksightGroupConnection";
   items: Array<QuicksightGroup | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type ModelCommentsFilterInput = {
+  comments?: ModelStringInput | null;
+  and?: Array<ModelCommentsFilterInput | null> | null;
+  or?: Array<ModelCommentsFilterInput | null> | null;
+  not?: ModelCommentsFilterInput | null;
+};
+
+export type ModelCommentsConnection = {
+  __typename: "ModelCommentsConnection";
+  items: Array<comments | null>;
   nextToken?: string | null;
   startedAt?: number | null;
 };
@@ -3998,6 +4050,39 @@ export type DeleteQuicksightGroupMutation = {
   _lastChangedAt: number;
 };
 
+export type CreateCommentsMutation = {
+  __typename: "comments";
+  comments: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type UpdateCommentsMutation = {
+  __typename: "comments";
+  comments: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type DeleteCommentsMutation = {
+  __typename: "comments";
+  comments: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
 export type GetTableauloginQuery = {
   __typename: "Tableaulogin";
   id: string;
@@ -6084,6 +6169,49 @@ export type SyncQuicksightGroupsQuery = {
   items: Array<{
     __typename: "QuicksightGroup";
     name: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type GetCommentsQuery = {
+  __typename: "comments";
+  comments: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type ListCommentsQuery = {
+  __typename: "ModelCommentsConnection";
+  items: Array<{
+    __typename: "comments";
+    comments: string;
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    _version: number;
+    _deleted?: boolean | null;
+    _lastChangedAt: number;
+  } | null>;
+  nextToken?: string | null;
+  startedAt?: number | null;
+};
+
+export type SyncCommentsQuery = {
+  __typename: "ModelCommentsConnection";
+  items: Array<{
+    __typename: "comments";
+    comments: string;
     id: string;
     createdAt: string;
     updatedAt: string;
@@ -8700,6 +8828,39 @@ export type OnUpdateQuicksightGroupSubscription = {
 export type OnDeleteQuicksightGroupSubscription = {
   __typename: "QuicksightGroup";
   name: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type OnCreateCommentsSubscription = {
+  __typename: "comments";
+  comments: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type OnUpdateCommentsSubscription = {
+  __typename: "comments";
+  comments: string;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  _version: number;
+  _deleted?: boolean | null;
+  _lastChangedAt: number;
+};
+
+export type OnDeleteCommentsSubscription = {
+  __typename: "comments";
+  comments: string;
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -12357,6 +12518,87 @@ export class APIService {
     )) as any;
     return <DeleteQuicksightGroupMutation>response.data.deleteQuicksightGroup;
   }
+  async CreateComments(
+    input: CreateCommentsInput,
+    condition?: ModelCommentsConditionInput
+  ): Promise<CreateCommentsMutation> {
+    const statement = `mutation CreateComments($input: CreateCommentsInput!, $condition: ModelCommentsConditionInput) {
+        createComments(input: $input, condition: $condition) {
+          __typename
+          comments
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateCommentsMutation>response.data.createComments;
+  }
+  async UpdateComments(
+    input: UpdateCommentsInput,
+    condition?: ModelCommentsConditionInput
+  ): Promise<UpdateCommentsMutation> {
+    const statement = `mutation UpdateComments($input: UpdateCommentsInput!, $condition: ModelCommentsConditionInput) {
+        updateComments(input: $input, condition: $condition) {
+          __typename
+          comments
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateCommentsMutation>response.data.updateComments;
+  }
+  async DeleteComments(
+    input: DeleteCommentsInput,
+    condition?: ModelCommentsConditionInput
+  ): Promise<DeleteCommentsMutation> {
+    const statement = `mutation DeleteComments($input: DeleteCommentsInput!, $condition: ModelCommentsConditionInput) {
+        deleteComments(input: $input, condition: $condition) {
+          __typename
+          comments
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteCommentsMutation>response.data.deleteComments;
+  }
   async GetTableaulogin(id: string): Promise<GetTableauloginQuery> {
     const statement = `query GetTableaulogin($id: ID!) {
         getTableaulogin(id: $id) {
@@ -15635,6 +15877,105 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <SyncQuicksightGroupsQuery>response.data.syncQuicksightGroups;
+  }
+  async GetComments(id: string): Promise<GetCommentsQuery> {
+    const statement = `query GetComments($id: ID!) {
+        getComments(id: $id) {
+          __typename
+          comments
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetCommentsQuery>response.data.getComments;
+  }
+  async ListComments(
+    filter?: ModelCommentsFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListCommentsQuery> {
+    const statement = `query ListComments($filter: ModelCommentsFilterInput, $limit: Int, $nextToken: String) {
+        listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            comments
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListCommentsQuery>response.data.listComments;
+  }
+  async SyncComments(
+    filter?: ModelCommentsFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncCommentsQuery> {
+    const statement = `query SyncComments($filter: ModelCommentsFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncComments(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+          __typename
+          items {
+            __typename
+            comments
+            id
+            createdAt
+            updatedAt
+            _version
+            _deleted
+            _lastChangedAt
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncCommentsQuery>response.data.syncComments;
   }
   OnCreateTableauloginListener: Observable<
     SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateTableaulogin">>
@@ -18985,5 +19326,68 @@ export class APIService {
     SubscriptionResponse<
       Pick<__SubscriptionContainer, "onDeleteQuicksightGroup">
     >
+  >;
+
+  OnCreateCommentsListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateComments">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateComments {
+        onCreateComments {
+          __typename
+          comments
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateComments">>
+  >;
+
+  OnUpdateCommentsListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateComments">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateComments {
+        onUpdateComments {
+          __typename
+          comments
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateComments">>
+  >;
+
+  OnDeleteCommentsListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteComments">>
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteComments {
+        onDeleteComments {
+          __typename
+          comments
+          id
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+      }`
+    )
+  ) as Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteComments">>
   >;
 }

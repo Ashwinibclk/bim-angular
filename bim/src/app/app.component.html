@@ -10,8 +10,8 @@
 
 <div class="topnav">
  
-  <a href="#contact">Contact</a>
-  <a href="#about">About</a>
+  <a href="https://vaidhyamegha.com/contact/">Contact</a>
+  <a href="https://vaidhyamegha.com/about/">About</a>
  
   <a href="#">Home</a>
   <a href="#">Dashboard</a>
@@ -36,15 +36,41 @@
   </amplify-auth-container></div>-->
 
   <div *ngIf="showapp" class="row">
-    <div class="column" style="background-color:whitesmoke; border:5px solid pink; border-radius: 20px;">
+    <div class="column" style="background-color:whitesmoke; border:5px solid pink; border-radius: 20px; overflow: scroll;">
      <p style="margin-left:10%; font-size: medium; color: rebeccapurple;">Migration projects per User</p>
+     <div class="board" *ngFor="let i of tbs">
+      <li>{{i.name}} started migration for project {{i.migrationid}} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="yellow" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+        <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+      </svg></li>
+    
+     </div>
     </div>
-    <div class="column" style="background-color:whitesmoke;border:5px solid pink; border-radius: 20px;">
+    <div class="column" style="background-color:whitesmoke;border:5px solid pink; border-radius: 20px; overflow: scroll;">
       <p style="margin-left:10%; font-size: medium; color:green">Migrated projects per User</p>
+      <div class="board" *ngFor="let i of tbs">
+        <li>{{i.name}} completed migration for project {{i.migrationid}} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check2-circle" viewBox="0 0 16 16">
+          <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+          <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+        </svg></li>
+      </div>
     </div>
-    <div class="column" style="background-color:whitesmoke; border:5px solid pink; border-radius: 20px;">
-      <button (click)="showm()" style="background-color:rgb(26, 133, 58); width:200px; height:50px; font-size:15px; color:white;  margin-top: 30%; margin-left:30%; border-radius: 20px;">Migrate My Project</button>
-     
+    <div class="column" style="background-color:whitesmoke; border:5px solid pink; border-radius: 20px; ">
+      <button (click)="showm()" style="background-color:rgb(26, 133, 58); width:200px; height:50px; font-size:15px; color:white;  margin-top: 10%; margin-left:30%; border-radius: 20px;">Migrate My Project</button>
+      <p style="font-size:18px; color: rgb(15, 119, 204); margin-left: 2%;">Comments:</p>
+      <form  autocomplete="off"
+      [formGroup]="createFormtb1"
+      (ngSubmit)="onCreatetb1(createFormtb1.value)">
+        <div > 
+        <textarea name="comments" id="comments" formControlName="comments" rows="4" cols="45" style="font-family:sans-serif;font-size: 18px; border:none;border-radius: 10px; margin-left: 2%;">
+      
+        </textarea></div>
+        <input type="submit" value="Post" style="color:white; background-color:green; border-radius: 10px;font-size: 15px; width:80px; height:40px;margin-left: 2%; ">
+        
+       <div *ngFor="let i of tbs1" class="comment" style="overflow: scroll; margin-left: 2%;">
+          <li>{{i.comments}}</li>
+       </div>
+        </form>
     </div>
   </div>
   
@@ -57,7 +83,8 @@
       </div>
       <div class="modal-body">
        <button (click)="method()" style="background-color:rgb(26, 133, 58); width:200px; height:50px; font-size:15px; color:white;   margin-left:25%; border-radius: 20px;">  Please Login!!! </button>
-        </div>
+        
+      </div>
         </div>
         </div>
         </div>

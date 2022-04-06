@@ -1,6 +1,6 @@
 
 
-
+<script src="../../assets/js/modal.js"></script>
 <div *ngIf="showform" class="form-body">
     <form
       autocomplete="off"
@@ -97,7 +97,7 @@
     </div>
   </div>
 
-  <div *ngIf="process "class="modal"  role="dialog">
+  <div  *ngIf="process "class="modal"  #myModal role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -106,15 +106,15 @@
          <p>Migration has been started , please wait !!!</p>
         
               
-         <div id="myProgress">
+      <!--   <div id="myProgress">
           <div id="myBar"></div>
         </div>
         
         <br>
-       <!-- <button (click)="onclick()">Click Me</button> -->
+        <button (click)="onclick()">Click Me</button> 
         
        
-       
+      -->
           </div>
           </div>
           </div>

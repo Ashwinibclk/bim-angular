@@ -175,6 +175,11 @@ type QuicksightGroup @model {
   
 } 
 
+type comments @model {
+
+  comments:String!
+}
+
  
 
 

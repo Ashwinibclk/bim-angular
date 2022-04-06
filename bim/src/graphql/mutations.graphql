@@ -2582,3 +2582,45 @@ mutation DeleteQuicksightGroup(
     _lastChangedAt
   }
 }
+mutation CreateComments(
+  $input: CreateCommentsInput!
+  $condition: ModelCommentsConditionInput
+) {
+  createComments(input: $input, condition: $condition) {
+    comments
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation UpdateComments(
+  $input: UpdateCommentsInput!
+  $condition: ModelCommentsConditionInput
+) {
+  updateComments(input: $input, condition: $condition) {
+    comments
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+mutation DeleteComments(
+  $input: DeleteCommentsInput!
+  $condition: ModelCommentsConditionInput
+) {
+  deleteComments(input: $input, condition: $condition) {
+    comments
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}

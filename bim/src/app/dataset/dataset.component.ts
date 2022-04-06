@@ -1,8 +1,9 @@
-import {Component, OnInit, OnDestroy, ChangeDetectorRef } from "@angular/core";
+import {Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild , ElementRef} from "@angular/core";
   import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   import {APIService, dataset, datasources} from "../API.service";
   import { Subscription } from "rxjs";
   import {Router} from '@angular/router';
+  
   declare const move: any;
 @Component({
   selector: 'app-dataset',
@@ -12,22 +13,23 @@ import {Component, OnInit, OnDestroy, ChangeDetectorRef } from "@angular/core";
 
 
 export class DatasetComponent implements OnInit {
-
   
-  process:boolean=false;
+  @ViewChild("myModal") 
+  
+ process:boolean=false;
   showform: boolean=true;
   showmodal: boolean =false;
     public createFormd: any;
     public createFormds: any;
     public deps: Array<dataset> =[];
     public ds:Array<datasources> =[];
-    constructor(private api: APIService, private fb: FormBuilder, private router: Router) { this.createFormd=FormBuilder;
+    constructor(private api: APIService, private fb: FormBuilder, private router: Router, private closeModal:ElementRef) { this.createFormd=FormBuilder;
       this.createFormd= this.fb.group({
         datasetid: ["", Validators.required],
         name: ["", Validators.required],
         
       });
-
+     
       this.createFormds=FormBuilder;
       this.createFormds=this.fb.group({
         dsid:["",Validators.required],
@@ -42,6 +44,7 @@ export class DatasetComponent implements OnInit {
       })
     }
     private subscription: Subscription | null = null; 
+    
   
     async ngOnInit() {
       this.api.ListDatasets().then((event) => {
@@ -86,6 +89,13 @@ export class DatasetComponent implements OnInit {
         });
         this.showmodal=false;
         this.process=true;
+        setTimeout(()=>{
+          // close the modal in this moment.
+          this.closeModal.nativeElement.click() //<-- here
+ 
+          
+          this.router.navigate(['/']);
+       },2000);
         
     }
     

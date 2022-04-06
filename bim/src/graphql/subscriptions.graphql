@@ -2393,3 +2393,36 @@ subscription OnDeleteQuicksightGroup {
     _lastChangedAt
   }
 }
+subscription OnCreateComments {
+  onCreateComments {
+    comments
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnUpdateComments {
+  onUpdateComments {
+    comments
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnDeleteComments {
+  onDeleteComments {
+    comments
+    id
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}

@@ -91,6 +91,10 @@ type QuicksightGroupMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
+type commentsMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
 export declare class Tableaulogin {
   readonly id: string;
   readonly username: string;
@@ -330,4 +334,13 @@ export declare class QuicksightGroup {
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<QuicksightGroup, QuicksightGroupMetaData>);
   static copyOf(source: QuicksightGroup, mutator: (draft: MutableModel<QuicksightGroup, QuicksightGroupMetaData>) => MutableModel<QuicksightGroup, QuicksightGroupMetaData> | void): QuicksightGroup;
+}
+
+export declare class comments {
+  readonly id: string;
+  readonly comments: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+  constructor(init: ModelInit<comments, commentsMetaData>);
+  static copyOf(source: comments, mutator: (draft: MutableModel<comments, commentsMetaData>) => MutableModel<comments, commentsMetaData> | void): comments;
 }
