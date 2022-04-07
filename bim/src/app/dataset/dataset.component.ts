@@ -89,13 +89,15 @@ export class DatasetComponent implements OnInit {
         });
         this.showmodal=false;
         this.process=true;
-        setTimeout(()=>{
+       
+      setTimeout(()=>{
           // close the modal in this moment.
+         
           this.closeModal.nativeElement.click() //<-- here
  
           
           this.router.navigate(['/']);
-       },2000);
+       },8000);
         
     }
     
