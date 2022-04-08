@@ -4,14 +4,18 @@ import {APIService, BIMProject,comments} from "./API.service";
 import { Subscription } from "rxjs";
 import { Router,NavigationStart } from "@angular/router";
 import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components';
+
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent implements OnInit, OnDestroy {
+  j:any;
+  i:any;
   title = "amplify-angular-app";
-  
+  public tbss:Array<BIMProject>=[];
+  count:any;
   showapp:any;
   show:boolean=false;
   logcred:boolean=false;
@@ -42,9 +46,27 @@ router.events.forEach((event)=>{
     /* fetch restaurants when app loads */
     this.api.ListBIMProjects().then((event) => {
       this.tbs = event.items as BIMProject[];
+
+      
+      this.count=1;
+      for (this.i=0; this.i<9;this.i++){
+       for(this.j=1; this.j<9; this.j++){
+       
+        if(((this.tbs[this.i].name) == (this.tbs[this.j].name) && (this.i != this.j))==true){
+          
+          this.count=this.count+1;
+          
+         
+         
+       }
+       console.log(this.count);
+        
+        }
+
+      }
     });
   
-    
+  
     this.subscription = <Subscription>(
       this.api.OnCreateBIMProjectListener.subscribe((event: any) => {
         const newtb = event.value.data.onCreatetb;
