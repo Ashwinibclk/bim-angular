@@ -224,7 +224,8 @@ export declare class BIMProject {
   readonly Did: string;
   readonly department?: Department | null;
   readonly migrationid: string;
-  readonly name: string;
+  readonly Pname: string;
+  readonly cname: string;
   readonly source: BiPlatform | keyof typeof BiPlatform;
   readonly destination: BiPlatform | keyof typeof BiPlatform;
   readonly createdAt?: string | null;

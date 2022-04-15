@@ -4,13 +4,16 @@ import {APIService, BIMProject,comments} from "./API.service";
 import { Subscription } from "rxjs";
 import { Router,NavigationStart } from "@angular/router";
 import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components';
-
+import {API} from 'aws-amplify';
+import { stringify } from "querystring";
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent implements OnInit, OnDestroy {
+  response:any;
+  res:any;
   j:any;
   i:any;
   title = "amplify-angular-app";
@@ -46,13 +49,14 @@ router.events.forEach((event)=>{
     /* fetch restaurants when app loads */
     this.api.ListBIMProjects().then((event) => {
       this.tbs = event.items as BIMProject[];
-
+this.res=this.getData();
+console.log(this.res);
       
       this.count=1;
       for (this.i=0; this.i<9;this.i++){
        for(this.j=1; this.j<9; this.j++){
        
-        if(((this.tbs[this.i].name) == (this.tbs[this.j].name) && (this.i != this.j))==true){
+        if(((this.tbs[this.i].cname) == (this.tbs[this.j].cname) && (this.i != this.j))==true){
           
           this.count=this.count+1;
           
@@ -124,5 +128,17 @@ public onCreatetb1(todo: any) {
     this.subscription = null;
     return onAuthUIStateChange;
   }
+  
+async  getData() { 
+    const apiName = 'apiad1402f8';
+    const path = '/items';
+    const myInit = { // OPTIONAL
+      headers: {}, // OPTIONAL
+    };
+    
+ this.response=await API.get(apiName,path,myInit).then(result=>{console.log(result)})
+    return this.response;
+  }
+  
   
 }

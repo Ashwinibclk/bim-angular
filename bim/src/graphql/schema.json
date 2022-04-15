@@ -5967,7 +5967,22 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "name",
+          "name" : "Pname",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "NON_NULL",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            }
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "cname",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -6195,7 +6210,16 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "name",
+          "name" : "Pname",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelStringInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "cname",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -12337,7 +12361,20 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "name",
+          "name" : "Pname",
+          "description" : null,
+          "type" : {
+            "kind" : "NON_NULL",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "cname",
           "description" : null,
           "type" : {
             "kind" : "NON_NULL",
@@ -12421,7 +12458,16 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "name",
+          "name" : "Pname",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelStringInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "cname",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -12510,7 +12556,16 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "name",
+          "name" : "Pname",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "cname",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",

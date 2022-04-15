@@ -798,8 +798,15 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "name": {
-                    "name": "name",
+                "Pname": {
+                    "name": "Pname",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "cname": {
+                    "name": "cname",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
@@ -1504,5 +1511,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "fee87d11c4b05a54e6a27038e7387bb2"
+    "version": "208ab0484a40c68ee3a123387226da8f"
 };

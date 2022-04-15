@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-bimangular-dev-122001-authRole",
+      "UnauthRoleArn": "arn:aws:iam::519510601754:role/amplify-bimangular-dev-122001-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::519510601754:role/amplify-bimangular-dev-122001-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-bimangular-dev-122001-deployment",
+      "UnauthRoleName": "amplify-bimangular-dev-122001-unauthRole",
+      "StackName": "amplify-bimangular-dev-122001",
+      "StackId": "arn:aws:cloudformation:us-east-2:519510601754:stack/amplify-bimangular-dev-122001/4877fd00-bc88-11ec-80f0-02a5a374f080",
+      "AmplifyAppId": "d2fbr931ty1vs8"
+    }
+  }
+}

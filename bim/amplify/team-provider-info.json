@@ -20,6 +20,47 @@
           "appId": "d1ri4jkacfrvcd",
           "type": "manual"
         }
+      },
+      "function": {
+        "helloworld": {
+          "deploymentBucketName": "amplify-bimtq-dev-144333-deployment",
+          "s3Key": "amplify-builds/helloworld-3279497a423655755738-build.zip"
+        },
+        "hw": {
+          "deploymentBucketName": "amplify-bimtq-dev-144333-deployment",
+          "s3Key": "amplify-builds/hw-56524e676f7a36454f36-build.zip"
+        }
+      }
+    }
+  },
+  "bim": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-bimtq-bim-122711-authRole",
+      "UnauthRoleArn": "arn:aws:iam::519510601754:role/amplify-bimtq-bim-122711-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::519510601754:role/amplify-bimtq-bim-122711-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-bimtq-bim-122711-deployment",
+      "UnauthRoleName": "amplify-bimtq-bim-122711-unauthRole",
+      "StackName": "amplify-bimtq-bim-122711",
+      "StackId": "arn:aws:cloudformation:us-east-2:519510601754:stack/amplify-bimtq-bim-122711/4a9b0ea0-bc89-11ec-abca-029d40c31bdc",
+      "AmplifyAppId": "d2dirx0uq1c3ga"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2dirx0uq1c3ga",
+          "type": "manual"
+        }
+      },
+      "auth": {
+        "bimtqa4f4e973": {},
+        "true": {}
+      },
+      "function": {
+        "bimtqadd67212": {
+          "deploymentBucketName": "amplify-bimtq-bim-122711-deployment",
+          "s3Key": "amplify-builds/bimtqadd67212-6a3757442b2b56744652-build.zip"
+        }
       }
     }
   }

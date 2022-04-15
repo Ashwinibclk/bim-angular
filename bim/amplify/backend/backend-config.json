@@ -16,6 +16,20 @@
           "additionalAuthenticationProviders": []
         }
       }
+    },
+    "apiad1402f8": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "bimtqadd67212",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
     }
   },
   "auth": {
@@ -54,7 +68,7 @@
     }
   },
   "function": {
-    "helloworld": {
+    "bimtqadd67212": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda",

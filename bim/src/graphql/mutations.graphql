@@ -519,7 +519,8 @@ mutation CreateBIMProject(
       _lastChangedAt
     }
     migrationid
-    name
+    Pname
+    cname
     source
     destination
     id
@@ -558,7 +559,8 @@ mutation UpdateBIMProject(
       _lastChangedAt
     }
     migrationid
-    name
+    Pname
+    cname
     source
     destination
     id
@@ -597,7 +599,8 @@ mutation DeleteBIMProject(
       _lastChangedAt
     }
     migrationid
-    name
+    Pname
+    cname
     source
     destination
     id

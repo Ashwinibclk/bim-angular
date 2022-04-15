@@ -440,7 +440,8 @@ query GetBIMProject($id: ID!) {
       _lastChangedAt
     }
     migrationid
-    name
+    Pname
+    cname
     source
     destination
     id
@@ -469,7 +470,8 @@ query ListBIMProjects(
         _lastChangedAt
       }
       migrationid
-      name
+      Pname
+      cname
       source
       destination
       id
@@ -507,7 +509,8 @@ query SyncBIMProjects(
         _lastChangedAt
       }
       migrationid
-      name
+      Pname
+      cname
       source
       destination
       id

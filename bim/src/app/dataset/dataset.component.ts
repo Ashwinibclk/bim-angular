@@ -94,10 +94,11 @@ export class DatasetComponent implements OnInit {
           // close the modal in this moment.
          
           this.closeModal.nativeElement.click() //<-- here
- 
+        
           
-          this.router.navigate(['/']);
+          
        },8000);
+       this.router.navigate(['/']);
         
     }
     

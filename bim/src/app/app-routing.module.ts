@@ -10,6 +10,11 @@ import { BimprojectComponent } from './bimproject/bimproject.component';
 import { DatasetComponent } from './dataset/dataset.component';
 import { TableauComponent } from './tableau/tableau.component';
 import { QuicksightComponent } from './quicksight/quicksight.component';
+import { API } from 'aws-amplify';
+
+
+
+
 const routes: Routes = [
   { path: 'tableaulogin', component: TableauloginComponent },
   { path: 'quicksightlogin', component: QuicksightloginComponent },

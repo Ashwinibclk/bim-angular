@@ -480,7 +480,8 @@ subscription OnCreateBIMProject {
       _lastChangedAt
     }
     migrationid
-    name
+    Pname
+    cname
     source
     destination
     id
@@ -516,7 +517,8 @@ subscription OnUpdateBIMProject {
       _lastChangedAt
     }
     migrationid
-    name
+    Pname
+    cname
     source
     destination
     id
@@ -552,7 +554,8 @@ subscription OnDeleteBIMProject {
       _lastChangedAt
     }
     migrationid
-    name
+    Pname
+    cname
     source
     destination
     id

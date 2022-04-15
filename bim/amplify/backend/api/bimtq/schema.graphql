@@ -36,7 +36,9 @@ type BIMProject @model{
   Did:ID!
   department:Department @hasOne(fields: ["Did"])
   migrationid:ID!
-  name:String!
+  Pname:String!
+  cname:String!
+  
   source:BIPlatform!
   destination:BIPlatform!
 }

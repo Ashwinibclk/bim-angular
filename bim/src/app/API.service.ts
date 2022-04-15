@@ -441,7 +441,8 @@ export type DeleteDepartmentInput = {
 export type CreateBIMProjectInput = {
   Did: string;
   migrationid: string;
-  name: string;
+  Pname: string;
+  cname: string;
   source: BIPlatform;
   destination: BIPlatform;
   id?: string | null;
@@ -456,7 +457,8 @@ export enum BIPlatform {
 export type ModelBIMProjectConditionInput = {
   Did?: ModelIDInput | null;
   migrationid?: ModelIDInput | null;
-  name?: ModelStringInput | null;
+  Pname?: ModelStringInput | null;
+  cname?: ModelStringInput | null;
   source?: ModelBIPlatformInput | null;
   destination?: ModelBIPlatformInput | null;
   and?: Array<ModelBIMProjectConditionInput | null> | null;
@@ -474,7 +476,8 @@ export type BIMProject = {
   Did: string;
   department?: Department | null;
   migrationid: string;
-  name: string;
+  Pname: string;
+  cname: string;
   source: BIPlatform;
   destination: BIPlatform;
   id: string;
@@ -488,7 +491,8 @@ export type BIMProject = {
 export type UpdateBIMProjectInput = {
   Did?: string | null;
   migrationid?: string | null;
-  name?: string | null;
+  Pname?: string | null;
+  cname?: string | null;
   source?: BIPlatform | null;
   destination?: BIPlatform | null;
   id: string;
@@ -1212,7 +1216,8 @@ export type ModelDepartmentConnection = {
 export type ModelBIMProjectFilterInput = {
   Did?: ModelIDInput | null;
   migrationid?: ModelIDInput | null;
-  name?: ModelStringInput | null;
+  Pname?: ModelStringInput | null;
+  cname?: ModelStringInput | null;
   source?: ModelBIPlatformInput | null;
   destination?: ModelBIPlatformInput | null;
   and?: Array<ModelBIMProjectFilterInput | null> | null;
@@ -1964,7 +1969,8 @@ export type CreateBIMProjectMutation = {
     _lastChangedAt: number;
   } | null;
   migrationid: string;
-  name: string;
+  Pname: string;
+  cname: string;
   source: BIPlatform;
   destination: BIPlatform;
   id: string;
@@ -2004,7 +2010,8 @@ export type UpdateBIMProjectMutation = {
     _lastChangedAt: number;
   } | null;
   migrationid: string;
-  name: string;
+  Pname: string;
+  cname: string;
   source: BIPlatform;
   destination: BIPlatform;
   id: string;
@@ -2044,7 +2051,8 @@ export type DeleteBIMProjectMutation = {
     _lastChangedAt: number;
   } | null;
   migrationid: string;
-  name: string;
+  Pname: string;
+  cname: string;
   source: BIPlatform;
   destination: BIPlatform;
   id: string;
@@ -4506,7 +4514,8 @@ export type GetBIMProjectQuery = {
     _lastChangedAt: number;
   } | null;
   migrationid: string;
-  name: string;
+  Pname: string;
+  cname: string;
   source: BIPlatform;
   destination: BIPlatform;
   id: string;
@@ -4533,7 +4542,8 @@ export type ListBIMProjectsQuery = {
       _lastChangedAt: number;
     } | null;
     migrationid: string;
-    name: string;
+    Pname: string;
+    cname: string;
     source: BIPlatform;
     destination: BIPlatform;
     id: string;
@@ -4563,7 +4573,8 @@ export type SyncBIMProjectsQuery = {
       _lastChangedAt: number;
     } | null;
     migrationid: string;
-    name: string;
+    Pname: string;
+    cname: string;
     source: BIPlatform;
     destination: BIPlatform;
     id: string;
@@ -6750,7 +6761,8 @@ export type OnCreateBIMProjectSubscription = {
     _lastChangedAt: number;
   } | null;
   migrationid: string;
-  name: string;
+  Pname: string;
+  cname: string;
   source: BIPlatform;
   destination: BIPlatform;
   id: string;
@@ -6790,7 +6802,8 @@ export type OnUpdateBIMProjectSubscription = {
     _lastChangedAt: number;
   } | null;
   migrationid: string;
-  name: string;
+  Pname: string;
+  cname: string;
   source: BIPlatform;
   destination: BIPlatform;
   id: string;
@@ -6830,7 +6843,8 @@ export type OnDeleteBIMProjectSubscription = {
     _lastChangedAt: number;
   } | null;
   migrationid: string;
-  name: string;
+  Pname: string;
+  cname: string;
   source: BIPlatform;
   destination: BIPlatform;
   id: string;
@@ -9597,7 +9611,8 @@ export class APIService {
             _lastChangedAt
           }
           migrationid
-          name
+          Pname
+          cname
           source
           destination
           id
@@ -9653,7 +9668,8 @@ export class APIService {
             _lastChangedAt
           }
           migrationid
-          name
+          Pname
+          cname
           source
           destination
           id
@@ -9709,7 +9725,8 @@ export class APIService {
             _lastChangedAt
           }
           migrationid
-          name
+          Pname
+          cname
           source
           destination
           id
@@ -13248,7 +13265,8 @@ export class APIService {
             _lastChangedAt
           }
           migrationid
-          name
+          Pname
+          cname
           source
           destination
           id
@@ -13289,7 +13307,8 @@ export class APIService {
               _lastChangedAt
             }
             migrationid
-            name
+            Pname
+            cname
             source
             destination
             id
@@ -13341,7 +13360,8 @@ export class APIService {
               _lastChangedAt
             }
             migrationid
-            name
+            Pname
+            cname
             source
             destination
             id
@@ -16641,7 +16661,8 @@ export class APIService {
             _lastChangedAt
           }
           migrationid
-          name
+          Pname
+          cname
           source
           destination
           id
@@ -16691,7 +16712,8 @@ export class APIService {
             _lastChangedAt
           }
           migrationid
-          name
+          Pname
+          cname
           source
           destination
           id
@@ -16741,7 +16763,8 @@ export class APIService {
             _lastChangedAt
           }
           migrationid
-          name
+          Pname
+          cname
           source
           destination
           id

@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "api": {
+      "bimtq": [
+        "Query",
+        "Mutation",
+        "Subscription"
+      ]
+    },
+    "auth": {
+      "bimtqa4f4e973": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

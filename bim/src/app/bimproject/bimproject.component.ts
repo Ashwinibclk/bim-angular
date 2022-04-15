@@ -21,7 +21,8 @@ export class BimprojectComponent implements OnInit {
   constructor(private api: APIService, private fb: FormBuilder, private router: Router) {
     this.createFormtb=FormBuilder;
     this.createFormtb= this.fb.group({
-      name: ["", Validators.required],
+      Pname: ["", Validators.required],
+      cname:["",Validators.required],
       Did: ["", Validators.required],
       source: ["", Validators.required],
       destination:["",Validators.required],
