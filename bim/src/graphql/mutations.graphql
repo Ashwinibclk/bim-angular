@@ -217,11 +217,11 @@ mutation CreateCustomer(
   $condition: ModelCustomerConditionInput
 ) {
   createCustomer(input: $input, condition: $condition) {
-    id
     name
+    DName
     Did
     department {
-      id
+      Did
       DName
       customers {
         nextToken
@@ -235,6 +235,7 @@ mutation CreateCustomer(
         nextToken
         startedAt
       }
+      id
       createdAt
       updatedAt
       _version
@@ -253,11 +254,11 @@ mutation UpdateCustomer(
   $condition: ModelCustomerConditionInput
 ) {
   updateCustomer(input: $input, condition: $condition) {
-    id
     name
+    DName
     Did
     department {
-      id
+      Did
       DName
       customers {
         nextToken
@@ -271,6 +272,7 @@ mutation UpdateCustomer(
         nextToken
         startedAt
       }
+      id
       createdAt
       updatedAt
       _version
@@ -289,11 +291,11 @@ mutation DeleteCustomer(
   $condition: ModelCustomerConditionInput
 ) {
   deleteCustomer(input: $input, condition: $condition) {
-    id
     name
+    DName
     Did
     department {
-      id
+      Did
       DName
       customers {
         nextToken
@@ -307,6 +309,7 @@ mutation DeleteCustomer(
         nextToken
         startedAt
       }
+      id
       createdAt
       updatedAt
       _version
@@ -325,12 +328,12 @@ mutation CreateDepartment(
   $condition: ModelDepartmentConditionInput
 ) {
   createDepartment(input: $input, condition: $condition) {
-    id
+    Did
     DName
     customers {
       items {
-        id
         name
+        DName
         Did
         createdAt
         updatedAt
@@ -370,6 +373,7 @@ mutation CreateDepartment(
       nextToken
       startedAt
     }
+    id
     createdAt
     updatedAt
     _version
@@ -382,12 +386,12 @@ mutation UpdateDepartment(
   $condition: ModelDepartmentConditionInput
 ) {
   updateDepartment(input: $input, condition: $condition) {
-    id
+    Did
     DName
     customers {
       items {
-        id
         name
+        DName
         Did
         createdAt
         updatedAt
@@ -427,6 +431,7 @@ mutation UpdateDepartment(
       nextToken
       startedAt
     }
+    id
     createdAt
     updatedAt
     _version
@@ -439,12 +444,12 @@ mutation DeleteDepartment(
   $condition: ModelDepartmentConditionInput
 ) {
   deleteDepartment(input: $input, condition: $condition) {
-    id
+    Did
     DName
     customers {
       items {
-        id
         name
+        DName
         Did
         createdAt
         updatedAt
@@ -484,6 +489,7 @@ mutation DeleteDepartment(
       nextToken
       startedAt
     }
+    id
     createdAt
     updatedAt
     _version
@@ -496,21 +502,21 @@ mutation CreateBIMProject(
   $condition: ModelBIMProjectConditionInput
 ) {
   createBIMProject(input: $input, condition: $condition) {
-    Did
-    department {
-      id
+    DName
+    UserName
+    Customer {
+      name
       DName
-      customers {
-        nextToken
-        startedAt
-      }
-      tprojects {
-        nextToken
-        startedAt
-      }
-      qprojects {
-        nextToken
-        startedAt
+      Did
+      department {
+        Did
+        DName
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       createdAt
       updatedAt
@@ -518,9 +524,7 @@ mutation CreateBIMProject(
       _deleted
       _lastChangedAt
     }
-    migrationid
     Pname
-    cname
     source
     destination
     id
@@ -536,21 +540,21 @@ mutation UpdateBIMProject(
   $condition: ModelBIMProjectConditionInput
 ) {
   updateBIMProject(input: $input, condition: $condition) {
-    Did
-    department {
-      id
+    DName
+    UserName
+    Customer {
+      name
       DName
-      customers {
-        nextToken
-        startedAt
-      }
-      tprojects {
-        nextToken
-        startedAt
-      }
-      qprojects {
-        nextToken
-        startedAt
+      Did
+      department {
+        Did
+        DName
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       createdAt
       updatedAt
@@ -558,9 +562,7 @@ mutation UpdateBIMProject(
       _deleted
       _lastChangedAt
     }
-    migrationid
     Pname
-    cname
     source
     destination
     id
@@ -576,21 +578,21 @@ mutation DeleteBIMProject(
   $condition: ModelBIMProjectConditionInput
 ) {
   deleteBIMProject(input: $input, condition: $condition) {
-    Did
-    department {
-      id
+    DName
+    UserName
+    Customer {
+      name
       DName
-      customers {
-        nextToken
-        startedAt
-      }
-      tprojects {
-        nextToken
-        startedAt
-      }
-      qprojects {
-        nextToken
-        startedAt
+      Did
+      department {
+        Did
+        DName
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       createdAt
       updatedAt
@@ -598,9 +600,7 @@ mutation DeleteBIMProject(
       _deleted
       _lastChangedAt
     }
-    migrationid
     Pname
-    cname
     source
     destination
     id
@@ -1022,7 +1022,7 @@ mutation CreateTableauProject(
     name
     Did
     department {
-      id
+      Did
       DName
       customers {
         nextToken
@@ -1036,6 +1036,7 @@ mutation CreateTableauProject(
         nextToken
         startedAt
       }
+      id
       createdAt
       updatedAt
       _version
@@ -1059,7 +1060,7 @@ mutation UpdateTableauProject(
     name
     Did
     department {
-      id
+      Did
       DName
       customers {
         nextToken
@@ -1073,6 +1074,7 @@ mutation UpdateTableauProject(
         nextToken
         startedAt
       }
+      id
       createdAt
       updatedAt
       _version
@@ -1096,7 +1098,7 @@ mutation DeleteTableauProject(
     name
     Did
     department {
-      id
+      Did
       DName
       customers {
         nextToken
@@ -1110,6 +1112,7 @@ mutation DeleteTableauProject(
         nextToken
         startedAt
       }
+      id
       createdAt
       updatedAt
       _version
@@ -1136,8 +1139,9 @@ mutation CreateTableauEnv(
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -1171,8 +1175,9 @@ mutation UpdateTableauEnv(
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -1206,8 +1211,9 @@ mutation DeleteTableauEnv(
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -1242,8 +1248,9 @@ mutation CreateTaleauWorkbook(
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -1278,8 +1285,9 @@ mutation UpdateTaleauWorkbook(
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -1314,8 +1322,9 @@ mutation DeleteTaleauWorkbook(
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -1571,7 +1580,7 @@ mutation CreateQuicksightProject(
     name
     Did
     department {
-      id
+      Did
       DName
       customers {
         nextToken
@@ -1585,6 +1594,7 @@ mutation CreateQuicksightProject(
         nextToken
         startedAt
       }
+      id
       createdAt
       updatedAt
       _version
@@ -1636,7 +1646,7 @@ mutation UpdateQuicksightProject(
     name
     Did
     department {
-      id
+      Did
       DName
       customers {
         nextToken
@@ -1650,6 +1660,7 @@ mutation UpdateQuicksightProject(
         nextToken
         startedAt
       }
+      id
       createdAt
       updatedAt
       _version
@@ -1701,7 +1712,7 @@ mutation DeleteQuicksightProject(
     name
     Did
     department {
-      id
+      Did
       DName
       customers {
         nextToken
@@ -1715,6 +1726,7 @@ mutation DeleteQuicksightProject(
         nextToken
         startedAt
       }
+      id
       createdAt
       updatedAt
       _version
@@ -1771,8 +1783,9 @@ mutation CreateQuicksightTemplate(
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -1843,8 +1856,9 @@ mutation UpdateQuicksightTemplate(
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -1915,8 +1929,9 @@ mutation DeleteQuicksightTemplate(
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -2120,8 +2135,9 @@ mutation CreateQuicksightEnv(
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -2162,8 +2178,9 @@ mutation UpdateQuicksightEnv(
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -2204,8 +2221,9 @@ mutation DeleteQuicksightEnv(
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version

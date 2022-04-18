@@ -2,6 +2,14 @@
 import { initSchema } from '@aws-amplify/datastore';
 import { schema } from './schema';
 
+const Departments = {
+  "MARKETING": "MARKETING",
+  "FINANCE": "FINANCE",
+  "HR": "HR",
+  "SALES": "SALES",
+  "PURCHASE": "PURCHASE"
+};
+
 const BiPlatform = {
   "TABLEAU": "TABLEAU",
   "QUICKSIGHT": "QUICKSIGHT"
@@ -32,5 +40,6 @@ export {
   QuicksightFolder,
   QuicksightGroup,
   comments,
+  Departments,
   BiPlatform
 };

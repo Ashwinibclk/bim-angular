@@ -196,11 +196,11 @@ subscription OnDeleteQuicksightlogin {
 }
 subscription OnCreateCustomer {
   onCreateCustomer {
-    id
     name
+    DName
     Did
     department {
-      id
+      Did
       DName
       customers {
         nextToken
@@ -214,6 +214,7 @@ subscription OnCreateCustomer {
         nextToken
         startedAt
       }
+      id
       createdAt
       updatedAt
       _version
@@ -229,11 +230,11 @@ subscription OnCreateCustomer {
 }
 subscription OnUpdateCustomer {
   onUpdateCustomer {
-    id
     name
+    DName
     Did
     department {
-      id
+      Did
       DName
       customers {
         nextToken
@@ -247,6 +248,7 @@ subscription OnUpdateCustomer {
         nextToken
         startedAt
       }
+      id
       createdAt
       updatedAt
       _version
@@ -262,11 +264,11 @@ subscription OnUpdateCustomer {
 }
 subscription OnDeleteCustomer {
   onDeleteCustomer {
-    id
     name
+    DName
     Did
     department {
-      id
+      Did
       DName
       customers {
         nextToken
@@ -280,6 +282,7 @@ subscription OnDeleteCustomer {
         nextToken
         startedAt
       }
+      id
       createdAt
       updatedAt
       _version
@@ -295,12 +298,12 @@ subscription OnDeleteCustomer {
 }
 subscription OnCreateDepartment {
   onCreateDepartment {
-    id
+    Did
     DName
     customers {
       items {
-        id
         name
+        DName
         Did
         createdAt
         updatedAt
@@ -340,6 +343,7 @@ subscription OnCreateDepartment {
       nextToken
       startedAt
     }
+    id
     createdAt
     updatedAt
     _version
@@ -349,12 +353,12 @@ subscription OnCreateDepartment {
 }
 subscription OnUpdateDepartment {
   onUpdateDepartment {
-    id
+    Did
     DName
     customers {
       items {
-        id
         name
+        DName
         Did
         createdAt
         updatedAt
@@ -394,6 +398,7 @@ subscription OnUpdateDepartment {
       nextToken
       startedAt
     }
+    id
     createdAt
     updatedAt
     _version
@@ -403,12 +408,12 @@ subscription OnUpdateDepartment {
 }
 subscription OnDeleteDepartment {
   onDeleteDepartment {
-    id
+    Did
     DName
     customers {
       items {
-        id
         name
+        DName
         Did
         createdAt
         updatedAt
@@ -448,6 +453,7 @@ subscription OnDeleteDepartment {
       nextToken
       startedAt
     }
+    id
     createdAt
     updatedAt
     _version
@@ -457,21 +463,21 @@ subscription OnDeleteDepartment {
 }
 subscription OnCreateBIMProject {
   onCreateBIMProject {
-    Did
-    department {
-      id
+    DName
+    UserName
+    Customer {
+      name
       DName
-      customers {
-        nextToken
-        startedAt
-      }
-      tprojects {
-        nextToken
-        startedAt
-      }
-      qprojects {
-        nextToken
-        startedAt
+      Did
+      department {
+        Did
+        DName
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       createdAt
       updatedAt
@@ -479,9 +485,7 @@ subscription OnCreateBIMProject {
       _deleted
       _lastChangedAt
     }
-    migrationid
     Pname
-    cname
     source
     destination
     id
@@ -494,21 +498,21 @@ subscription OnCreateBIMProject {
 }
 subscription OnUpdateBIMProject {
   onUpdateBIMProject {
-    Did
-    department {
-      id
+    DName
+    UserName
+    Customer {
+      name
       DName
-      customers {
-        nextToken
-        startedAt
-      }
-      tprojects {
-        nextToken
-        startedAt
-      }
-      qprojects {
-        nextToken
-        startedAt
+      Did
+      department {
+        Did
+        DName
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       createdAt
       updatedAt
@@ -516,9 +520,7 @@ subscription OnUpdateBIMProject {
       _deleted
       _lastChangedAt
     }
-    migrationid
     Pname
-    cname
     source
     destination
     id
@@ -531,21 +533,21 @@ subscription OnUpdateBIMProject {
 }
 subscription OnDeleteBIMProject {
   onDeleteBIMProject {
-    Did
-    department {
-      id
+    DName
+    UserName
+    Customer {
+      name
       DName
-      customers {
-        nextToken
-        startedAt
-      }
-      tprojects {
-        nextToken
-        startedAt
-      }
-      qprojects {
-        nextToken
-        startedAt
+      Did
+      department {
+        Did
+        DName
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       createdAt
       updatedAt
@@ -553,9 +555,7 @@ subscription OnDeleteBIMProject {
       _deleted
       _lastChangedAt
     }
-    migrationid
     Pname
-    cname
     source
     destination
     id
@@ -947,7 +947,7 @@ subscription OnCreateTableauProject {
     name
     Did
     department {
-      id
+      Did
       DName
       customers {
         nextToken
@@ -961,6 +961,7 @@ subscription OnCreateTableauProject {
         nextToken
         startedAt
       }
+      id
       createdAt
       updatedAt
       _version
@@ -981,7 +982,7 @@ subscription OnUpdateTableauProject {
     name
     Did
     department {
-      id
+      Did
       DName
       customers {
         nextToken
@@ -995,6 +996,7 @@ subscription OnUpdateTableauProject {
         nextToken
         startedAt
       }
+      id
       createdAt
       updatedAt
       _version
@@ -1015,7 +1017,7 @@ subscription OnDeleteTableauProject {
     name
     Did
     department {
-      id
+      Did
       DName
       customers {
         nextToken
@@ -1029,6 +1031,7 @@ subscription OnDeleteTableauProject {
         nextToken
         startedAt
       }
+      id
       createdAt
       updatedAt
       _version
@@ -1052,8 +1055,9 @@ subscription OnCreateTableauEnv {
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -1084,8 +1088,9 @@ subscription OnUpdateTableauEnv {
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -1116,8 +1121,9 @@ subscription OnDeleteTableauEnv {
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -1149,8 +1155,9 @@ subscription OnCreateTaleauWorkbook {
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -1182,8 +1189,9 @@ subscription OnUpdateTaleauWorkbook {
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -1215,8 +1223,9 @@ subscription OnDeleteTaleauWorkbook {
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -1451,7 +1460,7 @@ subscription OnCreateQuicksightProject {
     name
     Did
     department {
-      id
+      Did
       DName
       customers {
         nextToken
@@ -1465,6 +1474,7 @@ subscription OnCreateQuicksightProject {
         nextToken
         startedAt
       }
+      id
       createdAt
       updatedAt
       _version
@@ -1513,7 +1523,7 @@ subscription OnUpdateQuicksightProject {
     name
     Did
     department {
-      id
+      Did
       DName
       customers {
         nextToken
@@ -1527,6 +1537,7 @@ subscription OnUpdateQuicksightProject {
         nextToken
         startedAt
       }
+      id
       createdAt
       updatedAt
       _version
@@ -1575,7 +1586,7 @@ subscription OnDeleteQuicksightProject {
     name
     Did
     department {
-      id
+      Did
       DName
       customers {
         nextToken
@@ -1589,6 +1600,7 @@ subscription OnDeleteQuicksightProject {
         nextToken
         startedAt
       }
+      id
       createdAt
       updatedAt
       _version
@@ -1642,8 +1654,9 @@ subscription OnCreateQuicksightTemplate {
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -1711,8 +1724,9 @@ subscription OnUpdateQuicksightTemplate {
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -1780,8 +1794,9 @@ subscription OnDeleteQuicksightTemplate {
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -1973,8 +1988,9 @@ subscription OnCreateQuicksightEnv {
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -2012,8 +2028,9 @@ subscription OnUpdateQuicksightEnv {
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -2051,8 +2068,9 @@ subscription OnDeleteQuicksightEnv {
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version

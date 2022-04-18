@@ -39,7 +39,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.showapp=Boolean;
 router.events.forEach((event)=>{
   if(event instanceof NavigationStart){
-    this.showapp = event.url !=="/tableaulogin" && event.url !=="/quicksightlogin" && event.url !=="/customer" && event.url !=="/department" && event.url !=="/bimlogin" && event.url !=="/datasets" && event.url !=="/tableau" && event.url !=="/quicksight"
+    this.showapp = event.url !=="/tableaulogin" && event.url !=="/quicksightlogin" && event.url !=="/sign-up" && event.url !=="/department" && event.url !=="/login" && event.url !=="/datasets" && event.url !=="/tableau" && event.url !=="/quicksight"
   }
 })
     
@@ -52,22 +52,9 @@ router.events.forEach((event)=>{
 this.res=this.getData();
 console.log(this.res);
       
-      this.count=1;
-      for (this.i=0; this.i<9;this.i++){
-       for(this.j=1; this.j<9; this.j++){
-       
-        if(((this.tbs[this.i].cname) == (this.tbs[this.j].cname) && (this.i != this.j))==true){
-          
-          this.count=this.count+1;
-          
-         
-         
-       }
-       console.log(this.count);
-        
-        }
+      
 
-      }
+      
     });
   
   
@@ -104,7 +91,7 @@ showm(){
   
 method(){
   this.logcred=false;
-  this.router.navigate(["\customer"]);
+  this.router.navigate(["\sign-up"]);
 }
 
 public onCreatetb1(todo: any) {

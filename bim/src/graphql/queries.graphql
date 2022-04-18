@@ -196,13 +196,13 @@ query SyncQuicksightlogins(
     startedAt
   }
 }
-query GetCustomer($id: ID!) {
-  getCustomer(id: $id) {
-    id
+query GetCustomer($name: ID!) {
+  getCustomer(name: $name) {
     name
+    DName
     Did
     department {
-      id
+      Did
       DName
       customers {
         nextToken
@@ -216,6 +216,7 @@ query GetCustomer($id: ID!) {
         nextToken
         startedAt
       }
+      id
       createdAt
       updatedAt
       _version
@@ -230,18 +231,27 @@ query GetCustomer($id: ID!) {
   }
 }
 query ListCustomers(
+  $name: ID
   $filter: ModelCustomerFilterInput
   $limit: Int
   $nextToken: String
+  $sortDirection: ModelSortDirection
 ) {
-  listCustomers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listCustomers(
+    name: $name
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
     items {
-      id
       name
+      DName
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -271,12 +281,13 @@ query SyncCustomers(
     lastSync: $lastSync
   ) {
     items {
-      id
       name
+      DName
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -295,12 +306,12 @@ query SyncCustomers(
 }
 query GetDepartment($id: ID!) {
   getDepartment(id: $id) {
-    id
+    Did
     DName
     customers {
       items {
-        id
         name
+        DName
         Did
         createdAt
         updatedAt
@@ -340,6 +351,7 @@ query GetDepartment($id: ID!) {
       nextToken
       startedAt
     }
+    id
     createdAt
     updatedAt
     _version
@@ -354,7 +366,7 @@ query ListDepartments(
 ) {
   listDepartments(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
-      id
+      Did
       DName
       customers {
         nextToken
@@ -368,6 +380,7 @@ query ListDepartments(
         nextToken
         startedAt
       }
+      id
       createdAt
       updatedAt
       _version
@@ -391,7 +404,7 @@ query SyncDepartments(
     lastSync: $lastSync
   ) {
     items {
-      id
+      Did
       DName
       customers {
         nextToken
@@ -405,6 +418,7 @@ query SyncDepartments(
         nextToken
         startedAt
       }
+      id
       createdAt
       updatedAt
       _version
@@ -417,21 +431,21 @@ query SyncDepartments(
 }
 query GetBIMProject($id: ID!) {
   getBIMProject(id: $id) {
-    Did
-    department {
-      id
+    DName
+    UserName
+    Customer {
+      name
       DName
-      customers {
-        nextToken
-        startedAt
-      }
-      tprojects {
-        nextToken
-        startedAt
-      }
-      qprojects {
-        nextToken
-        startedAt
+      Did
+      department {
+        Did
+        DName
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       createdAt
       updatedAt
@@ -439,9 +453,7 @@ query GetBIMProject($id: ID!) {
       _deleted
       _lastChangedAt
     }
-    migrationid
     Pname
-    cname
     source
     destination
     id
@@ -459,19 +471,19 @@ query ListBIMProjects(
 ) {
   listBIMProjects(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
-      Did
-      department {
-        id
+      DName
+      UserName
+      Customer {
+        name
         DName
+        Did
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
       }
-      migrationid
       Pname
-      cname
       source
       destination
       id
@@ -498,19 +510,19 @@ query SyncBIMProjects(
     lastSync: $lastSync
   ) {
     items {
-      Did
-      department {
-        id
+      DName
+      UserName
+      Customer {
+        name
         DName
+        Did
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
       }
-      migrationid
       Pname
-      cname
       source
       destination
       id
@@ -869,7 +881,7 @@ query GetTableauProject($id: ID!) {
     name
     Did
     department {
-      id
+      Did
       DName
       customers {
         nextToken
@@ -883,6 +895,7 @@ query GetTableauProject($id: ID!) {
         nextToken
         startedAt
       }
+      id
       createdAt
       updatedAt
       _version
@@ -908,8 +921,9 @@ query ListTableauProjects(
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -944,8 +958,9 @@ query SyncTableauProjects(
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -972,8 +987,9 @@ query GetTableauEnv($id: ID!) {
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -1073,8 +1089,9 @@ query GetTaleauWorkbook($id: ID!) {
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -1379,7 +1396,7 @@ query GetQuicksightProject($id: ID!) {
     name
     Did
     department {
-      id
+      Did
       DName
       customers {
         nextToken
@@ -1393,6 +1410,7 @@ query GetQuicksightProject($id: ID!) {
         nextToken
         startedAt
       }
+      id
       createdAt
       updatedAt
       _version
@@ -1450,8 +1468,9 @@ query ListQuicksightProjects(
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -1493,8 +1512,9 @@ query SyncQuicksightProjects(
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -1530,8 +1550,9 @@ query GetQuicksightTemplate($id: ID!) {
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version
@@ -1801,8 +1822,9 @@ query GetQuicksightEnv($id: ID!) {
       name
       Did
       department {
-        id
+        Did
         DName
+        id
         createdAt
         updatedAt
         _version

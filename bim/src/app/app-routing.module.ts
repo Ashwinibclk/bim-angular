@@ -19,9 +19,9 @@ const routes: Routes = [
   { path: 'tableaulogin', component: TableauloginComponent },
   { path: 'quicksightlogin', component: QuicksightloginComponent },
   { path: 'datasets', component: DatasetComponent },
-  { path: 'bimlogin', component: BimprojectComponent },
+  { path: 'login', component: BimprojectComponent },
   { path: 'department', component: DepartmentComponent },
-  { path: 'customer', component: CustomerComponent },
+  { path: 'sign-up', component: CustomerComponent },
   { path: 'tableau', component: TableauComponent },
   { path: 'quicksight', component: QuicksightComponent },
 

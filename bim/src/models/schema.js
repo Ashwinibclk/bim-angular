@@ -215,10 +215,19 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "Did": {
+                    "name": "Did",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "DName": {
                     "name": "DName",
                     "isArray": false,
-                    "type": "String",
+                    "type": {
+                        "enum": "Departments"
+                    },
                     "isRequired": true,
                     "attributes": []
                 },
@@ -233,7 +242,7 @@ export const schema = {
                     "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
-                        "associatedWith": "department"
+                        "associatedWith": "name"
                     }
                 },
                 "tprojects": {
@@ -303,7 +312,16 @@ export const schema = {
                 "name": {
                     "name": "name",
                     "isArray": false,
-                    "type": "String",
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "DName": {
+                    "name": "DName",
+                    "isArray": false,
+                    "type": {
+                        "enum": "Departments"
+                    },
                     "isRequired": true,
                     "attributes": []
                 },
@@ -343,6 +361,14 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "fields": [
+                            "name"
+                        ]
+                    }
                 }
             ]
         },
@@ -770,43 +796,38 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "Did": {
-                    "name": "Did",
+                "DName": {
+                    "name": "DName",
+                    "isArray": false,
+                    "type": {
+                        "enum": "Departments"
+                    },
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "UserName": {
+                    "name": "UserName",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
                     "attributes": []
                 },
-                "department": {
-                    "name": "department",
+                "Customer": {
+                    "name": "Customer",
                     "isArray": false,
                     "type": {
-                        "model": "Department"
+                        "model": "Customer"
                     },
                     "isRequired": false,
                     "attributes": [],
                     "association": {
                         "connectionType": "HAS_ONE",
-                        "associatedWith": "id",
-                        "targetName": "Did"
+                        "associatedWith": "name",
+                        "targetName": "UserName"
                     }
-                },
-                "migrationid": {
-                    "name": "migrationid",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
                 },
                 "Pname": {
                     "name": "Pname",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "cname": {
-                    "name": "cname",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
@@ -1502,6 +1523,16 @@ export const schema = {
         }
     },
     "enums": {
+        "Departments": {
+            "name": "Departments",
+            "values": [
+                "MARKETING",
+                "FINANCE",
+                "HR",
+                "SALES",
+                "PURCHASE"
+            ]
+        },
         "BiPlatform": {
             "name": "BiPlatform",
             "values": [
@@ -1511,5 +1542,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "208ab0484a40c68ee3a123387226da8f"
+    "version": "eb4d5c3d8a0e95d31860e0b26a49f6ee"
 };

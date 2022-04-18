@@ -2,6 +2,7 @@
 # all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
 input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
 
+directive @unique on FIELD_DEFINITION
 
 type Tableaulogin @model {
   id: ID!
@@ -18,27 +19,26 @@ type Quicksightlogin @model {
 }
 
 type Customer @model {
-  id: ID!
-  name: String!
+  
+  name: ID! @primaryKey
+  DName: Departments!
   Did:ID!
   department: Department @belongsTo(fields:["Did"])
 }
 
 type Department @model {
-  id: ID!
-  DName: String!
-  customers: [Customer] @hasMany(fields:["id"])
-  tprojects:[TableauProject] @hasMany(fields:["id"])
-  qprojects:[QuicksightProject] @hasMany(fields:["id"])
+  Did:ID!
+  DName:Departments!
+  customers: [Customer] @hasMany(fields:["Did"])
+  tprojects:[TableauProject] @hasMany(fields:["Did"])
+  qprojects:[QuicksightProject] @hasMany(fields:["Did"])
 }
 
 type BIMProject @model{
-  Did:ID!
-  department:Department @hasOne(fields: ["Did"])
-  migrationid:ID!
-  Pname:String!
-  cname:String!
-  
+  DName:Departments!
+  UserName:ID! 
+  Customer:Customer @hasOne(fields:["UserName"])
+  Pname:String! 
   source:BIPlatform!
   destination:BIPlatform!
 }
@@ -46,6 +46,14 @@ type BIMProject @model{
 enum BIPlatform {
   TABLEAU
   QUICKSIGHT
+}
+
+enum Departments {
+  MARKETING
+  FINANCE
+  HR 
+  SALES
+  PURCHASE
 }
 
 type dataset @model{

@@ -1,25 +1,38 @@
 
+<script src="../../assets/js/dep.js"></script>
 <div  class="form-body">
     <form
       autocomplete="off"
       [formGroup]="createFormtb"
       (ngSubmit)="onCreatetb(createFormtb.value)"
     >
-    <h3>Customer</h3>
+    <h3>Sign-Up</h3>
       <div>
-        <label>CustomerName: </label>
+        <label>UserName: </label>
         <input type="text" formControlName="name" autocomplete="off" />
       </div>
       
+      
       <div>
-        <label>CustomerId: </label>
-        <input type="text" formControlName="id" autocomplete="off" />
+        <label for="DName">
+          Department Name: </label>
+      <select id="dep" formControlName="DName" (change)="select($event)" >
+        <option value="MARKETING">MARKETING</option>
+          <option value="FINANCE" >FINANCE</option>
+          <option value="HR" >HR</option> 
+          <option value="SALES" >SALES</option>
+          <option value="PURCHASE" >PURCHASE</option>
+        
+      </select>
       </div>
       <div>
-        <label>Departmentid: </label>
-        <input type="text" formControlName="Did" autocomplete="off" />
+        <label for="Did">
+          Department Id: </label>
+      <input type="text" id="depid" formControlName="Did" > 
       </div>
-      <button type="submit">Submit</button>
+     
+      <button type="submit">Sign-Up</button>
+      <button (click)="funclog()" style="margin-top:30px;">Log-In</button>
     </form>
   </div>
   

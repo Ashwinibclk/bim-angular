@@ -177,17 +177,26 @@ export type TableauProject = {
 
 export type Department = {
   __typename: "Department";
-  id: string;
-  DName: string;
+  Did: string;
+  DName: Departments;
   customers?: ModelCustomerConnection | null;
   tprojects?: ModelTableauProjectConnection | null;
   qprojects?: ModelQuicksightProjectConnection | null;
+  id: string;
   createdAt: string;
   updatedAt: string;
   _version: number;
   _deleted?: boolean | null;
   _lastChangedAt: number;
 };
+
+export enum Departments {
+  MARKETING = "MARKETING",
+  FINANCE = "FINANCE",
+  HR = "HR",
+  SALES = "SALES",
+  PURCHASE = "PURCHASE"
+}
 
 export type ModelCustomerConnection = {
   __typename: "ModelCustomerConnection";
@@ -198,8 +207,8 @@ export type ModelCustomerConnection = {
 
 export type Customer = {
   __typename: "Customer";
-  id: string;
   name: string;
+  DName: Departments;
   Did: string;
   department?: Department | null;
   createdAt: string;
@@ -388,48 +397,56 @@ export type DeleteQuicksightloginInput = {
 };
 
 export type CreateCustomerInput = {
-  id?: string | null;
   name: string;
+  DName: Departments;
   Did: string;
   _version?: number | null;
 };
 
 export type ModelCustomerConditionInput = {
-  name?: ModelStringInput | null;
+  DName?: ModelDepartmentsInput | null;
   Did?: ModelIDInput | null;
   and?: Array<ModelCustomerConditionInput | null> | null;
   or?: Array<ModelCustomerConditionInput | null> | null;
   not?: ModelCustomerConditionInput | null;
 };
 
+export type ModelDepartmentsInput = {
+  eq?: Departments | null;
+  ne?: Departments | null;
+};
+
 export type UpdateCustomerInput = {
-  id: string;
-  name?: string | null;
+  name: string;
+  DName?: Departments | null;
   Did?: string | null;
   _version?: number | null;
 };
 
 export type DeleteCustomerInput = {
-  id: string;
+  name: string;
   _version?: number | null;
 };
 
 export type CreateDepartmentInput = {
+  Did: string;
+  DName: Departments;
   id?: string | null;
-  DName: string;
   _version?: number | null;
 };
 
 export type ModelDepartmentConditionInput = {
-  DName?: ModelStringInput | null;
+  Did?: ModelIDInput | null;
+  DName?: ModelDepartmentsInput | null;
   and?: Array<ModelDepartmentConditionInput | null> | null;
   or?: Array<ModelDepartmentConditionInput | null> | null;
   not?: ModelDepartmentConditionInput | null;
 };
 
 export type UpdateDepartmentInput = {
+  Did?: string | null;
+  DName?: Departments | null;
   id: string;
-  DName?: string | null;
   _version?: number | null;
 };
 
@@ -439,10 +456,9 @@ export type DeleteDepartmentInput = {
 };
 
 export type CreateBIMProjectInput = {
-  Did: string;
-  migrationid: string;
+  DName: Departments;
+  UserName: string;
   Pname: string;
-  cname: string;
   source: BIPlatform;
   destination: BIPlatform;
   id?: string | null;
@@ -455,10 +471,9 @@ export enum BIPlatform {
 }
 
 export type ModelBIMProjectConditionInput = {
-  Did?: ModelIDInput | null;
-  migrationid?: ModelIDInput | null;
+  DName?: ModelDepartmentsInput | null;
+  UserName?: ModelIDInput | null;
   Pname?: ModelStringInput | null;
-  cname?: ModelStringInput | null;
   source?: ModelBIPlatformInput | null;
   destination?: ModelBIPlatformInput | null;
   and?: Array<ModelBIMProjectConditionInput | null> | null;
@@ -473,11 +488,10 @@ export type ModelBIPlatformInput = {
 
 export type BIMProject = {
   __typename: "BIMProject";
-  Did: string;
-  department?: Department | null;
-  migrationid: string;
+  DName: Departments;
+  UserName: string;
+  Customer?: Customer | null;
   Pname: string;
-  cname: string;
   source: BIPlatform;
   destination: BIPlatform;
   id: string;
@@ -489,10 +503,9 @@ export type BIMProject = {
 };
 
 export type UpdateBIMProjectInput = {
-  Did?: string | null;
-  migrationid?: string | null;
+  DName?: Departments | null;
+  UserName?: string | null;
   Pname?: string | null;
-  cname?: string | null;
   source?: BIPlatform | null;
   destination?: BIPlatform | null;
   id: string;
@@ -1190,17 +1203,22 @@ export type ModelQuicksightloginConnection = {
 };
 
 export type ModelCustomerFilterInput = {
-  id?: ModelIDInput | null;
-  name?: ModelStringInput | null;
+  name?: ModelIDInput | null;
+  DName?: ModelDepartmentsInput | null;
   Did?: ModelIDInput | null;
   and?: Array<ModelCustomerFilterInput | null> | null;
   or?: Array<ModelCustomerFilterInput | null> | null;
   not?: ModelCustomerFilterInput | null;
 };
 
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC"
+}
+
 export type ModelDepartmentFilterInput = {
-  id?: ModelIDInput | null;
-  DName?: ModelStringInput | null;
+  Did?: ModelIDInput | null;
+  DName?: ModelDepartmentsInput | null;
   and?: Array<ModelDepartmentFilterInput | null> | null;
   or?: Array<ModelDepartmentFilterInput | null> | null;
   not?: ModelDepartmentFilterInput | null;
@@ -1214,10 +1232,9 @@ export type ModelDepartmentConnection = {
 };
 
 export type ModelBIMProjectFilterInput = {
-  Did?: ModelIDInput | null;
-  migrationid?: ModelIDInput | null;
+  DName?: ModelDepartmentsInput | null;
+  UserName?: ModelIDInput | null;
   Pname?: ModelStringInput | null;
-  cname?: ModelStringInput | null;
   source?: ModelBIPlatformInput | null;
   destination?: ModelBIPlatformInput | null;
   and?: Array<ModelBIMProjectFilterInput | null> | null;
@@ -1651,13 +1668,13 @@ export type DeleteQuicksightloginMutation = {
 
 export type CreateCustomerMutation = {
   __typename: "Customer";
-  id: string;
   name: string;
+  DName: Departments;
   Did: string;
   department?: {
     __typename: "Department";
-    id: string;
-    DName: string;
+    Did: string;
+    DName: Departments;
     customers?: {
       __typename: "ModelCustomerConnection";
       nextToken?: string | null;
@@ -1673,6 +1690,7 @@ export type CreateCustomerMutation = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    id: string;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -1688,13 +1706,13 @@ export type CreateCustomerMutation = {
 
 export type UpdateCustomerMutation = {
   __typename: "Customer";
-  id: string;
   name: string;
+  DName: Departments;
   Did: string;
   department?: {
     __typename: "Department";
-    id: string;
-    DName: string;
+    Did: string;
+    DName: Departments;
     customers?: {
       __typename: "ModelCustomerConnection";
       nextToken?: string | null;
@@ -1710,6 +1728,7 @@ export type UpdateCustomerMutation = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    id: string;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -1725,13 +1744,13 @@ export type UpdateCustomerMutation = {
 
 export type DeleteCustomerMutation = {
   __typename: "Customer";
-  id: string;
   name: string;
+  DName: Departments;
   Did: string;
   department?: {
     __typename: "Department";
-    id: string;
-    DName: string;
+    Did: string;
+    DName: Departments;
     customers?: {
       __typename: "ModelCustomerConnection";
       nextToken?: string | null;
@@ -1747,6 +1766,7 @@ export type DeleteCustomerMutation = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    id: string;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -1762,14 +1782,14 @@ export type DeleteCustomerMutation = {
 
 export type CreateDepartmentMutation = {
   __typename: "Department";
-  id: string;
-  DName: string;
+  Did: string;
+  DName: Departments;
   customers?: {
     __typename: "ModelCustomerConnection";
     items: Array<{
       __typename: "Customer";
-      id: string;
       name: string;
+      DName: Departments;
       Did: string;
       createdAt: string;
       updatedAt: string;
@@ -1813,6 +1833,7 @@ export type CreateDepartmentMutation = {
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
+  id: string;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -1822,14 +1843,14 @@ export type CreateDepartmentMutation = {
 
 export type UpdateDepartmentMutation = {
   __typename: "Department";
-  id: string;
-  DName: string;
+  Did: string;
+  DName: Departments;
   customers?: {
     __typename: "ModelCustomerConnection";
     items: Array<{
       __typename: "Customer";
-      id: string;
       name: string;
+      DName: Departments;
       Did: string;
       createdAt: string;
       updatedAt: string;
@@ -1873,6 +1894,7 @@ export type UpdateDepartmentMutation = {
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
+  id: string;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -1882,14 +1904,14 @@ export type UpdateDepartmentMutation = {
 
 export type DeleteDepartmentMutation = {
   __typename: "Department";
-  id: string;
-  DName: string;
+  Did: string;
+  DName: Departments;
   customers?: {
     __typename: "ModelCustomerConnection";
     items: Array<{
       __typename: "Customer";
-      id: string;
       name: string;
+      DName: Departments;
       Did: string;
       createdAt: string;
       updatedAt: string;
@@ -1933,6 +1955,7 @@ export type DeleteDepartmentMutation = {
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
+  id: string;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -1942,25 +1965,23 @@ export type DeleteDepartmentMutation = {
 
 export type CreateBIMProjectMutation = {
   __typename: "BIMProject";
-  Did: string;
-  department?: {
-    __typename: "Department";
-    id: string;
-    DName: string;
-    customers?: {
-      __typename: "ModelCustomerConnection";
-      nextToken?: string | null;
-      startedAt?: number | null;
-    } | null;
-    tprojects?: {
-      __typename: "ModelTableauProjectConnection";
-      nextToken?: string | null;
-      startedAt?: number | null;
-    } | null;
-    qprojects?: {
-      __typename: "ModelQuicksightProjectConnection";
-      nextToken?: string | null;
-      startedAt?: number | null;
+  DName: Departments;
+  UserName: string;
+  Customer?: {
+    __typename: "Customer";
+    name: string;
+    DName: Departments;
+    Did: string;
+    department?: {
+      __typename: "Department";
+      Did: string;
+      DName: Departments;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
     } | null;
     createdAt: string;
     updatedAt: string;
@@ -1968,9 +1989,7 @@ export type CreateBIMProjectMutation = {
     _deleted?: boolean | null;
     _lastChangedAt: number;
   } | null;
-  migrationid: string;
   Pname: string;
-  cname: string;
   source: BIPlatform;
   destination: BIPlatform;
   id: string;
@@ -1983,25 +2002,23 @@ export type CreateBIMProjectMutation = {
 
 export type UpdateBIMProjectMutation = {
   __typename: "BIMProject";
-  Did: string;
-  department?: {
-    __typename: "Department";
-    id: string;
-    DName: string;
-    customers?: {
-      __typename: "ModelCustomerConnection";
-      nextToken?: string | null;
-      startedAt?: number | null;
-    } | null;
-    tprojects?: {
-      __typename: "ModelTableauProjectConnection";
-      nextToken?: string | null;
-      startedAt?: number | null;
-    } | null;
-    qprojects?: {
-      __typename: "ModelQuicksightProjectConnection";
-      nextToken?: string | null;
-      startedAt?: number | null;
+  DName: Departments;
+  UserName: string;
+  Customer?: {
+    __typename: "Customer";
+    name: string;
+    DName: Departments;
+    Did: string;
+    department?: {
+      __typename: "Department";
+      Did: string;
+      DName: Departments;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
     } | null;
     createdAt: string;
     updatedAt: string;
@@ -2009,9 +2026,7 @@ export type UpdateBIMProjectMutation = {
     _deleted?: boolean | null;
     _lastChangedAt: number;
   } | null;
-  migrationid: string;
   Pname: string;
-  cname: string;
   source: BIPlatform;
   destination: BIPlatform;
   id: string;
@@ -2024,25 +2039,23 @@ export type UpdateBIMProjectMutation = {
 
 export type DeleteBIMProjectMutation = {
   __typename: "BIMProject";
-  Did: string;
-  department?: {
-    __typename: "Department";
-    id: string;
-    DName: string;
-    customers?: {
-      __typename: "ModelCustomerConnection";
-      nextToken?: string | null;
-      startedAt?: number | null;
-    } | null;
-    tprojects?: {
-      __typename: "ModelTableauProjectConnection";
-      nextToken?: string | null;
-      startedAt?: number | null;
-    } | null;
-    qprojects?: {
-      __typename: "ModelQuicksightProjectConnection";
-      nextToken?: string | null;
-      startedAt?: number | null;
+  DName: Departments;
+  UserName: string;
+  Customer?: {
+    __typename: "Customer";
+    name: string;
+    DName: Departments;
+    Did: string;
+    department?: {
+      __typename: "Department";
+      Did: string;
+      DName: Departments;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
     } | null;
     createdAt: string;
     updatedAt: string;
@@ -2050,9 +2063,7 @@ export type DeleteBIMProjectMutation = {
     _deleted?: boolean | null;
     _lastChangedAt: number;
   } | null;
-  migrationid: string;
   Pname: string;
-  cname: string;
   source: BIPlatform;
   destination: BIPlatform;
   id: string;
@@ -2481,8 +2492,8 @@ export type CreateTableauProjectMutation = {
   Did: string;
   department?: {
     __typename: "Department";
-    id: string;
-    DName: string;
+    Did: string;
+    DName: Departments;
     customers?: {
       __typename: "ModelCustomerConnection";
       nextToken?: string | null;
@@ -2498,6 +2509,7 @@ export type CreateTableauProjectMutation = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    id: string;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -2519,8 +2531,8 @@ export type UpdateTableauProjectMutation = {
   Did: string;
   department?: {
     __typename: "Department";
-    id: string;
-    DName: string;
+    Did: string;
+    DName: Departments;
     customers?: {
       __typename: "ModelCustomerConnection";
       nextToken?: string | null;
@@ -2536,6 +2548,7 @@ export type UpdateTableauProjectMutation = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    id: string;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -2557,8 +2570,8 @@ export type DeleteTableauProjectMutation = {
   Did: string;
   department?: {
     __typename: "Department";
-    id: string;
-    DName: string;
+    Did: string;
+    DName: Departments;
     customers?: {
       __typename: "ModelCustomerConnection";
       nextToken?: string | null;
@@ -2574,6 +2587,7 @@ export type DeleteTableauProjectMutation = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    id: string;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -2599,8 +2613,9 @@ export type CreateTableauEnvMutation = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -2633,8 +2648,9 @@ export type UpdateTableauEnvMutation = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -2667,8 +2683,9 @@ export type DeleteTableauEnvMutation = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -2702,8 +2719,9 @@ export type CreateTaleauWorkbookMutation = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -2737,8 +2755,9 @@ export type UpdateTaleauWorkbookMutation = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -2772,8 +2791,9 @@ export type DeleteTaleauWorkbookMutation = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -3021,8 +3041,8 @@ export type CreateQuicksightProjectMutation = {
   Did: string;
   department?: {
     __typename: "Department";
-    id: string;
-    DName: string;
+    Did: string;
+    DName: Departments;
     customers?: {
       __typename: "ModelCustomerConnection";
       nextToken?: string | null;
@@ -3038,6 +3058,7 @@ export type CreateQuicksightProjectMutation = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    id: string;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -3091,8 +3112,8 @@ export type UpdateQuicksightProjectMutation = {
   Did: string;
   department?: {
     __typename: "Department";
-    id: string;
-    DName: string;
+    Did: string;
+    DName: Departments;
     customers?: {
       __typename: "ModelCustomerConnection";
       nextToken?: string | null;
@@ -3108,6 +3129,7 @@ export type UpdateQuicksightProjectMutation = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    id: string;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -3161,8 +3183,8 @@ export type DeleteQuicksightProjectMutation = {
   Did: string;
   department?: {
     __typename: "Department";
-    id: string;
-    DName: string;
+    Did: string;
+    DName: Departments;
     customers?: {
       __typename: "ModelCustomerConnection";
       nextToken?: string | null;
@@ -3178,6 +3200,7 @@ export type DeleteQuicksightProjectMutation = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    id: string;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -3237,8 +3260,9 @@ export type CreateQuicksightTemplateMutation = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -3314,8 +3338,9 @@ export type UpdateQuicksightTemplateMutation = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -3391,8 +3416,9 @@ export type DeleteQuicksightTemplateMutation = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -3604,8 +3630,9 @@ export type CreateQuicksightEnvMutation = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -3647,8 +3674,9 @@ export type UpdateQuicksightEnvMutation = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -3690,8 +3718,9 @@ export type DeleteQuicksightEnvMutation = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -4274,13 +4303,13 @@ export type SyncQuicksightloginsQuery = {
 
 export type GetCustomerQuery = {
   __typename: "Customer";
-  id: string;
   name: string;
+  DName: Departments;
   Did: string;
   department?: {
     __typename: "Department";
-    id: string;
-    DName: string;
+    Did: string;
+    DName: Departments;
     customers?: {
       __typename: "ModelCustomerConnection";
       nextToken?: string | null;
@@ -4296,6 +4325,7 @@ export type GetCustomerQuery = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    id: string;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -4313,13 +4343,14 @@ export type ListCustomersQuery = {
   __typename: "ModelCustomerConnection";
   items: Array<{
     __typename: "Customer";
-    id: string;
     name: string;
+    DName: Departments;
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -4340,13 +4371,14 @@ export type SyncCustomersQuery = {
   __typename: "ModelCustomerConnection";
   items: Array<{
     __typename: "Customer";
-    id: string;
     name: string;
+    DName: Departments;
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -4365,14 +4397,14 @@ export type SyncCustomersQuery = {
 
 export type GetDepartmentQuery = {
   __typename: "Department";
-  id: string;
-  DName: string;
+  Did: string;
+  DName: Departments;
   customers?: {
     __typename: "ModelCustomerConnection";
     items: Array<{
       __typename: "Customer";
-      id: string;
       name: string;
+      DName: Departments;
       Did: string;
       createdAt: string;
       updatedAt: string;
@@ -4416,6 +4448,7 @@ export type GetDepartmentQuery = {
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
+  id: string;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -4427,8 +4460,8 @@ export type ListDepartmentsQuery = {
   __typename: "ModelDepartmentConnection";
   items: Array<{
     __typename: "Department";
-    id: string;
-    DName: string;
+    Did: string;
+    DName: Departments;
     customers?: {
       __typename: "ModelCustomerConnection";
       nextToken?: string | null;
@@ -4444,6 +4477,7 @@ export type ListDepartmentsQuery = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    id: string;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -4458,8 +4492,8 @@ export type SyncDepartmentsQuery = {
   __typename: "ModelDepartmentConnection";
   items: Array<{
     __typename: "Department";
-    id: string;
-    DName: string;
+    Did: string;
+    DName: Departments;
     customers?: {
       __typename: "ModelCustomerConnection";
       nextToken?: string | null;
@@ -4475,6 +4509,7 @@ export type SyncDepartmentsQuery = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    id: string;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -4487,25 +4522,23 @@ export type SyncDepartmentsQuery = {
 
 export type GetBIMProjectQuery = {
   __typename: "BIMProject";
-  Did: string;
-  department?: {
-    __typename: "Department";
-    id: string;
-    DName: string;
-    customers?: {
-      __typename: "ModelCustomerConnection";
-      nextToken?: string | null;
-      startedAt?: number | null;
-    } | null;
-    tprojects?: {
-      __typename: "ModelTableauProjectConnection";
-      nextToken?: string | null;
-      startedAt?: number | null;
-    } | null;
-    qprojects?: {
-      __typename: "ModelQuicksightProjectConnection";
-      nextToken?: string | null;
-      startedAt?: number | null;
+  DName: Departments;
+  UserName: string;
+  Customer?: {
+    __typename: "Customer";
+    name: string;
+    DName: Departments;
+    Did: string;
+    department?: {
+      __typename: "Department";
+      Did: string;
+      DName: Departments;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
     } | null;
     createdAt: string;
     updatedAt: string;
@@ -4513,9 +4546,7 @@ export type GetBIMProjectQuery = {
     _deleted?: boolean | null;
     _lastChangedAt: number;
   } | null;
-  migrationid: string;
   Pname: string;
-  cname: string;
   source: BIPlatform;
   destination: BIPlatform;
   id: string;
@@ -4530,20 +4561,20 @@ export type ListBIMProjectsQuery = {
   __typename: "ModelBIMProjectConnection";
   items: Array<{
     __typename: "BIMProject";
-    Did: string;
-    department?: {
-      __typename: "Department";
-      id: string;
-      DName: string;
+    DName: Departments;
+    UserName: string;
+    Customer?: {
+      __typename: "Customer";
+      name: string;
+      DName: Departments;
+      Did: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
       _deleted?: boolean | null;
       _lastChangedAt: number;
     } | null;
-    migrationid: string;
     Pname: string;
-    cname: string;
     source: BIPlatform;
     destination: BIPlatform;
     id: string;
@@ -4561,20 +4592,20 @@ export type SyncBIMProjectsQuery = {
   __typename: "ModelBIMProjectConnection";
   items: Array<{
     __typename: "BIMProject";
-    Did: string;
-    department?: {
-      __typename: "Department";
-      id: string;
-      DName: string;
+    DName: Departments;
+    UserName: string;
+    Customer?: {
+      __typename: "Customer";
+      name: string;
+      DName: Departments;
+      Did: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
       _deleted?: boolean | null;
       _lastChangedAt: number;
     } | null;
-    migrationid: string;
     Pname: string;
-    cname: string;
     source: BIPlatform;
     destination: BIPlatform;
     id: string;
@@ -4920,8 +4951,8 @@ export type GetTableauProjectQuery = {
   Did: string;
   department?: {
     __typename: "Department";
-    id: string;
-    DName: string;
+    Did: string;
+    DName: Departments;
     customers?: {
       __typename: "ModelCustomerConnection";
       nextToken?: string | null;
@@ -4937,6 +4968,7 @@ export type GetTableauProjectQuery = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    id: string;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -4960,8 +4992,9 @@ export type ListTableauProjectsQuery = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -4988,8 +5021,9 @@ export type SyncTableauProjectsQuery = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -5018,8 +5052,9 @@ export type GetTableauEnvQuery = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -5111,8 +5146,9 @@ export type GetTaleauWorkbookQuery = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -5392,8 +5428,8 @@ export type GetQuicksightProjectQuery = {
   Did: string;
   department?: {
     __typename: "Department";
-    id: string;
-    DName: string;
+    Did: string;
+    DName: Departments;
     customers?: {
       __typename: "ModelCustomerConnection";
       nextToken?: string | null;
@@ -5409,6 +5445,7 @@ export type GetQuicksightProjectQuery = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    id: string;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -5464,8 +5501,9 @@ export type ListQuicksightProjectsQuery = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -5501,8 +5539,9 @@ export type SyncQuicksightProjectsQuery = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -5542,8 +5581,9 @@ export type GetQuicksightTemplateQuery = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -5801,8 +5841,9 @@ export type GetQuicksightEnvQuery = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -6443,13 +6484,13 @@ export type OnDeleteQuicksightloginSubscription = {
 
 export type OnCreateCustomerSubscription = {
   __typename: "Customer";
-  id: string;
   name: string;
+  DName: Departments;
   Did: string;
   department?: {
     __typename: "Department";
-    id: string;
-    DName: string;
+    Did: string;
+    DName: Departments;
     customers?: {
       __typename: "ModelCustomerConnection";
       nextToken?: string | null;
@@ -6465,6 +6506,7 @@ export type OnCreateCustomerSubscription = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    id: string;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -6480,13 +6522,13 @@ export type OnCreateCustomerSubscription = {
 
 export type OnUpdateCustomerSubscription = {
   __typename: "Customer";
-  id: string;
   name: string;
+  DName: Departments;
   Did: string;
   department?: {
     __typename: "Department";
-    id: string;
-    DName: string;
+    Did: string;
+    DName: Departments;
     customers?: {
       __typename: "ModelCustomerConnection";
       nextToken?: string | null;
@@ -6502,6 +6544,7 @@ export type OnUpdateCustomerSubscription = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    id: string;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -6517,13 +6560,13 @@ export type OnUpdateCustomerSubscription = {
 
 export type OnDeleteCustomerSubscription = {
   __typename: "Customer";
-  id: string;
   name: string;
+  DName: Departments;
   Did: string;
   department?: {
     __typename: "Department";
-    id: string;
-    DName: string;
+    Did: string;
+    DName: Departments;
     customers?: {
       __typename: "ModelCustomerConnection";
       nextToken?: string | null;
@@ -6539,6 +6582,7 @@ export type OnDeleteCustomerSubscription = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    id: string;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -6554,14 +6598,14 @@ export type OnDeleteCustomerSubscription = {
 
 export type OnCreateDepartmentSubscription = {
   __typename: "Department";
-  id: string;
-  DName: string;
+  Did: string;
+  DName: Departments;
   customers?: {
     __typename: "ModelCustomerConnection";
     items: Array<{
       __typename: "Customer";
-      id: string;
       name: string;
+      DName: Departments;
       Did: string;
       createdAt: string;
       updatedAt: string;
@@ -6605,6 +6649,7 @@ export type OnCreateDepartmentSubscription = {
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
+  id: string;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -6614,14 +6659,14 @@ export type OnCreateDepartmentSubscription = {
 
 export type OnUpdateDepartmentSubscription = {
   __typename: "Department";
-  id: string;
-  DName: string;
+  Did: string;
+  DName: Departments;
   customers?: {
     __typename: "ModelCustomerConnection";
     items: Array<{
       __typename: "Customer";
-      id: string;
       name: string;
+      DName: Departments;
       Did: string;
       createdAt: string;
       updatedAt: string;
@@ -6665,6 +6710,7 @@ export type OnUpdateDepartmentSubscription = {
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
+  id: string;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -6674,14 +6720,14 @@ export type OnUpdateDepartmentSubscription = {
 
 export type OnDeleteDepartmentSubscription = {
   __typename: "Department";
-  id: string;
-  DName: string;
+  Did: string;
+  DName: Departments;
   customers?: {
     __typename: "ModelCustomerConnection";
     items: Array<{
       __typename: "Customer";
-      id: string;
       name: string;
+      DName: Departments;
       Did: string;
       createdAt: string;
       updatedAt: string;
@@ -6725,6 +6771,7 @@ export type OnDeleteDepartmentSubscription = {
     nextToken?: string | null;
     startedAt?: number | null;
   } | null;
+  id: string;
   createdAt: string;
   updatedAt: string;
   _version: number;
@@ -6734,25 +6781,23 @@ export type OnDeleteDepartmentSubscription = {
 
 export type OnCreateBIMProjectSubscription = {
   __typename: "BIMProject";
-  Did: string;
-  department?: {
-    __typename: "Department";
-    id: string;
-    DName: string;
-    customers?: {
-      __typename: "ModelCustomerConnection";
-      nextToken?: string | null;
-      startedAt?: number | null;
-    } | null;
-    tprojects?: {
-      __typename: "ModelTableauProjectConnection";
-      nextToken?: string | null;
-      startedAt?: number | null;
-    } | null;
-    qprojects?: {
-      __typename: "ModelQuicksightProjectConnection";
-      nextToken?: string | null;
-      startedAt?: number | null;
+  DName: Departments;
+  UserName: string;
+  Customer?: {
+    __typename: "Customer";
+    name: string;
+    DName: Departments;
+    Did: string;
+    department?: {
+      __typename: "Department";
+      Did: string;
+      DName: Departments;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
     } | null;
     createdAt: string;
     updatedAt: string;
@@ -6760,9 +6805,7 @@ export type OnCreateBIMProjectSubscription = {
     _deleted?: boolean | null;
     _lastChangedAt: number;
   } | null;
-  migrationid: string;
   Pname: string;
-  cname: string;
   source: BIPlatform;
   destination: BIPlatform;
   id: string;
@@ -6775,25 +6818,23 @@ export type OnCreateBIMProjectSubscription = {
 
 export type OnUpdateBIMProjectSubscription = {
   __typename: "BIMProject";
-  Did: string;
-  department?: {
-    __typename: "Department";
-    id: string;
-    DName: string;
-    customers?: {
-      __typename: "ModelCustomerConnection";
-      nextToken?: string | null;
-      startedAt?: number | null;
-    } | null;
-    tprojects?: {
-      __typename: "ModelTableauProjectConnection";
-      nextToken?: string | null;
-      startedAt?: number | null;
-    } | null;
-    qprojects?: {
-      __typename: "ModelQuicksightProjectConnection";
-      nextToken?: string | null;
-      startedAt?: number | null;
+  DName: Departments;
+  UserName: string;
+  Customer?: {
+    __typename: "Customer";
+    name: string;
+    DName: Departments;
+    Did: string;
+    department?: {
+      __typename: "Department";
+      Did: string;
+      DName: Departments;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
     } | null;
     createdAt: string;
     updatedAt: string;
@@ -6801,9 +6842,7 @@ export type OnUpdateBIMProjectSubscription = {
     _deleted?: boolean | null;
     _lastChangedAt: number;
   } | null;
-  migrationid: string;
   Pname: string;
-  cname: string;
   source: BIPlatform;
   destination: BIPlatform;
   id: string;
@@ -6816,25 +6855,23 @@ export type OnUpdateBIMProjectSubscription = {
 
 export type OnDeleteBIMProjectSubscription = {
   __typename: "BIMProject";
-  Did: string;
-  department?: {
-    __typename: "Department";
-    id: string;
-    DName: string;
-    customers?: {
-      __typename: "ModelCustomerConnection";
-      nextToken?: string | null;
-      startedAt?: number | null;
-    } | null;
-    tprojects?: {
-      __typename: "ModelTableauProjectConnection";
-      nextToken?: string | null;
-      startedAt?: number | null;
-    } | null;
-    qprojects?: {
-      __typename: "ModelQuicksightProjectConnection";
-      nextToken?: string | null;
-      startedAt?: number | null;
+  DName: Departments;
+  UserName: string;
+  Customer?: {
+    __typename: "Customer";
+    name: string;
+    DName: Departments;
+    Did: string;
+    department?: {
+      __typename: "Department";
+      Did: string;
+      DName: Departments;
+      id: string;
+      createdAt: string;
+      updatedAt: string;
+      _version: number;
+      _deleted?: boolean | null;
+      _lastChangedAt: number;
     } | null;
     createdAt: string;
     updatedAt: string;
@@ -6842,9 +6879,7 @@ export type OnDeleteBIMProjectSubscription = {
     _deleted?: boolean | null;
     _lastChangedAt: number;
   } | null;
-  migrationid: string;
   Pname: string;
-  cname: string;
   source: BIPlatform;
   destination: BIPlatform;
   id: string;
@@ -7273,8 +7308,8 @@ export type OnCreateTableauProjectSubscription = {
   Did: string;
   department?: {
     __typename: "Department";
-    id: string;
-    DName: string;
+    Did: string;
+    DName: Departments;
     customers?: {
       __typename: "ModelCustomerConnection";
       nextToken?: string | null;
@@ -7290,6 +7325,7 @@ export type OnCreateTableauProjectSubscription = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    id: string;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -7311,8 +7347,8 @@ export type OnUpdateTableauProjectSubscription = {
   Did: string;
   department?: {
     __typename: "Department";
-    id: string;
-    DName: string;
+    Did: string;
+    DName: Departments;
     customers?: {
       __typename: "ModelCustomerConnection";
       nextToken?: string | null;
@@ -7328,6 +7364,7 @@ export type OnUpdateTableauProjectSubscription = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    id: string;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -7349,8 +7386,8 @@ export type OnDeleteTableauProjectSubscription = {
   Did: string;
   department?: {
     __typename: "Department";
-    id: string;
-    DName: string;
+    Did: string;
+    DName: Departments;
     customers?: {
       __typename: "ModelCustomerConnection";
       nextToken?: string | null;
@@ -7366,6 +7403,7 @@ export type OnDeleteTableauProjectSubscription = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    id: string;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -7391,8 +7429,9 @@ export type OnCreateTableauEnvSubscription = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -7425,8 +7464,9 @@ export type OnUpdateTableauEnvSubscription = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -7459,8 +7499,9 @@ export type OnDeleteTableauEnvSubscription = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -7494,8 +7535,9 @@ export type OnCreateTaleauWorkbookSubscription = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -7529,8 +7571,9 @@ export type OnUpdateTaleauWorkbookSubscription = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -7564,8 +7607,9 @@ export type OnDeleteTaleauWorkbookSubscription = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -7813,8 +7857,8 @@ export type OnCreateQuicksightProjectSubscription = {
   Did: string;
   department?: {
     __typename: "Department";
-    id: string;
-    DName: string;
+    Did: string;
+    DName: Departments;
     customers?: {
       __typename: "ModelCustomerConnection";
       nextToken?: string | null;
@@ -7830,6 +7874,7 @@ export type OnCreateQuicksightProjectSubscription = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    id: string;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -7883,8 +7928,8 @@ export type OnUpdateQuicksightProjectSubscription = {
   Did: string;
   department?: {
     __typename: "Department";
-    id: string;
-    DName: string;
+    Did: string;
+    DName: Departments;
     customers?: {
       __typename: "ModelCustomerConnection";
       nextToken?: string | null;
@@ -7900,6 +7945,7 @@ export type OnUpdateQuicksightProjectSubscription = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    id: string;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -7953,8 +7999,8 @@ export type OnDeleteQuicksightProjectSubscription = {
   Did: string;
   department?: {
     __typename: "Department";
-    id: string;
-    DName: string;
+    Did: string;
+    DName: Departments;
     customers?: {
       __typename: "ModelCustomerConnection";
       nextToken?: string | null;
@@ -7970,6 +8016,7 @@ export type OnDeleteQuicksightProjectSubscription = {
       nextToken?: string | null;
       startedAt?: number | null;
     } | null;
+    id: string;
     createdAt: string;
     updatedAt: string;
     _version: number;
@@ -8029,8 +8076,9 @@ export type OnCreateQuicksightTemplateSubscription = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -8106,8 +8154,9 @@ export type OnUpdateQuicksightTemplateSubscription = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -8183,8 +8232,9 @@ export type OnDeleteQuicksightTemplateSubscription = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -8396,8 +8446,9 @@ export type OnCreateQuicksightEnvSubscription = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -8439,8 +8490,9 @@ export type OnUpdateQuicksightEnvSubscription = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -8482,8 +8534,9 @@ export type OnDeleteQuicksightEnvSubscription = {
     Did: string;
     department?: {
       __typename: "Department";
+      Did: string;
+      DName: Departments;
       id: string;
-      DName: string;
       createdAt: string;
       updatedAt: string;
       _version: number;
@@ -9197,12 +9250,12 @@ export class APIService {
     const statement = `mutation CreateCustomer($input: CreateCustomerInput!, $condition: ModelCustomerConditionInput) {
         createCustomer(input: $input, condition: $condition) {
           __typename
-          id
           name
+          DName
           Did
           department {
             __typename
-            id
+            Did
             DName
             customers {
               __typename
@@ -9219,6 +9272,7 @@ export class APIService {
               nextToken
               startedAt
             }
+            id
             createdAt
             updatedAt
             _version
@@ -9250,12 +9304,12 @@ export class APIService {
     const statement = `mutation UpdateCustomer($input: UpdateCustomerInput!, $condition: ModelCustomerConditionInput) {
         updateCustomer(input: $input, condition: $condition) {
           __typename
-          id
           name
+          DName
           Did
           department {
             __typename
-            id
+            Did
             DName
             customers {
               __typename
@@ -9272,6 +9326,7 @@ export class APIService {
               nextToken
               startedAt
             }
+            id
             createdAt
             updatedAt
             _version
@@ -9303,12 +9358,12 @@ export class APIService {
     const statement = `mutation DeleteCustomer($input: DeleteCustomerInput!, $condition: ModelCustomerConditionInput) {
         deleteCustomer(input: $input, condition: $condition) {
           __typename
-          id
           name
+          DName
           Did
           department {
             __typename
-            id
+            Did
             DName
             customers {
               __typename
@@ -9325,6 +9380,7 @@ export class APIService {
               nextToken
               startedAt
             }
+            id
             createdAt
             updatedAt
             _version
@@ -9356,14 +9412,14 @@ export class APIService {
     const statement = `mutation CreateDepartment($input: CreateDepartmentInput!, $condition: ModelDepartmentConditionInput) {
         createDepartment(input: $input, condition: $condition) {
           __typename
-          id
+          Did
           DName
           customers {
             __typename
             items {
               __typename
-              id
               name
+              DName
               Did
               createdAt
               updatedAt
@@ -9407,6 +9463,7 @@ export class APIService {
             nextToken
             startedAt
           }
+          id
           createdAt
           updatedAt
           _version
@@ -9432,14 +9489,14 @@ export class APIService {
     const statement = `mutation UpdateDepartment($input: UpdateDepartmentInput!, $condition: ModelDepartmentConditionInput) {
         updateDepartment(input: $input, condition: $condition) {
           __typename
-          id
+          Did
           DName
           customers {
             __typename
             items {
               __typename
-              id
               name
+              DName
               Did
               createdAt
               updatedAt
@@ -9483,6 +9540,7 @@ export class APIService {
             nextToken
             startedAt
           }
+          id
           createdAt
           updatedAt
           _version
@@ -9508,14 +9566,14 @@ export class APIService {
     const statement = `mutation DeleteDepartment($input: DeleteDepartmentInput!, $condition: ModelDepartmentConditionInput) {
         deleteDepartment(input: $input, condition: $condition) {
           __typename
-          id
+          Did
           DName
           customers {
             __typename
             items {
               __typename
-              id
               name
+              DName
               Did
               createdAt
               updatedAt
@@ -9559,6 +9617,7 @@ export class APIService {
             nextToken
             startedAt
           }
+          id
           createdAt
           updatedAt
           _version
@@ -9584,25 +9643,23 @@ export class APIService {
     const statement = `mutation CreateBIMProject($input: CreateBIMProjectInput!, $condition: ModelBIMProjectConditionInput) {
         createBIMProject(input: $input, condition: $condition) {
           __typename
-          Did
-          department {
+          DName
+          UserName
+          Customer {
             __typename
-            id
+            name
             DName
-            customers {
+            Did
+            department {
               __typename
-              nextToken
-              startedAt
-            }
-            tprojects {
-              __typename
-              nextToken
-              startedAt
-            }
-            qprojects {
-              __typename
-              nextToken
-              startedAt
+              Did
+              DName
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
             }
             createdAt
             updatedAt
@@ -9610,9 +9667,7 @@ export class APIService {
             _deleted
             _lastChangedAt
           }
-          migrationid
           Pname
-          cname
           source
           destination
           id
@@ -9641,25 +9696,23 @@ export class APIService {
     const statement = `mutation UpdateBIMProject($input: UpdateBIMProjectInput!, $condition: ModelBIMProjectConditionInput) {
         updateBIMProject(input: $input, condition: $condition) {
           __typename
-          Did
-          department {
+          DName
+          UserName
+          Customer {
             __typename
-            id
+            name
             DName
-            customers {
+            Did
+            department {
               __typename
-              nextToken
-              startedAt
-            }
-            tprojects {
-              __typename
-              nextToken
-              startedAt
-            }
-            qprojects {
-              __typename
-              nextToken
-              startedAt
+              Did
+              DName
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
             }
             createdAt
             updatedAt
@@ -9667,9 +9720,7 @@ export class APIService {
             _deleted
             _lastChangedAt
           }
-          migrationid
           Pname
-          cname
           source
           destination
           id
@@ -9698,25 +9749,23 @@ export class APIService {
     const statement = `mutation DeleteBIMProject($input: DeleteBIMProjectInput!, $condition: ModelBIMProjectConditionInput) {
         deleteBIMProject(input: $input, condition: $condition) {
           __typename
-          Did
-          department {
+          DName
+          UserName
+          Customer {
             __typename
-            id
+            name
             DName
-            customers {
+            Did
+            department {
               __typename
-              nextToken
-              startedAt
-            }
-            tprojects {
-              __typename
-              nextToken
-              startedAt
-            }
-            qprojects {
-              __typename
-              nextToken
-              startedAt
+              Did
+              DName
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
             }
             createdAt
             updatedAt
@@ -9724,9 +9773,7 @@ export class APIService {
             _deleted
             _lastChangedAt
           }
-          migrationid
           Pname
-          cname
           source
           destination
           id
@@ -10315,7 +10362,7 @@ export class APIService {
           Did
           department {
             __typename
-            id
+            Did
             DName
             customers {
               __typename
@@ -10332,6 +10379,7 @@ export class APIService {
               nextToken
               startedAt
             }
+            id
             createdAt
             updatedAt
             _version
@@ -10369,7 +10417,7 @@ export class APIService {
           Did
           department {
             __typename
-            id
+            Did
             DName
             customers {
               __typename
@@ -10386,6 +10434,7 @@ export class APIService {
               nextToken
               startedAt
             }
+            id
             createdAt
             updatedAt
             _version
@@ -10423,7 +10472,7 @@ export class APIService {
           Did
           department {
             __typename
-            id
+            Did
             DName
             customers {
               __typename
@@ -10440,6 +10489,7 @@ export class APIService {
               nextToken
               startedAt
             }
+            id
             createdAt
             updatedAt
             _version
@@ -10481,8 +10531,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -10531,8 +10582,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -10581,8 +10633,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -10632,8 +10685,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -10683,8 +10737,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -10734,8 +10789,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -11095,7 +11151,7 @@ export class APIService {
           Did
           department {
             __typename
-            id
+            Did
             DName
             customers {
               __typename
@@ -11112,6 +11168,7 @@ export class APIService {
               nextToken
               startedAt
             }
+            id
             createdAt
             updatedAt
             _version
@@ -11183,7 +11240,7 @@ export class APIService {
           Did
           department {
             __typename
-            id
+            Did
             DName
             customers {
               __typename
@@ -11200,6 +11257,7 @@ export class APIService {
               nextToken
               startedAt
             }
+            id
             createdAt
             updatedAt
             _version
@@ -11271,7 +11329,7 @@ export class APIService {
           Did
           department {
             __typename
-            id
+            Did
             DName
             customers {
               __typename
@@ -11288,6 +11346,7 @@ export class APIService {
               nextToken
               startedAt
             }
+            id
             createdAt
             updatedAt
             _version
@@ -11365,8 +11424,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -11460,8 +11520,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -11555,8 +11616,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -11840,8 +11902,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -11899,8 +11962,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -11958,8 +12022,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -12909,16 +12974,16 @@ export class APIService {
     )) as any;
     return <SyncQuicksightloginsQuery>response.data.syncQuicksightlogins;
   }
-  async GetCustomer(id: string): Promise<GetCustomerQuery> {
-    const statement = `query GetCustomer($id: ID!) {
-        getCustomer(id: $id) {
+  async GetCustomer(name: string): Promise<GetCustomerQuery> {
+    const statement = `query GetCustomer($name: ID!) {
+        getCustomer(name: $name) {
           __typename
-          id
           name
+          DName
           Did
           department {
             __typename
-            id
+            Did
             DName
             customers {
               __typename
@@ -12935,6 +13000,7 @@ export class APIService {
               nextToken
               startedAt
             }
+            id
             createdAt
             updatedAt
             _version
@@ -12949,7 +13015,7 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {
-      id
+      name
     };
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
@@ -12957,22 +13023,25 @@ export class APIService {
     return <GetCustomerQuery>response.data.getCustomer;
   }
   async ListCustomers(
+    name?: string,
     filter?: ModelCustomerFilterInput,
     limit?: number,
-    nextToken?: string
+    nextToken?: string,
+    sortDirection?: ModelSortDirection
   ): Promise<ListCustomersQuery> {
-    const statement = `query ListCustomers($filter: ModelCustomerFilterInput, $limit: Int, $nextToken: String) {
-        listCustomers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    const statement = `query ListCustomers($name: ID, $filter: ModelCustomerFilterInput, $limit: Int, $nextToken: String, $sortDirection: ModelSortDirection) {
+        listCustomers(name: $name, filter: $filter, limit: $limit, nextToken: $nextToken, sortDirection: $sortDirection) {
           __typename
           items {
             __typename
-            id
             name
+            DName
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -12990,6 +13059,9 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {};
+    if (name) {
+      gqlAPIServiceArguments.name = name;
+    }
     if (filter) {
       gqlAPIServiceArguments.filter = filter;
     }
@@ -12998,6 +13070,9 @@ export class APIService {
     }
     if (nextToken) {
       gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
     }
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
@@ -13015,13 +13090,14 @@ export class APIService {
           __typename
           items {
             __typename
-            id
             name
+            DName
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -13060,14 +13136,14 @@ export class APIService {
     const statement = `query GetDepartment($id: ID!) {
         getDepartment(id: $id) {
           __typename
-          id
+          Did
           DName
           customers {
             __typename
             items {
               __typename
-              id
               name
+              DName
               Did
               createdAt
               updatedAt
@@ -13111,6 +13187,7 @@ export class APIService {
             nextToken
             startedAt
           }
+          id
           createdAt
           updatedAt
           _version
@@ -13136,7 +13213,7 @@ export class APIService {
           __typename
           items {
             __typename
-            id
+            Did
             DName
             customers {
               __typename
@@ -13153,6 +13230,7 @@ export class APIService {
               nextToken
               startedAt
             }
+            id
             createdAt
             updatedAt
             _version
@@ -13189,7 +13267,7 @@ export class APIService {
           __typename
           items {
             __typename
-            id
+            Did
             DName
             customers {
               __typename
@@ -13206,6 +13284,7 @@ export class APIService {
               nextToken
               startedAt
             }
+            id
             createdAt
             updatedAt
             _version
@@ -13238,25 +13317,23 @@ export class APIService {
     const statement = `query GetBIMProject($id: ID!) {
         getBIMProject(id: $id) {
           __typename
-          Did
-          department {
+          DName
+          UserName
+          Customer {
             __typename
-            id
+            name
             DName
-            customers {
+            Did
+            department {
               __typename
-              nextToken
-              startedAt
-            }
-            tprojects {
-              __typename
-              nextToken
-              startedAt
-            }
-            qprojects {
-              __typename
-              nextToken
-              startedAt
+              Did
+              DName
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
             }
             createdAt
             updatedAt
@@ -13264,9 +13341,7 @@ export class APIService {
             _deleted
             _lastChangedAt
           }
-          migrationid
           Pname
-          cname
           source
           destination
           id
@@ -13295,20 +13370,20 @@ export class APIService {
           __typename
           items {
             __typename
-            Did
-            department {
+            DName
+            UserName
+            Customer {
               __typename
-              id
+              name
               DName
+              Did
               createdAt
               updatedAt
               _version
               _deleted
               _lastChangedAt
             }
-            migrationid
             Pname
-            cname
             source
             destination
             id
@@ -13348,20 +13423,20 @@ export class APIService {
           __typename
           items {
             __typename
-            Did
-            department {
+            DName
+            UserName
+            Customer {
               __typename
-              id
+              name
               DName
+              Did
               createdAt
               updatedAt
               _version
               _deleted
               _lastChangedAt
             }
-            migrationid
             Pname
-            cname
             source
             destination
             id
@@ -13895,7 +13970,7 @@ export class APIService {
           Did
           department {
             __typename
-            id
+            Did
             DName
             customers {
               __typename
@@ -13912,6 +13987,7 @@ export class APIService {
               nextToken
               startedAt
             }
+            id
             createdAt
             updatedAt
             _version
@@ -13949,8 +14025,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -13999,8 +14076,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -14049,8 +14127,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -14198,8 +14277,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -14647,7 +14727,7 @@ export class APIService {
           Did
           department {
             __typename
-            id
+            Did
             DName
             customers {
               __typename
@@ -14664,6 +14744,7 @@ export class APIService {
               nextToken
               startedAt
             }
+            id
             createdAt
             updatedAt
             _version
@@ -14733,8 +14814,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -14792,8 +14874,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -14853,8 +14936,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -15224,8 +15308,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -16283,12 +16368,12 @@ export class APIService {
       `subscription OnCreateCustomer {
         onCreateCustomer {
           __typename
-          id
           name
+          DName
           Did
           department {
             __typename
-            id
+            Did
             DName
             customers {
               __typename
@@ -16305,6 +16390,7 @@ export class APIService {
               nextToken
               startedAt
             }
+            id
             createdAt
             updatedAt
             _version
@@ -16330,12 +16416,12 @@ export class APIService {
       `subscription OnUpdateCustomer {
         onUpdateCustomer {
           __typename
-          id
           name
+          DName
           Did
           department {
             __typename
-            id
+            Did
             DName
             customers {
               __typename
@@ -16352,6 +16438,7 @@ export class APIService {
               nextToken
               startedAt
             }
+            id
             createdAt
             updatedAt
             _version
@@ -16377,12 +16464,12 @@ export class APIService {
       `subscription OnDeleteCustomer {
         onDeleteCustomer {
           __typename
-          id
           name
+          DName
           Did
           department {
             __typename
-            id
+            Did
             DName
             customers {
               __typename
@@ -16399,6 +16486,7 @@ export class APIService {
               nextToken
               startedAt
             }
+            id
             createdAt
             updatedAt
             _version
@@ -16424,14 +16512,14 @@ export class APIService {
       `subscription OnCreateDepartment {
         onCreateDepartment {
           __typename
-          id
+          Did
           DName
           customers {
             __typename
             items {
               __typename
-              id
               name
+              DName
               Did
               createdAt
               updatedAt
@@ -16475,6 +16563,7 @@ export class APIService {
             nextToken
             startedAt
           }
+          id
           createdAt
           updatedAt
           _version
@@ -16494,14 +16583,14 @@ export class APIService {
       `subscription OnUpdateDepartment {
         onUpdateDepartment {
           __typename
-          id
+          Did
           DName
           customers {
             __typename
             items {
               __typename
-              id
               name
+              DName
               Did
               createdAt
               updatedAt
@@ -16545,6 +16634,7 @@ export class APIService {
             nextToken
             startedAt
           }
+          id
           createdAt
           updatedAt
           _version
@@ -16564,14 +16654,14 @@ export class APIService {
       `subscription OnDeleteDepartment {
         onDeleteDepartment {
           __typename
-          id
+          Did
           DName
           customers {
             __typename
             items {
               __typename
-              id
               name
+              DName
               Did
               createdAt
               updatedAt
@@ -16615,6 +16705,7 @@ export class APIService {
             nextToken
             startedAt
           }
+          id
           createdAt
           updatedAt
           _version
@@ -16634,25 +16725,23 @@ export class APIService {
       `subscription OnCreateBIMProject {
         onCreateBIMProject {
           __typename
-          Did
-          department {
+          DName
+          UserName
+          Customer {
             __typename
-            id
+            name
             DName
-            customers {
+            Did
+            department {
               __typename
-              nextToken
-              startedAt
-            }
-            tprojects {
-              __typename
-              nextToken
-              startedAt
-            }
-            qprojects {
-              __typename
-              nextToken
-              startedAt
+              Did
+              DName
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
             }
             createdAt
             updatedAt
@@ -16660,9 +16749,7 @@ export class APIService {
             _deleted
             _lastChangedAt
           }
-          migrationid
           Pname
-          cname
           source
           destination
           id
@@ -16685,25 +16772,23 @@ export class APIService {
       `subscription OnUpdateBIMProject {
         onUpdateBIMProject {
           __typename
-          Did
-          department {
+          DName
+          UserName
+          Customer {
             __typename
-            id
+            name
             DName
-            customers {
+            Did
+            department {
               __typename
-              nextToken
-              startedAt
-            }
-            tprojects {
-              __typename
-              nextToken
-              startedAt
-            }
-            qprojects {
-              __typename
-              nextToken
-              startedAt
+              Did
+              DName
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
             }
             createdAt
             updatedAt
@@ -16711,9 +16796,7 @@ export class APIService {
             _deleted
             _lastChangedAt
           }
-          migrationid
           Pname
-          cname
           source
           destination
           id
@@ -16736,25 +16819,23 @@ export class APIService {
       `subscription OnDeleteBIMProject {
         onDeleteBIMProject {
           __typename
-          Did
-          department {
+          DName
+          UserName
+          Customer {
             __typename
-            id
+            name
             DName
-            customers {
+            Did
+            department {
               __typename
-              nextToken
-              startedAt
-            }
-            tprojects {
-              __typename
-              nextToken
-              startedAt
-            }
-            qprojects {
-              __typename
-              nextToken
-              startedAt
+              Did
+              DName
+              id
+              createdAt
+              updatedAt
+              _version
+              _deleted
+              _lastChangedAt
             }
             createdAt
             updatedAt
@@ -16762,9 +16843,7 @@ export class APIService {
             _deleted
             _lastChangedAt
           }
-          migrationid
           Pname
-          cname
           source
           destination
           id
@@ -17295,7 +17374,7 @@ export class APIService {
           Did
           department {
             __typename
-            id
+            Did
             DName
             customers {
               __typename
@@ -17312,6 +17391,7 @@ export class APIService {
               nextToken
               startedAt
             }
+            id
             createdAt
             updatedAt
             _version
@@ -17347,7 +17427,7 @@ export class APIService {
           Did
           department {
             __typename
-            id
+            Did
             DName
             customers {
               __typename
@@ -17364,6 +17444,7 @@ export class APIService {
               nextToken
               startedAt
             }
+            id
             createdAt
             updatedAt
             _version
@@ -17399,7 +17480,7 @@ export class APIService {
           Did
           department {
             __typename
-            id
+            Did
             DName
             customers {
               __typename
@@ -17416,6 +17497,7 @@ export class APIService {
               nextToken
               startedAt
             }
+            id
             createdAt
             updatedAt
             _version
@@ -17453,8 +17535,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -17497,8 +17580,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -17541,8 +17625,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -17588,8 +17673,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -17637,8 +17723,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -17686,8 +17773,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -18009,7 +18097,7 @@ export class APIService {
           Did
           department {
             __typename
-            id
+            Did
             DName
             customers {
               __typename
@@ -18026,6 +18114,7 @@ export class APIService {
               nextToken
               startedAt
             }
+            id
             createdAt
             updatedAt
             _version
@@ -18093,7 +18182,7 @@ export class APIService {
           Did
           department {
             __typename
-            id
+            Did
             DName
             customers {
               __typename
@@ -18110,6 +18199,7 @@ export class APIService {
               nextToken
               startedAt
             }
+            id
             createdAt
             updatedAt
             _version
@@ -18177,7 +18267,7 @@ export class APIService {
           Did
           department {
             __typename
-            id
+            Did
             DName
             customers {
               __typename
@@ -18194,6 +18284,7 @@ export class APIService {
               nextToken
               startedAt
             }
+            id
             createdAt
             updatedAt
             _version
@@ -18267,8 +18358,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -18358,8 +18450,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -18449,8 +18542,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -18716,8 +18810,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -18769,8 +18864,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version
@@ -18822,8 +18918,9 @@ export class APIService {
             Did
             department {
               __typename
-              id
+              Did
               DName
+              id
               createdAt
               updatedAt
               _version

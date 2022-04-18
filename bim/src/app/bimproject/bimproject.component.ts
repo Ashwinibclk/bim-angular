@@ -22,11 +22,11 @@ export class BimprojectComponent implements OnInit {
     this.createFormtb=FormBuilder;
     this.createFormtb= this.fb.group({
       Pname: ["", Validators.required],
-      cname:["",Validators.required],
-      Did: ["", Validators.required],
+      DName:["",Validators.required],
+      UserName: ["", Validators.required],
       source: ["", Validators.required],
       destination:["",Validators.required],
-      migrationid:["",Validators.required],
+      
     });
    }
    private subscription: Subscription | null = null;
@@ -42,6 +42,10 @@ export class BimprojectComponent implements OnInit {
         this.tbs = [newtb, ...this.tbs];
       })
     );
+  }
+
+  funcsign(){
+    this.router.navigate(["/sign-up"]);
   }
   
   public onCreatetb(todo: any) {

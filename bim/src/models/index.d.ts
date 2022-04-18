@@ -1,5 +1,13 @@
 import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
 
+export enum Departments {
+  MARKETING = "MARKETING",
+  FINANCE = "FINANCE",
+  HR = "HR",
+  SALES = "SALES",
+  PURCHASE = "PURCHASE"
+}
+
 export enum BiPlatform {
   TABLEAU = "TABLEAU",
   QUICKSIGHT = "QUICKSIGHT"
@@ -132,7 +140,8 @@ export declare class TableauProject {
 
 export declare class Department {
   readonly id: string;
-  readonly DName: string;
+  readonly Did: string;
+  readonly DName: Departments | keyof typeof Departments;
   readonly customers?: (Customer | null)[] | null;
   readonly tprojects?: (TableauProject | null)[] | null;
   readonly qprojects?: (QuicksightProject | null)[] | null;
@@ -145,6 +154,7 @@ export declare class Department {
 export declare class Customer {
   readonly id: string;
   readonly name: string;
+  readonly DName: Departments | keyof typeof Departments;
   readonly department?: Department | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
@@ -221,11 +231,10 @@ export declare class Quicksightlogin {
 
 export declare class BIMProject {
   readonly id: string;
-  readonly Did: string;
-  readonly department?: Department | null;
-  readonly migrationid: string;
+  readonly DName: Departments | keyof typeof Departments;
+  readonly UserName: string;
+  readonly Customer?: Customer | null;
   readonly Pname: string;
-  readonly cname: string;
   readonly source: BiPlatform | keyof typeof BiPlatform;
   readonly destination: BiPlatform | keyof typeof BiPlatform;
   readonly createdAt?: string | null;

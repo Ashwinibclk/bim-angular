@@ -7,22 +7,19 @@
       (ngSubmit)="onCreatetb(createFormtb.value)"
     >
     <h3>BIMProject Login</h3>
-      <div>
-        <label>Department ID: </label>
-        <input type="text" formControlName="Did" autocomplete="off" />
-      </div>
-      <div>
-        <label>MigrationID: </label>
-        <input type="text" formControlName="migrationid" autocomplete="off" />
-      </div>
+    <div>
+      <label>User Name: </label>
+      <input type="text" formControlName="UserName" autocomplete="off" />
+    </div>
+    <div>
+      <label>Department Name: </label>
+      <input type="text" formControlName="DName" autocomplete="off" />
+    </div>
       <div>
         <label>Project Name: </label>
         <input type="text" formControlName="Pname" autocomplete="off" />
       </div>
-      <div>
-        <label>Customer Name: </label>
-        <input type="text" formControlName="cname" autocomplete="off" />
-      </div>
+     
       <div class="row">
       <div class="column">
         <label for="source">
@@ -41,7 +38,8 @@
       </select>
       </div>
     </div>
-      <button type="submit">Submit</button>
+      <button type="submit">Log-In</button>
+      <button (click)="funcsign()" >Sign-Up</button>
     </form>
   </div>
   
