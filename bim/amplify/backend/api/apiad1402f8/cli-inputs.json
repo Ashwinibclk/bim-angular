@@ -7,6 +7,13 @@
       "permissions": {
         "setting": "open"
       }
+    },
+    "/tableauauth": {
+      "name": "/tableauauth",
+      "lambdaFunction": "tableauauth",
+      "permissions": {
+        "setting": "open"
+      }
     }
   }
 }

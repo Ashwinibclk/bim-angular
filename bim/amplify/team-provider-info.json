@@ -59,7 +59,11 @@
       "function": {
         "bimtqadd67212": {
           "deploymentBucketName": "amplify-bimtq-bim-122711-deployment",
-          "s3Key": "amplify-builds/bimtqadd67212-6a3757442b2b56744652-build.zip"
+          "s3Key": "amplify-builds/bimtqadd67212-5352516963716a795056-build.zip"
+        },
+        "tableauauth": {
+          "deploymentBucketName": "amplify-bimtq-bim-122711-deployment",
+          "s3Key": "amplify-builds/tableauauth-2f355a3352506b2b577a-build.zip"
         }
       }
     }
