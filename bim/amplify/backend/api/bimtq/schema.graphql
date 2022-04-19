@@ -19,7 +19,7 @@ type Quicksightlogin @model {
 }
 
 type Customer @model {
-  
+ 
   name: ID! @primaryKey
   DName: Departments!
   Did:ID!

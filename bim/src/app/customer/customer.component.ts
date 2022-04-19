@@ -27,6 +27,7 @@ export class CustomerComponent implements OnInit {
   async ngOnInit() {
     this.api.ListCustomers().then((event) => {
       this.tbs = event.items as Customer[];
+      console.log(this.tbs.length);
     });
 
 
@@ -34,8 +35,10 @@ export class CustomerComponent implements OnInit {
       this.api.OnCreateCustomerListener.subscribe((event: any) => {
         const newtb = event.value.data.onCreatetb;
         this.tbs = [newtb, ...this.tbs];
+        
       })
     );
+    
   }
 
   public select(event: any) {
@@ -68,8 +71,15 @@ export class CustomerComponent implements OnInit {
     this.router.navigate(['/login'])
   }
   public onCreatetb(todo: any) {
+    console.log(this.tbs.length);
+    var i;
+    for(i=0; i<this.tbs.length; i++){
+      if(this.tbs[i].name==todo.name){
+        alert ("username already exists..")
+      }
+    }
     if(todo.name==""){
-      alert("username required");}
+      alert("UserName required");}
       else if(todo.DName==""){
         alert("Department Name is required");
       }

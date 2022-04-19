@@ -1,6 +1,6 @@
 import {Component, OnInit, OnDestroy, ChangeDetectorRef } from "@angular/core";
 import {FormBuilder, FormGroup, Validators,ReactiveFormsModule, FormControl} from "@angular/forms";
-import {APIService,  BIMProject} from "../API.service";
+import {APIService,  BIMProject,Customer} from "../API.service";
 import { Subscription } from "rxjs";
 import { BIPlatform } from "../API.service";
 import {Router} from '@angular/router';
@@ -16,7 +16,7 @@ import {Router} from '@angular/router';
 export class BimprojectComponent implements OnInit {
   public createFormtb: any;
   public tbs: Array<BIMProject> =[];
-  
+  public tbs1: Array<Customer> =[];
   
   constructor(private api: APIService, private fb: FormBuilder, private router: Router) {
     this.createFormtb=FormBuilder;
@@ -34,6 +34,11 @@ export class BimprojectComponent implements OnInit {
     this.api.ListBIMProjects().then((event) => {
       this.tbs = event.items as BIMProject[];
     });
+
+    this.api.ListCustomers().then((event) => {
+      this.tbs1 = event.items as Customer[];
+      console.log(this.tbs1.length);
+    });
   
     
     this.subscription = <Subscription>(
@@ -49,18 +54,29 @@ export class BimprojectComponent implements OnInit {
   }
   
   public onCreatetb(todo: any) {
+var i;
+for(i=0; i<this.tbs1.length; i++){
+  if((this.tbs1[i].name==todo.UserName && this.tbs1[i].DName==todo.DName)==true){
     this.api
-      .CreateBIMProject(todo)
-      .then((event) => {
-        console.log("item created!");
-        
-        this.createFormtb.get('destination').value;
-        this.createFormtb.reset();
-      })
-      .catch((e) => {
-        console.log("error creating restaurant...", e);
-      });
-      this.router.navigate(["/tableaulogin"]);
+    .CreateBIMProject(todo)
+    .then((event) => {
+      console.log("item created!");
+      
+      this.createFormtb.get('destination').value;
+      this.createFormtb.reset();
+    })
+    .catch((e) => {
+      console.log("error creating restaurant...", e);
+    });
+    this.router.navigate(["/tableaulogin"]);
+  }
+  else{
+    alert("Invalid Credentials, Please Sign Up!!!")
+  }
+}
+
+
+   
   }
   
   /*public onDelete(username:any){

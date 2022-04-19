@@ -13,7 +13,14 @@
     </div>
     <div>
       <label>Department Name: </label>
-      <input type="text" formControlName="DName" autocomplete="off" />
+      <select id="dep" formControlName="DName"  >
+        <option value="MARKETING">MARKETING</option>
+          <option value="FINANCE" >FINANCE</option>
+          <option value="HR" >HR</option> 
+          <option value="SALES" >SALES</option>
+          <option value="PURCHASE" >PURCHASE</option>
+        
+      </select>
     </div>
       <div>
         <label>Project Name: </label>
@@ -39,7 +46,7 @@
       </div>
     </div>
       <button type="submit">Log-In</button>
-      <button (click)="funcsign()" >Sign-Up</button>
+      <button (click)="funcsign()" type="button" >Sign-Up</button>
     </form>
   </div>
   
