@@ -6,6 +6,7 @@ import { Router,NavigationStart } from "@angular/router";
 import { onAuthUIStateChange, CognitoUserInterface, AuthState } from '@aws-amplify/ui-components';
 import {API} from 'aws-amplify';
 import { stringify } from "querystring";
+import {HttpClient} from "@angular/common/http";
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
@@ -13,7 +14,8 @@ import { stringify } from "querystring";
 })
 export class AppComponent implements OnInit, OnDestroy {
   response:any;
-  res:any;
+  res1:any;
+  res2:Array<any>=[];
   j:any;
   i:any;
   title = "amplify-angular-app";
@@ -29,8 +31,9 @@ export class AppComponent implements OnInit, OnDestroy {
   /* declare restaurants variable */
   public createFormtb1: any;
   
+  
 
-  constructor(private api: APIService, private fb: FormBuilder, private ref: ChangeDetectorRef, private router:Router) {
+  constructor(private api: APIService, private fb: FormBuilder, private ref: ChangeDetectorRef, private router:Router, private http:HttpClient) {
     this.createFormtb1=FormBuilder;
     this.createFormtb1= this.fb.group({
       comments: ["", Validators.required],
@@ -49,10 +52,11 @@ router.events.forEach((event)=>{
     /* fetch restaurants when app loads */
     this.api.ListBIMProjects().then((event) => {
       this.tbs = event.items as BIMProject[];
-this.res=this.getData();
-console.log(this.res);
+
+    this.res1=this.getData1();
+    console.log(this.res1);  
       
-      
+    
 
       
     });
@@ -82,6 +86,18 @@ console.log(this.res);
       this.user = authData as CognitoUserInterface;
       this.ref.detectChanges();
     })
+
+ /*   this.http.post<Article>(' https://toos22aleg.execute-api.us-east-2.amazonaws.com/bim/tableaudiscovery/', { title: 'Angular POST Request Example' }).subscribe(data => {this.res1=data;});
+     console.log(this.res1);
+  
+  
+  interface Article {
+    "username": "ashwini.s155ashm@gmail.com",
+    "password": "Abc7000*",
+    "sitename": "bimvm",
+    "siteurl": "https://prod-uk-a.online.tableau.com/"
+}*/
+
   }
   
 showm(){
@@ -127,5 +143,21 @@ async  getData() {
     return this.response;
   }
   
+  async  getData1() { 
+    const apiName = 'apiad1402f8';
+    const path = '/tableaudiscovery';
+    const myInit = { // OPTIONAL
+      headers: {},
+      body: {"username": "ashwini.s155ashm@gmail.com",
+      "password": "Abc7000*",
+      "sitename": "bimvm",
+      "siteurl": "https://prod-uk-a.online.tableau.com/"}
+    };
+    
+    
+ this.response=await API.post(apiName,path,myInit).then(result=>{this.res2=result.body; console.log(this.res2); return this.res2;})
+ 
+ console.log(this.response);
+  }
   
 }

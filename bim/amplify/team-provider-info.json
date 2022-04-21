@@ -63,7 +63,7 @@
         },
         "tableauauth": {
           "deploymentBucketName": "amplify-bimtq-bim-122711-deployment",
-          "s3Key": "amplify-builds/tableauauth-2f355a3352506b2b577a-build.zip"
+          "s3Key": "amplify-builds/tableauauth-4c36676b667162617448-build.zip"
         }
       }
     }

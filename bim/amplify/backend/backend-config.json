@@ -23,14 +23,6 @@
       "dependsOn": [
         {
           "category": "function",
-          "resourceName": "bimtqadd67212",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        },
-        {
-          "category": "function",
           "resourceName": "tableauauth",
           "attributes": [
             "Name",

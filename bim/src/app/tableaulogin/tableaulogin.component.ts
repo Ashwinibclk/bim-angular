@@ -3,16 +3,24 @@ import {FormBuilder, FormGroup, Validators,ReactiveFormsModule} from "@angular/f
 import {APIService,  Tableaulogin} from "../API.service";
 import { Subscription } from "rxjs";
 import {Router} from '@angular/router';
-
+import {API} from 'aws-amplify';
+import {HttpClient} from "@angular/common/http";
+import { NgxSpinnerService } from "ngx-spinner";  
+import { NgxSpinnerModule } from "ngx-spinner";
 @Component({
   selector: 'app-tableaulogin',
   templateUrl: './tableaulogin.component.html',
   styleUrls: ['./tableaulogin.component.css']
 })
 export class TableauloginComponent implements OnInit {
+  response:any;
+  tabdis:boolean=false;
+  res2:Array<any>=[];
+  res3:Array<any>=[];
+  res4:Array<any>=[];
   public createFormtb: any;
   public tbs: Array<Tableaulogin> =[];
-  constructor(private api: APIService, private fb: FormBuilder, private router: Router) { 
+  constructor(private api: APIService, private fb: FormBuilder, private router: Router,private SpinnerService: NgxSpinnerService){ 
     this.createFormtb=FormBuilder;
     this.createFormtb= this.fb.group({
       username: ["", Validators.required],
@@ -36,7 +44,9 @@ export class TableauloginComponent implements OnInit {
   );
 }
 
-public onCreatetb(todo: any) {
+async onCreatetb(todo: any) {
+  this.tabdis=true;
+  this.SpinnerService.show();  
   this.api
     .CreateTableaulogin(todo)
     .then((event) => {
@@ -46,9 +56,26 @@ public onCreatetb(todo: any) {
     .catch((e) => {
       console.log("error creating restaurant...", e);
     });
-    this.router.navigate(["/datasets"]);
+    this.projects(todo);
+    
 }
 
+async projects(todo:any){
+  const apiName = 'apiad1402f8';
+  const path = '/tableaudiscovery';
+  const myInit = { // OPTIONAL
+    headers: {}, // OPTIONAL
+    body:{"username": todo.username,
+    "password": todo.password,
+    "sitename": todo.sitename,
+    "siteurl": "https://prod-uk-a.online.tableau.com/"}
+  };
+  
+this.response=await API.post(apiName,path,myInit).then(result=>{ this.res2=result.body[0]; this.res3=result.body[1];this.res4=result.body[2];
+  this.SpinnerService.hide();    
+console.log(this.res2,this.res3,this.res4);})
+
+}
 /*public onDelete(username:any){
   this.api.DeleteTableaulogin(username).then((event)=>{
     console.log("item deleted!")
@@ -69,6 +96,8 @@ ngOnDestroy() {
   this.subscription = null;
   
 }
+
+
 
 
 }

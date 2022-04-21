@@ -17,7 +17,7 @@ export class BimprojectComponent implements OnInit {
   public createFormtb: any;
   public tbs: Array<BIMProject> =[];
   public tbs1: Array<Customer> =[];
-  
+  public val:any;
   constructor(private api: APIService, private fb: FormBuilder, private router: Router) {
     this.createFormtb=FormBuilder;
     this.createFormtb= this.fb.group({
@@ -56,23 +56,28 @@ export class BimprojectComponent implements OnInit {
   public onCreatetb(todo: any) {
 var i;
 for(i=0; i<this.tbs1.length; i++){
-  if((this.tbs1[i].name==todo.UserName && this.tbs1[i].DName==todo.DName)==true){
+  if(this.tbs1[i].name==todo.UserName && this.tbs1[i].DName
+    ==todo.DName){
+    this.val=1;
     this.api
     .CreateBIMProject(todo)
     .then((event) => {
       console.log("item created!");
-      
+      this.router.navigate(["/tableaulogin"]);
       this.createFormtb.get('destination').value;
       this.createFormtb.reset();
     })
     .catch((e) => {
       console.log("error creating restaurant...", e);
     });
-    this.router.navigate(["/tableaulogin"]);
+    
   }
-  else{
-    alert("Invalid Credentials, Please Sign Up!!!")
-  }
+  
+ 
+}
+if(this.val!=1){
+  alert("invalid credentials!!!");
+  this.createFormtb.reset();
 }
 
 

@@ -8,7 +8,7 @@ import { DepartmentComponent } from './department/department.component';
 import { CustomerComponent } from './customer/customer.component';
 import { BimprojectComponent } from './bimproject/bimproject.component';
 import { DatasetComponent } from './dataset/dataset.component';
-import { TableauComponent } from './tableau/tableau.component';
+import { TableauComponent } from './tableaulogin/tableau/tableau.component';
 import { QuicksightComponent } from './quicksight/quicksight.component';
 import { API } from 'aws-amplify';
 

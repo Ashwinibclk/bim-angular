@@ -1,15 +1,8 @@
 {
   "version": 1,
   "paths": {
-    "/items": {
-      "name": "/items",
-      "lambdaFunction": "bimtqadd67212",
-      "permissions": {
-        "setting": "open"
-      }
-    },
-    "/tableauauth": {
-      "name": "/tableauauth",
+    "/tableaudiscovery": {
+      "name": "/tableaudiscovery",
       "lambdaFunction": "tableauauth",
       "permissions": {
         "setting": "open"
