@@ -5,6 +5,7 @@ subscription OnCreateTableaulogin {
     username
     password
     sitename
+    siteurl
     tenv {
       name
       tpid
@@ -39,6 +40,7 @@ subscription OnUpdateTableaulogin {
     username
     password
     sitename
+    siteurl
     tenv {
       name
       tpid
@@ -73,6 +75,7 @@ subscription OnDeleteTableaulogin {
     username
     password
     sitename
+    siteurl
     tenv {
       name
       tpid

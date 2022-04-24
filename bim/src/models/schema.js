@@ -31,6 +31,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "siteurl": {
+                    "name": "siteurl",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "tenv": {
                     "name": "tenv",
                     "isArray": false,
@@ -1542,5 +1549,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "eb4d5c3d8a0e95d31860e0b26a49f6ee"
+    "version": "6e4de069a691302141f8a0695fe02137"
 };

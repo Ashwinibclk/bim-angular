@@ -108,6 +108,7 @@ export declare class Tableaulogin {
   readonly username: string;
   readonly password: string;
   readonly sitename: string;
+  readonly siteurl: string;
   readonly tenv?: TableauEnv | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;

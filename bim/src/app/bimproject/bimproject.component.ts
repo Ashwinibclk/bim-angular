@@ -17,7 +17,8 @@ export class BimprojectComponent implements OnInit {
   public createFormtb: any;
   public tbs: Array<BIMProject> =[];
   public tbs1: Array<Customer> =[];
-  public val:any;
+  public val:Number=0;
+  
   constructor(private api: APIService, private fb: FormBuilder, private router: Router) {
     this.createFormtb=FormBuilder;
     this.createFormtb= this.fb.group({
@@ -75,7 +76,7 @@ for(i=0; i<this.tbs1.length; i++){
   
  
 }
-if(this.val!=1){
+if(this.val==0){
   alert("invalid credentials!!!");
   this.createFormtb.reset();
 }

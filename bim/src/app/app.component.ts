@@ -53,8 +53,8 @@ router.events.forEach((event)=>{
     this.api.ListBIMProjects().then((event) => {
       this.tbs = event.items as BIMProject[];
 
-    this.res1=this.getData1();
-    console.log(this.res1);  
+    //this.res1=this.getData1();
+    //console.log(this.res1);  
       
     
 

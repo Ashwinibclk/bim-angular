@@ -9,6 +9,7 @@ type Tableaulogin @model {
   username: String!
   password: String!
   sitename: String!
+  siteurl: String!
   tenv:TableauEnv @hasOne(fields:"id")
 }
 

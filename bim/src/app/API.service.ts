@@ -83,6 +83,7 @@ export type CreateTableauloginInput = {
   username: string;
   password: string;
   sitename: string;
+  siteurl: string;
   _version?: number | null;
 };
 
@@ -90,6 +91,7 @@ export type ModelTableauloginConditionInput = {
   username?: ModelStringInput | null;
   password?: ModelStringInput | null;
   sitename?: ModelStringInput | null;
+  siteurl?: ModelStringInput | null;
   and?: Array<ModelTableauloginConditionInput | null> | null;
   or?: Array<ModelTableauloginConditionInput | null> | null;
   not?: ModelTableauloginConditionInput | null;
@@ -140,6 +142,7 @@ export type Tableaulogin = {
   username: string;
   password: string;
   sitename: string;
+  siteurl: string;
   tenv?: TableauEnv | null;
   createdAt: string;
   updatedAt: string;
@@ -336,6 +339,7 @@ export type UpdateTableauloginInput = {
   username?: string | null;
   password?: string | null;
   sitename?: string | null;
+  siteurl?: string | null;
   _version?: number | null;
 };
 
@@ -1175,6 +1179,7 @@ export type ModelTableauloginFilterInput = {
   username?: ModelStringInput | null;
   password?: ModelStringInput | null;
   sitename?: ModelStringInput | null;
+  siteurl?: ModelStringInput | null;
   and?: Array<ModelTableauloginFilterInput | null> | null;
   or?: Array<ModelTableauloginFilterInput | null> | null;
   not?: ModelTableauloginFilterInput | null;
@@ -1465,6 +1470,7 @@ export type CreateTableauloginMutation = {
   username: string;
   password: string;
   sitename: string;
+  siteurl: string;
   tenv?: {
     __typename: "TableauEnv";
     name: string;
@@ -1501,6 +1507,7 @@ export type UpdateTableauloginMutation = {
   username: string;
   password: string;
   sitename: string;
+  siteurl: string;
   tenv?: {
     __typename: "TableauEnv";
     name: string;
@@ -1537,6 +1544,7 @@ export type DeleteTableauloginMutation = {
   username: string;
   password: string;
   sitename: string;
+  siteurl: string;
   tenv?: {
     __typename: "TableauEnv";
     name: string;
@@ -4126,6 +4134,7 @@ export type GetTableauloginQuery = {
   username: string;
   password: string;
   sitename: string;
+  siteurl: string;
   tenv?: {
     __typename: "TableauEnv";
     name: string;
@@ -4164,6 +4173,7 @@ export type ListTableauloginsQuery = {
     username: string;
     password: string;
     sitename: string;
+    siteurl: string;
     tenv?: {
       __typename: "TableauEnv";
       name: string;
@@ -4193,6 +4203,7 @@ export type SyncTableauloginsQuery = {
     username: string;
     password: string;
     sitename: string;
+    siteurl: string;
     tenv?: {
       __typename: "TableauEnv";
       name: string;
@@ -6281,6 +6292,7 @@ export type OnCreateTableauloginSubscription = {
   username: string;
   password: string;
   sitename: string;
+  siteurl: string;
   tenv?: {
     __typename: "TableauEnv";
     name: string;
@@ -6317,6 +6329,7 @@ export type OnUpdateTableauloginSubscription = {
   username: string;
   password: string;
   sitename: string;
+  siteurl: string;
   tenv?: {
     __typename: "TableauEnv";
     name: string;
@@ -6353,6 +6366,7 @@ export type OnDeleteTableauloginSubscription = {
   username: string;
   password: string;
   sitename: string;
+  siteurl: string;
   tenv?: {
     __typename: "TableauEnv";
     name: string;
@@ -8951,6 +8965,7 @@ export class APIService {
           username
           password
           sitename
+          siteurl
           tenv {
             __typename
             name
@@ -9003,6 +9018,7 @@ export class APIService {
           username
           password
           sitename
+          siteurl
           tenv {
             __typename
             name
@@ -9055,6 +9071,7 @@ export class APIService {
           username
           password
           sitename
+          siteurl
           tenv {
             __typename
             name
@@ -12689,6 +12706,7 @@ export class APIService {
           username
           password
           sitename
+          siteurl
           tenv {
             __typename
             name
@@ -12741,6 +12759,7 @@ export class APIService {
             username
             password
             sitename
+            siteurl
             tenv {
               __typename
               name
@@ -12792,6 +12811,7 @@ export class APIService {
             username
             password
             sitename
+            siteurl
             tenv {
               __typename
               name
@@ -16093,6 +16113,7 @@ export class APIService {
           username
           password
           sitename
+          siteurl
           tenv {
             __typename
             name
@@ -16139,6 +16160,7 @@ export class APIService {
           username
           password
           sitename
+          siteurl
           tenv {
             __typename
             name
@@ -16185,6 +16207,7 @@ export class APIService {
           username
           password
           sitename
+          siteurl
           tenv {
             __typename
             name

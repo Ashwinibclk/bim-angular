@@ -5,6 +5,7 @@ query GetTableaulogin($id: ID!) {
     username
     password
     sitename
+    siteurl
     tenv {
       name
       tpid
@@ -44,6 +45,7 @@ query ListTableaulogins(
       username
       password
       sitename
+      siteurl
       tenv {
         name
         tpid
@@ -81,6 +83,7 @@ query SyncTableaulogins(
       username
       password
       sitename
+      siteurl
       tenv {
         name
         tpid

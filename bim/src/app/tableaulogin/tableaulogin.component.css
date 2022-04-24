@@ -144,3 +144,27 @@ td button{
   float:right;
 }
 
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  height: 500px; 
+  border:1px solid black;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+  overflow: scroll;
+  border:1px solid black;
+}
+
+h6{
+  color:brown;
+}
+
+h6 i{
+  color:white;
+}

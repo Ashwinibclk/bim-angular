@@ -26,6 +26,8 @@ export class TableauloginComponent implements OnInit {
       username: ["", Validators.required],
       password: ["", Validators.required],
       sitename: ["", Validators.required],
+      siteurl: ["", Validators.required],
+
     });
   }
   private subscription: Subscription | null = null;
@@ -68,12 +70,19 @@ async projects(todo:any){
     body:{"username": todo.username,
     "password": todo.password,
     "sitename": todo.sitename,
-    "siteurl": "https://prod-uk-a.online.tableau.com/"}
+    "siteurl": todo.siteurl}
   };
   
 this.response=await API.post(apiName,path,myInit).then(result=>{ this.res2=result.body[0]; this.res3=result.body[1];this.res4=result.body[2];
+  
   this.SpinnerService.hide();    
-console.log(this.res2,this.res3,this.res4);})
+console.log(this.res2,this.res3,this.res4);}
+)
+.catch((e) => {
+  this.SpinnerService.hide(); 
+  this.tabdis=false;   
+  alert("Invalid Credentials!!!")
+});
 
 }
 /*public onDelete(username:any){

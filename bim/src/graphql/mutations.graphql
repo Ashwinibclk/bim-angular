@@ -8,6 +8,7 @@ mutation CreateTableaulogin(
     username
     password
     sitename
+    siteurl
     tenv {
       name
       tpid
@@ -45,6 +46,7 @@ mutation UpdateTableaulogin(
     username
     password
     sitename
+    siteurl
     tenv {
       name
       tpid
@@ -82,6 +84,7 @@ mutation DeleteTableaulogin(
     username
     password
     sitename
+    siteurl
     tenv {
       name
       tpid
