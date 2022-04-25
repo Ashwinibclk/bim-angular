@@ -2,7 +2,7 @@ import boto3
 import tableauserverclient as TSC
 import os
 
-from quick_sight import quicksight
+
 
 client = boto3.client('dynamodb')
 
@@ -16,7 +16,7 @@ def lambda_handler(event, context):
         all_project_items, pagination_item = server.projects.get()
         for proj in all_project_items:
             client.put_item(
-                TableName='Tablueaproject',
+                TableName='Tableauproject1',
                 Item={
                     'id': {
                         'S': proj.id
@@ -40,7 +40,7 @@ def lambda_handler(event, context):
             # print the information about the first connection item
             connection = data_source.connections[0]
             client.put_item(
-                TableName='Tableaudatasources',
+                TableName='Tableaudatasources1',
                 Item={
                     'projectid': {
                         'S': datasource.id
@@ -60,7 +60,7 @@ def lambda_handler(event, context):
             # get the connection information
             server.workbooks.populate_connections(work_book)
             client.put_item(
-                TableName='workbooks',
+                TableName='workbooks1',
                 Item={
                     'Name': {
                         'S': work_book.name
@@ -83,10 +83,10 @@ def lambda_handler(event, context):
         #     v.write(view.image)
         #     filepath = os.path.abspath(v.name)
         #     print(filepath)
-        quicksight(context, event)
+        """quicksight(context, event)"""
     response = {
         'statusCode': 200,
-        'body': "auth successfully",
+        'body': "",
         'headers': {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*'
