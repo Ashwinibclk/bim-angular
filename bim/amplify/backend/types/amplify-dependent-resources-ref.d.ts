@@ -5,7 +5,7 @@ export type AmplifyDependentResourcesAttributes = {
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
         },
-        "apiad1402f8": {
+        "bm": {
             "RootUrl": "string",
             "ApiName": "string",
             "ApiId": "string"
@@ -30,6 +30,18 @@ export type AmplifyDependentResourcesAttributes = {
             "LambdaExecutionRole": "string"
         },
         "tableauauth": {
+            "Name": "string",
+            "Arn": "string",
+            "Region": "string",
+            "LambdaExecutionRole": "string"
+        },
+        "tableaudiscovery": {
+            "Name": "string",
+            "Arn": "string",
+            "Region": "string",
+            "LambdaExecutionRole": "string"
+        },
+        "quicksight": {
             "Name": "string",
             "Arn": "string",
             "Region": "string",

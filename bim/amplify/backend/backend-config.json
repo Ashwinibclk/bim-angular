@@ -17,13 +17,13 @@
         }
       }
     },
-    "apiad1402f8": {
+    "bm": {
       "service": "API Gateway",
       "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
           "category": "function",
-          "resourceName": "tableauauth",
+          "resourceName": "tableaudiscovery",
           "attributes": [
             "Name",
             "Arn"
@@ -92,6 +92,17 @@
       ]
     },
     "tableauauth": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "tableaudiscovery": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": []
+    },
+    "quicksight": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"

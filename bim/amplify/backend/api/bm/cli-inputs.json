@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/tableau": {
+      "name": "/tableau",
+      "lambdaFunction": "tableaudiscovery",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

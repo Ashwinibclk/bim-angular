@@ -87,7 +87,7 @@ router.events.forEach((event)=>{
       this.ref.detectChanges();
     })
 
- /*   this.http.post<Article>(' https://toos22aleg.execute-api.us-east-2.amazonaws.com/bim/tableaudiscovery/', { title: 'Angular POST Request Example' }).subscribe(data => {this.res1=data;});
+ /*this.http.post<Article>('https://sxvp20h4x1.execute-api.us-east-2.amazonaws.com/tableauapi', { title: 'Angular POST Request Example' }).subscribe(data => {this.res1=data;});
      console.log(this.res1);
   
   

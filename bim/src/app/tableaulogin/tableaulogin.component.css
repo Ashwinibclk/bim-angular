@@ -146,7 +146,7 @@ td button{
 
 .column {
   float: left;
-  width: 33.33%;
+  width: 25%;
   padding: 10px;
   height: 500px; 
   border:1px solid black;
@@ -167,4 +167,14 @@ h6{
 
 h6 i{
   color:white;
+}
+
+li:hover{
+  color:white;
+  cursor: pointer;
+}
+
+li button:hover{
+  color: white;
+  cursor: pointer;
 }

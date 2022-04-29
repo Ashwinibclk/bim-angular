@@ -18,6 +18,7 @@ export class TableauloginComponent implements OnInit {
   res2:Array<any>=[];
   res3:Array<any>=[];
   res4:Array<any>=[];
+  res5:Array<any>=[];
   public createFormtb: any;
   public tbs: Array<Tableaulogin> =[];
   constructor(private api: APIService, private fb: FormBuilder, private router: Router,private SpinnerService: NgxSpinnerService){ 
@@ -63,8 +64,8 @@ async onCreatetb(todo: any) {
 }
 
 async projects(todo:any){
-  const apiName = 'apiad1402f8';
-  const path = '/tableaudiscovery';
+  const apiName = 'bm';
+  const path = '/tableau';
   const myInit = { // OPTIONAL
     headers: {}, // OPTIONAL
     body:{"username": todo.username,
@@ -73,10 +74,10 @@ async projects(todo:any){
     "siteurl": todo.siteurl}
   };
   
-this.response=await API.post(apiName,path,myInit).then(result=>{ this.res2=result.body[0]; this.res3=result.body[1];this.res4=result.body[2];
+this.response=await API.post(apiName,path,myInit).then(result=>{ this.res2=result.body[0]; this.res3=result.body[1];this.res4=result.body[2];this.res5=result.body[3];
   
   this.SpinnerService.hide();    
-console.log(this.res2,this.res3,this.res4);}
+console.log(this.res2,this.res3,this.res4,this.res5);}
 )
 .catch((e) => {
   this.SpinnerService.hide(); 

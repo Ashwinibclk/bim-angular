@@ -14,6 +14,8 @@ def lambda_handler(event, context):
     with server.auth.sign_in(tableau_auth):
         # get all projects on site
         all_project_items, pagination_item = server.projects.get()
+        projects=[proj.name for proj in all_project_items]
+
         for proj in all_project_items:
             client.put_item(
                 TableName='Tableauproject1',
@@ -32,6 +34,7 @@ def lambda_handler(event, context):
     with server.auth.sign_in(tableau_auth):
         all_datasources, pagination_item = server.datasources.get()
         print([datasource.id for datasource in all_datasources])
+        datasources=[proj.name for proj in all_datasources]
         for datasource in all_datasources:
             # get the data source
             data_source = server.datasources.get_by_id(datasource.id)
@@ -54,6 +57,8 @@ def lambda_handler(event, context):
     with server.auth.sign_in(tableau_auth):
         all_workbooks, pagination_item = server.workbooks.get()
         print([workbook.id for workbook in all_workbooks])
+        workbooks=[proj.name for proj in all_workbooks]
+
         for workbook in all_workbooks:
             # get the data source
             work_book = server.workbooks.get_by_id(workbook.id)
@@ -70,15 +75,7 @@ def lambda_handler(event, context):
                     }
                 }
             )
-    with server.auth.sign_in(tableau_auth):
-        view = server.views.get_by_id('e3a282d4-3652-44f9-9440-64cb0f64ff6e')
-        print(view.name)
-    with server.auth.sign_in(tableau_auth):
-        for view in TSC.Pager(server.views):
-            print(view.name)
-            print(view.id)
-    with server.auth.sign_in(tableau_auth):
-        server.views.populate_image(view)
+   
         # with open('C:/Users/mahesh/Desktop/view.pdf', 'wb') as v:
         #     v.write(view.image)
         #     filepath = os.path.abspath(v.name)
@@ -86,11 +83,14 @@ def lambda_handler(event, context):
         """quicksight(context, event)"""
     response = {
         'statusCode': 200,
-        'body': "",
+        'body': [projects,workbooks,datasources],
         'headers': {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-        },
+          'Access-Control-Allow-Headers': '*',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'POST,GET',
+          'Access-Control-Request-Headers': '*',
+          'Content-Type':'application/json'
+      },
     }
 
     return response

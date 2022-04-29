@@ -63,7 +63,15 @@
         },
         "tableauauth": {
           "deploymentBucketName": "amplify-bimtq-bim-122711-deployment",
-          "s3Key": "amplify-builds/tableauauth-4c36676b667162617448-build.zip"
+          "s3Key": "amplify-builds/tableauauth-534167555649632b306b-build.zip"
+        },
+        "tableaudiscovery": {
+          "deploymentBucketName": "amplify-bimtq-bim-122711-deployment",
+          "s3Key": "amplify-builds/tableaudiscovery-444a6330564b38744e66-build.zip"
+        },
+        "quicksight": {
+          "deploymentBucketName": "amplify-bimtq-bim-122711-deployment",
+          "s3Key": "amplify-builds/quicksight-446735557730635a4f65-build.zip"
         }
       }
     }
